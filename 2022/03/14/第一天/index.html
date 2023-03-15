@@ -303,7 +303,103 @@
         </header>
 
         <div class="post-content">
-            <h3 id="这是我的第一个"><a href="#这是我的第一个" class="headerlink" title="这是我的第一个"></a>这是我的第一个</h3><h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2>
+            <h3 id="这是我的第一个"><a href="#这是我的第一个" class="headerlink" title="这是我的第一个"></a>这是我的第一个</h3><p>正则表达式是用来处理字符串的，它可以让你节省很多很多的代码。<br><a name="NA59r"></a></p>
+<h2 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h2><p>如果一个输入框不让提交，这个过程就是表单验证的过程。同理：</p>
+<ol>
+<li>如果我们输入的不是手机号，就不让提交</li>
+<li>如果我们输入的不是邮箱地址，就不让提交</li>
+<li>如果我们输入的不是身份证号，不然提交</li>
+</ol>
+<p>上面这些操作都是表单验证的场景，而这些都需要用到正则表达式。<br><a name="jwUoJ"></a></p>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p><a name="vhuNs"></a></p>
+<h3 id="正则的使用"><a href="#正则的使用" class="headerlink" title="正则的使用"></a>正则的使用</h3><p>想要创建一个正则表达式，需要我们通过<code>new RegExp</code>进行创建。也可以通过<code>//</code>，建议使用后者，在特定时候，必须使用前者。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&quot;规则&quot;</span>, <span class="string">&quot;修饰符&quot;</span>)</span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/规则/</span>修饰符</span><br></pre></td></tr></table></figure>
+<p><a name="TLwvL"></a></p>
+<h3 id="验证字符串是否符合正则表达式"><a href="#验证字符串是否符合正则表达式" class="headerlink" title="验证字符串是否符合正则表达式"></a>验证字符串是否符合正则表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg.<span class="title function_">test</span>(字符串) <span class="comment">// 返回值为true或者false</span></span><br></pre></td></tr></table></figure>
+<p><a name="LSFto"></a></p>
+<h2 id="正则表达式语法"><a href="#正则表达式语法" class="headerlink" title="正则表达式语法"></a>正则表达式语法</h2><p><a name="X6tF1"></a></p>
+<h3 id="宽度"><a href="#宽度" class="headerlink" title="宽度"></a>宽度</h3><p>正则表达式中一个字符是一个宽度，会和字符串中的对应的符合条件的字符尽心匹配，如： </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/a/</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">&quot;sva&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// reg就会匹配到a</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/aa/</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;svab&#x27;</span></span><br><span class="line"><span class="comment">// 这个不能匹配</span></span><br></pre></td></tr></table></figure>
+<p><a name="H3fg7"></a></p>
+<h3 id="如果我们要匹配的内容是一个范围"><a href="#如果我们要匹配的内容是一个范围" class="headerlink" title="如果我们要匹配的内容是一个范围"></a>如果我们要匹配的内容是一个范围</h3><p>使用<code>[]</code>表示一个范围，宽度为1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/[abcdefghjklmnopqrstuvwxyz]/</span> <span class="comment">// 虽然有26个字母，但是只匹配一个宽度</span></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/[a-z]/</span> <span class="comment">// 如果式连贯的字母，就可以写a-xxx 如a-c表示 abc</span></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/[a-zA-Z]/</span></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/[a-cA-C_0-4]/</span></span><br></pre></td></tr></table></figure>
+<p>如果表示不包含[]中的内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/[^a-c]/ <span class="comment">// 不包含a-c </span></span><br></pre></td></tr></table></figure>
+<p><a name="FYt0d"></a></p>
+<h3 id="以什么开始-以什么结束"><a href="#以什么开始-以什么结束" class="headerlink" title="以什么开始 以什么结束"></a>以什么开始 以什么结束</h3><p>为了确保我们匹配到的字符是一个完整没有其他不符合要求的字符，一般我们需要设置开始和结束的标志</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/^规则/</span></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/规则$/</span></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/^规则$/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a name="o0eZd"></a></p>
+<h3 id="将匹配宽度增加"><a href="#将匹配宽度增加" class="headerlink" title="将匹配宽度增加"></a>将匹配宽度增加</h3><p>在我们进行匹配时，有很多时候会出现相同匹配情况，我们可以设置匹配宽度 <code>&#123;m, n&#125;</code>例如：<br />QQ号是5-11位</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> qqReg = <span class="regexp">/^[1-9][0-9]&#123;4,10&#125;$/</span></span><br></pre></td></tr></table></figure>
+<p>数量可以有以下写法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;m, n&#125; <span class="comment">// m - n位</span></span><br><span class="line">&#123;m&#125; <span class="comment">// 固定m位</span></span><br><span class="line">&#123;m,&#125; <span class="comment">// 大于等于m位</span></span><br></pre></td></tr></table></figure>
+<p><a name="KvpZh"></a></p>
+<h4 id="转义符"><a href="#转义符" class="headerlink" title="\ 转义符"></a>\ 转义符</h4><p>我们正则表达式中，有些字符有自己的功能，我们就需要通过转义符来实现另外一种功能，例如</p>
+<ul>
+<li>d表示字母d，\d表示数字</li>
+<li>w表示字母w，\w表示所有字符</li>
+<li>\表示转移，\表示普通的符号<br><a name="q6U3p"></a></li>
+</ul>
+<h4 id="字符大写"><a href="#字符大写" class="headerlink" title="字符大写"></a>字符大写</h4><p>如果一个元字符中字母大写，则一般表示，小写的反义结果，例如<br />\d表示数字 \D 表示非数字<br><a name="uDKNO"></a></p>
+<h4 id=""><a href="#" class="headerlink" title="* + ?"></a>* + ?</h4><ul>
+<li><ul>
+<li>表示 0次或者多次 {0, }</li>
+</ul>
+</li>
+<li>+表示1次或者多次 {1, }</li>
+<li>? 表示0次或者1次 {0, 1}<br><a name="YclmM"></a></li>
+</ul>
+<h4 id="-1"><a href="#-1" class="headerlink" title="."></a>.</h4><p>.是除换行符外的任意字符<br />如果我们想要匹配标点符号<code>.</code>我们需要<code>\.</code><br><a name="JPCSs"></a></p>
+<h4 id="b-B"><a href="#b-B" class="headerlink" title="\b \B"></a>\b \B</h4><p>表示单词的边界，一般你用不上，例如，我想匹配我的className</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box1 box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>\B表示非单词边界<br><a name="sEdiL"></a></p>
+<h4 id="d-D"><a href="#d-D" class="headerlink" title="\d \D"></a>\d \D</h4><p>\d等同于[0-9] 表示数字<br />\D等同于[^0-9]  非数字<br><a name="nlLVv"></a></p>
+<h4 id="n-s-S-r"><a href="#n-s-S-r" class="headerlink" title="\n \s \S \r"></a>\n \s \S \r</h4><p>\n换行符 \r回车符<br />\s空白符 \n \r \t \v都是空白符<br />\S表示非空白符</p>
+<p><a name="CNwd7"></a></p>
+<h4 id="w-W"><a href="#w-W" class="headerlink" title="\w \W"></a>\w \W</h4><p>\w字母数字下划线 等同于 [a-zA-Z0-9_]<br />\W表示非数字字母下划线[^a-zA-Z0-9_]<br><a name="xZFr2"></a></p>
+<h4 id="数字"><a href="#数字" class="headerlink" title="\数字"></a>\数字</h4><p>我们如果在正则表达式中有括号，会产生一个分组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/(\d)\1/g</span> <span class="comment">// 等同于 \d前面匹配内容的引用</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;112234&#x27;</span> <span class="comment">// 11 22</span></span><br></pre></td></tr></table></figure>
+<p><a name="wdv2t"></a></p>
+<h4 id="-2"><a href="#-2" class="headerlink" title="()"></a>()</h4><p>优先匹配 产生分组 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/((1)(2))(((3))(4))/</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	((1)(2))</span></span><br><span class="line"><span class="comment"> 	(1)</span></span><br><span class="line"><span class="comment">  (2)</span></span><br><span class="line"><span class="comment">  (((3))(4))</span></span><br><span class="line"><span class="comment">  ((3))</span></span><br><span class="line"><span class="comment">  (3)</span></span><br><span class="line"><span class="comment">  (4)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p><a name="oYRCF"></a></p>
+<h4 id="或"><a href="#或" class="headerlink" title="| 或"></a>| 或</h4><p>条件，不走前面就走后面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/((131)|(132))/</span></span><br></pre></td></tr></table></figure>
+<p><a name="Pr5k0"></a></p>
+<h4 id="num"><a href="#num" class="headerlink" title="$num"></a>$num</h4><p>在replace操作中，如果我们想要借助分组匹配到的结果，可以使用$num num就是组的序号。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">`</span></span><br><span class="line"><span class="string">  1. 题目1</span></span><br><span class="line"><span class="string">  2. 题目2</span></span><br><span class="line"><span class="string">  3. 题目3</span></span><br><span class="line"><span class="string">  4. 题目4</span></span><br><span class="line"><span class="string">  5. 题目5</span></span><br><span class="line"><span class="string">  6. 题目6</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">replace</span>(<span class="regexp">/(题目\d)/g</span>, <span class="string">&quot;&#x27;$1&#x27;&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p><a name="Aeld0"></a></p>
+<h3 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h3><p>写在&#x2F;&#x2F;后面的字母</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="comment">//ig</span></span><br><span class="line"><span class="keyword">let</span> reg = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot;ig&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p><a name="LYUsQ"></a></p>
+<h4 id="g"><a href="#g" class="headerlink" title="g"></a>g</h4><p>全局匹配<br><a name="cE33Y"></a></p>
+<h4 id="i"><a href="#i" class="headerlink" title="i"></a>i</h4><p>不区分大小写<br><a name="aAiYV"></a></p>
+<h2 id="贪婪和懒惰"><a href="#贪婪和懒惰" class="headerlink" title="贪婪和懒惰"></a>贪婪和懒惰</h2><p>如果在限制符后添加<code>?</code>会进入懒惰模式，然后会尽可能少的取匹配对应的字符。默认是贪婪模式，尽可能多的匹配字符。<br><a name="pqQT6"></a></p>
+<h2 id="零宽断言"><a href="#零宽断言" class="headerlink" title="零宽断言"></a>零宽断言</h2><p><a name="oQc76"></a></p>
+<h3 id="pattern"><a href="#pattern" class="headerlink" title="(?:pattern)"></a>(?:pattern)</h3><p>可以代替<code>|</code>操作时，省略公共的字符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">`</span></span><br><span class="line"><span class="string">	windows10</span></span><br><span class="line"><span class="string">  windows11</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/windows(?:10|11)/</span></span><br><span class="line"><span class="comment">// 匹配到的是windows10 和 windows11 相当于windows10|windows11</span></span><br></pre></td></tr></table></figure>
+<p><a name="Io1Sx"></a></p>
+<h3 id="x3D-pattern"><a href="#x3D-pattern" class="headerlink" title="(?&#x3D;pattern)"></a>(?&#x3D;pattern)</h3><p>匹配后面的结尾的内容是否符合条件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">`</span></span><br><span class="line"><span class="string">	windows10</span></span><br><span class="line"><span class="string">  windows11</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/windows(?=\d+)/</span></span><br><span class="line"><span class="comment">// 匹配到的是windows 匹配数字但是不进行保存</span></span><br></pre></td></tr></table></figure>
+<p><a name="IAuZx"></a></p>
+<h3 id="lt-x3D-pattern"><a href="#lt-x3D-pattern" class="headerlink" title="(?&lt;&#x3D;pattern)"></a>(?&lt;&#x3D;pattern)</h3><p>和上面方向相反，先判断后匹配</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">`</span></span><br><span class="line"><span class="string">	windows10</span></span><br><span class="line"><span class="string">  windows11</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/(?&lt;=windows)\d+/</span></span><br><span class="line"><span class="comment">// 匹配到的是后面的数字，匹配window但是不保存</span></span><br></pre></td></tr></table></figure>
+<p><a name="NlhKl"></a></p>
+<h3 id="pattern-1"><a href="#pattern-1" class="headerlink" title="(?!pattern)"></a>(?!pattern)</h3><p>和第一个都是后面判断，表示不符合条件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">`</span></span><br><span class="line"><span class="string">	windows10</span></span><br><span class="line"><span class="string">  windows11</span></span><br><span class="line"><span class="string">  windowsxp</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/windows(?!\d+)/</span></span><br><span class="line"><span class="comment">// 匹配到的是windows 是windowsxp的windows 前面两个比匹配</span></span><br></pre></td></tr></table></figure>
+<p><a name="GOvO3"></a></p>
+<h3 id="lt-pattern"><a href="#lt-pattern" class="headerlink" title="(?&lt;!pattern)"></a>(?&lt;!pattern)</h3><p>和上面方向相反，先判断后匹配</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">`</span></span><br><span class="line"><span class="string">	windows1</span></span><br><span class="line"><span class="string">  windows2</span></span><br><span class="line"><span class="string">  ubuntu3</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/(?&lt;!windows)\d+/</span></span><br><span class="line"><span class="comment">// 匹配到的是后面的数字，但是是最后一个3，因为前面不能是windows</span></span><br></pre></td></tr></table></figure>
+<p><a name="gnQIz"></a></p>
+<h2 id="字符串方法"><a href="#字符串方法" class="headerlink" title="字符串方法"></a>字符串方法</h2><p>大部分的字符串方法都可以使用正则表达式<br><a name="DVT7d"></a></p>
+<h3 id="split"><a href="#split" class="headerlink" title="split"></a>split</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.<span class="title function_">split</span>(<span class="regexp">/正则/</span>)</span><br></pre></td></tr></table></figure>
+<p><a name="OxVcu"></a></p>
+<h3 id="match"><a href="#match" class="headerlink" title="match"></a>match</h3><p>可以匹配到对应的字符串，咱们在网上使用的正则表达式验证，就是利用了match<br><a name="PM8N7"></a></p>
+<h3 id="search"><a href="#search" class="headerlink" title="search"></a>search</h3><p>功能和indexOf相同，支持正则表达式，可以查询某个匹配到的正则在我们对应的字符串中的下标。<br><a name="u0kXL"></a></p>
+<h3 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h3><p>字符串替换，可以使用正则进行匹配</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str.<span class="title function_">replace</span>(<span class="regexp">/正则/</span>, <span class="string">&quot;替换的内容&quot;</span>)</span><br><span class="line">str.<span class="title function_">replace</span>(<span class="regexp">/(正则)(正则)/</span>, <span class="string">&quot;$1:$2&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2>
         </div>
 
         
