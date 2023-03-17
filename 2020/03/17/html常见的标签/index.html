@@ -1,0 +1,694 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="如果我们往网页上展示内容，就需要把内容写在body标签中。 1. 段落使用p标签标示网页中段落，段落的特点，另起一行排列，段落和段落之间有距离 1.1. 网页渲染一些特点在网页中，我们html 内容中的回车会被渲染成空格，不管几个回车都会被渲染成一个。空格也是，不管多少个空格都会被渲染成一个空格。当回车跟着标签时，不会被渲染成空格 12345&lt;p&gt;内容&lt;&#x2F;p&gt;&lt;p&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.html常见的标签">
+<meta property="og:url" content="http://example.com/2020/03/17/html%E5%B8%B8%E8%A7%81%E7%9A%84%E6%A0%87%E7%AD%BE/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="如果我们往网页上展示内容，就需要把内容写在body标签中。 1. 段落使用p标签标示网页中段落，段落的特点，另起一行排列，段落和段落之间有距离 1.1. 网页渲染一些特点在网页中，我们html 内容中的回车会被渲染成空格，不管几个回车都会被渲染成一个。空格也是，不管多少个空格都会被渲染成一个空格。当回车跟着标签时，不会被渲染成空格 12345&lt;p&gt;内容&lt;&#x2F;p&gt;&lt;p&amp;g">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1656914923782-8b766078-e04b-4e90-830a-31b46f69ecd1.png#averageHue=%23f2f1f0&clientId=u2101e15a-85e9-4&from=paste&height=283&id=ud27fcdd9&name=image.png&originHeight=283&originWidth=243&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8968&status=done&style=none&taskId=u3fd9772c-dcf6-44f8-89a9-55ab82dd923&title=&width=243">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1656916050456-f832ddd1-6a53-44dc-b902-70072df439e3.png#averageHue=%23faf9f9&clientId=ufe81256d-9b1a-4&from=paste&height=480&id=u1f1ef477&name=image.png&originHeight=480&originWidth=715&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17988&status=done&style=none&taskId=u58227396-480d-4586-ad74-b93999a8440&title=&width=715">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1656919068901-b1e99622-0cec-46a3-bc4b-0ee8ee093293.png#averageHue=%23c8d2c9&clientId=ufe81256d-9b1a-4&from=paste&height=505&id=u51a4d026&name=image.png&originHeight=505&originWidth=603&originalType=binary&ratio=1&rotation=0&showTitle=false&size=270281&status=done&style=none&taskId=uc16564ef-d312-409f-b88a-519dd24f8e7&title=&width=603">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1656920085190-b5ea4647-54e4-4569-87db-ac7ed9b7705c.png#averageHue=%23ecebeb&clientId=ufe81256d-9b1a-4&from=paste&height=480&id=u6ce3018e&name=image.png&originHeight=480&originWidth=377&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20369&status=done&style=none&taskId=u3d15487f-bff5-469c-b500-7826ad30ccf&title=&width=377">
+<meta property="article:published_time" content="2020-03-17T08:43:06.000Z">
+<meta property="article:modified_time" content="2023-03-17T08:44:57.623Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1656914923782-8b766078-e04b-4e90-830a-31b46f69ecd1.png#averageHue=%23f2f1f0&clientId=u2101e15a-85e9-4&from=paste&height=283&id=ud27fcdd9&name=image.png&originHeight=283&originWidth=243&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8968&status=done&style=none&taskId=u3fd9772c-dcf6-44f8-89a9-55ab82dd923&title=&width=243">
+  
+  
+  
+  <title>2.html常见的标签 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2.html常见的标签"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-03-17 16:43" pubdate>
+          2020年3月17日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">2.html常见的标签</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>如果我们往网页上展示内容，就需要把内容写在body标签中。<br><a name="D2z6r"></a></p>
+<h2 id="1-段落"><a href="#1-段落" class="headerlink" title="1. 段落"></a>1. 段落</h2><p>使用p标签标示网页中段落，段落的特点，另起一行排列，段落和段落之间有距离<br><a name="q10uD"></a></p>
+<h3 id="1-1-网页渲染一些特点"><a href="#1-1-网页渲染一些特点" class="headerlink" title="1.1. 网页渲染一些特点"></a>1.1. 网页渲染一些特点</h3><p>在网页中，我们html 内容中的回车会被渲染成空格，不管几个回车都会被渲染成一个。空格也是，不管多少个空格都会被渲染成一个空格。当回车跟着标签时，不会被渲染成空格</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>内容<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>  内容<br><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="UZWvX"></a></p>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><p>在网上找一篇文章，给文章显示成段落分明的效果。<br><a name="rfpFV"></a></p>
+<h2 id="2-标题"><a href="#2-标题" class="headerlink" title="2. 标题"></a>2. 标题</h2><p>在网页上显示一个标题，标题标签有6个，分别h1、h2、h3、h4、h5、h6。未来我提到标题标签会用<code>hx</code>来说。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>一级标题<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>二级标题<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>三级标题<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>四级标题<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h5</span>&gt;</span>五级标题<span class="hljs-tag">&lt;/<span class="hljs-name">h5</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h6</span>&gt;</span>六级标题<span class="hljs-tag">&lt;/<span class="hljs-name">h6</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>完成后，可以展示到页面上六个级别的标题<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1656914923782-8b766078-e04b-4e90-830a-31b46f69ecd1.png#averageHue=%23f2f1f0&clientId=u2101e15a-85e9-4&from=paste&height=283&id=ud27fcdd9&name=image.png&originHeight=283&originWidth=243&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8968&status=done&style=none&taskId=u3fd9772c-dcf6-44f8-89a9-55ab82dd923&title=&width=243" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="Uqv1b"></a></p>
+<h3 id="练习-1"><a href="#练习-1" class="headerlink" title="练习"></a>练习</h3><p>用合适的标签给段落的练习中添加标题以及作者信息。<br><a name="r6paP"></a></p>
+<h2 id="3-超链接"><a href="#3-超链接" class="headerlink" title="3. 超链接"></a>3. 超链接</h2><p>在我们的网页上，我们需要通过超链接的方式，将页面跳转到另外的页面中。<br />超链接是<code>a</code>标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="DmRLp"></a></p>
+<h3 id="3-1-网页的地址"><a href="#3-1-网页的地址" class="headerlink" title="3.1. 网页的地址"></a>3.1. 网页的地址</h3><p>我们称网页的地址为网址，叫URL<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1656916050456-f832ddd1-6a53-44dc-b902-70072df439e3.png#averageHue=%23faf9f9&clientId=ufe81256d-9b1a-4&from=paste&height=480&id=u1f1ef477&name=image.png&originHeight=480&originWidth=715&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17988&status=done&style=none&taskId=u58227396-480d-4586-ad74-b93999a8440&title=&width=715" srcset="/img/loading.gif" lazyload alt="image.png"><br />只要有网址，我们就能从浏览器进入到对应的网页中。<br />我们使用超链接的目的，是为了替代用户手动输入网址并访问的这个过程。<br><a name="tiW1w"></a></p>
+<h3 id="3-2-超链接的使用方式"><a href="#3-2-超链接的使用方式" class="headerlink" title="3.2. 超链接的使用方式"></a>3.2. 超链接的使用方式</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;url(网址)&quot;</span>&gt;</span>超链接的名字<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>默认情况下，a标签跳转链接会在当前页面中打开。之前的页面成为了历史记录。<br><a name="GIelU"></a></p>
+<h3 id="3-3-新的页面中打开超链接"><a href="#3-3-新的页面中打开超链接" class="headerlink" title="3.3. 新的页面中打开超链接"></a>3.3. 新的页面中打开超链接</h3><p>除了href属性外，a标签还有target属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">&quot;_blank&quot;</span>&gt;</span>超链接<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>_blank 表示在新的页面中打开</li>
+<li>_self 表示在当前页面中打开 （默认值）<br><a name="oM3YR"></a></li>
+</ul>
+<h3 id="3-4-超链接上的提示-（基本不用）"><a href="#3-4-超链接上的提示-（基本不用）" class="headerlink" title="3.4. 超链接上的提示 （基本不用）"></a>3.4. 超链接上的提示 （基本不用）</h3><p>title属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;当鼠标放在这个超链接上时，会显示这个提示&quot;</span>&gt;</span>超链接<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="aQaGw"></a></p>
+<h3 id="3-5-如果未来没有要跳转的url怎么办"><a href="#3-5-如果未来没有要跳转的url怎么办" class="headerlink" title="3.5. 如果未来没有要跳转的url怎么办"></a>3.5. 如果未来没有要跳转的url怎么办</h3><p>在我们写静态页面时，我么的a标签都是暂时不需要跳转的，我们可以先写占位符，使用一个 <code>#</code>占位即可</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>超链接<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="ACeAp"></a></p>
+<h3 id="练习-2"><a href="#练习-2" class="headerlink" title="练习"></a>练习</h3><p>在上面的练习中，找到10个名词，替换成超链接，可以跳转到对应的百度百科<br><a name="dJown"></a></p>
+<h2 id="4-图片"><a href="#4-图片" class="headerlink" title="4. 图片"></a>4. 图片</h2><p>在网页上添加图片可以使用img标签，img标签是一个单标签。 	</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>src source 资源位置，表示图片的路径</li>
+<li>alt<br><a name="goe5a"></a></li>
+</ul>
+<h3 id="4-1-图片路径问题"><a href="#4-1-图片路径问题" class="headerlink" title="4.1. 图片路径问题"></a>4.1. 图片路径问题</h3><p>我们想要在网页上显示一个图片，直接使用图片对应的路径即可。问题在于，路径到底长什么样子。<br><a name="ujEjl"></a></p>
+<h4 id="4-1-1-在网络上的图片有网络地址"><a href="#4-1-1-在网络上的图片有网络地址" class="headerlink" title="4.1.1. 在网络上的图片有网络地址"></a>4.1.1. 在网络上的图片有网络地址</h4><p>存在于网络上的图片，就是在网页中能够浏览到的图片。这些图片我们都能获取到对应的地址<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1656919068901-b1e99622-0cec-46a3-bc4b-0ee8ee093293.png#averageHue=%23c8d2c9&clientId=ufe81256d-9b1a-4&from=paste&height=505&id=u51a4d026&name=image.png&originHeight=505&originWidth=603&originalType=binary&ratio=1&rotation=0&showTitle=false&size=270281&status=done&style=none&taskId=uc16564ef-d312-409f-b88a-519dd24f8e7&title=&width=603" srcset="/img/loading.gif" lazyload alt="image.png"><br />我们可以直接将网络地址替换到img的src属性中。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;网络地址&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>图片的网络地址想要正确的显示一张图片，需要我们的电脑联网才能访问。<br><a name="KQww0"></a></p>
+<h4 id="4-1-2-本地路径-绝对路径"><a href="#4-1-2-本地路径-绝对路径" class="headerlink" title="4.1.2. 本地路径-绝对路径"></a>4.1.2. 本地路径-绝对路径</h4><p>在我们电脑上的所有文件都有一个路径，右键属性即可查看<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1656920085190-b5ea4647-54e4-4569-87db-ac7ed9b7705c.png#averageHue=%23ecebeb&clientId=ufe81256d-9b1a-4&from=paste&height=480&id=u6ce3018e&name=image.png&originHeight=480&originWidth=377&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20369&status=done&style=none&taskId=u3d15487f-bff5-469c-b500-7826ad30ccf&title=&width=377" srcset="/img/loading.gif" lazyload alt="image.png"><br />这个位置+文件名字就是这个文件的绝对路径</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">C</span>:\Users\Administrator\Desktop\<span class="hljs-number">1</span>.jpeg<br></code></pre></td></tr></table></figure>
+<p>如果位置图片更改了位置，那么我们的路径就不能找到对应的图片了<br />注意！！！！我们在项目中不会使用绝对路径的！！！<br><a name="l8YDg"></a></p>
+<h4 id="4-1-3-本地路径-相对路径"><a href="#4-1-3-本地路径-相对路径" class="headerlink" title="4.1.3. 本地路径-相对路径"></a>4.1.3. 本地路径-相对路径</h4><ul>
+<li>.&#x2F; 当前目录</li>
+<li>..&#x2F; 上一级目录</li>
+</ul>
+<p>我们要找图片时，保持我们的html和存放图片的目录在一个文件夹中。<br />直接在src中写 <code>./</code>剩下的VSCode会提示的。<br />什么情况下用<code>../</code>在后续的css操作中会讲。<br><a name="srbn9"></a></p>
+<h3 id="4-2-图片大小设置"><a href="#4-2-图片大小设置" class="headerlink" title="4.2. 图片大小设置"></a>4.2. 图片大小设置</h3><p>图片显示后，每个图片都由自己的宽高，想要图片正确的显示不变形，宽高比不能高边。</p>
+<ul>
+<li>width</li>
+<li>height</li>
+</ul>
+<p>属性值没有单位，但是表示的像素。<br />当我们设置宽度时，高度会自动等比缩放，反之相同。<br />如果我们要同时设置宽高时，一定要注意图片比例，保证图片不变形。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="o0W1G"></a></p>
+<h3 id="4-3-图片加载失败时占位文字"><a href="#4-3-图片加载失败时占位文字" class="headerlink" title="4.3. 图片加载失败时占位文字"></a>4.3. 图片加载失败时占位文字</h3><p>alt属性可以用来在图片加载失败时显示占位文字信息</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./img/11.jpeg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;当图片加载失败时显示的占位文字&quot;</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+<p><a name="tsguh"></a></p>
+<h2 id="5-影响字体样式的标签"><a href="#5-影响字体样式的标签" class="headerlink" title="5. 影响字体样式的标签"></a>5. 影响字体样式的标签</h2><p>下面的标签基本上我们不会去使用，除了i标签em标签因为本身比较短或者刚好和icon一致，会被选用图标。<br><a name="PZGKu"></a></p>
+<h3 id="5-1-b-strong"><a href="#5-1-b-strong" class="headerlink" title="5.1. b strong"></a>5.1. b strong</h3><p>可以让文字加粗，前者表示粗体字体，后者表示文字强调。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>文字<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>文字<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="x2Roo"></a></p>
+<h3 id="5-2-i-em"><a href="#5-2-i-em" class="headerlink" title="5.2. i em"></a>5.2. i em</h3><p>可以让文字倾斜，前者表示斜体字体，后者表示文字强调。<br />未来的网页上这两个标签会很常用，但是不是用来做文字倾斜的。一般情况下，网页上的图标会使用这两个标签。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span>文字<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>文字<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="o04OB"></a></p>
+<h3 id="5-3-sup-sub"><a href="#5-3-sup-sub" class="headerlink" title="5.3. sup sub"></a>5.3. sup sub</h3><p>上标和下标，很少用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html">X<span class="hljs-tag">&lt;<span class="hljs-name">sup</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">sup</span>&gt;</span><br>log<span class="hljs-tag">&lt;<span class="hljs-name">sub</span>&gt;</span>a<span class="hljs-tag">&lt;/<span class="hljs-name">sub</span>&gt;</span>10<br></code></pre></td></tr></table></figure>
+<p><a name="QD53a"></a></p>
+<h3 id="5-4-下划线-删除线"><a href="#5-4-下划线-删除线" class="headerlink" title="5.4. 下划线 删除线"></a>5.4. 下划线 删除线</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">u</span>&gt;</span>会显示下划线<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">s</span>&gt;</span>会显示删除线<span class="hljs-tag">&lt;/<span class="hljs-name">s</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">del</span>&gt;</span>会显示删除线<span class="hljs-tag">&lt;/<span class="hljs-name">del</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2.html常见的标签</div>
+      <div>http://example.com/2020/03/17/html常见的标签/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年3月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/14/%E7%AC%AC%E4%B8%80%E5%A4%A9/" title="第一天">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">第一天</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/15/1.HTML%E5%9F%BA%E7%A1%80/" title="1.HTML基础">
+                        <span class="hidden-mobile">1.HTML基础</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
