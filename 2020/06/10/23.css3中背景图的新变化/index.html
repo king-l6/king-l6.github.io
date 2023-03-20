@@ -1,0 +1,669 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="同时设置多个背景图背景图可以同时设置多个，他们之间的会有层级关系 1234选择器 &amp;#123;  background-image: url(地址), url(地址), url(地址);  background-repeat: no-repeat, repeat-x, repeat-y;&amp;#125;  设置尺寸因为在移动端，我们比较多的用我们的多倍图，如果不设置尺寸，则背景图过大，没法直接完整显">
+<meta property="og:type" content="article">
+<meta property="og:title" content="23.css3中背景图的新变化">
+<meta property="og:url" content="http://example.com/2020/06/10/23.css3%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%9A%84%E6%96%B0%E5%8F%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="同时设置多个背景图背景图可以同时设置多个，他们之间的会有层级关系 1234选择器 &amp;#123;  background-image: url(地址), url(地址), url(地址);  background-repeat: no-repeat, repeat-x, repeat-y;&amp;#125;  设置尺寸因为在移动端，我们比较多的用我们的多倍图，如果不设置尺寸，则背景图过大，没法直接完整显">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659085529324-0d8709d5-6971-44ab-a6d3-ca1f02a51f03.png#clientId=ub7b9fbf2-6be4-4&from=paste&height=815&id=u87189d39&name=image.png&originHeight=815&originWidth=816&originalType=binary&ratio=1&rotation=0&showTitle=false&size=67411&status=done&style=none&taskId=u27e9de7d-b2d0-42b6-bffb-35d6d489069&title=&width=816">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659086812863-df7ecc09-f39e-4d6c-9b43-65ebffa82168.png#clientId=ub7b9fbf2-6be4-4&from=paste&height=334&id=uab0a1908&name=image.png&originHeight=334&originWidth=333&originalType=binary&ratio=1&rotation=0&showTitle=false&size=195360&status=done&style=none&taskId=uff9665da-b758-4248-afa4-3e614d77cc6&title=&width=333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659086823700-72357a57-bfef-445a-83a5-b2fc75556179.png#clientId=ub7b9fbf2-6be4-4&from=paste&height=332&id=u269f2c06&name=image.png&originHeight=332&originWidth=330&originalType=binary&ratio=1&rotation=0&showTitle=false&size=155364&status=done&style=none&taskId=uae5b648c-f0e7-47cf-9861-fcc03820184&title=&width=330">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659086832660-618978e4-85db-46f1-8513-bad20b18e041.png#clientId=ub7b9fbf2-6be4-4&from=paste&height=336&id=u24276261&name=image.png&originHeight=336&originWidth=328&originalType=binary&ratio=1&rotation=0&showTitle=false&size=99388&status=done&style=none&taskId=u9e100a80-fb2e-4700-bfbe-ca435677769&title=&width=328">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659086973046-d696a2ee-4a5a-456c-83cd-e03343dd733b.png#clientId=ub7b9fbf2-6be4-4&from=paste&height=332&id=u2e71c517&name=image.png&originHeight=332&originWidth=330&originalType=binary&ratio=1&rotation=0&showTitle=false&size=221740&status=done&style=none&taskId=ue0577b2c-fbeb-4ab2-bf2f-8acf2eae0fd&title=&width=330">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659086964090-19205acc-a0e9-4317-8b3f-805b808ac421.png#clientId=ub7b9fbf2-6be4-4&from=paste&height=329&id=ue9856141&name=image.png&originHeight=329&originWidth=338&originalType=binary&ratio=1&rotation=0&showTitle=false&size=168221&status=done&style=none&taskId=u818637d6-0226-4292-a937-eb9da2865ff&title=&width=338">
+<meta property="article:published_time" content="2020-06-10T08:59:30.000Z">
+<meta property="article:modified_time" content="2023-03-20T11:04:57.431Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659085529324-0d8709d5-6971-44ab-a6d3-ca1f02a51f03.png#clientId=ub7b9fbf2-6be4-4&from=paste&height=815&id=u87189d39&name=image.png&originHeight=815&originWidth=816&originalType=binary&ratio=1&rotation=0&showTitle=false&size=67411&status=done&style=none&taskId=u27e9de7d-b2d0-42b6-bffb-35d6d489069&title=&width=816">
+  
+  
+  
+  <title>23.css3中背景图的新变化 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="23.css3中背景图的新变化"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-06-10 16:59" pubdate>
+          2020年6月10日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          633 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">23.css3中背景图的新变化</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="OhoA7"></a></p>
+<h2 id="同时设置多个背景图"><a href="#同时设置多个背景图" class="headerlink" title="同时设置多个背景图"></a>同时设置多个背景图</h2><p>背景图可以同时设置多个，他们之间的会有层级关系</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">地址</span>), <span class="hljs-built_in">url</span>(<span class="hljs-string">地址</span>), <span class="hljs-built_in">url</span>(<span class="hljs-string">地址</span>);<br>  <span class="hljs-attribute">background-repeat</span>: no-repeat, repeat-x, repeat-y;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659085529324-0d8709d5-6971-44ab-a6d3-ca1f02a51f03.png#clientId=ub7b9fbf2-6be4-4&from=paste&height=815&id=u87189d39&name=image.png&originHeight=815&originWidth=816&originalType=binary&ratio=1&rotation=0&showTitle=false&size=67411&status=done&style=none&taskId=u27e9de7d-b2d0-42b6-bffb-35d6d489069&title=&width=816" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="foWjc"></a></p>
+<h2 id="设置尺寸"><a href="#设置尺寸" class="headerlink" title="设置尺寸"></a>设置尺寸</h2><p>因为在移动端，我们比较多的用我们的多倍图，如果不设置尺寸，则背景图过大，没法直接完整显示在元素里。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">background-size</span>: 值;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>固定值 具体的宽高</li>
+<li>百分比  指的是父元素的宽高的百分比</li>
+</ul>
+<p>设置宽高时，只设置一个，另一个等比缩放，如果都设置比例不对则变形。</p>
+<ul>
+<li>cover 更多的情况下会使用cover</li>
+</ul>
+<p>不会出现空白区域，当宽度占满时，缩小高度，则裁切高度，当高度占满，缩小宽度，则裁切宽度</p>
+<ul>
+<li>contain</li>
+</ul>
+<p>不压缩图片，不裁切图片，保证图片的完整性，至少保证一边百分百，另外一边留空白<br><a name="VHqLG"></a></p>
+<h2 id="裁剪图片"><a href="#裁剪图片" class="headerlink" title="裁剪图片"></a>裁剪图片</h2><p>background-clip可以规定图片只能在哪个区域显示</p>
+<ul>
+<li>border-box 默认值 border + padding + content</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659086812863-df7ecc09-f39e-4d6c-9b43-65ebffa82168.png#clientId=ub7b9fbf2-6be4-4&from=paste&height=334&id=uab0a1908&name=image.png&originHeight=334&originWidth=333&originalType=binary&ratio=1&rotation=0&showTitle=false&size=195360&status=done&style=none&taskId=uff9665da-b758-4248-afa4-3e614d77cc6&title=&width=333" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>padding-box padding + content</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659086823700-72357a57-bfef-445a-83a5-b2fc75556179.png#clientId=ub7b9fbf2-6be4-4&from=paste&height=332&id=u269f2c06&name=image.png&originHeight=332&originWidth=330&originalType=binary&ratio=1&rotation=0&showTitle=false&size=155364&status=done&style=none&taskId=uae5b648c-f0e7-47cf-9861-fcc03820184&title=&width=330" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>content-box 内容区域显示</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659086832660-618978e4-85db-46f1-8513-bad20b18e041.png#clientId=ub7b9fbf2-6be4-4&from=paste&height=336&id=u24276261&name=image.png&originHeight=336&originWidth=328&originalType=binary&ratio=1&rotation=0&showTitle=false&size=99388&status=done&style=none&taskId=u9e100a80-fb2e-4700-bfbe-ca435677769&title=&width=328" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="IXuBt"></a></p>
+<h2 id="绘制位置"><a href="#绘制位置" class="headerlink" title="绘制位置"></a>绘制位置</h2><p>background-origin用来控制背景图的绘制开始的区域<br />默认值为padding-box，从padding开始绘制</p>
+<ul>
+<li>padding-box</li>
+<li>border-box</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659086973046-d696a2ee-4a5a-456c-83cd-e03343dd733b.png#clientId=ub7b9fbf2-6be4-4&from=paste&height=332&id=u2e71c517&name=image.png&originHeight=332&originWidth=330&originalType=binary&ratio=1&rotation=0&showTitle=false&size=221740&status=done&style=none&taskId=ue0577b2c-fbeb-4ab2-bf2f-8acf2eae0fd&title=&width=330" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>content-box</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659086964090-19205acc-a0e9-4317-8b3f-805b808ac421.png#clientId=ub7b9fbf2-6be4-4&from=paste&height=329&id=ue9856141&name=image.png&originHeight=329&originWidth=338&originalType=binary&ratio=1&rotation=0&showTitle=false&size=168221&status=done&style=none&taskId=u818637d6-0226-4292-a937-eb9da2865ff&title=&width=338" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="jDiZ4"></a></p>
+<h2 id="background-attachment"><a href="#background-attachment" class="headerlink" title="background-attachment"></a>background-attachment</h2><p>可以让背景图固定在某个位置</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>23.css3中背景图的新变化</div>
+      <div>http://example.com/2020/06/10/23.css3中背景图的新变化/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年6月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/14/24-%E5%AD%97%E4%BD%93%E5%9B%BE%E6%A0%87%E7%9A%84%E5%8E%9F%E7%90%86/" title="24.字体图标的原理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">24.字体图标的原理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/07/22-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%E4%B8%80%E7%BA%A7css3%E5%B1%9E%E6%80%A7%E5%89%8D%E7%BC%80/" title="22.浏览器内核一级css3属性前缀">
+                        <span class="hidden-mobile">22.浏览器内核一级css3属性前缀</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

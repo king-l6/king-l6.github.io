@@ -1,0 +1,645 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="定位在网页布局的应用中很重要，在我们使用这个属性时，不要滥用。定位分为四类定位：相对定位、绝对定位、固定定位、粘性定位。我们可以使用position属性来定义我们对应的元素的定位模式，使用了该属性后，我们将拥有五个其他的属性  top right bottom left z-index  1. 相对定位未来很常用，但是用它只是为了更好的进行绝对定位，一般情况，几乎上我们不适用相对定位的特性（只会设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8.定位属性">
+<meta property="og:url" content="http://example.com/2020/04/18/8.%E5%AE%9A%E4%BD%8D%E5%B1%9E%E6%80%A7/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="定位在网页布局的应用中很重要，在我们使用这个属性时，不要滥用。定位分为四类定位：相对定位、绝对定位、固定定位、粘性定位。我们可以使用position属性来定义我们对应的元素的定位模式，使用了该属性后，我们将拥有五个其他的属性  top right bottom left z-index  1. 相对定位未来很常用，但是用它只是为了更好的进行绝对定位，一般情况，几乎上我们不适用相对定位的特性（只会设">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657679325957-c34eb913-49e5-4d7a-ae40-8c759f2077d0.png#clientId=u574cc0d1-c6d2-4&from=paste&height=362&id=uddb09035&name=image.png&originHeight=362&originWidth=378&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2078&status=done&style=none&taskId=u75b58ad1-e21b-45f8-8f5f-5b8f1a58571&title=&width=378">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657680040055-25378b5f-6d00-4f64-94ea-7803cda46ef5.png#clientId=u574cc0d1-c6d2-4&from=paste&height=582&id=u28b0a05d&name=image.png&originHeight=582&originWidth=635&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5920&status=done&style=none&taskId=ud895bb91-d3d5-475a-8cfe-5b792fcc753&title=&width=635">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657680085335-3d3cb211-4414-4cbd-a39c-2360c8012536.png#clientId=u574cc0d1-c6d2-4&from=paste&height=579&id=u31031a8b&name=image.png&originHeight=579&originWidth=627&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6717&status=done&style=none&taskId=ua07eb2c2-727b-488c-abe9-a00c7216a69&title=&width=627">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657680171658-b8d8b21c-8197-411b-a7fb-71b60c97b0d0.png#clientId=u574cc0d1-c6d2-4&from=paste&height=583&id=u62c80bc3&name=image.png&originHeight=583&originWidth=647&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7207&status=done&style=none&taskId=u8792bf0d-9d58-4f2c-a6fc-98fd4c26e20&title=&width=647">
+<meta property="article:published_time" content="2020-04-18T08:19:22.000Z">
+<meta property="article:modified_time" content="2023-03-20T11:05:38.372Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657679325957-c34eb913-49e5-4d7a-ae40-8c759f2077d0.png#clientId=u574cc0d1-c6d2-4&from=paste&height=362&id=uddb09035&name=image.png&originHeight=362&originWidth=378&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2078&status=done&style=none&taskId=u75b58ad1-e21b-45f8-8f5f-5b8f1a58571&title=&width=378">
+  
+  
+  
+  <title>8.定位属性 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="8.定位属性"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-04-18 16:19" pubdate>
+          2020年4月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">8.定位属性</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>定位在网页布局的应用中很重要，在我们使用这个属性时，不要滥用。定位分为四类定位：相对定位、绝对定位、固定定位、粘性定位。<br />我们可以使用<code>position</code>属性来定义我们对应的元素的定位模式，使用了该属性后，我们将拥有五个其他的属性</p>
+<ul>
+<li>top</li>
+<li>right</li>
+<li>bottom</li>
+<li>left</li>
+<li>z-index<br><a name="nxoww"></a></li>
+</ul>
+<h2 id="1-相对定位"><a href="#1-相对定位" class="headerlink" title="1. 相对定位"></a>1. 相对定位</h2><p>未来很常用，但是用它只是为了更好的进行绝对定位，一般情况，几乎上我们不适用相对定位的特性（只会设置成相对定位，但是不会去使用top、right、bottom、left这些属性）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>相对定位不会脱离文档流。<br />设置完这个属性后，我们就可以定义top\right\bottom\left四个值，这四个值可以去控制我们元素距离初始位置的距离。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1657679325957-c34eb913-49e5-4d7a-ae40-8c759f2077d0.png#clientId=u574cc0d1-c6d2-4&from=paste&height=362&id=uddb09035&name=image.png&originHeight=362&originWidth=378&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2078&status=done&style=none&taskId=u75b58ad1-e21b-45f8-8f5f-5b8f1a58571&title=&width=378" srcset="/img/loading.gif" lazyload alt="image.png"><br />如果上下同时设置了对应的值，上优先，下不生效，同理，左右也是。因此，如果我们想要设置右边和下面，我们只能写right和bottom不能出现top和left。<br />注意！！！我们的位置虽然改变了，但是他不会影响其他元素的布局。原位置依旧占据位置。<br><a name="GaOMa"></a></p>
+<h2 id="2-绝对定位"><a href="#2-绝对定位" class="headerlink" title="2. 绝对定位"></a>2. 绝对定位</h2><p>绝对定位实行会让元素脱离文档流。脱离文档流后，他会保持在添加绝对定位属性之前的位置上，我们可以利用两个位置属性将元素放置在他的定位父元素的任意位置上。<br />默认情况，绝对定位是基于网页本身进行定位的。可以改变它的定位父元素（offsetParent）。只要我们当前定位元素到html元素之间，有一个元素有定位属性，那个这个元素就是绝对定位元素的定位父元素。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="c5u69"></a></p>
+<h3 id="2-1-基于哪个元素定位"><a href="#2-1-基于哪个元素定位" class="headerlink" title="2.1. 基于哪个元素定位"></a>2.1. 基于哪个元素定位</h3><p>基于HTML，因为是默认情况下定位<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1657680040055-25378b5f-6d00-4f64-94ea-7803cda46ef5.png#clientId=u574cc0d1-c6d2-4&from=paste&height=582&id=u28b0a05d&name=image.png&originHeight=582&originWidth=635&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5920&status=done&style=none&taskId=ud895bb91-d3d5-475a-8cfe-5b792fcc753&title=&width=635" srcset="/img/loading.gif" lazyload alt="image.png"><br />基于div1<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1657680085335-3d3cb211-4414-4cbd-a39c-2360c8012536.png#clientId=u574cc0d1-c6d2-4&from=paste&height=579&id=u31031a8b&name=image.png&originHeight=579&originWidth=627&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6717&status=done&style=none&taskId=ua07eb2c2-727b-488c-abe9-a00c7216a69&title=&width=627" srcset="/img/loading.gif" lazyload alt="image.png"><br />基于div2，绝对定位元素会找到离他最近的祖先元素中，有定位属性。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1657680171658-b8d8b21c-8197-411b-a7fb-71b60c97b0d0.png#clientId=u574cc0d1-c6d2-4&from=paste&height=583&id=u62c80bc3&name=image.png&originHeight=583&originWidth=647&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7207&status=done&style=none&taskId=u8792bf0d-9d58-4f2c-a6fc-98fd4c26e20&title=&width=647" srcset="/img/loading.gif" lazyload alt="image.png"><br />子绝父相<br />添加了绝对定位后的元素，表现的是块元素的效果。<br><a name="EhAPy"></a></p>
+<h3 id="元素垂直居中"><a href="#元素垂直居中" class="headerlink" title="元素垂直居中"></a>元素垂直居中</h3><p>前提是已知元素宽高的情况。<br />使用绝对定位，可以让元素在一个块元素中垂直水平居中<br />设置top为50%，然后设置对应元素margin-top 负高度的一半<br />设置left为50%，然后设置对应元素margin-left 负宽度的一半<br><a name="XFp3R"></a></p>
+<h2 id="3-固定定位"><a href="#3-固定定位" class="headerlink" title="3. 固定定位"></a>3. 固定定位</h2><p>绝对定位的元素会随着滚动条的滚动而滚动出屏幕。固定定位解决了这个问题。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">position</span>: fixed;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>用法和absolute一致，只不过参照的物体不同。fixed参照的是我们的浏览器窗口<br><a name="WCFVq"></a></p>
+<h2 id="定位元素的层级问题"><a href="#定位元素的层级问题" class="headerlink" title="定位元素的层级问题"></a>定位元素的层级问题</h2><p>当我们给元素进行定位时，元素和元素之间就又可能会重叠，重叠时就涉及到了对应的层级问题。<br />默认情况下，后定位元素靠上，层级高 。所谓的先后，指的是HTML上的顺序。<br />默认层级大家都是<code>0</code><br />想要强行修改对应的层级，我们可以调整元素的z-index属性。这个属性的值越大，则层级越高，越小层级越低。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>8.定位属性</div>
+      <div>http://example.com/2020/04/18/8.定位属性/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年4月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/04/21/9.%E5%AD%97%E4%BD%93%E5%9B%BE%E6%A0%87/" title="9.字体图标">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">9.字体图标</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/04/14/7.%E6%B5%AE%E5%8A%A8/" title="7.浮动">
+                        <span class="hidden-mobile">7.浮动</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
