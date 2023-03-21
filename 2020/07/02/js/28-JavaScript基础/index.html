@@ -1,0 +1,855 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="推荐两个编程游戏 如何在我们的网页上使用JavaScript代码 直接在script标签中写代码一般，在我们的body的闭合标签之前放置script标签 1234567891011121314151617&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;  &lt;meta charset&#x3D;&quot;UTF-8&amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="28.JavaScript基础">
+<meta property="og:url" content="http://example.com/2020/07/02/js/28-JavaScript%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="推荐两个编程游戏 如何在我们的网页上使用JavaScript代码 直接在script标签中写代码一般，在我们的body的闭合标签之前放置script标签 1234567891011121314151617&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;  &lt;meta charset&#x3D;&quot;UTF-8&amp;qu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659939271412-85bc7a66-1def-4cb0-98ba-8fd553010e83.png#averageHue=%23fbfaf7&clientId=ube6250cc-27a8-4&from=paste&height=86&id=ub565e717&name=image.png&originHeight=86&originWidth=108&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1739&status=done&style=none&taskId=u91a63172-af8e-42a9-bb14-b2008657a27&title=&width=108">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659939375249-ddabd857-6f0f-4b2e-bf12-795a27d9ade3.png#averageHue=%23fcfcfb&clientId=ube6250cc-27a8-4&from=paste&height=253&id=u3e7728db&name=image.png&originHeight=253&originWidth=913&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14308&status=done&style=none&taskId=u1a779d3a-9d93-4765-a887-218c53a916b&title=&width=913">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659939490533-06918c16-af42-4c49-aa48-ba3bfb733f12.png#averageHue=%23f7f6f6&clientId=ube6250cc-27a8-4&from=paste&height=137&id=u96f273fd&name=image.png&originHeight=137&originWidth=466&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4572&status=done&style=none&taskId=ub652adf5-ba5e-42a8-9619-02876e5c4f6&title=&width=466">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659939587179-ff0bae14-2f64-47ab-8a70-7f41a1d03c52.png#averageHue=%23f6f6f6&clientId=ube6250cc-27a8-4&from=paste&height=141&id=ub7f79711&name=image.png&originHeight=141&originWidth=469&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5130&status=done&style=none&taskId=uc0eeda00-5756-4af9-9a90-67c245b8508&title=&width=469">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659939641492-a36ca68b-93ee-4d03-a9cf-39224f764fe0.png#averageHue=%23f5f4f4&clientId=ube6250cc-27a8-4&from=paste&height=177&id=u1bbf9c46&name=image.png&originHeight=177&originWidth=461&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5244&status=done&style=none&taskId=u447cf634-2b3d-483e-93d7-c06151e81f4&title=&width=461">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660548042679-edd873e5-5a29-45f1-b35d-5032e5140dd2.png#averageHue=%23373940&clientId=u483a90b1-cd89-4&from=paste&height=68&id=uf5194847&name=image.png&originHeight=68&originWidth=413&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7585&status=done&style=none&taskId=ua1823cdd-6838-434b-bfd5-f0306eeb11c&title=&width=413">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660548072504-c452af56-fb84-4bcc-947b-f0b1fcf092f6.png#averageHue=%23252423&clientId=u483a90b1-cd89-4&from=paste&height=271&id=ucaa5dd56&name=image.png&originHeight=271&originWidth=631&originalType=binary&ratio=1&rotation=0&showTitle=false&size=29984&status=done&style=none&taskId=u8c61e6e4-dd24-4b5a-b65b-9e93acdff80&title=&width=631">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660548079741-94ad7914-5bb8-407c-b73c-b0f5f0397128.png#averageHue=%23a1b2aa&clientId=u483a90b1-cd89-4&from=paste&height=115&id=u91b85385&name=image.png&originHeight=115&originWidth=537&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7616&status=done&style=none&taskId=ub7218fd2-26b2-407e-80b8-1de9b62cf0e&title=&width=537">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660548120376-7ded0576-07ff-4d1a-a02e-b1975ae5979c.png#clientId=u483a90b1-cd89-4&from=paste&height=92&id=u0e7fb758&name=image.png&originHeight=92&originWidth=464&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6193&status=done&style=none&taskId=u537dd223-8547-4e76-b0ff-aadfcb70ed7&title=&width=464">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660548140767-4a5f9376-d911-4c51-a000-69d84c1bfabf.png#clientId=u483a90b1-cd89-4&from=paste&height=684&id=u5cb2909d&name=image.png&originHeight=684&originWidth=623&originalType=binary&ratio=1&rotation=0&showTitle=false&size=57669&status=done&style=none&taskId=u7a5c3949-aad4-4fb1-8ebe-8fb077212a7&title=&width=623">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660548229172-e77097f5-9446-4ee7-966a-c392fb4dd92d.png#clientId=u483a90b1-cd89-4&from=paste&height=193&id=u99ca8e0d&name=image.png&originHeight=193&originWidth=431&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20439&status=done&style=none&taskId=u76a71cd0-c2cb-4d2b-94e9-92f313bdc38&title=&width=431">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659940761693-4380590c-d1d6-4adf-a534-cbdd2dc3ace4.png#clientId=ube6250cc-27a8-4&from=paste&height=37&id=u46a32900&name=image.png&originHeight=37&originWidth=565&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5213&status=done&style=none&taskId=u70295712-fee4-4f34-941b-ab1d36c759e&title=&width=565">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659940787783-81235de4-6269-4ba0-8a30-7e9225ab8878.png#clientId=ube6250cc-27a8-4&from=paste&height=311&id=u91dae1fe&name=image.png&originHeight=311&originWidth=327&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11857&status=done&style=none&taskId=ue4813bc5-9b07-4c6b-b11c-986a2aa4483&title=&width=327">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659941160926-b78246c7-234a-4ec7-bb9a-ca6e8d3e5a0e.png#clientId=ube6250cc-27a8-4&from=paste&height=46&id=u4a2feae4&name=image.png&originHeight=46&originWidth=567&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4838&status=done&style=none&taskId=uace0154c-3daf-49fb-aada-063bffea379&title=&width=567">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659941184454-8d7f724d-3583-474a-a842-71c21eb4e13b.png#clientId=ube6250cc-27a8-4&from=paste&height=380&id=uf1d7c5eb&name=image.png&originHeight=380&originWidth=405&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17452&status=done&style=none&taskId=u12e5ed94-5b27-4d11-a710-2e14554e77a&title=&width=405">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659946586519-c2422b7b-2a79-49be-b013-92801cd0a2d1.png#clientId=ube6250cc-27a8-4&from=paste&height=26&id=u2c53aa73&name=image.png&originHeight=26&originWidth=103&originalType=binary&ratio=1&rotation=0&showTitle=false&size=676&status=done&style=none&taskId=ub5c30730-1f60-40fc-860b-e408377c5a6&title=&width=103">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659946645733-83cdd77b-848f-4d95-9401-4e9c3bae7443.png#clientId=ube6250cc-27a8-4&from=paste&height=116&id=u4f1b2a2b&name=image.png&originHeight=116&originWidth=79&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2186&status=done&style=none&taskId=ufeaed7ac-d67a-4af8-b31d-71bb6aca2c3&title=&width=79">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/webp/203294/1660012337535-c514e8e2-089a-4dab-ac46-170e92da6968.webp#clientId=u0e8a930c-1723-4&from=paste&height=470&id=u95c6e8dd&name=95bd4e8c9bcec7f8b144bd6e034ce54a2e27fb8a.webp&originHeight=470&originWidth=930&originalType=binary&ratio=1&rotation=0&showTitle=false&size=44764&status=done&style=none&taskId=u2bbc6592-8887-486b-8e97-fcd593dc2f6&title=&width=930">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660013881385-31901a72-92b8-43f6-9b87-6f4228c131af.png#clientId=u0e8a930c-1723-4&from=paste&height=327&id=uc3489650&name=image.png&originHeight=327&originWidth=400&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6135&status=done&style=none&taskId=u09757457-95c6-4d9d-8134-23a5f1c9aea&title=&width=400">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660014087392-07a10e00-9b23-4a68-8c8f-f4eaf13a1e79.png#clientId=u0e8a930c-1723-4&from=paste&height=320&id=u45d2537c&name=image.png&originHeight=320&originWidth=360&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6183&status=done&style=none&taskId=ua0a2778a-eacb-4541-ad25-0e9035b477e&title=&width=360">
+<meta property="article:published_time" content="2020-07-02T09:10:26.000Z">
+<meta property="article:modified_time" content="2023-03-20T09:10:50.833Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659939271412-85bc7a66-1def-4cb0-98ba-8fd553010e83.png#averageHue=%23fbfaf7&clientId=ube6250cc-27a8-4&from=paste&height=86&id=ub565e717&name=image.png&originHeight=86&originWidth=108&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1739&status=done&style=none&taskId=u91a63172-af8e-42a9-bb14-b2008657a27&title=&width=108">
+  
+  
+  
+  <title>28.JavaScript基础 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="28.JavaScript基础"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-07-02 17:10" pubdate>
+          2020年7月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          10k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          88 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">28.JavaScript基础</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>推荐两个编程游戏<br><a name="n59x8"></a></p>
+<h2 id="如何在我们的网页上使用JavaScript代码"><a href="#如何在我们的网页上使用JavaScript代码" class="headerlink" title="如何在我们的网页上使用JavaScript代码"></a>如何在我们的网页上使用JavaScript代码</h2><p><a name="oGD60"></a></p>
+<h3 id="直接在script标签中写代码"><a href="#直接在script标签中写代码" class="headerlink" title="直接在script标签中写代码"></a>直接在script标签中写代码</h3><p>一般，在我们的body的闭合标签之前放置script标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-comment">// 这里可以写JS代码</span></span><br><span class="language-javascript">    </span><br><span class="language-javascript">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="OPkKW"></a></p>
+<h4 id="为什么要把script放在body闭合标签前"><a href="#为什么要把script放在body闭合标签前" class="headerlink" title="为什么要把script放在body闭合标签前"></a>为什么要把script放在body闭合标签前</h4><p>因为放在这里性能更好，我们没有必要在HTML还没有加载出来的时候就加载JS代码。<br><a name="YZWMU"></a></p>
+<h3 id="使用script外联引入JS"><a href="#使用script外联引入JS" class="headerlink" title="使用script外联引入JS"></a>使用script外联引入JS</h3><p>这种方式需要我们先创建一个<code>.js</code>文件<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659939271412-85bc7a66-1def-4cb0-98ba-8fd553010e83.png#averageHue=%23fbfaf7&clientId=ube6250cc-27a8-4&from=paste&height=86&id=ub565e717&name=image.png&originHeight=86&originWidth=108&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1739&status=done&style=none&taskId=u91a63172-af8e-42a9-bb14-b2008657a27&title=&width=108" srcset="/img/loading.gif" lazyload alt="image.png">右键新建文本文档，然后重命名为xxx.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Hello World&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;js文件的路径&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="GPHYt"></a></p>
+<h2 id="几个常用的代码"><a href="#几个常用的代码" class="headerlink" title="几个常用的代码"></a>几个常用的代码</h2><p><a name="bK2AK"></a></p>
+<h3 id="console-log-“内容”"><a href="#console-log-“内容”" class="headerlink" title="console.log(“内容”)"></a>console.log(“内容”)</h3><p>在控制台打印对应的内容<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659939375249-ddabd857-6f0f-4b2e-bf12-795a27d9ade3.png#averageHue=%23fcfcfb&clientId=ube6250cc-27a8-4&from=paste&height=253&id=u3e7728db&name=image.png&originHeight=253&originWidth=913&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14308&status=done&style=none&taskId=u1a779d3a-9d93-4765-a887-218c53a916b&title=&width=913" srcset="/img/loading.gif" lazyload alt="image.png"><br />控制台可以通过f12打开，在开发者工具中。<br><a name="Nr4LQ"></a></p>
+<h3 id="alert-“内容”"><a href="#alert-“内容”" class="headerlink" title="alert(“内容”)"></a>alert(“内容”)</h3><p>弹出一个警告框<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659939490533-06918c16-af42-4c49-aa48-ba3bfb733f12.png#averageHue=%23f7f6f6&clientId=ube6250cc-27a8-4&from=paste&height=137&id=u96f273fd&name=image.png&originHeight=137&originWidth=466&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4572&status=done&style=none&taskId=ub652adf5-ba5e-42a8-9619-02876e5c4f6&title=&width=466" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="fogQn"></a></p>
+<h3 id="confirm-“信息”"><a href="#confirm-“信息”" class="headerlink" title="confirm(“信息”)"></a>confirm(“信息”)</h3><p>弹出一个弹出框，有取消按钮<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659939587179-ff0bae14-2f64-47ab-8a70-7f41a1d03c52.png#averageHue=%23f6f6f6&clientId=ube6250cc-27a8-4&from=paste&height=141&id=ub7f79711&name=image.png&originHeight=141&originWidth=469&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5130&status=done&style=none&taskId=uc0eeda00-5756-4af9-9a90-67c245b8508&title=&width=469" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="YcnLk"></a></p>
+<h3 id="prompt-“内容”"><a href="#prompt-“内容”" class="headerlink" title="prompt(“内容”)"></a>prompt(“内容”)</h3><p>弹出一个对话框，用户可以输入内容<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659939641492-a36ca68b-93ee-4d03-a9cf-39224f764fe0.png#averageHue=%23f5f4f4&clientId=ube6250cc-27a8-4&from=paste&height=177&id=u1bbf9c46&name=image.png&originHeight=177&originWidth=461&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5244&status=done&style=none&taskId=u447cf634-2b3d-483e-93d7-c06151e81f4&title=&width=461" srcset="/img/loading.gif" lazyload alt="image.png"><br />未来只有console.log是我们比较常用的方法，其他的都只是为了前期教学使用。<br><a name="d2160"></a></p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><a name="RtC9b"></a></p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>注释是开发者留在代码中解释对应的代码含义的文本，不会参与代码的执行。<br><a name="hFDWj"></a></p>
+<h4 id="单行注释"><a href="#单行注释" class="headerlink" title="单行注释"></a>单行注释</h4><p>通过两个 <code>//</code>可以i实现单行注释，快捷键 <code>ctrl + /</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 这是单行注释，出现在这一行外的内容不被注释</span><br>这里不被注释<br></code></pre></td></tr></table></figure>
+<p><a name="veZCa"></a></p>
+<h4 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释"></a>多行注释</h4><p>多行注释 <code>/**/</code>可以进行多行注释，快捷键 <code>shift + alt + a</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment">  这里的内容都是注释内容，</span><br><span class="hljs-comment">  不管有多少行</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+<p><a name="UzQRy"></a></p>
+<h4 id="文档注释"><a href="#文档注释" class="headerlink" title="文档注释"></a>文档注释</h4><p>可以方便开发者在后续使用某些功能时对功能进行介绍。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 这个函数可以用来求 两个数的和</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; a 第一个数</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; b 第二个数</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> &#123;<span class="hljs-type">*</span>&#125; 两个数的和</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+<p>我们可以装一个VSCode插件<code>document this</code><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1660548042679-edd873e5-5a29-45f1-b35d-5032e5140dd2.png#averageHue=%23373940&clientId=u483a90b1-cd89-4&from=paste&height=68&id=uf5194847&name=image.png&originHeight=68&originWidth=413&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7585&status=done&style=none&taskId=ua1823cdd-6838-434b-bfd5-f0306eeb11c&title=&width=413" srcset="/img/loading.gif" lazyload alt="image.png"><br />装完之后可以使用一些设置<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1660548072504-c452af56-fb84-4bcc-947b-f0b1fcf092f6.png#averageHue=%23252423&clientId=u483a90b1-cd89-4&from=paste&height=271&id=ucaa5dd56&name=image.png&originHeight=271&originWidth=631&originalType=binary&ratio=1&rotation=0&showTitle=false&size=29984&status=done&style=none&taskId=u8c61e6e4-dd24-4b5a-b65b-9e93acdff80&title=&width=631" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1660548079741-94ad7914-5bb8-407c-b73c-b0f5f0397128.png#averageHue=%23a1b2aa&clientId=u483a90b1-cd89-4&from=paste&height=115&id=u91b85385&name=image.png&originHeight=115&originWidth=537&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7616&status=done&style=none&taskId=ub7218fd2-26b2-407e-80b8-1de9b62cf0e&title=&width=537" srcset="/img/loading.gif" lazyload alt="image.png"><br />设置作者名<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1660548120376-7ded0576-07ff-4d1a-a02e-b1975ae5979c.png#clientId=u483a90b1-cd89-4&from=paste&height=92&id=u0e7fb758&name=image.png&originHeight=92&originWidth=464&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6193&status=done&style=none&taskId=u537dd223-8547-4e76-b0ff-aadfcb70ed7&title=&width=464" srcset="/img/loading.gif" lazyload alt="image.png"><br />时间格式<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1660548140767-4a5f9376-d911-4c51-a000-69d84c1bfabf.png#clientId=u483a90b1-cd89-4&from=paste&height=684&id=u5cb2909d&name=image.png&originHeight=684&originWidth=623&originalType=binary&ratio=1&rotation=0&showTitle=false&size=57669&status=done&style=none&taskId=u7a5c3949-aad4-4fb1-8ebe-8fb077212a7&title=&width=623" srcset="/img/loading.gif" lazyload alt="image.png"><br />想要包含哪些tag就需要在对应的位置勾选。<br />在JS中找到对应的函数或者变量等名字上，按两下<code>ctrl + alt + d</code><br />自动生成对应的结构<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1660548229172-e77097f5-9446-4ee7-966a-c392fb4dd92d.png#clientId=u483a90b1-cd89-4&from=paste&height=193&id=u99ca8e0d&name=image.png&originHeight=193&originWidth=431&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20439&status=done&style=none&taskId=u76a71cd0-c2cb-4d2b-94e9-92f313bdc38&title=&width=431" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="lbWhn"></a></p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>什么叫变量？变量方便我们后续对相同的值进行修改，也方便我们对值进行使用。<br />变量涉及到两个概念：声明和赋值<br><a name="qXLBZ"></a></p>
+<h4 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h4><p>js中最早声明变量用var，现在都不用了。ES6中提出了新的声明变量的方式：let和const</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> 变量名<br><span class="hljs-keyword">const</span> 变量名<br><span class="hljs-keyword">var</span> 变量名<br></code></pre></td></tr></table></figure>
+<p><a name="wsrJe"></a></p>
+<h4 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> 变量名<br>变量名 = <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<p>一般我们写代码，声明和赋值是同时写的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> 变量名 = 值<br><span class="hljs-keyword">const</span> 变量名 = 值<br></code></pre></td></tr></table></figure>
+<p>变量可以多次赋值，赋值时不要添加 <code>let</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span><br>a = <span class="hljs-number">10</span><br><br><span class="hljs-keyword">let</span> a = <span class="hljs-number">20</span> <span class="hljs-comment">// 报错</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659940761693-4380590c-d1d6-4adf-a534-cbdd2dc3ace4.png#clientId=ube6250cc-27a8-4&from=paste&height=37&id=u46a32900&name=image.png&originHeight=37&originWidth=565&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5213&status=done&style=none&taskId=u70295712-fee4-4f34-941b-ab1d36c759e&title=&width=565" srcset="/img/loading.gif" lazyload alt="image.png"><br />从这个报错信息上，可以看到第16行有问题<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659940787783-81235de4-6269-4ba0-8a30-7e9225ab8878.png#clientId=ube6250cc-27a8-4&from=paste&height=311&id=u91dae1fe&name=image.png&originHeight=311&originWidth=327&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11857&status=done&style=none&taskId=ue4813bc5-9b07-4c6b-b11c-986a2aa4483&title=&width=327" srcset="/img/loading.gif" lazyload alt="image.png"><br />我们可以直接带错百度，找到问题解决。<br />最后说，因为重复声明。let不能对同一个变量重复使用。<br />如果我们对const声明的变量重新赋值，则会报错<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659941160926-b78246c7-234a-4ec7-bb9a-ca6e8d3e5a0e.png#clientId=ube6250cc-27a8-4&from=paste&height=46&id=u4a2feae4&name=image.png&originHeight=46&originWidth=567&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4838&status=done&style=none&taskId=uace0154c-3daf-49fb-aada-063bffea379&title=&width=567" srcset="/img/loading.gif" lazyload alt="image.png"><br />显示第23行有问题<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659941184454-8d7f724d-3583-474a-a842-71c21eb4e13b.png#clientId=ube6250cc-27a8-4&from=paste&height=380&id=uf1d7c5eb&name=image.png&originHeight=380&originWidth=405&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17452&status=done&style=none&taskId=u12e5ed94-5b27-4d11-a710-2e14554e77a&title=&width=405" srcset="/img/loading.gif" lazyload alt="image.png"><br />因为第20行已经用const声明过变量a，所以23行不能对a重新赋值。<br />注意！！！let和const都不能重复声明，const声明后，不能重新赋值。<br><a name="ydIh1"></a></p>
+<h4 id="变量命名规则"><a href="#变量命名规则" class="headerlink" title="变量命名规则"></a>变量命名规则</h4><ul>
+<li>变量名区分大小写，允许包含数字、字母、下划线_、美元符号$，但不能以数字开头，即第一个字符不能为数字。</li>
+<li>变量名中不能出现汉字、空格、连字符(-)、点(.)号等特殊字符。（变量名是汉字也可以运行，但是不建议）</li>
+<li>变量名不能是 JavaScript 中的关键字、保留字；</li>
+<li>变量命名长度应该尽可能的短，并抓住要点，尽量在变量名中体现存储信息的类型；</li>
+<li>尽量避免使用没有意义的命名；<br><a name="HvJx8"></a></li>
+</ul>
+<h5 id="关键字和保留字"><a href="#关键字和保留字" class="headerlink" title="关键字和保留字"></a>关键字和保留字</h5><p>关键字是js已经赋予对应的功能及含义的单词，保留字是js未来可能会赋予他们对应的功能或者含义的单词。<br />下面的东西了解即可，不需要记忆。<br />关键字：是指 JS本身已经使用了的字，不能再用它们充当变量名、方法名。<br />包括：break、case、catch、continue、default、delete、do、else、finally、for、function、if、in、instanceof、new、return、switch、this、throw、try、typeof、var、void、while、with、class、const 、export、import等。<br />保留字：实际上就是预留的“关键字”，意思是现在虽然还不是关键字，但是未来可能会成为关键字，同样不能使用它们当变量名或方法名。<br />包括：boolean、byte、char、debugger、double、enum、extends、fimal、float、goto、implements、int、interface、long、mative、package、private、protected、public、short、static、super、synchronized、throws、transient、volatile 等。<br><a name="Scmu2"></a></p>
+<h5 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h5><p>驼峰命名法 <br />当我们的单词只有一个时，全小写，如果是复合单词首字母小写，后面的每个单词首字母都大写。<br />帕斯卡命名法<br />所有的单词首字母都用大写，中间不能有符号连接<br><a name="Iur1W"></a></p>
+<h3 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h3><p> JS中有原始值类型和引用值类型。<br><a name="FGCzB"></a></p>
+<h5 id="字符串-String"><a href="#字符串-String" class="headerlink" title="字符串 String"></a>字符串 String</h5><p>这是一个很常用的值类型，可以用来展示一段文本内容。所有的字符串都是由<code>&quot;&quot;</code>包裹的，既可以是双引号，也可以是单引号。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&quot;字符串&quot;</span><br><span class="hljs-keyword">let</span> str2 = <span class="hljs-string">&#x27;字符串&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>如果遇到我们对应的字符串中包含单引号或者双引号的时候，可以切换使用单双引号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&quot;这是一个&#x27;字符串&#x27;,要好好使用&quot;</span><br><span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;这是一个&quot;字符串&quot;,要好好使用&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>如果我们的编码规范要求我们必须使用双引号或者单引号，可以使用转义符 <code>\</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&quot;这是一个\&quot;字符串\&quot;,要好好使用&quot;</span><br></code></pre></td></tr></table></figure>
+<p><a name="jw98W"></a></p>
+<h5 id="数值-Number"><a href="#数值-Number" class="headerlink" title="数值 Number"></a>数值 Number</h5><p>数值的表现形式有很多，通常使用10进制写法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 最常见的使用数字的操作，使用十进制。</span><br><span class="hljs-keyword">let</span> num = <span class="hljs-number">10</span><br><span class="hljs-comment">// 十六进制 0x开头后面跟着数字 在使用时会自动转换为10进制。</span><br><span class="hljs-keyword">let</span> num2 = <span class="hljs-number">0x12</span><br><span class="hljs-comment">// 科学计数法 1.2 * 10的10次方</span><br><span class="hljs-keyword">let</span> num3 = <span class="hljs-number">1.2e+10</span> <br></code></pre></td></tr></table></figure>
+<p>数值并非都是数字，还有一个特殊的值<code>NaN</code><br />表示某些操作应该返回一个数字，但是没办法返回时，会返回NaN,(not a number)。<br />数字和字符串同时打印，在控制台可以只管看到区别</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">10</span>, <span class="hljs-string">&quot;10&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659946586519-c2422b7b-2a79-49be-b013-92801cd0a2d1.png#clientId=ube6250cc-27a8-4&from=paste&height=26&id=u2c53aa73&name=image.png&originHeight=26&originWidth=103&originalType=binary&ratio=1&rotation=0&showTitle=false&size=676&status=done&style=none&taskId=ub5c30730-1f60-40fc-860b-e408377c5a6&title=&width=103" srcset="/img/loading.gif" lazyload alt="image.png"><br />如果分开打印看颜色（不一定）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">10</span>)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;10&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659946645733-83cdd77b-848f-4d95-9401-4e9c3bae7443.png#clientId=ube6250cc-27a8-4&from=paste&height=116&id=u4f1b2a2b&name=image.png&originHeight=116&originWidth=79&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2186&status=done&style=none&taskId=ufeaed7ac-d67a-4af8-b31d-71bb6aca2c3&title=&width=79" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="OTZNP"></a></p>
+<h6 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h6><p>十进制、十六进制、二进制<br />所谓进制，就是逢几进1<br />1 2 3 4 5 6 7 8 9 10<br />1 2 3 4 5 6 7 8 9 a b c d e f 10<br />1 2 3 4 5 6 7 10<br />1 10 11 100 101 110 111 1000<br><a name="FuVS0"></a></p>
+<h6 id="变量赋值中，为什么有些操作能写，有些不能写"><a href="#变量赋值中，为什么有些操作能写，有些不能写" class="headerlink" title="变量赋值中，为什么有些操作能写，有些不能写"></a>变量赋值中，为什么有些操作能写，有些不能写</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span><br><span class="hljs-keyword">let</span> b = <span class="hljs-string">&quot;aaa&quot;</span><br><span class="hljs-keyword">let</span> c = b <span class="hljs-comment">// 因为b是一个变量，所以我们能把一个变量里的值赋值给另一个变量</span><br><span class="hljs-keyword">let</span> d = aaa <span class="hljs-comment">// 因为aaa不存在，同时也不是一个值，所以会报错</span><br><br><span class="hljs-comment">// 除非写成 </span><br><span class="hljs-keyword">let</span> aaa = <span class="hljs-string">&quot;值&quot;</span><br><span class="hljs-keyword">let</span> d = aaa<br></code></pre></td></tr></table></figure>
+<p><a name="TI9T7"></a></p>
+<h6 id="无限大"><a href="#无限大" class="headerlink" title="无限大"></a>无限大</h6><p>Infinity 无穷大，我们用可以用Infinty表示正无穷，用-Infinty表示负无穷<br><a name="suu37"></a></p>
+<h5 id="布尔值-Boolean"><a href="#布尔值-Boolean" class="headerlink" title="布尔值 Boolean"></a>布尔值 Boolean</h5><p>这是我们js中一个很重要的概念，布尔类型的值只有两个，一个是<code>true</code>一个是<code>false</code><br />我们使用布尔值，一般不会直接声明，我们会借助于后面要学习的条件判断，来实现一些代码的逻辑。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> bol1 = <span class="hljs-literal">true</span><br><span class="hljs-keyword">let</span> bol2 = <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+<p>布尔值服务于比较运算符和一些其他的有对错结果的方法，代表的是对应的结果。<br><a name="jRoXa"></a></p>
+<h6 id="布尔值的一个很重要的概念"><a href="#布尔值的一个很重要的概念" class="headerlink" title="布尔值的一个很重要的概念"></a>布尔值的一个很重要的概念</h6><p>所有的类型都可以转换为布尔值<br />数字：0是false  非0是true<br />字符串: 空字符串 false 非空字符串true<br />undefined: false<br />null: false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">if</span> (<span class="hljs-number">10</span> % <span class="hljs-number">2</span>) &#123;&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="hVhvY"></a></p>
+<h5 id="Undefined"><a href="#Undefined" class="headerlink" title="Undefined"></a>Undefined</h5><p>如果一个变量声明但是未赋值时会得到undefined<br />Undefined类型只有undefined一个值。<br><a name="hArPB"></a></p>
+<h5 id="Null"><a href="#Null" class="headerlink" title="Null"></a>Null</h5><p>如果一个操作应该返回一个对象，但是没有返回时，会得到一个null<br />undefined和null我们平时不会太常使用他们，他们存在的作用类似于NaN，目的是为了给JS中提供一个可以表示某些值的值。<br />undefined是null派生出来的一个值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">undefined</span> == <span class="hljs-literal">null</span>) <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+<p><a name="wdSUq"></a></p>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p><a name="f6gTp"></a></p>
+<h4 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h4><p>&#x3D; +&#x3D; -&#x3D; *&#x3D; &#x2F;&#x3D;<br><a name="gpXi6"></a></p>
+<h5 id="x3D-赋值运算"><a href="#x3D-赋值运算" class="headerlink" title="&#x3D; 赋值运算"></a>&#x3D; 赋值运算</h5><p>所谓的赋值运算符就是把等号右侧的值，设置到左边的变量里。学习程序一定要抛弃数学中的&#x3D;等号的概念</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> 变量名 = <span class="hljs-string">&quot;值&quot;</span><br><br><span class="hljs-keyword">let</span> a = <span class="hljs-number">10</span><br>a = <span class="hljs-number">20</span><br><span class="hljs-keyword">let</span> b = a <br></code></pre></td></tr></table></figure>
+<p><a name="v7q6W"></a></p>
+<h5 id="x3D-先加后赋值"><a href="#x3D-先加后赋值" class="headerlink" title="+&#x3D; 先加后赋值"></a>+&#x3D; 先加后赋值</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span><br>a = a + <span class="hljs-number">2</span> <span class="hljs-comment">// a 为 3</span><br><br><span class="hljs-comment">// 上面的代码可以改成 +=</span><br>a += <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<p><a name="wxb0D"></a></p>
+<h6 id="x3D-先减后赋值"><a href="#x3D-先减后赋值" class="headerlink" title="-&#x3D; 先减后赋值"></a>-&#x3D; 先减后赋值</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-number">10</span><br>a = a - <span class="hljs-number">5</span><br><span class="hljs-comment">// 相当于</span><br>a -= <span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
+<p><a name="LwJUL"></a></p>
+<h6 id="x3D-x2F-x3D-先乘除-后赋值"><a href="#x3D-x2F-x3D-先乘除-后赋值" class="headerlink" title="*&#x3D; &#x2F;&#x3D; 先乘除 后赋值"></a>*&#x3D; &#x2F;&#x3D; 先乘除 后赋值</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-number">10</span><br>a = a * <span class="hljs-number">10</span>  <span class="hljs-comment">// a *= 10</span><br>a = a / <span class="hljs-number">2</span> <span class="hljs-comment">// a /= 2</span><br></code></pre></td></tr></table></figure>
+<p><a name="swTUN"></a></p>
+<h6 id="x3D-先取模后赋值"><a href="#x3D-先取模后赋值" class="headerlink" title="%&#x3D; 先取模后赋值"></a>%&#x3D; 先取模后赋值</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-number">10</span><br>a = a % <span class="hljs-number">3</span> <span class="hljs-comment">// a %= 3</span><br></code></pre></td></tr></table></figure>
+<p>上面所写的赋值运算，除了<code>=</code>外，其他的我们可以暂时不理解，因为可以用&#x3D;的操作替代。一定要抛弃数学上的上<code>=</code>是一个等式的概念<br><a name="nmv76"></a></p>
+<h4 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h4><p>加 + 减 - 乘 * 除 &#x2F; 取模%<br><a name="nAXfq"></a></p>
+<h5 id="加运算符"><a href="#加运算符" class="headerlink" title="+加运算符"></a>+加运算符</h5><p>可以用来操作Number的运算操作，进行对应的求和计算</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> num = <span class="hljs-number">1</span> + <span class="hljs-number">1</span> <span class="hljs-comment">// 2</span><br></code></pre></td></tr></table></figure>
+<p>如果在进行 + 运算时，有字符串参与运算，则+变成连接运算符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> num = <span class="hljs-string">&quot;1&quot;</span> + <span class="hljs-number">1</span> <span class="hljs-comment">// &quot;11&quot;</span><br></code></pre></td></tr></table></figure>
+<p>什么是连接运算符？就是把两个字符串连在一起</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> str1 = <span class="hljs-string">&quot;字符串1&quot;</span><br><span class="hljs-keyword">let</span> str2 = <span class="hljs-string">&quot;字符串2&quot;</span><br><span class="hljs-keyword">let</span> str3 = str1 + str2 <span class="hljs-comment">// 字符串1字符串2</span><br><br><span class="hljs-keyword">let</span> name = <span class="hljs-string">&quot;张三&quot;</span><br><span class="hljs-keyword">let</span> age = <span class="hljs-number">18</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;我叫&quot;</span> + name + <span class="hljs-string">&quot;，今年&quot;</span> + age + <span class="hljs-string">&quot;岁&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p>在ES6中，提出了模板字符串的概念，怎么用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> name = <span class="hljs-string">&quot;张三&quot;</span><br><span class="hljs-keyword">let</span> age = <span class="hljs-number">18</span><br><span class="hljs-comment">// console.log(&quot;我叫张三, 今年18岁&quot;)</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`我叫<span class="hljs-subst">$&#123;name&#125;</span>, 今年<span class="hljs-subst">$&#123;age&#125;</span>岁`</span>)<br></code></pre></td></tr></table></figure>
+<p>模板字符串提供给我们一个在字符串中，直接插入变量的能力，不需要再使用拼接字符串的操作。需要使用&#96;&#96;&#96;&#96;    </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> 变量 = <span class="hljs-string">&quot;值&quot;</span><br><span class="hljs-keyword">let</span> str = <span class="hljs-string">`这是一串<span class="hljs-subst">$&#123;变量&#125;</span>字符串`</span> <span class="hljs-comment">// 这是一串值字符串</span><br></code></pre></td></tr></table></figure>
+<p>注意！！！！！js计算不够精确，可是尝试一下 0.1 + 0.2 等于多少<br><a name="MoCKE"></a></p>
+<h5 id="减运算符"><a href="#减运算符" class="headerlink" title="- 减运算符"></a>- 减运算符</h5><p>实现数字的减法运算。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span><br><span class="hljs-keyword">let</span> b = <span class="hljs-number">2</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(b - a) <span class="hljs-comment">// 1</span><br><br><span class="hljs-comment">// 下面代码不要和上面写在一起</span><br><span class="hljs-keyword">let</span> a = <span class="hljs-string">&quot;1&quot;</span><br><span class="hljs-keyword">let</span> b = <span class="hljs-number">2</span> <br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(b - a) <span class="hljs-comment">// 1</span><br></code></pre></td></tr></table></figure>
+<p>减法运算有隐式的类型转换，会把所有的值转化为数字然后再进行运算。<br />所有的值和NaN进行匀速都会得到NaN<br><a name="FHCag"></a></p>
+<h5 id="乘除运算符"><a href="#乘除运算符" class="headerlink" title="乘除运算符"></a>乘除运算符</h5><p>优先级高于+- ，用来进行求积和商的运算。和数学上一致。乘除也有隐式的数据类型转换</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-number">2</span><br><span class="hljs-keyword">let</span> b = <span class="hljs-number">4</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a * b) <span class="hljs-comment">// 8</span><br><br><span class="hljs-keyword">let</span> a = <span class="hljs-string">&quot;2&quot;</span><br><span class="hljs-keyword">let</span> b = <span class="hljs-string">&quot;4&quot;</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a * b) <span class="hljs-comment">// 8</span><br><br><span class="hljs-keyword">let</span> a = <span class="hljs-string">&quot;a&quot;</span><br><span class="hljs-keyword">let</span> b = <span class="hljs-string">&quot;b&quot;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a * b) <span class="hljs-comment">// NaN</span><br></code></pre></td></tr></table></figure>
+<p><a name="tDpxa"></a></p>
+<h5 id="取模运算符"><a href="#取模运算符" class="headerlink" title="% 取模运算符"></a>% 取模运算符</h5><p>可以求除法的余数，意思就是 <code>10 / 3</code>余数为<code>1</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> num = <span class="hljs-number">10</span> / <span class="hljs-number">3</span> <span class="hljs-comment">// 3.333333333</span><br><span class="hljs-keyword">const</span> num2 = <span class="hljs-number">10</span> % <span class="hljs-number">3</span> <span class="hljs-comment">// 1</span><br></code></pre></td></tr></table></figure>
+<p>取模有很多的应用，例如奇偶判断、平闰年判断等都可以用取模，只要涉及到整除都可以用取模。<br><a name="VwmQ1"></a></p>
+<h5 id="自增-自减"><a href="#自增-自减" class="headerlink" title="自增 自减"></a>自增 自减</h5><p>++  –<br />有些时候，我们需要我们的值+1 或者 -1，那么可以使用自增和自减操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-number">10</span><br><span class="hljs-comment">// a = a - 1</span><br><span class="hljs-comment">// a -= 1</span><br>a--<br><br><span class="hljs-comment">// a = a + 1</span><br><span class="hljs-comment">// a += 1</span><br>a++ <br><br>--a<br>++a<br></code></pre></td></tr></table></figure>
+<p>自增自减操作符号可以写在前面或者后面。他们是有区别的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span><br><span class="hljs-keyword">let</span> b = ++a<br><br><span class="hljs-keyword">let</span> b = a++<br></code></pre></td></tr></table></figure>
+<p><code>let b = ++a</code>我们可以通过对应的操作来展示这个操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript">a = a + <span class="hljs-number">1</span><br><span class="hljs-keyword">let</span> b = a <span class="hljs-comment">// b 是 2</span><br></code></pre></td></tr></table></figure>
+<p><code>let b = a++</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> b = a <span class="hljs-comment">// b 是 1</span><br>a = a + <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<p>++a是先加后用，a++先用后加，–和++相同<br><a name="qCwmI"></a></p>
+<h4 id="一元运算符"><a href="#一元运算符" class="headerlink" title="一元运算符"></a>一元运算符</h4><p><code>+``-</code><br />这就是代表了正负值，但是，他们两者在使用时必须只有这个符号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = +<span class="hljs-number">1</span><br><span class="hljs-keyword">let</span> b = -<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<p>应用场景，可以做对应的隐式的数据类型转换，把String类型的数字转换为Number类型的数字。<br><a name="acIDY"></a></p>
+<h4 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h4><p><code>&gt;``&gt;=``&lt;``&lt;=``!=``!==</code> <code>==``===</code><br />比较运算符得到的结果是布尔值，布尔值只有true 和 false<br />&gt;表示大于操作，判断一个值是否比另外的值大<br />&lt;表示小于操作，判断一个是否比另外的值小<br><a name="CYu84"></a></p>
+<h5 id="x3D-x3D-和-x3D-x3D-x3D-区别"><a href="#x3D-x3D-和-x3D-x3D-x3D-区别" class="headerlink" title="&#x3D;&#x3D; 和 &#x3D;&#x3D;&#x3D;区别"></a>&#x3D;&#x3D; 和 &#x3D;&#x3D;&#x3D;区别</h5><p>&#x3D;&#x3D;表示相等，&#x3D;&#x3D;&#x3D;表示全等，后者会比较数据类型，前者只比较值大小</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-string">&quot;1&quot;</span> == <span class="hljs-number">1</span> <span class="hljs-comment">// true</span><br><span class="hljs-string">&quot;1&quot;</span> === <span class="hljs-number">1</span> <span class="hljs-comment">// false</span><br><span class="hljs-literal">undefined</span> == <span class="hljs-literal">null</span> <span class="hljs-comment">// true</span><br><span class="hljs-literal">undefined</span> === <span class="hljs-literal">null</span> <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+<p>未来在判断两个值是否相等时，建议用 <code>===</code>更加严谨<br><a name="qJEcR"></a></p>
+<h5 id="x3D-和-x3D-x3D-区别"><a href="#x3D-和-x3D-x3D-区别" class="headerlink" title="!&#x3D; 和 !&#x3D;&#x3D; 区别"></a>!&#x3D; 和 !&#x3D;&#x3D; 区别</h5><p>如果我们对于不等于的判断不好直接做出判断的话，我们可以取 &#x3D;&#x3D; 和 &#x3D;&#x3D;&#x3D; 的相反之</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-string">&quot;1&quot;</span> !== <span class="hljs-number">1</span> <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+<p><a name="ri0Dv"></a></p>
+<h5 id="字符串的大小比较"><a href="#字符串的大小比较" class="headerlink" title="字符串的大小比较"></a>字符串的大小比较</h5><p>字符串比较时根据ascii码进行比较<br /><img src="https://cdn.nlark.com/yuque/0/2022/webp/203294/1660012337535-c514e8e2-089a-4dab-ac46-170e92da6968.webp#clientId=u0e8a930c-1723-4&from=paste&height=470&id=u95c6e8dd&name=95bd4e8c9bcec7f8b144bd6e034ce54a2e27fb8a.webp&originHeight=470&originWidth=930&originalType=binary&ratio=1&rotation=0&showTitle=false&size=44764&status=done&style=none&taskId=u2bbc6592-8887-486b-8e97-fcd593dc2f6&title=&width=930" srcset="/img/loading.gif" lazyload alt="95bd4e8c9bcec7f8b144bd6e034ce54a2e27fb8a.webp"><br />使用字符串中的每一位进行比较，知道比较出来大小</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// abc abadsf</span><br></code></pre></td></tr></table></figure>
+<p>先比较第一位，两个都是a相同，再比较第二位，都是b，相同，再比较第三位，c a, a的ASCII码比c小，所以abc &gt; abadsf 结果为true<br><a name="bxaTQ"></a></p>
+<h4 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h4><p>这个可以简化简单的if else</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">if</span> (条件) &#123;<br>  <span class="hljs-comment">// 条件为true时的一行代码</span><br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  <span class="hljs-comment">// 条件为false时的一行代码</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">条件 ? 条件为<span class="hljs-literal">true</span>时的一行代码 : 条件为<span class="hljs-literal">false</span>时的一行代码<br></code></pre></td></tr></table></figure>
+<p>例如：<br />如果我们想要根据某个值时真或者假然后返回一个1或者2</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> 某个值 = <span class="hljs-literal">true</span><br><br><span class="hljs-keyword">let</span> a<br><span class="hljs-keyword">if</span> (某个值) &#123;<br>  a = <span class="hljs-number">1</span><br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  a = <span class="hljs-number">2</span><br>&#125;<br><br><span class="hljs-comment">// 改成三元运算符</span><br>某个值 ? <span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span> : <span class="hljs-keyword">let</span> a = <span class="hljs-number">2</span><br><br><span class="hljs-comment">// 还可以更精简</span><br><span class="hljs-keyword">let</span> a = 某个值 ? <span class="hljs-number">1</span> : <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<p>先判断条件，然后再根据条件执行代码，为真执行冒号左边的，为false执行冒号右边的。<br />三元运算符也可以模拟多条件的情况，但是不建议.因为代码的可读性会大大降低</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">if</span> (score &lt; <span class="hljs-number">60</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;不及格&quot;</span>)<br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (score &gt;= <span class="hljs-number">60</span> &amp;&amp; score &lt; <span class="hljs-number">70</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;及格&quot;</span>)<br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (score &gt;= <span class="hljs-number">70</span> &amp;&amp; score &lt; <span class="hljs-number">85</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;良好&quot;</span>)<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;优秀&quot;</span>)<br>&#125;<br><br><span class="hljs-comment">// 三元运算</span><br>score &lt; <span class="hljs-number">60</span> ? <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;不及格&quot;</span>) : (score &gt;= <span class="hljs-number">60</span> &amp;&amp; score &lt; <span class="hljs-number">70</span>) ? <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;及格&quot;</span>) : (score &gt;= <span class="hljs-number">70</span> &amp;&amp; score &lt; <span class="hljs-number">85</span>) ? <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;良好&quot;</span>) : <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;优秀&quot;</span>)<br><br><span class="hljs-comment">// 简化</span><br><span class="hljs-keyword">let</span> res = score &lt; <span class="hljs-number">60</span> ? <span class="hljs-string">&quot;不及格&quot;</span> : (score &gt;= <span class="hljs-number">60</span> &amp;&amp; score &lt; <span class="hljs-number">70</span>) ? <span class="hljs-string">&quot;及格&quot;</span> : (score &gt;= <span class="hljs-number">70</span> &amp;&amp; score &lt; <span class="hljs-number">85</span>) ? <span class="hljs-string">&quot;良好&quot;</span> : <span class="hljs-string">&quot;优秀&quot;</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res)<br></code></pre></td></tr></table></figure>
+<p><a name="AQrOa"></a></p>
+<h4 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h4><p><code>&amp;&amp;``||``!</code><br />如果未来我们需要让我们的代码同时复合多个条件，我们可以使用一些逻辑运算符<br><a name="JiKyr"></a></p>
+<h5 id="amp-amp"><a href="#amp-amp" class="headerlink" title="&amp;&amp;"></a>&amp;&amp;</h5><p>两个条件同时成立，结果才是true<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1660013881385-31901a72-92b8-43f6-9b87-6f4228c131af.png#clientId=u0e8a930c-1723-4&from=paste&height=327&id=uc3489650&name=image.png&originHeight=327&originWidth=400&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6135&status=done&style=none&taskId=u09757457-95c6-4d9d-8134-23a5f1c9aea&title=&width=400" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-literal">true</span> &amp;&amp; <span class="hljs-literal">true</span> <span class="hljs-comment">// true</span><br><span class="hljs-literal">true</span> &amp;&amp; <span class="hljs-literal">false</span> <span class="hljs-comment">// false</span><br><span class="hljs-literal">false</span> &amp;&amp; <span class="hljs-literal">false</span> <span class="hljs-comment">// false</span><br><span class="hljs-literal">false</span> &amp;&amp; <span class="hljs-literal">true</span> <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+<p>比如一个数字x大于10 小于100</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 10 &lt; x &lt; 100 js不能识别这样的代码</span><br>x &gt; <span class="hljs-number">10</span> &amp;&amp; x &lt; <span class="hljs-number">100</span><br></code></pre></td></tr></table></figure>
+<p><a name="uJiP5"></a></p>
+<h5 id=""><a href="#" class="headerlink" title="||"></a>||</h5><p>两个条件只要满足一个就成立<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1660014087392-07a10e00-9b23-4a68-8c8f-f4eaf13a1e79.png#clientId=u0e8a930c-1723-4&from=paste&height=320&id=u45d2537c&name=image.png&originHeight=320&originWidth=360&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6183&status=done&style=none&taskId=ua0a2778a-eacb-4541-ad25-0e9035b477e&title=&width=360" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-literal">true</span> || <span class="hljs-literal">true</span> <span class="hljs-comment">// true</span><br><span class="hljs-literal">true</span> || <span class="hljs-literal">false</span> <span class="hljs-comment">// true </span><br><span class="hljs-literal">false</span> || <span class="hljs-literal">true</span> <span class="hljs-comment">// true </span><br><span class="hljs-literal">false</span> || <span class="hljs-literal">false</span> <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+<p>判断一个年费是否是闰年<br />闰年 能被100整除 需要能被400整除 如果不能被100整除 需要能被4整除</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> year = <span class="hljs-number">2022</span><br><br>(year % <span class="hljs-number">100</span> === <span class="hljs-number">0</span> &amp;&amp; year % <span class="hljs-number">400</span> === <span class="hljs-number">0</span>) || (year % <span class="hljs-number">4</span> === <span class="hljs-number">0</span> &amp;&amp; year % <span class="hljs-number">100</span> !== <span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>year % 100 &#x3D;&#x3D;&#x3D; 0 能否被100整除</li>
+<li>year % 400 &#x3D;&#x3D;&#x3D; 0 能否被400整除</li>
+<li>year % 100 &#x3D;&#x3D;&#x3D; 0 &amp;&amp; year % 400 &#x3D;&#x3D;&#x3D; 0 两个条件需要同时满足</li>
+<li>year % 4 &#x3D;&#x3D;&#x3D; 0 是否能被4整除</li>
+<li>year % 100 !&#x3D;&#x3D; 0 不能被100整除</li>
+<li>year % 4 &#x3D;&#x3D;&#x3D; 0 &amp;&amp; year % 100 !&#x3D;&#x3D; 0 需要两个条件同时满足</li>
+<li>条件1 || 条件2 只要有一个满足，就满足<br><a name="UGOCn"></a></li>
+</ul>
+<h5 id="-1"><a href="#-1" class="headerlink" title="!"></a>!</h5><p>取反，把对应的结果设置为相反的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript">!<span class="hljs-literal">true</span> <span class="hljs-comment">// false</span><br>!<span class="hljs-literal">false</span> <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+<p>取反有很多的应用，可以进行隐式的数据类型转换。取反可以把其他类型转换为布尔类型。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> num = <span class="hljs-number">1</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(!!num)<br></code></pre></td></tr></table></figure>
+<p>其他类型转换为布尔值规则：</p>
+<ul>
+<li>非空字符串 true 空字符串 false</li>
+<li>非0数字 true 0是false</li>
+<li>NaN false</li>
+<li>undefined false </li>
+<li>null false<br><a name="fSRvW"></a></li>
+</ul>
+<h4 id="位运算-很难理解"><a href="#位运算-很难理解" class="headerlink" title="位运算 很难理解"></a>位运算 很难理解</h4><p>^ &amp; |<br />暂时不讲<br><a name="YttFB"></a></p>
+<h3 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h3><p>我们学习到数据类型String Number Boolean Undefined Null之间可以互相转换类型，通常常用的转换就是String,Number,Boolean这三个类型的转换。<br><a name="NoEzp"></a></p>
+<h4 id="如何判断类型"><a href="#如何判断类型" class="headerlink" title="如何判断类型"></a>如何判断类型</h4><p>最基本的判断类型的方式，可以使用<code>typeof</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">typeof</span>(值) <span class="hljs-comment">// string number boolean object undefined</span><br></code></pre></td></tr></table></figure>
+<p>null使用typeof会得到一个object，在早期JS中null一直显示object，到ES6有意将这个结果改成null类型，后续怕影响太大，就将错就错。null到现在位置 typeof还是object<br><a name="P4xbA"></a></p>
+<h4 id="其他值转字符串"><a href="#其他值转字符串" class="headerlink" title="其他值转字符串"></a>其他值转字符串</h4><p>给值添加引号可以直接转换，但是限制比较大，没办法把一个变量转换为对应值的字符串。</p>
+<ul>
+<li><p>值.toString()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> num = <span class="hljs-number">1</span><br><span class="hljs-keyword">const</span> numStr = num.<span class="hljs-title function_">toString</span>()<br><span class="hljs-keyword">const</span> bol = <span class="hljs-literal">true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">typeof</span>(bol.<span class="hljs-title function_">toString</span>()))<br><span class="hljs-keyword">const</span> num = <span class="hljs-number">1</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">typeof</span>(num.<span class="hljs-title function_">toString</span>()))<br></code></pre></td></tr></table></figure>
+<p>针对Number转String，有一个基模式（进制模式）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">值.<span class="hljs-title function_">toString</span>(进制)<br></code></pre></td></tr></table></figure>
+<p>把值转换为对应进制的字符串</p>
+</li>
+<li><p>String(值)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> num = <span class="hljs-number">1</span><br><span class="hljs-keyword">const</span> bol = <span class="hljs-literal">true</span> <br><span class="hljs-keyword">const</span> u = <span class="hljs-literal">undefined</span><br><span class="hljs-keyword">const</span> n = <span class="hljs-literal">null</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">typeof</span>(<span class="hljs-title class_">String</span>(num)))<br><br><span class="hljs-comment">// 我们可以通过声明变量的方式获取到String转化后的结果</span><br><span class="hljs-keyword">let</span> 变量名 = <span class="hljs-title class_">String</span>(值)<br></code></pre></td></tr></table></figure>
+<p><a name="HtCHy"></a></p>
+</li>
+</ul>
+<h4 id="其他值转数值"><a href="#其他值转数值" class="headerlink" title="其他值转数值"></a>其他值转数值</h4><p>转Number类型有很多方法，各种运算符的隐式转换外，还有一些显性转换。</p>
+<ul>
+<li>Number(值)</li>
+</ul>
+<p>把直接直接放在Number中，可以得到一个number类型的值，这个方法只能用来转纯数字的字符串和布尔值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Number</span>(<span class="hljs-string">&quot;&quot;</span>)) <span class="hljs-comment">// 0</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Number</span>(<span class="hljs-string">&quot;1435&quot;</span>)) <span class="hljs-comment">// 1435</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Number</span>(<span class="hljs-string">&quot;1a435&quot;</span>)) <span class="hljs-comment">// NaN</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Number</span>(<span class="hljs-string">&quot;true&quot;</span>)) <span class="hljs-comment">// NaN</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Number</span>(<span class="hljs-literal">true</span>)) <span class="hljs-comment">// 1</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Number</span>(<span class="hljs-literal">false</span>)) <span class="hljs-comment">// 0</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>parseInt(值)</li>
+</ul>
+<p>如果是数字或者字符串，会转换为整数，转换规则，从第一位开始，如果是数字则保留，继续第二位，直到遇到非数字的内容，停止转换<br />14215mdsaf -&gt; 14215<br />1a111 -&gt; 1<br />1.1 -&gt; 1</p>
+<ul>
+<li>parseFloat(值)</li>
+</ul>
+<p>和parseInt相似，多取一个<code>.</code>遇到第二个非数字的字符就会停止。<br />1.121345312dsa -&gt; 1.121345312<br />1.1.232 -&gt; 1.1</p>
+<ol>
+<li>-&gt; 1</li>
+</ol>
+<p>这两个方法会直接把布尔值转为NaN，首位不是数字的字符串也会得到NaN<br><a name="ygtcq"></a></p>
+<h5 id="parseInt也有基模式"><a href="#parseInt也有基模式" class="headerlink" title="parseInt也有基模式"></a>parseInt也有基模式</h5><p>把对应的值当成进制转化为10进制。<br />toString实现了10进制转其他进制，parseInt实现了其他进制转10进制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">parseInt</span>(值, 进制)<br></code></pre></td></tr></table></figure>
+<p>一般转换我们使用Number模式比较多，可以直接替代为 <code>+</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">+num 相当于 <span class="hljs-title class_">Number</span>(num)<br></code></pre></td></tr></table></figure>
+<p><a name="LqwX3"></a></p>
+<h4 id="其他值转布尔值"><a href="#其他值转布尔值" class="headerlink" title="其他值转布尔值"></a>其他值转布尔值</h4><ul>
+<li>Boolean(值)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Boolean</span>(值) <span class="hljs-comment">// 布尔值</span><br><span class="hljs-comment">// 不如直接使用 !!</span><br>!!值<br></code></pre></td></tr></table></figure>
+我们只需要知道，各种值转布尔值会得到什么就可以了。<br />所有的类型都可以转换为布尔值<br />数字：0是false  非0是true<br />字符串: 空字符串 false 非空字符串true<br />undefined: false<br />null: false<br />因为在条件判断中，我们可以通过这样的操作，实现对应的隐式转换。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">if</span> (条件) &#123;&#125;<br><span class="hljs-keyword">if</span> (<span class="hljs-number">1</span>) &#123;&#125;<br><span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;0&quot;</span>) &#123;&#125;<br><br><span class="hljs-keyword">if</span> (num % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) &#123;&#125;<br><span class="hljs-comment">// 缩写</span><br><span class="hljs-keyword">if</span> (!(num % <span class="hljs-number">2</span>)) &#123;&#125; <br><br><span class="hljs-keyword">if</span> (num % <span class="hljs-number">2</span>) &#123;&#125; <span class="hljs-keyword">else</span> &#123;<br>  <span class="hljs-comment">// 偶数</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>28.JavaScript基础</div>
+      <div>http://example.com/2020/07/02/js/28-JavaScript基础/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年7月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/06/js/29-JavaScript%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/" title="29.JavaScript流程控制语句">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">29.JavaScript流程控制语句</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/30/html+css/27-Sass/" title="27.Sass">
+                        <span class="hidden-mobile">27.Sass</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

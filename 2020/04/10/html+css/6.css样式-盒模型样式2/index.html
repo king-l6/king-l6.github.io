@@ -1,0 +1,698 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="在浏览器中，开发者工具中，点击每一个元素都可以看到对应的一个模型可以看到以下内容  蓝色 content-box 指的是内容区域 绿色 padding-box 指的是padding 黄色 border-box 指的是border 暗黄色 margin  padding的目的是让border和内容之间产生间距。 1. 内填充padding属性用于实现元素内部的内容和边框区域之间的距离。添加paddi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="6.css样式-盒模型样式2">
+<meta property="og:url" content="http://example.com/2020/04/10/html+css/6.css%E6%A0%B7%E5%BC%8F-%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%A0%B7%E5%BC%8F2/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="在浏览器中，开发者工具中，点击每一个元素都可以看到对应的一个模型可以看到以下内容  蓝色 content-box 指的是内容区域 绿色 padding-box 指的是padding 黄色 border-box 指的是border 暗黄色 margin  padding的目的是让border和内容之间产生间距。 1. 内填充padding属性用于实现元素内部的内容和边框区域之间的距离。添加paddi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657503289805-e767daba-8b34-4ad4-a168-ee9fe1b831c8.png#clientId=u47fd1895-ddf2-4&from=paste&height=185&id=u065180a8&name=image.png&originHeight=185&originWidth=205&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6441&status=done&style=none&taskId=ufcb1bf77-1460-4fdb-a82c-13daf806b5c&title=&width=205">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657504726595-720b20c0-0959-4215-bac3-2830477f688a.png#clientId=u47fd1895-ddf2-4&from=paste&height=54&id=ubf2cbab1&name=image.png&originHeight=54&originWidth=250&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1232&status=done&style=none&taskId=u53e7bf6b-3d14-4b71-884a-81dda0db595&title=&width=250">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657521710979-7c8a0603-5534-4c6c-9c7c-e04549b6f165.png#clientId=u47fd1895-ddf2-4&from=paste&height=154&id=uab9aeea4&name=image.png&originHeight=154&originWidth=293&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2135&status=done&style=none&taskId=uabb51209-3721-4edc-ba9b-96d6261dc6a&title=&width=293">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657521725117-202cb05e-fd52-49da-93e1-2c7c352f63db.png#clientId=u47fd1895-ddf2-4&from=paste&height=132&id=u74ca139e&name=image.png&originHeight=132&originWidth=266&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1793&status=done&style=none&taskId=udec31eba-9d23-40bf-8756-0086398d7fb&title=&width=266">
+<meta property="article:published_time" content="2020-04-10T08:16:53.000Z">
+<meta property="article:modified_time" content="2023-03-20T11:05:46.442Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657503289805-e767daba-8b34-4ad4-a168-ee9fe1b831c8.png#clientId=u47fd1895-ddf2-4&from=paste&height=185&id=u065180a8&name=image.png&originHeight=185&originWidth=205&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6441&status=done&style=none&taskId=ufcb1bf77-1460-4fdb-a82c-13daf806b5c&title=&width=205">
+  
+  
+  
+  <title>6.css样式-盒模型样式2 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="6.css样式-盒模型样式2"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-04-10 16:16" pubdate>
+          2020年4月10日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">6.css样式-盒模型样式2</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>在浏览器中，开发者工具中，点击每一个元素都可以看到对应的一个模型<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1657503289805-e767daba-8b34-4ad4-a168-ee9fe1b831c8.png#clientId=u47fd1895-ddf2-4&from=paste&height=185&id=u065180a8&name=image.png&originHeight=185&originWidth=205&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6441&status=done&style=none&taskId=ufcb1bf77-1460-4fdb-a82c-13daf806b5c&title=&width=205" srcset="/img/loading.gif" lazyload alt="image.png"><br />可以看到以下内容</p>
+<ul>
+<li>蓝色 content-box 指的是内容区域</li>
+<li>绿色 padding-box 指的是padding</li>
+<li>黄色 border-box 指的是border</li>
+<li>暗黄色 margin</li>
+</ul>
+<p>padding的目的是让border和内容之间产生间距。<br><a name="oK4kX"></a></p>
+<h2 id="1-内填充"><a href="#1-内填充" class="headerlink" title="1. 内填充"></a>1. 内填充</h2><p>padding属性用于实现元素内部的内容和边框区域之间的距离。<br />添加padding后添加boder一样的效果，会放大元素。<br><a name="i0KVn"></a></p>
+<h3 id="1-1-语法"><a href="#1-1-语法" class="headerlink" title="1.1. 语法"></a>1.1. 语法</h3><p>我们可以使用padding属性来定义内填充，有四种写法</p>
+<ul>
+<li>一个属性值 表示四个边的内填充都是对应的值</li>
+<li>两个属性值 表示 上下 左右 第一个值为上下，第二值为左右</li>
+<li>三个属性值 表示 上 左右 下 第一个值为上 第二个值为左右 第三个值为下</li>
+<li>四个属性值 表示 上 右 下 左<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span> <span class="hljs-number">20px</span>;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span> <span class="hljs-number">20px</span> <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span> <span class="hljs-number">20px</span> <span class="hljs-number">30px</span> <span class="hljs-number">40px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+如果已经设置好了宽高，然后在这个基础上添加了padding值，那么我们就需要区减去对应的padding值的宽高值，这个操作很麻烦，后续我们有更好的方法。<br><a name="d1kr0"></a></li>
+</ul>
+<h4 id="1-1-1-单独方向设置"><a href="#1-1-1-单独方向设置" class="headerlink" title="1.1.1. 单独方向设置"></a>1.1.1. 单独方向设置</h4><ul>
+<li>padding-left 左填充</li>
+<li>padding-right 右填充</li>
+<li>padding-top 上填充</li>
+<li>padding-bottom 下填充</li>
+</ul>
+<p>这些属性都只能写一个值，如果写多个，就会出问题。<br><a name="dQfml"></a></p>
+<h3 id="1-2-使用场景"><a href="#1-2-使用场景" class="headerlink" title="1.2. 使用场景"></a>1.2. 使用场景</h3><p><a name="YBUvg"></a></p>
+<h4 id="1-2-1-input输入框"><a href="#1-2-1-input输入框" class="headerlink" title="1.2.1. input输入框"></a>1.2.1. input输入框</h4><p>为了保证对应的效果美观，输入的文字不贴边框，一般设计师会给输入框设置padding值。<br><a name="u1xCP"></a></p>
+<h4 id="1-2-2-元素距离对应的边框有padding"><a href="#1-2-2-元素距离对应的边框有padding" class="headerlink" title="1.2.2. 元素距离对应的边框有padding"></a>1.2.2. 元素距离对应的边框有padding</h4><p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1657504726595-720b20c0-0959-4215-bac3-2830477f688a.png#clientId=u47fd1895-ddf2-4&from=paste&height=54&id=ubf2cbab1&name=image.png&originHeight=54&originWidth=250&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1232&status=done&style=none&taskId=u53e7bf6b-3d14-4b71-884a-81dda0db595&title=&width=250" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="MZFmN"></a></p>
+<h2 id="2-外填充"><a href="#2-外填充" class="headerlink" title="2. 外填充"></a>2. 外填充</h2><p>外填充指边框外和其他元素之间的距离。<br />外填充叫margin，在我们对应的页面上，元素和元素之间的间距都可以使用外填充实现。<br><a name="we58t"></a></p>
+<h3 id="2-1-语法"><a href="#2-1-语法" class="headerlink" title="2.1. 语法"></a>2.1. 语法</h3><p><a name="kxzvo"></a></p>
+<h4 id="2-1-1-基本使用方法"><a href="#2-1-1-基本使用方法" class="headerlink" title="2.1.1. 基本使用方法"></a>2.1.1. 基本使用方法</h4><p>外填充和内填充一样，可以有多种写法，不同的值的数量代表着不同的方向。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span> <span class="hljs-number">20px</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span> <span class="hljs-number">20px</span> <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span> <span class="hljs-number">20px</span> <span class="hljs-number">30px</span> <span class="hljs-number">40px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="Ll7w4"></a></p>
+<h4 id="2-1-2-单个方向设置margin"><a href="#2-1-2-单个方向设置margin" class="headerlink" title="2.1.2. 单个方向设置margin"></a>2.1.2. 单个方向设置margin</h4><p>margin和padding相同支持单个方向的设置</p>
+<ul>
+<li>margin-left</li>
+<li>margin-right</li>
+<li>margin-top</li>
+<li>margin-bottom</li>
+</ul>
+<p>同样要记住，这些属性只能写一个值，不能写多个值。<br><a name="SroKq"></a></p>
+<h3 id="2-2-样式重置"><a href="#2-2-样式重置" class="headerlink" title="2.2. 样式重置"></a>2.2. 样式重置</h3><p>网页上很多元素上都有默认的margin值，比如：<br />p、body、hx、列表，而大部分情况下，我们不需要使用这些margin值，所以我们要清除掉。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">有默认<span class="hljs-attribute">margin</span>的标签 &#123;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="pytEL"></a></p>
+<h3 id="2-3-块元素水平居中"><a href="#2-3-块元素水平居中" class="headerlink" title="2.3. 块元素水平居中"></a>2.3. 块元素水平居中</h3><p>当我们有一个固定宽度的块元素时，我们可以让其居中，使用margin操作</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">1000px</span>;<br>  <span class="hljs-attribute">margin-left</span>: auto;<br>  <span class="hljs-attribute">margin-right</span>: auto;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>直接设置 <code>margion: 0 auto</code>这种方法也可以，但是要清楚，我们水平居中的核心代码是左右<code>auto</code>和上下无关，所以未来上下设置成多少都无所谓。<br><a name="XQmmU"></a></p>
+<h4 id="2-3-1-版心"><a href="#2-3-1-版心" class="headerlink" title="2.3.1. 版心"></a>2.3.1. 版心</h4><p>为了我们对应的大部分的用户的显示器都能正常访问我们的网站，所以我们会选用一个固定的宽度居中，来作为网页主体内容展示的区域，这个区域叫版心（安全宽度）。<br />京东的安全宽度是1190，和淘宝一样。小米是1226px<br />版心的实现，就是借助我们对应的margin属性居中的特性。<br />一般版心的类名叫<code>container</code>，所以一般我们会给版心设置一个单独的样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">1226px</span>;<br>  <span class="hljs-attribute">margin-left</span>: auto;<br>  <span class="hljs-attribute">margin-right</span>: auto;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="khNuH"></a></p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p><a name="J4rKw"></a></p>
+<h3 id="同胞选择器"><a href="#同胞选择器" class="headerlink" title="同胞选择器"></a>同胞选择器</h3><p>+用于选择到某个元素紧挨着的下一个同胞元素<br />div + p  选中的是p标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>当我们的列表中，第一个没有相关属性时，可以使用同胞选择器实现对应的效果</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html">列表项 + 列表项 &#123;<br>  样式<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">li</span> + <span class="hljs-selector-tag">li</span> &#123;&#125; 这个样式就不会出现在第一个<span class="hljs-selector-tag">li</span>上<br></code></pre></td></tr></table></figure>
+<p><a name="hPO7z"></a></p>
+<h3 id="overflow-溢出内容处理"><a href="#overflow-溢出内容处理" class="headerlink" title="overflow 溢出内容处理"></a>overflow 溢出内容处理</h3><p>当我们元素中的内容超出我们对应的元素时，我们可以通过该属性控制内容展示的方式</p>
+<ul>
+<li>visible 可见的 默认值</li>
+<li>hidden 隐藏，将溢出的内容隐藏起来</li>
+<li>scroll 出现滚动条，哪怕没有溢出也会有滚动条区域，不好看</li>
+<li>auto 如果溢出，则出现滚动条，不溢出则正常展示。<br><a name="HOr3Y"></a></li>
+</ul>
+<h4 id="overflow-x-overflow-y"><a href="#overflow-x-overflow-y" class="headerlink" title="overflow-x overflow-y"></a>overflow-x overflow-y</h4><p>我们可以通过这两个属性，单独定义我们对应的x轴方向和y轴方向上的溢出内容的处理效果，一般常用的是overflow-y，因为我们网页都是从上到下排列的。<br><a name="NMsff"></a></p>
+<h3 id="列表样式"><a href="#列表样式" class="headerlink" title="列表样式"></a>列表样式</h3><p>列表样式指的是我们有序和无序列表中的标号样式，一样我们会把他们给清除。</p>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">ul</span>, <span class="hljs-string">ol</span> &#123;<br>  <span class="hljs-built_in">list-style:</span> <span class="hljs-string">none</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="zCAaY"></a></p>
+<h4 id="列表除了标号外还有的默认的margin和padding"><a href="#列表除了标号外还有的默认的margin和padding" class="headerlink" title="列表除了标号外还有的默认的margin和padding"></a>列表除了标号外还有的默认的margin和padding</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">ul</span>, <span class="hljs-selector-tag">ol</span> &#123;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="rwmp5"></a></p>
+<h3 id="表格边框折叠"><a href="#表格边框折叠" class="headerlink" title="表格边框折叠"></a>表格边框折叠</h3><p>border-collapse可以让原本分离的边框，折叠在一起<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1657521710979-7c8a0603-5534-4c6c-9c7c-e04549b6f165.png#clientId=u47fd1895-ddf2-4&from=paste&height=154&id=uab9aeea4&name=image.png&originHeight=154&originWidth=293&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2135&status=done&style=none&taskId=uabb51209-3721-4edc-ba9b-96d6261dc6a&title=&width=293" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">table</span> &#123;<br>  <span class="hljs-attribute">border-collapse</span>: collapse;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1657521725117-202cb05e-fd52-49da-93e1-2c7c352f63db.png#clientId=u47fd1895-ddf2-4&from=paste&height=132&id=u74ca139e&name=image.png&originHeight=132&originWidth=266&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1793&status=done&style=none&taskId=udec31eba-9d23-40bf-8756-0086398d7fb&title=&width=266" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="fynyg"></a></p>
+<h3 id="reset-css"><a href="#reset-css" class="headerlink" title="reset.css"></a>reset.css</h3><p>在我们的网页上，有很多的样式在不同浏览器下，有不同的样式标签，为了解决这个问题，我们可以创建一个reset.css，然后写相关的浏览器的重置样式。重置样式，可以重复使用。它可以让我们减少很多浏览器差异性的问题。<br />每个网页引入CSS都是很必要的。<br />下面的reset.css记住，只需要保存下来就行，用到的时候复制过去即可。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">html</span>,<span class="hljs-selector-tag">body</span>,<span class="hljs-selector-tag">div</span>,<span class="hljs-selector-tag">span</span>,applet,<span class="hljs-selector-tag">object</span>,<span class="hljs-selector-tag">h1</span>,<span class="hljs-selector-tag">h2</span>,<span class="hljs-selector-tag">h3</span>,<span class="hljs-selector-tag">h4</span>,<span class="hljs-selector-tag">h5</span>,<span class="hljs-selector-tag">h6</span>,<span class="hljs-selector-tag">p</span>,<span class="hljs-selector-tag">blockquote</span>,pre,<span class="hljs-selector-tag">a</span>,<span class="hljs-selector-tag">abbr</span>,acronym,<span class="hljs-selector-tag">address</span>,big,<span class="hljs-selector-tag">cite</span>,<span class="hljs-selector-tag">code</span>,<span class="hljs-selector-tag">del</span>,<span class="hljs-selector-tag">dfn</span>,<span class="hljs-selector-tag">em</span>,<span class="hljs-selector-tag">img</span>,<span class="hljs-selector-tag">ins</span>,<span class="hljs-selector-tag">kbd</span>,<span class="hljs-selector-tag">q</span>,s,<span class="hljs-selector-tag">samp</span>,small,strike,<span class="hljs-selector-tag">strong</span>,sub,<span class="hljs-selector-tag">sup</span>,tt,<span class="hljs-selector-tag">var</span>,<span class="hljs-selector-tag">b</span>,u,<span class="hljs-selector-tag">i</span>,center,<span class="hljs-selector-tag">dl</span>,<span class="hljs-selector-tag">dt</span>,<span class="hljs-selector-tag">dd</span>,<span class="hljs-selector-tag">ol</span>,<span class="hljs-selector-tag">ul</span>,<span class="hljs-selector-tag">li</span>,<span class="hljs-selector-tag">fieldset</span>,<span class="hljs-selector-tag">form</span>,<span class="hljs-selector-tag">label</span>,<span class="hljs-selector-tag">legend</span>,<span class="hljs-selector-tag">table</span>,<span class="hljs-selector-tag">caption</span>,<span class="hljs-selector-tag">tbody</span>,<span class="hljs-selector-tag">tfoot</span>,<span class="hljs-selector-tag">thead</span>,<span class="hljs-selector-tag">tr</span>,<span class="hljs-selector-tag">th</span>,<span class="hljs-selector-tag">td</span>,<span class="hljs-selector-tag">article</span>,<span class="hljs-selector-tag">aside</span>,<span class="hljs-selector-tag">canvas</span>,<span class="hljs-selector-tag">details</span>,embed,<span class="hljs-selector-tag">figure</span>,<span class="hljs-selector-tag">figcaption</span>,<span class="hljs-selector-tag">footer</span>,<span class="hljs-selector-tag">header</span>,<span class="hljs-selector-tag">hgroup</span>,<span class="hljs-selector-tag">menu</span>,<span class="hljs-selector-tag">nav</span>,output,ruby,<span class="hljs-selector-tag">section</span>,<span class="hljs-selector-tag">summary</span>,<span class="hljs-selector-tag">time</span>,<span class="hljs-selector-tag">mark</span>,<span class="hljs-selector-tag">audio</span>,<span class="hljs-selector-tag">video</span> &#123;<br>	<span class="hljs-attribute">margin</span>:<span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">padding</span>:<span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">border</span>:<span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">font-size</span>:<span class="hljs-number">100%</span>;<br>	<span class="hljs-attribute">font</span>:inherit;<br>	<span class="hljs-attribute">font-weight</span>:normal;<br>	<span class="hljs-attribute">vertical-align</span>:baseline;<br>&#125;<br><span class="hljs-comment">/* HTML5 display-role reset for older browsers */</span><br><span class="hljs-selector-tag">article</span>,<span class="hljs-selector-tag">aside</span>,<span class="hljs-selector-tag">details</span>,<span class="hljs-selector-tag">figcaption</span>,<span class="hljs-selector-tag">figure</span>,<span class="hljs-selector-tag">footer</span>,<span class="hljs-selector-tag">header</span>,<span class="hljs-selector-tag">hgroup</span>,<span class="hljs-selector-tag">menu</span>,<span class="hljs-selector-tag">nav</span>,<span class="hljs-selector-tag">section</span> &#123;<br>	<span class="hljs-attribute">display</span>:block;<br>&#125;<br><span class="hljs-selector-tag">ol</span>,<span class="hljs-selector-tag">ul</span>,<span class="hljs-selector-tag">li</span> &#123;<br>	<span class="hljs-attribute">list-style</span>:none;<br>&#125;<br><span class="hljs-selector-tag">blockquote</span>,<span class="hljs-selector-tag">q</span> &#123;<br>	<span class="hljs-attribute">quotes</span>:none;<br>&#125;<br><span class="hljs-selector-tag">blockquote</span><span class="hljs-selector-pseudo">:before</span>,<span class="hljs-selector-tag">blockquote</span><span class="hljs-selector-pseudo">:after</span>,<span class="hljs-selector-tag">q</span><span class="hljs-selector-pseudo">:before</span>,<span class="hljs-selector-tag">q</span><span class="hljs-selector-pseudo">:after</span> &#123;<br>	<span class="hljs-attribute">content</span>:<span class="hljs-string">&#x27;&#x27;</span>;<br>	<span class="hljs-attribute">content</span>:none;<br>&#125;<br><span class="hljs-selector-tag">table</span> &#123;<br>	<span class="hljs-attribute">border-collapse</span>:collapse;<br>	<span class="hljs-attribute">border-spacing</span>:<span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-tag">th</span>,<span class="hljs-selector-tag">td</span> &#123;<br>	<span class="hljs-attribute">vertical-align</span>:middle;<br>&#125;<br><span class="hljs-comment">/* custom */</span><br><span class="hljs-selector-tag">a</span> &#123;<br>	<span class="hljs-attribute">outline</span>:none;<br>	<span class="hljs-attribute">color</span>:<span class="hljs-number">#16418a</span>;<br>	<span class="hljs-attribute">text-decoration</span>:none;<br>	-webkit-<span class="hljs-attribute">backface-visibility</span>:hidden;<br>&#125;<br><span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:focus</span> &#123;<br>	<span class="hljs-attribute">outline</span>:none;<br>&#125;<br><span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:focus</span>,select<span class="hljs-selector-pseudo">:focus</span>,<span class="hljs-selector-tag">textarea</span><span class="hljs-selector-pseudo">:focus</span> &#123;<br>	<span class="hljs-attribute">outline</span>:-webkit-focus-ring-color auto <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>6.css样式-盒模型样式2</div>
+      <div>http://example.com/2020/04/10/html+css/6.css样式-盒模型样式2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年4月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/04/14/html+css/7.%E6%B5%AE%E5%8A%A8/" title="7.浮动">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">7.浮动</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/04/06/html+css/5.css%E6%A0%B7%E5%BC%8F-%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%A0%B7%E5%BC%8F/" title="5.css样式-盒模型样式">
+                        <span class="hidden-mobile">5.css样式-盒模型样式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. vue的虚拟DOM （VNode）虚拟DOM就是一个JS对象，用它来描述真实DOM参考网址：https:&#x2F;&#x2F;blog.csdn.net&#x2F;nerao&#x2F;article&#x2F;details&#x2F;90549019https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;af0b398602bc  1.1 为什么 virtual dom 是好用的demo1: 多次执行dom操作 12345678910111213">
+<meta property="og:type" content="article">
+<meta property="og:title" content="26.vue补充内容">
+<meta property="og:url" content="http://example.com/2021/01/25/vue/26-vue%E8%A1%A5%E5%85%85%E5%86%85%E5%AE%B9/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="1. vue的虚拟DOM （VNode）虚拟DOM就是一个JS对象，用它来描述真实DOM参考网址：https:&#x2F;&#x2F;blog.csdn.net&#x2F;nerao&#x2F;article&#x2F;details&#x2F;90549019https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;af0b398602bc  1.1 为什么 virtual dom 是好用的demo1: 多次执行dom操作 12345678910111213">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-25T05:03:47.000Z">
+<meta property="article:modified_time" content="2023-03-20T13:25:26.698Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>26.vue补充内容 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="26.vue补充内容"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-01-25 13:03" pubdate>
+          2021年1月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          81 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">26.vue补充内容</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="6c3215b6"></a></p>
+<h1 id="1-vue的虚拟DOM-（VNode）"><a href="#1-vue的虚拟DOM-（VNode）" class="headerlink" title="1. vue的虚拟DOM （VNode）"></a>1. vue的虚拟DOM （VNode）</h1><p>虚拟DOM就是一个JS对象，用它来描述真实DOM<br />参考网址：<br /><a target="_blank" rel="noopener" href="https://blog.csdn.net/nerao/article/details/90549019">https://blog.csdn.net/nerao/article/details/90549019</a><br /><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/af0b398602bc">https://www.jianshu.com/p/af0b398602bc</a></p>
+<p><a name="5ed63b7e"></a></p>
+<h2 id="1-1-为什么-virtual-dom-是好用的"><a href="#1-1-为什么-virtual-dom-是好用的" class="headerlink" title="1.1 为什么 virtual dom 是好用的"></a>1.1 为什么 virtual dom 是好用的</h2><p>demo1: 多次执行dom操作</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;box&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 200px; border:1px solid #000;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">var</span> box = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.box&#x27;</span>);</span><br><span class="language-javascript">    <span class="hljs-keyword">var</span> count = <span class="hljs-number">0</span>;</span><br><span class="language-javascript">    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">time</span>(<span class="hljs-string">&#x27;a&#x27;</span>)</span><br><span class="language-javascript">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">10002</span>; i++) &#123;</span><br><span class="language-javascript">      count = i</span><br><span class="language-javascript">      box.<span class="hljs-property">innerHTML</span> += count</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript">    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">timeEnd</span>(<span class="hljs-string">&#x27;a&#x27;</span>)</span><br><span class="language-javascript">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>demo2: 只执行一次dom操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> box = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>( <span class="hljs-string">&#x27;.box&#x27;</span> ) ;<br><span class="hljs-keyword">var</span> num = “<span class="hljs-number">0</span>” <br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">time</span>( <span class="hljs-string">&#x27;b&#x27;</span> )<br><span class="hljs-keyword">for</span> ( <span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span> ; i &lt; <span class="hljs-number">10002</span> ; i ++ )&#123;<br>  num += i <br>&#125;<br>box.<span class="hljs-property">innerHTML</span> = num<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">timeEnd</span>( <span class="hljs-string">&#x27;b&#x27;</span> )<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>比较运行时间：得到结论<br />越多的真实dom操作，越损耗性能<br />操作数据要大大的减少性能损耗，提高渲染效率</p>
+</blockquote>
+<p><a name="e2a14bbd"></a></p>
+<h2 id="1-2-更新DOM的三种方案的区别"><a href="#1-2-更新DOM的三种方案的区别" class="headerlink" title="1.2 更新DOM的三种方案的区别"></a>1.2 更新DOM的三种方案的区别</h2><p>第一种更新DOM的方案</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-number">1</span>、<span class="hljs-class"><span class="hljs-keyword">data</span>数据</span><br><span class="hljs-number">2</span>、模板<br><span class="hljs-number">3</span>、数据 + 模板 结合，生成真实的<span class="hljs-type">DOM</span> -&gt; 视图<br><span class="hljs-number">4</span>、<span class="hljs-class"><span class="hljs-keyword">data</span>发生了变化</span><br><span class="hljs-number">5</span>、数据 + 模板 结合，生成真实的<span class="hljs-type">DOM</span>，替换原始的<span class="hljs-type">DOM</span><br>缺陷：<br>  <span class="hljs-number">1</span>、第一次生成了完整的<span class="hljs-type">DOM</span>片段<br>  <span class="hljs-number">2</span>、第二次生成了完整的<span class="hljs-type">DOM</span>片段<br>  <span class="hljs-number">3</span>、第二次的<span class="hljs-type">DOM</span>替换第一次的<span class="hljs-type">DOM</span>，非常耗费性能<br></code></pre></td></tr></table></figure>
+
+<p>第二种更新DOM的方案</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-number">1</span>、<span class="hljs-class"><span class="hljs-keyword">data</span>数据</span><br><span class="hljs-number">2</span>、模板<br><span class="hljs-number">3</span>、数据 + 模板 结合， 生成真实的<span class="hljs-type">DOM</span> -&gt; 视图<br><span class="hljs-number">4</span>、<span class="hljs-class"><span class="hljs-keyword">data</span>发生变化</span><br><span class="hljs-number">5</span>、数据 + 模板 结合，生成真实的<span class="hljs-type">DOM</span>，并不直接替换原始的<span class="hljs-type">DOM</span><br><span class="hljs-number">6</span>、新的<span class="hljs-type">DOM</span>（<span class="hljs-type">DocumentFragment</span>）和原始的<span class="hljs-type">DOM</span>做比对，找差异<br><span class="hljs-number">7</span>、找出input框发生了变化<br><span class="hljs-number">8</span>、只用新的<span class="hljs-type">DOM</span>中的input元素，替换掉老的<span class="hljs-type">DOM</span>中input元素<br>缺陷：<br>	虽然<span class="hljs-type">DOM</span>只是局部替换，但是在比对时候的计算是比较耗费性能的，因此，性能的提升并不明显<br></code></pre></td></tr></table></figure>
+
+<p>第三种使用虚拟DOM的方案</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash">1、读取data数据<br>2、读取模板<br>3、数据 + 模板 生成虚拟DOM(虚拟DOM就是一个JS对象，用它来描述真实DOM)（损耗一点性能）<br>  原本准备生成的真实dom:   &lt;div <span class="hljs-built_in">id</span>=“abc”&gt;&lt;span&gt; hello world &lt;/span&gt;&lt;/div&gt;<br>  虚拟DOM：[<span class="hljs-string">&#x27;div&#x27;</span>, &#123;<span class="hljs-built_in">id</span>: <span class="hljs-string">&#x27;abc‘&#125;, [&#x27;</span>span<span class="hljs-string">&#x27;, &#x27;</span><span class="hljs-string">&#x27;, &#x27;</span>hello world<span class="hljs-string">&#x27;]]</span><br><span class="hljs-string">	</span><br><span class="hljs-string">4、用虚拟DOM的结构生成真实的DOM -&gt; 视图显示 (用createElement可基于虚拟DOM生成真实DOM)</span><br><span class="hljs-string">	真实DOM：&lt;div id=&#x27;</span>abc<span class="hljs-string">&#x27;&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;</span><br><span class="hljs-string">5、当data发生了变化</span><br><span class="hljs-string">6、数据 + 模板 生成新的虚拟DOM：</span><br><span class="hljs-string">	[&#x27;</span>div<span class="hljs-string">&#x27;, &#123;id: &#x27;</span>abc<span class="hljs-string">&#x27;&#125;, [&#x27;</span>span<span class="hljs-string">&#x27;, &#x27;</span><span class="hljs-string">&#x27;, &#x27;</span>hi world11111<span class="hljs-string">&#x27;]]</span><br><span class="hljs-string">7、比较原始虚拟DOM和新的虚拟DOM的区别，找到的区别是span中的内容发生了变化（极大提升了性能）</span><br><span class="hljs-string">8、将变化的部分生成真实DOM(用createElement可基于虚拟DOM生成真实DOM)</span><br><span class="hljs-string">9、将不同部分渲染在页面（直接操作DOM，改变span中的内容）</span><br><span class="hljs-string"></span><br><span class="hljs-string">虚拟DOM优点：</span><br><span class="hljs-string">	1、性能提升了      </span><br><span class="hljs-string">	2、它使得跨端应用得以实现，比如：React Native</span><br></code></pre></td></tr></table></figure>
+<p><a name="2deaabe2"></a></p>
+<h2 id="1-3-面试回答"><a href="#1-3-面试回答" class="headerlink" title="1.3 面试回答"></a>1.3 面试回答</h2><p>题目一： V(virtual虚拟)DOM的渲染流程<br />题目二： 虚拟DOM的原理</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 获取数据<br><span class="hljs-bullet">2.</span> 根据数据创建VDOM 虚拟DOM就是一个JS对象，用它来描述真实DOM（相当于给对象赋值）<br><span class="hljs-bullet">3.</span> 根据VDOM渲染生成真实DOM ( 根据createElement(‘DIV’) )<br><span class="hljs-bullet">4.</span> 当数据发生改变后，又会生成新的VDOM<br><span class="hljs-bullet">5.</span> 通过 diff 算法 比对 多次生成的 VDOM, 将不同的内容比对出来，然后再进行真实DOM渲染，一样的内容是不会进行渲染的，这就是VDOM 的 ‘就地复用’ | ‘惰性原则’<br></code></pre></td></tr></table></figure>
+<p><a name="dc4e230e"></a></p>
+<h1 id="2-vue中key值的作用"><a href="#2-vue中key值的作用" class="headerlink" title="2. vue中key值的作用"></a>2. vue中key值的作用</h1><p>key是虚拟dom对象的标识 在更新时key起着极其重要的作用<br><a name="41eb7f49"></a></p>
+<h2 id="2-1-理解key值的作用"><a href="#2-1-理解key值的作用" class="headerlink" title="2.1 理解key值的作用"></a>2.1 理解key值的作用</h2><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs maxima">当状态数据发生变化时，vue会根据【新数据】生成【新的虚拟dom】<br>随后vue进行【新的虚拟dom】与【旧的虚拟dom】的<span class="hljs-built_in">diff</span>比较 比较规则如下：<br>a. 如果旧虚拟dom找到了与新虚拟dom相同的<span class="hljs-built_in">key</span><br>（<span class="hljs-number">1</span>）若旧虚拟dom中内容没变,直接使用之前的真实dom<br>（<span class="hljs-number">2</span>）若旧虚拟dom中内容发生了改变,则生成新的真实dom 随后替换掉页面中的真实dom<br><br>b. 如果旧虚拟dom未找到与新虚拟dom相同的<span class="hljs-built_in">key</span> <br>根据数据创建新的真实dom随后渲染到页面<br></code></pre></td></tr></table></figure>
+<p><a name="253b4941"></a></p>
+<h2 id="2-2-使用index索引值作为key值"><a href="#2-2-使用index索引值作为key值" class="headerlink" title="2.2 使用index索引值作为key值"></a>2.2 使用index索引值作为key值</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 数据:   --&gt;</span><br>[&#123; id: 1, name: &#x27;小李&#x27;, age: 18 &#125;,<br>&#123; id: 2, name: &#x27;小张&#x27;, age: 19 &#125;]<br><br><span class="hljs-comment">&lt;!-- 初始的虚拟dom --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">0</span>&gt;</span>小李------18  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">1</span>&gt;</span>小张------19  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- 更新后的数据 --&gt;</span><br>[&#123; id: 3, name: &#x27;小王&#x27;, age: 20 &#125;,<br>&#123; id: 1, name: &#x27;小李&#x27;, age: 18 &#125;,<br>&#123; id: 2, name: &#x27;小张&#x27;, age: 19 &#125;]<br><br><span class="hljs-comment">&lt;!-- 更新数据后的虚拟dom --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">0</span>&gt;</span>小王------20  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">1</span>&gt;</span>小李------18  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">2</span>&gt;</span>小张------19  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="a07ce0e3"></a></p>
+<h2 id="2-3-使用id索引值作为key值"><a href="#2-3-使用id索引值作为key值" class="headerlink" title="2.3 使用id索引值作为key值"></a>2.3 使用id索引值作为key值</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 数据:   --&gt;</span><br>[&#123; id: 1, name: &#x27;小李&#x27;, age: 18 &#125;,<br>&#123; id: 2, name: &#x27;小张&#x27;, age: 19 &#125;]<br><br><span class="hljs-comment">&lt;!-- 初始的虚拟dom --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">1</span>&gt;</span>小李------18 <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">2</span>&gt;</span>小张------19 <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- 更新后的数据 --&gt;</span><br>&#123; id: 3, name: &#x27;小王&#x27;, age: 20 &#125;,<br>&#123; id: 1, name: &#x27;小李&#x27;, age: 18 &#125;,<br>&#123; id: 2, name: &#x27;小张&#x27;, age: 19 &#125;<br><br><span class="hljs-comment">&lt;!-- 更新数据后的虚拟dom：    --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">3</span>&gt;</span>小王------20 <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">1</span>&gt;</span>小李------18 <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">2</span>&gt;</span>小张------19 <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="cbf104bc"></a></p>
+<h2 id="2-4-面试回答"><a href="#2-4-面试回答" class="headerlink" title="2.4 面试回答"></a>2.4 面试回答</h2><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-built_in">key</span>的作用主要是为了高效的更新虚拟DOM, 其原理是vue在数据更新过程中通过<span class="hljs-built_in">key</span>可以精准判断两个节点是否是同一个，从而避免频繁更新不同元素，使得整个更新过程更加高效，减少DOM操作量，提高性能。<br><br>另外，若不设置<span class="hljs-built_in">key</span>还可能在列表更新时引发一些隐蔽的bug。<br><br>vue中在使用相同标签名元素的过渡切换时，也会使用到<span class="hljs-built_in">key</span>属性，其目的也是为了让vue可以区分它们，否则vue只会替换其内部属性而不会触发过渡效果。<br></code></pre></td></tr></table></figure>
+<p><a name="e2a5605c"></a></p>
+<h1 id="3-MVC和MVVM的区别"><a href="#3-MVC和MVVM的区别" class="headerlink" title="3. MVC和MVVM的区别"></a>3. MVC和MVVM的区别</h1><p>一个软件或者 APP都是服务于某种需求，这称之为“业务需求”。随着业务需求的增多、软件会变得越来越庞大，越来越复杂。所以就会设计一套完整的架构设计、研发流程以及质量管理体系来保证整个研发过程。“架构设计”是一个非常大的话题，它涉及到各方面，近年来前端一个明显的开发趋势就是架构从传统的 MVC 模式向 MVVM 模式迁移<br><a name="f5d936c5"></a></p>
+<h2 id="3-1-MVC"><a href="#3-1-MVC" class="headerlink" title="3.1 MVC"></a>3.1 MVC</h2><p>MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，<br><a name="7949c5a5"></a></p>
+<h2 id="3-2-MVVM"><a href="#3-2-MVVM" class="headerlink" title="3.2 MVVM"></a>3.2 MVVM</h2><p>MVVM(Model-View-ViewModel), 源自于经典的 Model–View–Controller（MVC）模式。<br />MVVM 的出现促进了 GUI 前端开发与后端业务逻辑的分离，极大地提高了前端开发效率。<br />MVVM 的核心是 ViewModel 层，它就像是一个中转站（value converter），<br />负责转换 Model 中的数据对象来让数据变得更容易管理和使用，该层向上与视图层进行双向数据绑定，<br />向下与 Model 层通过接口请求进行数据交互，起呈上启下作用。View 层展现的不是 Model 层的数据<br />，而是 ViewModel 的数据，由 ViewModel 负责与 Model 层交互，这就完全解耦了 View 层和 Model 层，<br />这个解耦是至关重要的，它是前后端分离方案实施的最重要一环。<br><a name="8329c4d7"></a></p>
+<h2 id="3-3-面试回答"><a href="#3-3-面试回答" class="headerlink" title="3.3 面试回答"></a>3.3 面试回答</h2><ul>
+<li>MVC和MVVM是两种不同的软件架构模式。 </li>
+<li>MVC模式中，M是模型，V是视图，C是控制器，是业务逻辑、数据、界面显示分离的组织代码的方法。代表：php的TP框架，nodejs的Egg框架 </li>
+<li>MVVM： M是模型，V是视图，VM是M和V的中间层。当Model层改变时，VM会自动更新视图，当V层改变时，VM会更新数据 .  代表框架： Vue, React</li>
+</ul>
+<p><a name="3ab6179e"></a></p>
+<h1 id="4-vue双向数据绑定的原理"><a href="#4-vue双向数据绑定的原理" class="headerlink" title="4. vue双向数据绑定的原理"></a>4. vue双向数据绑定的原理</h1><p>简单案例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>&#123;&#123;text&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">var</span> obj = &#123;&#125;</span><br><span class="language-javascript">    <span class="hljs-keyword">var</span> div = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;div&#x27;</span>);</span><br><span class="language-javascript">    <span class="hljs-keyword">var</span> input = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;input&#x27;</span>);</span><br><span class="language-javascript">    <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(obj,<span class="hljs-string">&#x27;name&#x27;</span>,&#123;</span><br><span class="language-javascript">        <span class="hljs-title function_">set</span>(<span class="hljs-params">value</span>)&#123;</span><br><span class="language-javascript">            div.<span class="hljs-property">innerText</span> = value;</span><br><span class="language-javascript">            input.<span class="hljs-property">value</span> = value;</span><br><span class="language-javascript">        &#125;</span><br><span class="language-javascript">    &#125;)</span><br><span class="language-javascript">    <span class="hljs-comment">// 使用onkeydown或者onkeyup也可以，但是不是很同步</span></span><br><span class="language-javascript">    <span class="hljs-comment">// oninput 事件是在input和textarea元素的值发生改变时触发，类似于onchange事件，不同之处在于oninput事件在元素值发生改变时立即触发，onchange在元素失去焦点时触发</span></span><br><span class="language-javascript">    input.<span class="hljs-property">oninput</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;</span><br><span class="language-javascript">        obj.<span class="hljs-property">name</span> = input.<span class="hljs-property">value</span>;</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="a13a566a"></a></p>
+<h2 id="4-1-Vue2-0—-Object-defineProperty"><a href="#4-1-Vue2-0—-Object-defineProperty" class="headerlink" title="4.1 Vue2.0—-Object.defineProperty"></a>4.1 Vue2.0—-Object.defineProperty</h2><p>ES5中的方法，用于定义对象的属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> obj = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;西游记&#x27;</span>,<br>  <span class="hljs-attr">addTime</span>: <span class="hljs-string">&#x27;739754975945489&#x27;</span><br>&#125;<br><br><span class="hljs-comment">//必须使用一个临时变量，来存储name属性的值</span><br><span class="hljs-keyword">let</span> temp = obj.<span class="hljs-property">name</span>;<br><br><br><span class="hljs-comment">// 拦截器(劫持)</span><br><span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(obj, <span class="hljs-string">&quot;name&quot;</span>, &#123;<br>  <span class="hljs-comment">//存取器</span><br>  <span class="hljs-attr">get</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;get&#x27;</span>);<br>    <span class="hljs-comment">//get中一定要有return,return的结果即为name属性的新值</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;《&quot;</span> + temp + <span class="hljs-string">&quot;》&quot;</span><br>  &#125;,<br>  <span class="hljs-attr">set</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">newVal</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;set&#x27;</span>);<br>    temp = newVal;<br>  &#125;<br>&#125;)<br><br><br>obj.<span class="hljs-property">name</span> = <span class="hljs-string">&quot;窗边的小豆豆&quot;</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">name</span>);<br></code></pre></td></tr></table></figure>
+
+<p><a name="90e359f6"></a></p>
+<h2 id="4-2-仿vue实现双向数据绑定"><a href="#4-2-仿vue实现双向数据绑定" class="headerlink" title="4.2 仿vue实现双向数据绑定"></a>4.2 仿vue实现双向数据绑定</h2><p>视图中文本框的值的改变，数据obj的值也改变<br />数据obj的值改变，会影响视图内容的更新<br />html结构</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;xxx&quot;</span>&gt;</span>&#123;&#123;name&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>js代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> obj = &#123;&#125;;<br><br><span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(obj, <span class="hljs-string">&#x27;name&#x27;</span>, &#123;<br>  <span class="hljs-attr">set</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) &#123;<br>    <span class="hljs-comment">// 显示数据的dom</span><br>    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;xxx&#x27;</span>).<span class="hljs-property">innerHTML</span> = value;<br>    <span class="hljs-comment">// 文本框</span><br>    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;demo&#x27;</span>).<span class="hljs-property">value</span> = value;<br>  &#125;<br>&#125;);<br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#demo&#x27;</span>).<span class="hljs-property">oninput</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>  obj.<span class="hljs-property">name</span> = e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>;<br>&#125;<br>obj.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;hello&#x27;</span>;<br><br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#demo&#x27;</span>).<span class="hljs-property">onclick</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>  e.<span class="hljs-title function_">stopPropagation</span>()<br>&#125;<br><span class="hljs-variable language_">document</span>.<span class="hljs-property">onclick</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  obj.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;345&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="6dbe841d"></a></p>
+<h2 id="4-3-ES6的Proxy对象"><a href="#4-3-ES6的Proxy对象" class="headerlink" title="4.3 ES6的Proxy对象"></a>4.3 ES6的Proxy对象</h2><p>Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。<br />Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> obj = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;西游记&#x27;</span>,<br>  <span class="hljs-attr">addTime</span>: <span class="hljs-string">&#x27;739754975945489&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">let</span> newObj = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Proxy</span>(obj,&#123;<br>  <span class="hljs-title function_">get</span>(<span class="hljs-params">target,prop</span>)&#123;<br>    <span class="hljs-comment">// target是源对象，prop是访问的属性</span><br>    <span class="hljs-comment">// console.log(&#x27;get&#x27;,target,prop);</span><br>    <span class="hljs-keyword">if</span> (prop == <span class="hljs-string">&quot;name&quot;</span>)&#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-string">`《<span class="hljs-subst">$&#123;target[prop]&#125;</span>》`</span><br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>      <span class="hljs-keyword">return</span> target[prop]<br>    &#125;<br>  &#125;,<br>  <span class="hljs-title function_">set</span>(<span class="hljs-params">target,prop,newVal</span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;set&#x27;</span>,target,prop,newVal);<br>    target[prop] = newVal<br>  &#125;<br>&#125;)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newObj.<span class="hljs-property">name</span>);<br>newObj.<span class="hljs-property">addTime</span> = <span class="hljs-string">&#x27;000&#x27;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newObj.<span class="hljs-property">addTime</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj);<br></code></pre></td></tr></table></figure>
+<p><a name="9a2716e8"></a></p>
+<h2 id="4-4-面试回答"><a href="#4-4-面试回答" class="headerlink" title="4.4 面试回答"></a>4.4 面试回答</h2><p>vue的双向数据绑定的原理</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">采用数据劫持结合发布者-订阅者模式的方式，通过<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Object</span>.</span></span>define<span class="hljs-constructor">Property()</span>来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应监听回调。当把一个普通 Javascript 对象传给 Vue 实例来作为它的 data 选项时，Vue 将遍历它的属性，用 <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Object</span>.</span></span>defineProperty 将它们转为 getter/setter。用户看不到 getter/setter，但是在内部它们让 Vue 追踪依赖，在属性被访问和修改时通知变化。<br><br>vue3中用ES6的proxy对象替换了<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Object</span>.</span></span>define<span class="hljs-constructor">Property()</span>, 因为<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Object</span>.</span></span>define<span class="hljs-constructor">Property()</span>只能劫持一个属性，而proxy可以劫持对象的所有属性<br></code></pre></td></tr></table></figure>
+<p><a name="b4700c75"></a></p>
+<h1 id="5-v-if-和v-for为什么不能用在同一个元素"><a href="#5-v-if-和v-for为什么不能用在同一个元素" class="headerlink" title="5. v-if 和v-for为什么不能用在同一个元素"></a>5. v-if 和v-for为什么不能用在同一个元素</h1><p>v-for比v-if优先，即每一次都需要遍历整个数组，影响速度。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span></span><br><span class="hljs-tag">  <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;(fileMsg,index) in fileMsgList&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;fileMsg.id&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;index &lt; 2&quot;</span></span><br><span class="hljs-tag">  &gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">sys-file-layout</span> <span class="hljs-attr">:fileMsg</span>=<span class="hljs-string">&quot;fileMsg&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sys-file-layout</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>以上代码，如果有100条数据，虽然显示两条，但需要遍历100次，因为v-for优先<br />更好的解决方案： 是用computed先获取符合条件的数据，再进行遍历<br><a name="d1281ef1"></a></p>
+<h1 id="6-深拷贝和浅拷贝"><a href="#6-深拷贝和浅拷贝" class="headerlink" title="6. 深拷贝和浅拷贝"></a>6. 深拷贝和浅拷贝</h1><ul>
+<li>基本数据类型的拷贝都是值的拷贝 </li>
+<li>深拷贝浅拷贝主要针对引用数据类型 </li>
+<li>浅拷贝只拷贝引用数据类型的地址，而不拷贝值。一个数据改变，另一个会受到影响 </li>
+<li>深拷贝拷贝值而不是拷贝地址，一个数据改变不会影响另一个数据</li>
+</ul>
+<p>实现深拷贝的三种方式<br><a name="23333613"></a></p>
+<h2 id="6-1-函数递归方式"><a href="#6-1-函数递归方式" class="headerlink" title="6.1 函数递归方式"></a>6.1 函数递归方式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//代码分析:  形参obj 代表被拷贝目标,  调用函数 传入拷贝目标,  </span><br><span class="hljs-comment">// 通过Array.isArray(obj)判断obj的类型是否为数组</span><br><span class="hljs-comment">// 通过 for in 遍历拷贝目标, </span><br><span class="hljs-comment">// 使用 typeof 判断其每一个元素或者属性, 是否为obj类型(typeof  Array/Object  返回值皆为object)</span><br><span class="hljs-comment">// 若该属性/元素, 部位null 并且 typeof返回值为object,  则代表其为复杂数据类型, 递归调用 deepCopy(obj[key]),继续拷贝其内部</span><br><span class="hljs-comment">// 否则: 代表该元素非 数组  非对象, 为基本数据类型/函数 等  , 直接赋值拷贝即可</span><br><span class="hljs-comment">// 最后返回拷贝完成的result ,函数执行完毕 </span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">deepCopy</span>(<span class="hljs-params">obj</span>) &#123;<br>  <span class="hljs-keyword">var</span> result = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(obj) ? [] : &#123;&#125;;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> obj) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> obj[key] === <span class="hljs-string">&#x27;object&#x27;</span> &amp;&amp; obj[key] !== <span class="hljs-literal">null</span>) &#123;<br>      result[key] = <span class="hljs-title function_">deepCopy</span>(obj[key]); <span class="hljs-comment">//递归复制</span><br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      result[key] = obj[key];<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="4dbb2069"></a></p>
+<h2 id="6-2-JSON-parse-JSON-stringify-obj"><a href="#6-2-JSON-parse-JSON-stringify-obj" class="headerlink" title="6.2  JSON.parse(JSON.stringify(obj))"></a>6.2  JSON.parse(JSON.stringify(obj))</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>通过JSON的方式对数据进行处理转换时, 不是改变原数据, 而是在内存中开辟一个新空间来存储转换的数据,<br><span class="hljs-regexp">//</span>这样两次转换后, 返回的数据 ,与原数据内容相同但是存储地址不同, 不存在引用关系<br></code></pre></td></tr></table></figure>
+<p><strong>缺陷</strong> : 受json数据的限制，无法拷贝函数，undefined，NaN属性<br><a name="3f8ef34d"></a></p>
+<h2 id="6-3-利用ES6-提供的-Object-assign"><a href="#6-3-利用ES6-提供的-Object-assign" class="headerlink" title="6.3 利用ES6 提供的 Object.assign()"></a>6.3 利用ES6 提供的 Object.assign()</h2><p>可以拷贝一层数据，无法拷贝多层数据,内层依然为浅拷贝</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//demo1</span><br><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br><span class="hljs-keyword">let</span> arr1 = []<br><span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(arr1,arr)<br>arr.<span class="hljs-title function_">push</span>(<span class="hljs-number">4</span>)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arr1);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arr);<br><br><span class="hljs-comment">//demo2</span><br><span class="hljs-keyword">let</span> obj = &#123;<br>  <span class="hljs-attr">color</span>: [<span class="hljs-string">&#x27;red&#x27;</span>,<span class="hljs-string">&#x27;blue&#x27;</span>],<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">12</span><br>&#125;<br><span class="hljs-keyword">let</span> obj1 = &#123;&#125;<br><span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(obj1,obj)<br>obj.<span class="hljs-property">color</span>.<span class="hljs-title function_">push</span>(<span class="hljs-string">&#x27;white&#x27;</span>)<br>obj.<span class="hljs-property">height</span> = <span class="hljs-number">90</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj1);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj);<br></code></pre></td></tr></table></figure>
+<p><a name="e4a96736"></a></p>
+<h1 id="7-事件绑定修饰符-native（原生）"><a href="#7-事件绑定修饰符-native（原生）" class="headerlink" title="7. 事件绑定修饰符 native（原生）"></a>7. 事件绑定修饰符 native（原生）</h1><p>直接在组件标签上绑定事件时，不加native修饰符，事件绑定无效</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;template&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-comment">&lt;!-- 直接在组件标签上绑定事件时，不加native修饰符，事件绑定无效 --&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">v-header</span> @<span class="hljs-attr">click.native</span>=<span class="hljs-string">&quot;show&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">v-header</span>&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>26.vue补充内容</div>
+      <div>http://example.com/2021/01/25/vue/26-vue补充内容/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年1月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/27/vue/27-webpack%E6%89%93%E5%8C%85/" title="27.webpack打包">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">27.webpack打包</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/23/vue/25-%E8%B7%AF%E7%94%B1%E8%BF%9B%E9%98%B6/" title="25.路由补充">
+                        <span class="hidden-mobile">25.路由补充</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,747 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. 文字属性 1.1. 文字大小 font-size网页上默认文字大小是16px。一般一些网站在开发时，会统一设置为14px。整体效果会更好看。 123选择器 &amp;#123;  font-size: 值;&amp;#125; fontsize中可以写很多类型的值，这些值我们用的最多的就是像素值。 1.1.1. 值的写法 像素（重要）像素更加精准，我们只需要能够根据UI设计提供的字体大小能够去设置给对应的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4.css样式">
+<meta property="og:url" content="http://example.com/2020/03/31/html+css/4.css%E6%A0%B7%E5%BC%8F/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="1. 文字属性 1.1. 文字大小 font-size网页上默认文字大小是16px。一般一些网站在开发时，会统一设置为14px。整体效果会更好看。 123选择器 &amp;#123;  font-size: 值;&amp;#125; fontsize中可以写很多类型的值，这些值我们用的最多的就是像素值。 1.1.1. 值的写法 像素（重要）像素更加精准，我们只需要能够根据UI设计提供的字体大小能够去设置给对应的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657177598219-c32f178a-0328-416f-88f2-3ff13a81b527.png#clientId=u0da2eee2-4d08-4&from=paste&height=197&id=u17a7f4d4&name=image.png&originHeight=197&originWidth=1168&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14047&status=done&style=none&taskId=u241be015-c328-464c-89d7-770a3566581&title=&width=1168">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657178092789-6fb1556b-94a9-44b1-a3d8-04974f7eecc5.png#clientId=u0da2eee2-4d08-4&from=paste&height=113&id=u7b2534d0&name=image.png&originHeight=113&originWidth=192&originalType=binary&ratio=1&rotation=0&showTitle=false&size=847&status=done&style=none&taskId=u1e000542-1331-4f51-8711-81e92d01666&title=&width=192">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657181967599-a95998f6-9a07-4c7d-b21d-6252693baf73.png#clientId=ueaca9cac-a3d3-4&from=paste&height=53&id=u9b167abe&name=image.png&originHeight=53&originWidth=163&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2286&status=done&style=none&taskId=u26072e57-e855-4e73-9120-6f0ba17833b&title=&width=163">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657162276764-eb313d35-f15f-4106-b013-ae77cf45d06d.png#clientId=udc101b05-6167-4&from=paste&height=778&id=u9953c5ae&name=image.png&originHeight=778&originWidth=717&originalType=binary&ratio=1&rotation=0&showTitle=false&size=57661&status=done&style=none&taskId=u5c05e97d-5a53-4503-af74-173c19ead96&title=&width=717">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657163877517-0e21db72-8291-4b97-8fc7-d9ac733677e7.png#clientId=udc101b05-6167-4&from=paste&height=257&id=ua4465cd0&name=image.png&originHeight=257&originWidth=332&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21594&status=done&style=none&taskId=ue433037a-d942-4751-9b3c-792d15a9b64&title=&width=332">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657185111022-8c073d98-fc1f-45af-b89d-a8d59b81d04e.png#clientId=ub63ab68a-6c7a-4&from=paste&height=48&id=uc9ba01da&name=image.png&originHeight=48&originWidth=320&originalType=binary&ratio=1&rotation=0&showTitle=false&size=777&status=done&style=none&taskId=u526c07e0-2522-47e3-90e7-57c682b7201&title=&width=320">
+<meta property="article:published_time" content="2020-03-31T08:10:13.000Z">
+<meta property="article:modified_time" content="2023-03-20T11:05:56.127Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1657177598219-c32f178a-0328-416f-88f2-3ff13a81b527.png#clientId=u0da2eee2-4d08-4&from=paste&height=197&id=u17a7f4d4&name=image.png&originHeight=197&originWidth=1168&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14047&status=done&style=none&taskId=u241be015-c328-464c-89d7-770a3566581&title=&width=1168">
+  
+  
+  
+  <title>4.css样式 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="4.css样式"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-03-31 16:10" pubdate>
+          2020年3月31日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">4.css样式</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="pIHKV"></a></p>
+<h2 id="1-文字属性"><a href="#1-文字属性" class="headerlink" title="1. 文字属性"></a>1. 文字属性</h2><p><a name="YzYYI"></a></p>
+<h3 id="1-1-文字大小-font-size"><a href="#1-1-文字大小-font-size" class="headerlink" title="1.1. 文字大小 font-size"></a>1.1. 文字大小 font-size</h3><p>网页上默认文字大小是16px。一般一些网站在开发时，会统一设置为14px。整体效果会更好看。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">font-size</span>: 值;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>fontsize中可以写很多类型的值，这些值我们用的最多的就是像素值。<br><a name="QZBew"></a></p>
+<h4 id="1-1-1-值的写法"><a href="#1-1-1-值的写法" class="headerlink" title="1.1.1. 值的写法"></a>1.1.1. 值的写法</h4><p><a name="ABeZF"></a></p>
+<h5 id="像素（重要）"><a href="#像素（重要）" class="headerlink" title="像素（重要）"></a>像素（重要）</h5><p>像素更加精准，我们只需要能够根据UI设计提供的字体大小能够去设置给对应的元素即可，不需要我们自定自定义。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">font-size</span>: <span class="hljs-number">14px</span>;<br></code></pre></td></tr></table></figure>
+<p><a name="s02Bl"></a></p>
+<h5 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h5><p>small、large、smaller、larger等选项，不重要。<br><a name="XhwnJ"></a></p>
+<h4 id="1-1-2-默认最小字号"><a href="#1-1-2-默认最小字号" class="headerlink" title="1.1.2. 默认最小字号"></a>1.1.2. 默认最小字号</h4><p>默认的最小字号是12px，1-12px在网页上展示的都是12px。直到<code>0</code>文字会直接消失。<br />因为Chrome的工程师认为，文字的阅读如果小于12px不利于阅读。因此不能小于12px。直到后来，chrome才允许我们用户去修改这个值<br><a name="JYdww"></a></p>
+<h3 id="1-2-字重"><a href="#1-2-字重" class="headerlink" title="1.2. 字重"></a>1.2. 字重</h3><p>用来控制文字是否是粗体，这个属性很常用，但是用的次数不多。<br />这个属性使用时，大部分情况都是为了把字重设置为正常</p>
+<ul>
+<li>bold</li>
+<li>bolder</li>
+<li>normal</li>
+<li>lighter<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">font-weight</span>: normal;<br>&#125;<br></code></pre></td></tr></table></figure>
+每个项目基本上必用，但不需要每次都写的东西，重置样式。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">b</span>, <span class="hljs-selector-tag">strong</span> &#123;<br>  <span class="hljs-attribute">font-weight</span>: normal;<br>&#125;<br></code></pre></td></tr></table></figure>
+未来如果我们要设置加粗，只需要写<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">font-weight</span>: bold;<br>&#125;<br></code></pre></td></tr></table></figure>
+100 - 900也是该属性的值。其中400表示normal，700表示bold，其他的视字体文件是否有对应粗细的字体而定。<br />在设计图中，一般文字只有加粗和正常两种状态，所以我们只需要记住两个操作。<br><a name="S0Kzi"></a></li>
+</ul>
+<h3 id="1-3-倾斜"><a href="#1-3-倾斜" class="headerlink" title="1.3. 倾斜"></a>1.3. 倾斜</h3><p>属性为<code>font-style</code>，使用该属性可以设置文字斜体。</p>
+<ul>
+<li>normal 不倾斜</li>
+<li>italic 斜体</li>
+<li>oblique 倾斜</li>
+</ul>
+<p>了解即可，基本上网页上是不会让我们设置文字倾斜的，唯一的用处，就是把默认倾斜标签改成正常形态</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">i</span>, <span class="hljs-selector-tag">em</span> &#123;<br>  <span class="hljs-attribute">font-style</span>: normal;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="BSHrf"></a></p>
+<h3 id="1-4-字体家族"><a href="#1-4-字体家族" class="headerlink" title="1.4. 字体家族"></a>1.4. 字体家族</h3><p>在设置字体时，我们可以设置很多的字体，因为这里的字体是去浏览我们网页的计算机中进行查找的。所以一般我们需要设置很多字体，用于兼容我们各个操作系统。<br />我们可以借鉴成熟的网站中的字体家族的设置<br />小米</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">body</span> &#123;<br>  <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Helvetica Neue&quot;</span>, Helvetica, Arial, <span class="hljs-string">&quot;Microsoft Yahei&quot;</span>, <span class="hljs-string">&quot;Hiragino Sans GB&quot;</span>, <span class="hljs-string">&quot;Heiti SC&quot;</span>, <span class="hljs-string">&quot;WenQuanYi Micro Hei&quot;</span>, sans-serif;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>京东</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">body</span> &#123;<br>  <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Microsoft YaHei&quot;</span>, <span class="hljs-string">&quot;Heiti SC&quot;</span>, tahoma, arial, <span class="hljs-string">&quot;Hiragino Sans GB&quot;</span>, 宋体, sans-serif;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>知乎</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">body</span> &#123;<br>  <span class="hljs-attribute">font-family</span>: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>蚂蚁金服</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">body</span> &#123;<br>  <span class="hljs-attribute">font-family</span>: -apple-system, BlinkMacSystemFont, <span class="hljs-string">&#x27;Segoe UI&#x27;</span>, Roboto, <span class="hljs-string">&#x27;Helvetica Neue&#x27;</span>, Arial,<br>  <span class="hljs-string">&#x27;Noto Sans&#x27;</span>, sans-serif, <span class="hljs-string">&#x27;Apple Color Emoji&#x27;</span>, <span class="hljs-string">&#x27;Segoe UI Emoji&#x27;</span>, <span class="hljs-string">&#x27;Segoe UI Symbol&#x27;</span>,<br>  <span class="hljs-string">&#x27;Noto Color Emoji&#x27;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>少数派</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">body</span> &#123;<br>  <span class="hljs-attribute">font-family</span>: -apple-system,BlinkMacSystemFont,PingFang SC,Hiragino Sans GB,Microsoft YaHei,<span class="hljs-string">&quot;\5FAE\8F6F\96C5\9ED1&quot;</span>,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,Arial,sans-serif;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>未来做项目时，随便选一套写到自己的网站里即可。字体的设置一般设置给body标签。<br><a name="Jne2M"></a></p>
+<h3 id="1-5-行高"><a href="#1-5-行高" class="headerlink" title="1.5. 行高"></a>1.5. 行高</h3><p>行高代表的是一行的高度，使用<code>line-height</code>可以设置行高。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1657177598219-c32f178a-0328-416f-88f2-3ff13a81b527.png#clientId=u0da2eee2-4d08-4&from=paste&height=197&id=u17a7f4d4&name=image.png&originHeight=197&originWidth=1168&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14047&status=done&style=none&taskId=u241be015-c328-464c-89d7-770a3566581&title=&width=1168" srcset="/img/loading.gif" lazyload alt="image.png"><br />注意！！！单行文字永远出现在行高的正中间。<br />默认行高要比文字本身大一些。</p>
+<ul>
+<li>倍数 1 2 3 4 5</li>
+<li>固定值 16px</li>
+</ul>
+<p>行高在使用时，最多情况并不是为了设置一段文字的间距效果而使用，更多的是为了实现一种效果<br><a name="GVOCJ"></a></p>
+<h4 id="1-5-1-单行文本垂直居中"><a href="#1-5-1-单行文本垂直居中" class="headerlink" title="1.5.1. 单行文本垂直居中"></a>1.5.1. 单行文本垂直居中</h4><p>单行文字永远出现在行高的正中间。借助这个特性，我们可以实现文字在元素中垂直居中</p>
+<ol>
+<li>需要单行文本</li>
+<li>需要将行高设置和高度一致<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><br>  文字<br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">background</span>: darkcyan;<br><br>  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">100px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1657178092789-6fb1556b-94a9-44b1-a3d8-04974f7eecc5.png#clientId=u0da2eee2-4d08-4&from=paste&height=113&id=u7b2534d0&name=image.png&originHeight=113&originWidth=192&originalType=binary&ratio=1&rotation=0&showTitle=false&size=847&status=done&style=none&taskId=u1e000542-1331-4f51-8711-81e92d01666&title=&width=192" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="A4fyI"></a></li>
+</ol>
+<h3 id="1-6-font"><a href="#1-6-font" class="headerlink" title="1.6. font"></a>1.6. font</h3><p>这是我们接触到的第一个复合属性，可以用一个属性名同时设置多个属性值。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">font</span>: font-weight font-style font-size/line-height font-family;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>font属性至少要写 font-size和font-family。有因为后者一般只会在body中使用。所以一般font只会在body中使用一次。font并不不是必须使用的，因为我们可以单独写每一个属性。<br />复合属性在开发者工具中，表现有所不同。有一个小箭头<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1657181967599-a95998f6-9a07-4c7d-b21d-6252693baf73.png#clientId=ueaca9cac-a3d3-4&from=paste&height=53&id=u9b167abe&name=image.png&originHeight=53&originWidth=163&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2286&status=done&style=none&taskId=u26072e57-e855-4e73-9120-6f0ba17833b&title=&width=163" srcset="/img/loading.gif" lazyload alt="image.png"><br />点击可以展开所有的属性。<br><a name="BG3Ua"></a></p>
+<h2 id="2-文本属性"><a href="#2-文本属性" class="headerlink" title="2. 文本属性"></a>2. 文本属性</h2><p><a name="OFTHr"></a></p>
+<h3 id="2-1-颜色"><a href="#2-1-颜色" class="headerlink" title="2.1. 颜色"></a>2.1. 颜色</h3><p>使用<code>color: 颜色;</code>可以设置我们对应元素的文字颜色。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">color</span>: 颜色;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>不用害怕，未来我们对颜色该如何选择，不是前端开发工程师的工作，是UI设计师的工作。是什么颜色，我们用吸管工具，可以直接吸出来。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1657162276764-eb313d35-f15f-4106-b013-ae77cf45d06d.png#clientId=udc101b05-6167-4&from=paste&height=778&id=u9953c5ae&name=image.png&originHeight=778&originWidth=717&originalType=binary&ratio=1&rotation=0&showTitle=false&size=57661&status=done&style=none&taskId=u5c05e97d-5a53-4503-af74-173c19ead96&title=&width=717" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="szf9O"></a></p>
+<h4 id="2-1-1-颜色色值"><a href="#2-1-1-颜色色值" class="headerlink" title="2.1.1. 颜色色值"></a>2.1.1. 颜色色值</h4><p><a name="vsZwc"></a></p>
+<h5 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h5><p>英语中有很多表示颜色的单词：red blue green black yellow pink orange。这些单词太多了，颜色也太多了，没有办法用所有的单词表示所有的颜色。所以不推荐。<br><a name="ifXTC"></a></p>
+<h5 id="rgb"><a href="#rgb" class="headerlink" title="rgb"></a>rgb</h5><p>三原色表示，r表示red红色，g表示green绿色，b表示blue蓝色。利用这三种颜色不同的比例可以调配出所有的颜色。<br />语法：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">rgb</span>(红色, 绿色, 蓝色);<br></code></pre></td></tr></table></figure>
+<p>每个颜色值的范围都是0-255。由这个方式表示出来的颜色回事下面的效果：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">rgb</span>(<span class="hljs-number">99</span>, <span class="hljs-number">99</span>, <span class="hljs-number">99</span>)<br><span class="hljs-attribute">rgb</span>(<span class="hljs-number">99</span>, <span class="hljs-number">99</span>, <span class="hljs-number">255</span>)<br></code></pre></td></tr></table></figure>
+<p>红色 -&gt; rgb(255, 0, 0)<br />绿色 -&gt; rgb(0, 255, 0)<br />蓝色 -&gt; rgb(0, 0, 255)<br />白色 -&gt; rgb(255, 255, 255)<br />黑色 -&gt; rgb(0, 0,0)<br><a name="JO3u9"></a></p>
+<h5 id="rgba"><a href="#rgba" class="headerlink" title="rgba"></a>rgba</h5><p>a是在上面的基础上添加了透明度的表示方法，a的取值范围为0-1</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)<br><span class="hljs-attribute">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)<br><span class="hljs-attribute">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>.<span class="hljs-number">5</span>)<br></code></pre></td></tr></table></figure>
+<p><a name="BeEpU"></a></p>
+<h5 id="hex-16进制表示"><a href="#hex-16进制表示" class="headerlink" title="hex 16进制表示"></a>hex 16进制表示</h5><p>未来最常用的一种颜色的表示方法，只是rgb的十进制的值变成了十六进制</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-meta">#rrggbb</span><br></code></pre></td></tr></table></figure>
+<p>rgba(0, 0, 0) -&gt; #000 或者 #000000<br />rgb(255, 255, 255) -&gt; #FFFFFF<br />rgb(23, 56, 92) -&gt; #17385C<br />我们只需要知道一件事：当我们看到#xxxxxx这种写法，知道它是个颜色就行了。<br><a name="PmRwY"></a></p>
+<h6 id="hexa-添加透明"><a href="#hexa-添加透明" class="headerlink" title="hexa 添加透明"></a>hexa 添加透明</h6><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-meta">#rrggbbaa</span><br></code></pre></td></tr></table></figure>
+<p>aa的取值也是0-255<br />#00000096<br />这个操作兼容性很差，不建议使用<br />这些颜色的表示方法中，hex兼容最好，建议使用。未来不管是哪些地方，只要用到颜色，都可以使用这些概念。<br><a name="fdaxh"></a></p>
+<h4 id="利用f12工具查看网页上的文字颜色"><a href="#利用f12工具查看网页上的文字颜色" class="headerlink" title="利用f12工具查看网页上的文字颜色"></a>利用f12工具查看网页上的文字颜色</h4><p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1657163877517-0e21db72-8291-4b97-8fc7-d9ac733677e7.png#clientId=udc101b05-6167-4&from=paste&height=257&id=ua4465cd0&name=image.png&originHeight=257&originWidth=332&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21594&status=done&style=none&taskId=ue433037a-d942-4751-9b3c-792d15a9b64&title=&width=332" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="ZHNay"></a></p>
+<h4 id="网页上不大面积用纯黑色"><a href="#网页上不大面积用纯黑色" class="headerlink" title="网页上不大面积用纯黑色"></a>网页上不大面积用纯黑色</h4><p>因为纯黑色对比度高，会导致视觉疲劳，网页上大面积黑色文字都会使用#222 #333 #444 等黑色。<br><a name="Vqso5"></a></p>
+<h3 id="2-2-文本修饰"><a href="#2-2-文本修饰" class="headerlink" title="2.2. 文本修饰"></a>2.2. 文本修饰</h3><p>text-decoration用来修饰文本上面的各种线</p>
+<ul>
+<li>下划线</li>
+<li>删除线</li>
+<li>上划线</li>
+</ul>
+<p>每条线又有不同的类型</p>
+<ul>
+<li>实线 solid</li>
+<li>虚线</li>
+<li>双实线</li>
+<li>点线<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">text-decoration</span>: 线的类型 线的位置 颜色;<br>&#125;<br></code></pre></td></tr></table></figure>
+上面基本上不用。因为不好看。<br><a name="eIZEo"></a></li>
+</ul>
+<h4 id="2-2-1-删除a标签的下划线"><a href="#2-2-1-删除a标签的下划线" class="headerlink" title="2.2.1. 删除a标签的下划线"></a>2.2.1. 删除a标签的下划线</h4><p>我们使用这个属性只会给a标签删除下划线。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">a</span> &#123;<br>  <span class="hljs-attribute">text-decoration</span>: none;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="B5e7S"></a></p>
+<h4 id="2-2-2-添加删除线"><a href="#2-2-2-添加删除线" class="headerlink" title="2.2.2. 添加删除线"></a>2.2.2. 添加删除线</h4><p>有些时候我们需要给原价添加删除线。可以使用这个属性。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">text-decoration</span>: line-through;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>s</code>和<code>del</code>都可以显示删除线，所以上面代码也不是必须的。<br><a name="JGyfb"></a></p>
+<h3 id="2-3-文本缩进text-indent"><a href="#2-3-文本缩进text-indent" class="headerlink" title="2.3. 文本缩进text-indent"></a>2.3. 文本缩进text-indent</h3><p>我们可以通过text-indent控制文本的缩进效果。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">text-indent</span>: 值;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>因为px是固定值，我们如果想要缩进两个字符，则无法适配所有的文字大小。我们可以是em单位<br><a name="cjWbX"></a></p>
+<h4 id="2-3-1-em单位"><a href="#2-3-1-em单位" class="headerlink" title="2.3.1. em单位"></a>2.3.1. em单位</h4><p>为了控制我们缩进的距离刚好是两个字符。我们可以使用em单位。<br />em单位是一个相对单位，相对于自身字体大小的单位。<br />如果一个元素的字体大小为16px，在这个元素中使用em，1em就是16px 2em 就是 2x16 &#x3D; 32px<br />如果一个元素的字体大小为20px，在这个元素中使用em，1em就是20px 2em 就是 2x20 &#x3D; 40px</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">text-indent</span>: <span class="hljs-number">2em</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>一般也用不上。<br><a name="gPaP7"></a></p>
+<h4 id="2-3-2-背景图文字占位使用场景"><a href="#2-3-2-背景图文字占位使用场景" class="headerlink" title="2.3.2. 背景图文字占位使用场景"></a>2.3.2. 背景图文字占位使用场景</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>  <span class="hljs-attribute">text-indent</span>: -<span class="hljs-number">9999em</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="kHlfw"></a></p>
+<h3 id="2-4-文本对齐-重要"><a href="#2-4-文本对齐-重要" class="headerlink" title="2.4. 文本对齐(重要)"></a>2.4. 文本对齐(重要)</h3><p>让文本在有空间的块元素中对齐</p>
+<ul>
+<li>左对齐 默认值 left</li>
+<li>右对齐 right</li>
+<li>居中  center</li>
+<li>两端对齐 justify</li>
+</ul>
+<p>text-align用于对齐操作，只能加给块元素。让块元素内容不的行内元素及文字对齐。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">text-align</span>: 属性值;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-selector-tag">div</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;</span><br><span class="language-css">      <span class="hljs-attribute">background</span>: darkcyan;</span><br><span class="language-css">      <span class="hljs-attribute">text-align</span>: center;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    文字<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1657185111022-8c073d98-fc1f-45af-b89d-a8d59b81d04e.png#clientId=ub63ab68a-6c7a-4&from=paste&height=48&id=uc9ba01da&name=image.png&originHeight=48&originWidth=320&originalType=binary&ratio=1&rotation=0&showTitle=false&size=777&status=done&style=none&taskId=u526c07e0-2522-47e3-90e7-57c682b7201&title=&width=320" srcset="/img/loading.gif" lazyload alt="image.png"><br />注意！！！text-align只对行内元素和文字有效，对块元素无效。该属性会继承</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">body</span> &#123;<br>  <span class="hljs-attribute">text-align</span>: center;<br>&#125;<br><span class="hljs-selector-tag">div</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">background</span>: darkcyan;<br>  <span class="hljs-comment">/* text-align: center; */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="AyKAw"></a></p>
+<h3 id="2-5-字母和单词间距"><a href="#2-5-字母和单词间距" class="headerlink" title="2.5. 字母和单词间距"></a>2.5. 字母和单词间距</h3><p>字母间距使用<code>letter-spacing</code><br />单词间距使用<code>word-spacing</code><br />汉字对这个属性来说每一个都算是一个字母，所以一般我们只会对汉字使用<code>letter-spacing</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">letter-spacing</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-comment">/* word-spacing: 20px; */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>word-spacing想要对中文生效，中文之间需要有空格，比较麻烦。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>4.css样式</div>
+      <div>http://example.com/2020/03/31/html+css/4.css样式/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年3月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/04/06/html+css/5.css%E6%A0%B7%E5%BC%8F-%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%A0%B7%E5%BC%8F/" title="5.css样式-盒模型样式">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">5.css样式-盒模型样式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/26/html+css/3.css%E9%80%89%E6%8B%A9%E5%99%A8/" title="3.css选择器">
+                        <span class="hidden-mobile">3.css选择器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

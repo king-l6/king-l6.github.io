@@ -1,0 +1,672 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="https:&#x2F;&#x2F;v3.bootcss.com&#x2F;由推特公司最早推出的UI框架，是UI框架的鼻祖。现在公司使用不多，但是我们要学习的BootStrap的思想。 下载我们使用的是V3版本，现在已经到V5版本。因为网络的问题，我们可以使用我下载好的。bootstrap-3.4.1-dist.zip 使用解压对应的压缩包，解压后得到三个文件夹如果我们的项目中想要使用BootStrap可以直接把这三个文件夹复">
+<meta property="og:type" content="article">
+<meta property="og:title" content="26.BootStrap">
+<meta property="og:url" content="http://example.com/2020/06/25/html+css/26-BootStrap/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="https:&#x2F;&#x2F;v3.bootcss.com&#x2F;由推特公司最早推出的UI框架，是UI框架的鼻祖。现在公司使用不多，但是我们要学习的BootStrap的思想。 下载我们使用的是V3版本，现在已经到V5版本。因为网络的问题，我们可以使用我下载好的。bootstrap-3.4.1-dist.zip 使用解压对应的压缩包，解压后得到三个文件夹如果我们的项目中想要使用BootStrap可以直接把这三个文件夹复">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406183862-053029db-a4be-4aa0-8869-4417af64383c.png#clientId=ufc2eb581-d33d-4&from=paste&height=488&id=u40cc6fb0&name=image.png&originHeight=488&originWidth=995&originalType=binary&ratio=1&rotation=0&showTitle=false&size=64655&status=done&style=none&taskId=u8b858ee5-4b82-4494-9b70-77c0890c084&title=&width=995">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406198921-56116691-a3b6-461a-bfbc-52c4e96c5db1.png#clientId=ufc2eb581-d33d-4&from=paste&height=380&id=uf769f2bf&name=image.png&originHeight=380&originWidth=872&originalType=binary&ratio=1&rotation=0&showTitle=false&size=64775&status=done&style=none&taskId=uce953321-0ae9-453d-bb61-ea0b7fa28de&title=&width=872">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406276793-7a4e8708-4cab-4321-8ca8-75a3f6a49f00.png#clientId=ufc2eb581-d33d-4&from=paste&height=139&id=uf386dd1c&name=image.png&originHeight=139&originWidth=341&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11670&status=done&style=none&taskId=u1568468b-9849-4c65-8b5d-aaff70eb9a1&title=&width=341">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406369072-ad279c2d-1c69-458f-a63b-94bef1b49d33.png#clientId=ufc2eb581-d33d-4&from=paste&height=94&id=uebfbfe07&name=image.png&originHeight=94&originWidth=144&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2276&status=done&style=none&taskId=ufc5bd12c-a4d5-4073-8f37-2d9d0e11f62&title=&width=144">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406414241-f8f86e1d-8f91-42b8-8438-cc4ced5fc272.png#clientId=ufc2eb581-d33d-4&from=paste&height=180&id=uf9f01605&name=image.png&originHeight=180&originWidth=630&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21631&status=done&style=none&taskId=ub7a8037c-7bd0-4f72-bce5-2ec7ab85e77&title=&width=630">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406722936-f9e407eb-1c90-46fc-8cf0-3de6258b586f.png#clientId=ufc2eb581-d33d-4&from=paste&height=124&id=u6c050010&name=image.png&originHeight=124&originWidth=615&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16294&status=done&style=none&taskId=uab2d11a5-2785-401b-9018-a351074c957&title=&width=615">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406820686-0ef6ce79-8885-4ada-a9b7-778d28288abc.png#clientId=ufc2eb581-d33d-4&from=paste&height=80&id=u375e8b7c&name=image.png&originHeight=80&originWidth=158&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2048&status=done&style=none&taskId=u01adecee-410a-45ad-a5b2-a58de271387&title=&width=158">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659424378006-d0c5fa32-1d21-4886-aa0e-1d321468eae4.png#clientId=ufc2eb581-d33d-4&from=paste&height=381&id=u7895d0f7&name=image.png&originHeight=381&originWidth=853&originalType=binary&ratio=1&rotation=0&showTitle=false&size=31358&status=done&style=none&taskId=ua668c04a-c287-42a3-a149-ed5a9555fdb&title=&width=853">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659429405467-5e81427d-2352-41e9-9763-4c27e24a550d.png#clientId=ufc2eb581-d33d-4&from=paste&height=365&id=u547fbb17&name=image.png&originHeight=365&originWidth=852&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27969&status=done&style=none&taskId=uf44681e8-e9bd-44a7-9f6c-a5287bb2408&title=&width=852">
+<meta property="article:published_time" content="2020-06-25T09:07:52.000Z">
+<meta property="article:modified_time" content="2023-03-20T09:08:10.071Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406183862-053029db-a4be-4aa0-8869-4417af64383c.png#clientId=ufc2eb581-d33d-4&from=paste&height=488&id=u40cc6fb0&name=image.png&originHeight=488&originWidth=995&originalType=binary&ratio=1&rotation=0&showTitle=false&size=64655&status=done&style=none&taskId=u8b858ee5-4b82-4494-9b70-77c0890c084&title=&width=995">
+  
+  
+  
+  <title>26.BootStrap - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="26.BootStrap"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-06-25 17:07" pubdate>
+          2020年6月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          47 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">26.BootStrap</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a target="_blank" rel="noopener" href="https://v3.bootcss.com/">https://v3.bootcss.com/</a><br />由推特公司最早推出的UI框架，是UI框架的鼻祖。现在公司使用不多，但是我们要学习的BootStrap的思想。<br><a name="c7D5P"></a></p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>我们使用的是V3版本，现在已经到V5版本。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406183862-053029db-a4be-4aa0-8869-4417af64383c.png#clientId=ufc2eb581-d33d-4&from=paste&height=488&id=u40cc6fb0&name=image.png&originHeight=488&originWidth=995&originalType=binary&ratio=1&rotation=0&showTitle=false&size=64655&status=done&style=none&taskId=u8b858ee5-4b82-4494-9b70-77c0890c084&title=&width=995" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406198921-56116691-a3b6-461a-bfbc-52c4e96c5db1.png#clientId=ufc2eb581-d33d-4&from=paste&height=380&id=uf769f2bf&name=image.png&originHeight=380&originWidth=872&originalType=binary&ratio=1&rotation=0&showTitle=false&size=64775&status=done&style=none&taskId=uce953321-0ae9-453d-bb61-ea0b7fa28de&title=&width=872" srcset="/img/loading.gif" lazyload alt="image.png"><br />因为网络的问题，我们可以使用我下载好的。<br /><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2022/zip/29344914/1664357872023-c8fa36fa-73d2-4741-ae2e-784d7704b98b.zip">bootstrap-3.4.1-dist.zip</a><br><a name="nnFD4"></a></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>解压对应的压缩包，解压后得到三个文件夹<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406276793-7a4e8708-4cab-4321-8ca8-75a3f6a49f00.png#clientId=ufc2eb581-d33d-4&from=paste&height=139&id=uf386dd1c&name=image.png&originHeight=139&originWidth=341&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11670&status=done&style=none&taskId=u1568468b-9849-4c65-8b5d-aaff70eb9a1&title=&width=341" srcset="/img/loading.gif" lazyload alt="image.png"><br />如果我们的项目中想要使用BootStrap可以直接把这三个文件夹复制到我们的项目目录中。然后新建一个网页文件<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406369072-ad279c2d-1c69-458f-a63b-94bef1b49d33.png#clientId=ufc2eb581-d33d-4&from=paste&height=94&id=uebfbfe07&name=image.png&originHeight=94&originWidth=144&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2276&status=done&style=none&taskId=ufc5bd12c-a4d5-4073-8f37-2d9d0e11f62&title=&width=144" srcset="/img/loading.gif" lazyload alt="image.png"><br />打开网页，引入相关资源。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;./css/bootstrap.min.css&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <br><br>  <span class="hljs-comment">&lt;!-- 下面这些代码，如果不适用js可以不引入 --&gt;</span><br>  <span class="hljs-comment">&lt;!-- 因为bootstrap中的js代码是基于jQuery，所以需要在前面引入jQuery --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./js/jquery.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 如果我们需要使用到相关JS效果，还需要引入JS --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./js/bootstrap.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>可以点击下面链接下载jQuery<br /><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2022/js/29344914/1664357872193-9b13ce63-e878-4036-ba9e-39373f088dc4.js?_lake_card=%7B%22src%22:%22https://www.yuque.com/attachments/yuque/0/2022/js/29344914/1664357872193-9b13ce63-e878-4036-ba9e-39373f088dc4.js%22,%22name%22:%22jquery.js%22,%22size%22:288580,%22type%22:%22text/javascript%22,%22ext%22:%22js%22,%22source%22:%22%22,%22status%22:%22done%22,%22mode%22:%22title%22,%22download%22:true,%22taskId%22:%22u055db503-0d30-4f38-88bc-47ca248bb41%22,%22taskType%22:%22upload%22,%22__spacing%22:%22both%22,%22id%22:%22u9b08078f%22,%22margin%22:%7B%22top%22:true,%22bottom%22:true%7D,%22card%22:%22file%22%7D">jquery.js</a></p>
+<p>资源引入完成后，去官方文档中，找到我们想要使用的组件，然后复制代码到我们的html中，然后显示到页面上即可。<br><a name="TSDEg"></a></p>
+<h2 id="资源介绍"><a href="#资源介绍" class="headerlink" title="资源介绍"></a>资源介绍</h2><p><a name="TjB2F"></a></p>
+<h3 id="CSS资源"><a href="#CSS资源" class="headerlink" title="CSS资源"></a>CSS资源</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406414241-f8f86e1d-8f91-42b8-8438-cc4ced5fc272.png#clientId=ufc2eb581-d33d-4&from=paste&height=180&id=uf9f01605&name=image.png&originHeight=180&originWidth=630&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21631&status=done&style=none&taskId=ub7a8037c-7bd0-4f72-bce5-2ec7ab85e77&title=&width=630" srcset="/img/loading.gif" lazyload alt="image.png"><br />核心的样式是<code>bootstrap.css</code>和<code>bootstrap.min.css</code>，这两个css是一样的东西，后者是压缩后的样式。<br />bootstrap.min.css.map可以告知我们对应的样式出现在第几行<br />bootstrap.theme.*这些文件是bootstrap为了满足喜欢boostrap2的用户提供的主题样式。一般不用。<br><a name="qgkEN"></a></p>
+<h3 id="font资源"><a href="#font资源" class="headerlink" title="font资源"></a>font资源</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406722936-f9e407eb-1c90-46fc-8cf0-3de6258b586f.png#clientId=ufc2eb581-d33d-4&from=paste&height=124&id=u6c050010&name=image.png&originHeight=124&originWidth=615&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16294&status=done&style=none&taskId=uab2d11a5-2785-401b-9018-a351074c957&title=&width=615" srcset="/img/loading.gif" lazyload alt="image.png"><br />bootstrap中内置了字体图标。如果我们想要使用，font文件夹一定放在项目里。<br><a name="OPrLI"></a></p>
+<h3 id="js资源"><a href="#js资源" class="headerlink" title="js资源"></a>js资源</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659406820686-0ef6ce79-8885-4ada-a9b7-778d28288abc.png#clientId=ufc2eb581-d33d-4&from=paste&height=80&id=u375e8b7c&name=image.png&originHeight=80&originWidth=158&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2048&status=done&style=none&taskId=u01adecee-410a-45ad-a5b2-a58de271387&title=&width=158" srcset="/img/loading.gif" lazyload alt="image.png"><br />引入js可以使用对应的相关的BoostrapJS插件。<br><a name="GUGuq"></a></p>
+<h2 id="栅格系统"><a href="#栅格系统" class="headerlink" title="栅格系统"></a>栅格系统</h2><p>基本上所有的UI框架中都有栅格系统，栅格系统的意思就是将父元素分成对应的份数（bootstrap是12份，现在主流的是24份）<br />栅格系统是已容器中包裹row元素生成的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span>&gt;</span><br>    /* 这个row就会被分成12份 */<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>我们可以在对应的位置上通过定义不同的数字，来让我们元素站不同份数</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span>&gt;</span><br>    /* 这个row就会被分成12份 */<br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xx-数字&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><code>xx</code>可以是xs\sm\md\lg，这几个取值分别代表了浏览器在不同宽度下元素的样式。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659424378006-d0c5fa32-1d21-4886-aa0e-1d321468eae4.png#clientId=ufc2eb581-d33d-4&from=paste&height=381&id=u7895d0f7&name=image.png&originHeight=381&originWidth=853&originalType=binary&ratio=1&rotation=0&showTitle=false&size=31358&status=done&style=none&taskId=ua668c04a-c287-42a3-a149-ed5a9555fdb&title=&width=853" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>xs 在全分辨率下都生效</li>
+<li>sm 在&gt;&#x3D;768px的分辨率生效</li>
+<li>md 在&gt;&#x3D;992px的分辨率生效</li>
+<li>lg 在&gt;&#x3D;1200px的分辨率生效</li>
+</ul>
+<p>为什么要这样设置？如果在多个相邻的分辨率下表现效果一致，我们只需要写小的即可。<br />col-md-4 col-lg-4 就可以只写 col-md-4<br><a name="PAAPE"></a></p>
+<h3 id="栅格系统支持嵌套"><a href="#栅格系统支持嵌套" class="headerlink" title="栅格系统支持嵌套"></a>栅格系统支持嵌套</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xs-8&quot;</span>&gt;</span><br>      8<br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xs-1&quot;</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xs-1&quot;</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xs-1&quot;</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xs-1&quot;</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xs-1&quot;</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xs-1&quot;</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xs-1&quot;</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xs-1&quot;</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xs-1&quot;</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xs-1&quot;</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xs-1&quot;</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xs-1&quot;</span>&gt;</span>12<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-xs-4&quot;</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>在一个col中，再继续写对应的row即可实现栅格系统的嵌套。<br><a name="KmuTR"></a></p>
+<h2 id="响应式工具"><a href="#响应式工具" class="headerlink" title="响应式工具"></a>响应式工具</h2><p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1659429405467-5e81427d-2352-41e9-9763-4c27e24a550d.png#clientId=ufc2eb581-d33d-4&from=paste&height=365&id=u547fbb17&name=image.png&originHeight=365&originWidth=852&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27969&status=done&style=none&taskId=uf44681e8-e9bd-44a7-9f6c-a5287bb2408&title=&width=852" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="CSmLw"></a></p>
+<h2 id="组件介绍"><a href="#组件介绍" class="headerlink" title="组件介绍"></a>组件介绍</h2><p><a name="lHzIk"></a></p>
+<h3 id="字体图标"><a href="#字体图标" class="headerlink" title="字体图标"></a>字体图标</h3><p>BootStrap中内置了一个收费的字体图标Glyphicons。<a target="_blank" rel="noopener" href="https://www.glyphicons.com/">Glyphicons</a> Halflings 一般是收费的，但是他们的作者允许 Bootstrap 免费使用。<br />这些字体图标库是早期使用字体图标的方式，他们提供好很多的字体图标，然后我们引入，有一个弊端：会引入我们不需要的字体图标，所以建议使用阿里巴巴字体图标库。<br />出于性能的考虑，所有图标都需要一个基类和对应每个图标的类。把下面的代码放在任何地方都可以正常使用。注意，为了设置正确的内补（padding），务必在图标和文本之间添加一个空格。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;glyphicon glyphicon-th-list&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="yGfk3"></a></p>
+<h3 id="模态框"><a href="#模态框" class="headerlink" title="模态框"></a>模态框</h3><p>想要使用需要引入JS，模态框单独的结构</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;modal fade&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;aaa&quot;</span> &gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;modal-dialog&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;modal-content&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;modal-header&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;close&quot;</span> <span class="hljs-attr">data-dismiss</span>=<span class="hljs-string">&quot;modal&quot;</span> &gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;times;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;modal-title&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;myModalLabel&quot;</span>&gt;</span>Modal title<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;modal-body&quot;</span>&gt;</span><br>        这里的内容会显示在模态框的中间区域<br>      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;modal-footer&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-default&quot;</span> <span class="hljs-attr">data-dismiss</span>=<span class="hljs-string">&quot;modal&quot;</span>&gt;</span>Close<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-primary&quot;</span>&gt;</span>Save changes<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>模态框上有个id，这个id需要绑定到让模态框出现的元素上的<code>data-target</code>。打开模态框的元素上必须添加固定属性<code>data-toggle=&quot;modal&quot;</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">data-toggle</span>=<span class="hljs-string">&quot;modal&quot;</span> <span class="hljs-attr">data-target</span>=<span class="hljs-string">&quot;#aaa&quot;</span>&gt;</span>打开模态框<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>想要关闭模态框，需要给关闭模态框的元素上添加<code>data-dismiss</code>属性，值为<code>modal</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;close&quot;</span> <span class="hljs-attr">data-dismiss</span>=<span class="hljs-string">&quot;modal&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;times;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="FcP1y"></a></p>
+<h3 id="工具提示"><a href="#工具提示" class="headerlink" title="工具提示"></a>工具提示</h3><p>想要使用工具提示，我们就得去复制一段js代码。<br />把下的代码放在一个script标签，这个标签需要放在所有script标签的最下面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  $(<span class="hljs-string">&#x27;[data-toggle=&quot;tooltip&quot;]&#x27;</span>).<span class="hljs-title function_">tooltip</span>()<br>&#125;)<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-default&quot;</span> <span class="hljs-attr">data-toggle</span>=<span class="hljs-string">&quot;tooltip&quot;</span> <span class="hljs-attr">data-placement</span>=<span class="hljs-string">&quot;bottom&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Tooltip on bottom&quot;</span>&gt;</span>Tooltip on bottom<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>title属性是提示的内容<br />data-toggle&#x3D;”tooltip”这个是必须要添加的<br />data-placement&#x3D;”” 控制提示方向的 top right bottom left</p>
+<p>注意，data-toggle的作用只是为了在js中方便我们选择，我们可以换用其它操作选择到我们对应的元素。如果不屑这个属性可以使用其他操作。比如 类名 或者其他属性<br />例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-default tool&quot;</span> <span class="hljs-attr">data-placement</span>=<span class="hljs-string">&quot;bottom&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Tooltip on bottom&quot;</span>&gt;</span>Tooltip on bottom<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-default tool&quot;</span> <span class="hljs-attr">data-placement</span>=<span class="hljs-string">&quot;bottom&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Tooltip on bottom&quot;</span>&gt;</span>Tooltip on bottom<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-default tool&quot;</span> <span class="hljs-attr">data-placement</span>=<span class="hljs-string">&quot;bottom&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Tooltip on bottom&quot;</span>&gt;</span>Tooltip on bottom<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-default tool&quot;</span> <span class="hljs-attr">data-placement</span>=<span class="hljs-string">&quot;bottom&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Tooltip on bottom&quot;</span>&gt;</span>Tooltip on bottom<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>js中就要进行对应的修改</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  $(<span class="hljs-string">&#x27;.tool&#x27;</span>).<span class="hljs-title function_">tooltip</span>()<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>26.BootStrap</div>
+      <div>http://example.com/2020/06/25/html+css/26-BootStrap/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年6月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/30/html+css/27-Sass/" title="27.Sass">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">27.Sass</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/20/html+css/25-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/" title="25.响应式布局">
+                        <span class="hidden-mobile">25.响应式布局</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

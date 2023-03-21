@@ -1,0 +1,686 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="圆角属性以前在CSS3出现之前，我们如果想要在页面上实现圆角效果，需要使用对应的背景图来实现。在修改圆角时需要设计师修改对应的图片发给我们，沟通成本很高，所以在CSS3中才有圆角概念。 123选择器 &amp;#123;  border-radius: 半径值;&amp;#125; 实际上的圆角，就是一个半径为设置的圆角值的圆形放在对应边角的效果。设置圆角如果使用的是一个值，则表示四个角都是圆角，如果设置四个值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="15.css中的属性介绍">
+<meta property="og:url" content="http://example.com/2020/05/15/html+css/15.css%E4%B8%AD%E7%9A%84%E5%B1%9E%E6%80%A7%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="圆角属性以前在CSS3出现之前，我们如果想要在页面上实现圆角效果，需要使用对应的背景图来实现。在修改圆角时需要设计师修改对应的图片发给我们，沟通成本很高，所以在CSS3中才有圆角概念。 123选择器 &amp;#123;  border-radius: 半径值;&amp;#125; 实际上的圆角，就是一个半径为设置的圆角值的圆形放在对应边角的效果。设置圆角如果使用的是一个值，则表示四个角都是圆角，如果设置四个值">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1658297284475-0f803e96-b11c-480e-b0b8-31980374a390.png#clientId=uad4ad482-2c00-4&from=paste&height=202&id=u46c825f9&name=image.png&originHeight=202&originWidth=199&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1887&status=done&style=none&taskId=ue9362013-d923-4c08-8f73-a5fd356e35a&title=&width=199">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1658298098944-c4e3997f-2aab-444d-be54-6c901d8d57df.png#clientId=uad4ad482-2c00-4&from=paste&height=179&id=u219e4c95&name=image.png&originHeight=179&originWidth=137&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2007&status=done&style=none&taskId=u0177504a-70e0-4940-a583-3235c5afb58&title=&width=137">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1658298669037-f12171ed-96d1-4c34-ab6f-3fd3f1549147.png#clientId=uad4ad482-2c00-4&from=paste&height=134&id=u60bfb309&name=image.png&originHeight=134&originWidth=138&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2531&status=done&style=none&taskId=uad783aea-c72c-4f14-b811-18d445d10cb&title=&width=138">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1658298680689-a232442c-22dd-48ce-a8fb-3d41ceee356c.png#clientId=uad4ad482-2c00-4&from=paste&height=115&id=ueff74340&name=image.png&originHeight=115&originWidth=123&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1941&status=done&style=none&taskId=u9f4afa7f-2dc5-4004-9c71-1344bda3f46&title=&width=123">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1658303158383-d2e406a3-ad0d-4cf9-8744-dbdeeec1cf30.png#clientId=uad4ad482-2c00-4&from=paste&height=148&id=u609cb71a&name=image.png&originHeight=148&originWidth=342&originalType=binary&ratio=1&rotation=0&showTitle=false&size=33052&status=done&style=none&taskId=u35a5997c-f19b-4b9f-b764-4eeff28844e&title=&width=342">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1658304078675-753830ec-6d74-4699-b768-631b5d352caf.png#clientId=uad4ad482-2c00-4&from=paste&height=103&id=u0480fbb9&name=image.png&originHeight=103&originWidth=105&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7747&status=done&style=none&taskId=u0b5cb2dd-43d4-411e-bd76-76dfed2f41c&title=&width=105">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1658304691857-cbe386d1-8887-41fa-991b-228034eee111.png#clientId=uad4ad482-2c00-4&from=paste&height=113&id=u22dd36c0&name=image.png&originHeight=113&originWidth=951&originalType=binary&ratio=1&rotation=0&showTitle=false&size=24154&status=done&style=none&taskId=u3051a436-7cb1-4ab0-8bae-2c7384a2cc5&title=&width=951">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1658304646875-b34786fe-62eb-45b9-8a82-5994bd83407d.png#clientId=uad4ad482-2c00-4&from=paste&height=110&id=u5f6f4174&name=image.png&originHeight=110&originWidth=947&originalType=binary&ratio=1&rotation=0&showTitle=false&size=15059&status=done&style=none&taskId=u90c4df43-bc87-425a-9bc8-b5a45205eb3&title=&width=947">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1658306433763-4ca24cf7-098d-465b-8df6-498836d3b0c1.png#clientId=uad4ad482-2c00-4&from=paste&height=678&id=u1b47c359&name=image.png&originHeight=678&originWidth=319&originalType=binary&ratio=1&rotation=0&showTitle=false&size=62874&status=done&style=none&taskId=u1bff1d8e-c8b7-4cb7-9fa6-719afcd95f0&title=&width=319">
+<meta property="article:published_time" content="2020-05-15T08:40:00.000Z">
+<meta property="article:modified_time" content="2023-03-20T11:05:12.584Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1658297284475-0f803e96-b11c-480e-b0b8-31980374a390.png#clientId=uad4ad482-2c00-4&from=paste&height=202&id=u46c825f9&name=image.png&originHeight=202&originWidth=199&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1887&status=done&style=none&taskId=ue9362013-d923-4c08-8f73-a5fd356e35a&title=&width=199">
+  
+  
+  
+  <title>15.css中的属性介绍 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="15.css中的属性介绍"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-05-15 16:40" pubdate>
+          2020年5月15日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          26 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">15.css中的属性介绍</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="RRXLm"></a></p>
+<h2 id="圆角属性"><a href="#圆角属性" class="headerlink" title="圆角属性"></a>圆角属性</h2><p>以前在CSS3出现之前，我们如果想要在页面上实现圆角效果，需要使用对应的背景图来实现。在修改圆角时需要设计师修改对应的图片发给我们，沟通成本很高，所以在CSS3中才有圆角概念。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">border-radius</span>: 半径值;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1658297284475-0f803e96-b11c-480e-b0b8-31980374a390.png#clientId=uad4ad482-2c00-4&from=paste&height=202&id=u46c825f9&name=image.png&originHeight=202&originWidth=199&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1887&status=done&style=none&taskId=ue9362013-d923-4c08-8f73-a5fd356e35a&title=&width=199" srcset="/img/loading.gif" lazyload alt="image.png"><br />实际上的圆角，就是一个半径为设置的圆角值的圆形放在对应边角的效果。<br />设置圆角如果使用的是一个值，则表示四个角都是圆角，如果设置四个值分别代表左上，右上，右下，左下四个方向。<br />如果是两个值，则表示（左上 右下）   （右上 左下）<br />如果我们要给元素的一个角设置两个值，则会是一个椭圆效果</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">border-radius</span>: 左上横向半径 右上横向半径 右下横向半径 左下横向半径 / 左上纵向半径 右上纵向半径 右下纵向半径 左下纵向半径<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1658298098944-c4e3997f-2aab-444d-be54-6c901d8d57df.png#clientId=uad4ad482-2c00-4&from=paste&height=179&id=u219e4c95&name=image.png&originHeight=179&originWidth=137&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2007&status=done&style=none&taskId=u0177504a-70e0-4940-a583-3235c5afb58&title=&width=137" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="Ow5JP"></a></p>
+<h3 id="单独定义角"><a href="#单独定义角" class="headerlink" title="单独定义角"></a>单独定义角</h3><ul>
+<li>border-top-left-radius</li>
+<li>border-top-right-radius</li>
+<li>border-bottom-left-radius</li>
+<li>border-bottom-right-radius</li>
+</ul>
+<p>定义一个值是普通圆角，两个值是椭圆圆角<br><a name="qYbhz"></a></p>
+<h2 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h2><p>阴影指元素上的阴影效果，分别为box-shadow和text-shadow<br><a name="w9S6H"></a></p>
+<h3 id="box-shadow"><a href="#box-shadow" class="headerlink" title="box-shadow"></a>box-shadow</h3><p>我们只需要会设置即可</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">box-shadow</span>: x y 模糊程度 阴影大小 阴影颜色 内外阴影;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>x值的作用实现阴影x轴偏移，为正值时向右偏移，为负值时向左偏移<br />y值的作用实现阴影y轴偏移，为正值时像下偏移，为负值时向上偏移<br />模糊程度 表示阴影的模糊效果，一般使用阴影都会使用模糊，因为模糊更好看<br />阴影大小 默认阴影大小和我们对应的元素一样大，设置大小，会让阴影变得更大。<br />inset 添加内阴影 写不写inset<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1658298669037-f12171ed-96d1-4c34-ab6f-3fd3f1549147.png#clientId=uad4ad482-2c00-4&from=paste&height=134&id=u60bfb309&name=image.png&originHeight=134&originWidth=138&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2531&status=done&style=none&taskId=uad783aea-c72c-4f14-b811-18d445d10cb&title=&width=138" srcset="/img/loading.gif" lazyload alt="image.png"><br />外阴影<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1658298680689-a232442c-22dd-48ce-a8fb-3d41ceee356c.png#clientId=uad4ad482-2c00-4&from=paste&height=115&id=ueff74340&name=image.png&originHeight=115&originWidth=123&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1941&status=done&style=none&taskId=u9f4afa7f-2dc5-4004-9c71-1344bda3f46&title=&width=123" srcset="/img/loading.gif" lazyload alt="image.png"><br />内阴影<br><a name="pa8iK"></a></p>
+<h4 id="写多个阴影"><a href="#写多个阴影" class="headerlink" title="写多个阴影"></a>写多个阴影</h4><p>如果我们想要实现多个阴影怎么办，使用逗号隔开每个阴影的属性即可。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">1px</span> <span class="hljs-number">1px</span> <span class="hljs-number">1px</span> <span class="hljs-number">1px</span> red, <span class="hljs-number">2px</span> <span class="hljs-number">2px</span> <span class="hljs-number">2px</span> <span class="hljs-number">2px</span> green;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>0 8px 16px rgb(0 0 0 &#x2F; 18%)<br><a name="tqCXv"></a></p>
+<h3 id="text-shadow"><a href="#text-shadow" class="headerlink" title="text-shadow"></a>text-shadow</h3><p>没有内阴影，也没有模糊大小，只有x y 模糊程度 颜色 四个值</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">text-shadow</span>: x y 模糊程度 颜色;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1658303158383-d2e406a3-ad0d-4cf9-8744-dbdeeec1cf30.png#clientId=uad4ad482-2c00-4&from=paste&height=148&id=u609cb71a&name=image.png&originHeight=148&originWidth=342&originalType=binary&ratio=1&rotation=0&showTitle=false&size=33052&status=done&style=none&taskId=u35a5997c-f19b-4b9f-b764-4eeff28844e&title=&width=342" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="SICLa"></a></p>
+<h2 id="背景渐变色"><a href="#背景渐变色" class="headerlink" title="背景渐变色"></a>背景渐变色</h2><p>CSS中渐变色不属于颜色概念，属于图片概念。所以渐变色需要使用<code>background-image</code>属性进行设置而不是background-color</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">background-image</span>: 渐变色属性;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="iCcuW"></a></p>
+<h3 id="线性渐变"><a href="#线性渐变" class="headerlink" title="线性渐变"></a>线性渐变</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(方向, 颜色<span class="hljs-number">1</span> 占据的大小, 颜色<span class="hljs-number">2</span>, 颜色<span class="hljs-number">3</span>, 颜色<span class="hljs-number">4</span>, 颜色n)<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="sY2ho"></a></p>
+<h4 id="方向"><a href="#方向" class="headerlink" title="方向"></a>方向</h4><ul>
+<li>to 方向</li>
+</ul>
+<p>top \ right \ bottom \ left \ top right \ top left \ bottom right \ bottom left</p>
+<ul>
+<li>角度</li>
+</ul>
+<p>角度单位是deg <br />0度指to top，正角度顺时针旋转，负角度逆时针旋转<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1658304078675-753830ec-6d74-4699-b768-631b5d352caf.png#clientId=uad4ad482-2c00-4&from=paste&height=103&id=u0480fbb9&name=image.png&originHeight=103&originWidth=105&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7747&status=done&style=none&taskId=u0b5cb2dd-43d4-411e-bd76-76dfed2f41c&title=&width=105" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="yU74j"></a></p>
+<h4 id="颜色及宽度的设置"><a href="#颜色及宽度的设置" class="headerlink" title="颜色及宽度的设置"></a>颜色及宽度的设置</h4><p>在线性渐变中，我们可以写很多很多很多的颜色<br />linear-gradient(方向, 颜色1, 颜色2, 颜色3, 颜色4, 颜色n)<br />并且可以在颜色的后面设置这个颜色占据的空间<br />linear-gradient(方向, 颜色1 值, 颜色2 值, 颜色3 值, 颜色4 值, 颜色n 值)<br />值可以是固定值也可以是百分比，表示对应的元素从哪个位置开始到下一个颜色的位置结束进行渐变。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(to right, red <span class="hljs-number">0%</span>, orange <span class="hljs-number">100px</span>, green <span class="hljs-number">60%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1658304691857-cbe386d1-8887-41fa-991b-228034eee111.png#clientId=uad4ad482-2c00-4&from=paste&height=113&id=u22dd36c0&name=image.png&originHeight=113&originWidth=951&originalType=binary&ratio=1&rotation=0&showTitle=false&size=24154&status=done&style=none&taskId=u3051a436-7cb1-4ab0-8bae-2c7384a2cc5&title=&width=951" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1658304646875-b34786fe-62eb-45b9-8a82-5994bd83407d.png#clientId=uad4ad482-2c00-4&from=paste&height=110&id=u5f6f4174&name=image.png&originHeight=110&originWidth=947&originalType=binary&ratio=1&rotation=0&showTitle=false&size=15059&status=done&style=none&taskId=u90c4df43-bc87-425a-9bc8-b5a45205eb3&title=&width=947" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="Yyc6i"></a></p>
+<h4 id="重复线性渐变"><a href="#重复线性渐变" class="headerlink" title="重复线性渐变"></a>重复线性渐变</h4><p>在我们添加了渐变宽度的基础上，实现重复效果</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">repeating-linear-gradient</span>(to right, red <span class="hljs-number">0%</span>, orange <span class="hljs-number">100px</span>, green <span class="hljs-number">60%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="wAsOV"></a></p>
+<h3 id="径向渐变"><a href="#径向渐变" class="headerlink" title="径向渐变"></a>径向渐变</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">选择器 &#123;<br>  <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">radial-gradient</span>(shape size at position, start-color, ..., last-color);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>shape</li>
+</ul>
+<p>ellipse (默认): 指定椭圆形的径向渐变。<br />circle ：指定圆形的径向渐变</p>
+<ul>
+<li>size</li>
+</ul>
+<p>farthest-corner (默认) : 指定径向渐变的半径长度为从圆心到离圆心最远的角<br />closest-corner ： 指定径向渐变的半径长度为从圆心到离圆心最近的角<br />farthest-side ：指定径向渐变的半径长度为从圆心到离圆心最远的边<br />closest-side ：指定径向渐变的半径长度为从圆心到离圆心最近的边</p>
+<ul>
+<li>size</li>
+</ul>
+<p>表示圆心位置 可以设置两个值分别是x和y的值 50% 50% 表示正中心。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;!DOCTYPE <span class="hljs-selector-tag">html</span>&gt;<br>&lt;<span class="hljs-selector-tag">html</span> lang=&quot;en&quot;&gt;<br>&lt;head&gt;<br>  &lt;meta charset=&quot;UTF-<span class="hljs-number">8</span>&quot;&gt;<br>  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; <span class="hljs-attribute">content</span>=&quot;IE=edge&quot;&gt;<br>  &lt;meta name=&quot;viewport&quot; <span class="hljs-attribute">content</span>=&quot;<span class="hljs-attribute">width</span>=device-<span class="hljs-attribute">width</span>, initial-scale=<span class="hljs-number">1.0</span>&quot;&gt;<br>  &lt;title&gt;Document&lt;/title&gt;<br>  &lt;style&gt;<br>    <span class="hljs-selector-class">.box</span> &#123;<br>      <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>      <span class="hljs-attribute">height</span>: <span class="hljs-number">150px</span>;<br>      <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">20px</span>;<br>    &#125;<br><br>    <span class="hljs-selector-class">.box1</span> &#123;<br>      <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">radial-gradient</span>(circle farthest-corner at <span class="hljs-number">20%</span> <span class="hljs-number">50%</span>, red, green);<br><br>    &#125;<br><br>    <span class="hljs-selector-class">.box2</span> &#123;<br>      <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">radial-gradient</span>(circle closest-corner at <span class="hljs-number">20%</span> <span class="hljs-number">50%</span>, red, green);<br>      <br>    &#125;<br><br>    <span class="hljs-selector-class">.box3</span> &#123;<br>      <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">radial-gradient</span>(circle farthest-side at <span class="hljs-number">20%</span> <span class="hljs-number">50%</span>, red, green);<br><br>    &#125;<br>    <span class="hljs-selector-class">.box4</span> &#123;<br>      <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">radial-gradient</span>(circle closest-side at <span class="hljs-number">20%</span> <span class="hljs-number">50%</span>, red, green);<br><br>    &#125;<br>  &lt;/style&gt;<br>&lt;/head&gt;<br>&lt;<span class="hljs-selector-tag">body</span>&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=&quot;box box1&quot;&gt;&lt;/<span class="hljs-selector-tag">div</span>&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=&quot;box box2&quot;&gt;&lt;/<span class="hljs-selector-tag">div</span>&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=&quot;box box3&quot;&gt;&lt;/<span class="hljs-selector-tag">div</span>&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=&quot;box box4&quot;&gt;&lt;/<span class="hljs-selector-tag">div</span>&gt;<br><br>&lt;/<span class="hljs-selector-tag">body</span>&gt;<br>&lt;/<span class="hljs-selector-tag">html</span>&gt;<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1658306433763-4ca24cf7-098d-465b-8df6-498836d3b0c1.png#clientId=uad4ad482-2c00-4&from=paste&height=678&id=u1b47c359&name=image.png&originHeight=678&originWidth=319&originalType=binary&ratio=1&rotation=0&showTitle=false&size=62874&status=done&style=none&taskId=u1bff1d8e-c8b7-4cb7-9fa6-719afcd95f0&title=&width=319" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="j7yV0"></a></p>
+<h4 id="重复径向渐变"><a href="#重复径向渐变" class="headerlink" title="重复径向渐变"></a>重复径向渐变</h4>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>15.css中的属性介绍</div>
+      <div>http://example.com/2020/05/15/html+css/15.css中的属性介绍/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年5月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/05/16/html+css/16.%E8%BF%87%E6%B8%A1/" title="16过渡">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">16过渡</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/06/html+css/13.%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%A6%82%E5%BF%B5/" title="13.盒模型概念">
+                        <span class="hidden-mobile">13.盒模型概念</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
