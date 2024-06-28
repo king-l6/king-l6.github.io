@@ -1,0 +1,733 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="DOM是什么？DOM的全称叫Document Object Model（文档对象模型）。他提供了js一个能力：获取网页上的元素并且操作它们。 复习一下对象的操作对象中的方法怎么调用 1对象.方法名() 对象中的方法怎么变成新的方法 1对象.方法名 &#x3D; function () &amp;#123;&amp;#125; 对象中的属性怎么使用 1console.log(对象.属性名) 对象中的属性怎么覆盖变成新的值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/js/36-DOM/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="DOM是什么？DOM的全称叫Document Object Model（文档对象模型）。他提供了js一个能力：获取网页上的元素并且操作它们。 复习一下对象的操作对象中的方法怎么调用 1对象.方法名() 对象中的方法怎么变成新的方法 1对象.方法名 &#x3D; function () &amp;#123;&amp;#125; 对象中的属性怎么使用 1console.log(对象.属性名) 对象中的属性怎么覆盖变成新的值">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660786019368-3fe671cf-7214-4261-8d82-4b3348d95c88.png#clientId=ue08a58c2-3013-4&from=paste&height=475&id=ue44a9732&name=image.png&originHeight=475&originWidth=851&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16484&status=done&style=none&taskId=uc715959c-9e5e-4a5a-9d0f-a06c3a4bf35&title=&width=851">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660786395445-24fb8b19-19f3-4b69-9e44-9e1d6698bc34.png#clientId=ue08a58c2-3013-4&from=paste&height=19&id=u7856ca72&name=image.png&originHeight=19&originWidth=224&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1877&status=done&style=none&taskId=u5929b4a7-d434-47cd-8d6d-f580eb99d27&title=&width=224">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660786458643-ce98d167-385e-4cf5-8d8d-0c4ae9cd84df.png#clientId=ue08a58c2-3013-4&from=paste&height=774&id=u1ad6cf6e&name=image.png&originHeight=774&originWidth=452&originalType=binary&ratio=1&rotation=0&showTitle=false&size=36853&status=done&style=none&taskId=u1549cc74-fe8b-4d70-a502-3b6523dda36&title=&width=452">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660794433424-e603fc91-23c7-4656-9579-f32f8998d088.png#clientId=u137732ea-c008-4&from=paste&height=243&id=ua5020577&name=image.png&originHeight=243&originWidth=174&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6359&status=done&style=none&taskId=ua59494e0-e3a6-4b11-974a-d7c4c3874c0&title=&width=174">
+<meta property="article:published_time" content="2020-08-25T09:19:12.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:21:56.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660786019368-3fe671cf-7214-4261-8d82-4b3348d95c88.png#clientId=ue08a58c2-3013-4&from=paste&height=475&id=ue44a9732&name=image.png&originHeight=475&originWidth=851&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16484&status=done&style=none&taskId=uc715959c-9e5e-4a5a-9d0f-a06c3a4bf35&title=&width=851">
+  
+  
+  
+  <title>DOM - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DOM"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-08-25 17:19" pubdate>
+          2020年8月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">DOM</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="cH1Wo"></a></p>
+<h2 id="DOM是什么？"><a href="#DOM是什么？" class="headerlink" title="DOM是什么？"></a>DOM是什么？</h2><p>DOM的全称叫Document Object Model（文档对象模型）。他提供了js一个能力：获取网页上的元素并且操作它们。<br><a name="vhEdT"></a></p>
+<h3 id="复习一下对象的操作"><a href="#复习一下对象的操作" class="headerlink" title="复习一下对象的操作"></a>复习一下对象的操作</h3><p>对象中的方法怎么调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">对象.方法名()<br></code></pre></td></tr></table></figure>
+<p>对象中的方法怎么变成新的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">对象.方法名 = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;&#125;<br></code></pre></td></tr></table></figure>
+<p>对象中的属性怎么使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(对象.属性名)<br></code></pre></td></tr></table></figure>
+<p>对象中的属性怎么覆盖变成新的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">obj.属性名 = 新的值<br></code></pre></td></tr></table></figure>
+<p>为什么我们要复习对象的用法，因为DOM皆为对象。所谓操作元素，就是在调用对象的方法和属性，覆盖原有的属性值。<br><a name="a0OxU"></a></p>
+<h3 id="DOM树"><a href="#DOM树" class="headerlink" title="DOM树"></a>DOM树</h3><p>我们把一个网页抽象为DOM树，在DOM树上的元素我们成为DOM元素，都是有互相之间的关系。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1660786019368-3fe671cf-7214-4261-8d82-4b3348d95c88.png#clientId=ue08a58c2-3013-4&from=paste&height=475&id=ue44a9732&name=image.png&originHeight=475&originWidth=851&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16484&status=done&style=none&taskId=uc715959c-9e5e-4a5a-9d0f-a06c3a4bf35&title=&width=851" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="NOozm"></a></p>
+<h2 id="如何使用DOM"><a href="#如何使用DOM" class="headerlink" title="如何使用DOM"></a>如何使用DOM</h2><p><a name="I01pf"></a></p>
+<h3 id="获取DOM"><a href="#获取DOM" class="headerlink" title="获取DOM"></a>获取DOM</h3><p>在之前的方法中，获取DOM需要用不同的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;id值&#x27;</span>) <span class="hljs-comment">// 单个DOM对象</span><br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByName</span>(<span class="hljs-string">&#x27;name属性&#x27;</span>) <span class="hljs-comment">// 下面三个全是集合</span><br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;标签名&#x27;</span>)<br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByClassName</span>(<span class="hljs-string">&#x27;class值&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<p>这些方法在现在不推荐使用，不好用。现在一般使用下面的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;选择器&#x27;</span>) <span class="hljs-comment">// 得到的是第一个DOM对象</span><br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&quot;选择器&quot;</span>) <span class="hljs-comment">// 得到符合条件的所有的DOM对象的集合</span><br></code></pre></td></tr></table></figure>
+<p>在控制台上打印获取到的DOM，展示出来的是对应元素的标签<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1660786395445-24fb8b19-19f3-4b69-9e44-9e1d6698bc34.png#clientId=ue08a58c2-3013-4&from=paste&height=19&id=u7856ca72&name=image.png&originHeight=19&originWidth=224&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1877&status=done&style=none&taskId=u5929b4a7-d434-47cd-8d6d-f580eb99d27&title=&width=224" srcset="/img/loading.gif" lazyload alt="image.png"><br />但是实际上，这个东西是个对象。怎么样才能看到对应的对象中的属性和方法呢？？？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([<span class="hljs-variable constant_">DOM</span>])<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1660786458643-ce98d167-385e-4cf5-8d8d-0c4ae9cd84df.png#clientId=ue08a58c2-3013-4&from=paste&height=774&id=u1ad6cf6e&name=image.png&originHeight=774&originWidth=452&originalType=binary&ratio=1&rotation=0&showTitle=false&size=36853&status=done&style=none&taskId=u1549cc74-fe8b-4d70-a502-3b6523dda36&title=&width=452" srcset="/img/loading.gif" lazyload alt="image.png"><br />DOM对象就是一个对象，里面包含了属性和方法。<br><a name="TtcEl"></a></p>
+<h3 id="改变网页元素的内容"><a href="#改变网页元素的内容" class="headerlink" title="改变网页元素的内容"></a>改变网页元素的内容</h3><ul>
+<li>innerHTML</li>
+<li>innerText</li>
+</ul>
+<p>既然这两个是DOM的属性，那么是不是可以通过<code>DOM.innerText</code>获取到网页上的内容。同理，我们可以通过<code>DOM.innerText = &quot;新的值&quot;</code>来修改网页上的内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> 变量名 = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;选择器&quot;</span>)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(变量名.<span class="hljs-property">innerText</span>) <span class="hljs-comment">// 获取到对应元素上的内容</span><br><br>变量名.<span class="hljs-property">innerText</span> = <span class="hljs-string">&quot;值&quot;</span> <span class="hljs-comment">// 设置DOM对象上的内容，因为这个DOM对象和网页有关联，所以网页上对应的内容改变。</span><br></code></pre></td></tr></table></figure>
+<p>innerText和innerHTML的区别<br />在获取内容过程，前者只会获取到文本，后者可以获取到内部的标签。<br />在设置内容过程，前者会把文本中的标签直接展示在页面上，后者会渲染称真实的标签。<br />注意！！！！！！！！！！！！！！！！！！！！！！！！！不是受我们信任的带HTML标签的字符串，不要用innerHTML。innerHTML会有XSS攻击风险<br />除了inner还是有outer</p>
+<ul>
+<li>outerHTML</li>
+<li>outerText</li>
+</ul>
+<p>不常用，和前者的区别在于，带的有父元素的标签。<br><a name="yPpHt"></a></p>
+<h3 id="表单元素中的内容"><a href="#表单元素中的内容" class="headerlink" title="表单元素中的内容"></a>表单元素中的内容</h3><ul>
+<li>value</li>
+</ul>
+<p>value属性表示表单中的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> input = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;input&#x27;</span>)<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(input.<span class="hljs-property">value</span>) <span class="hljs-comment">// 获取到最初的value值</span><br><br>input.<span class="hljs-property">value</span> = <span class="hljs-string">&quot;新的value值&quot;</span> <span class="hljs-comment">// 将input中的内容设置成新的值</span><br></code></pre></td></tr></table></figure>
+<p>设置value的操作，一般只在可输入框中进行设置。比如：把输入框中的内容清空</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> input = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;input&#x27;</span>)<br>input.<span class="hljs-property">value</span> = <span class="hljs-string">&quot;&quot;</span> <span class="hljs-comment">// 清空输入框</span><br></code></pre></td></tr></table></figure>
+<p> textarea元素虽然是个双标签，同时内容也是出现在标签中，但是获取到对应的值还是要用<code>.value</code>获取。<br><a name="lqXFo"></a></p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>HTML属性分为两种：原生属性和自定义属性<br />DOM对象会对HTML中原生属性有对应的映射，如果原生属性名不是关键字或者保留字，则直接用对应属性名，例如<code>id</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable constant_">DOM</span>.<span class="hljs-property">id</span> <span class="hljs-comment">// 获取到对应元素的id值</span><br><span class="hljs-variable constant_">DOM</span>.<span class="hljs-property">id</span> = <span class="hljs-string">&quot;新的值&quot;</span> <span class="hljs-comment">// html的id属性就会变成新的值</span><br></code></pre></td></tr></table></figure>
+<p>如果原生属性是关键字或者保留字，则会提供新的名字进行映射，例如：class变成了className</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable constant_">DOM</span>.<span class="hljs-property">className</span> <span class="hljs-comment">// 获取到对应的元素的class值</span><br><span class="hljs-variable constant_">DOM</span>.<span class="hljs-property">className</span> = <span class="hljs-string">&quot;新的值&quot;</span> <span class="hljs-comment">// 设置新的class</span><br></code></pre></td></tr></table></figure>
+<p>例如：label的 for 变成了 htmlFor<br />当我们对这些DOM对象中的属性进行修改时，就会改变HTML上的原属性。<br />DOM对象对于自定义属性不会使其出现在DOM对象（在DOM对象上，没有自定义属性的映射）。我们就需要借助想关的方法</p>
+<ul>
+<li><p>getAttribute(属性名)  获取对应的属性的属性值</p>
+</li>
+<li><p>setAttribute(属性名, 值) 添加&#x2F;修改对应的属性的值</p>
+</li>
+<li><p>removeAttribute(属性名) 删除对应的属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> dom = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;选择器&quot;</span>)<br>dom.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&quot;x&quot;</span>)<br>dom.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&quot;x&quot;</span>, <span class="hljs-number">10</span>)<br>dom.<span class="hljs-title function_">removeAttribute</span>(<span class="hljs-string">&#x27;x&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<p>如果我们直接给DOM上添加要给属性值，这个值会不会映射到HTML上。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable constant_">DOM</span>.<span class="hljs-property">aaa</span> = <span class="hljs-string">&quot;值&quot;</span> <span class="hljs-comment">// 这个属性就是DOM对象上的属性，和HTML无关</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>html上有的原生属性，在DOM也会有对应的属性名</p>
+</li>
+<li><p>原生属性在js是关键子或者保留字，DOM中有替代属性名</p>
+</li>
+<li><p>html上有自定义属性，DOM可以通过getAttribute获取</p>
+</li>
+<li><p>给DOM添加一个随意的属性，只能在JS中获取，HTML上没有<br><a name="PXVFW"></a></p>
+</li>
+</ul>
+<h3 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h3><p>我们css可以设置HTML的样式，我们可以用js来设置CSS，依靠js对样式的抽象的对象<code>dom.style</code><br />dom.style中包含了对应dom的所有的css样式，是一个对象。</p>
+<ul>
+<li>复合属性例如background-color在js中要用驼峰命名 backgroundColor</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1660794433424-e603fc91-23c7-4656-9579-f32f8998d088.png#clientId=u137732ea-c008-4&from=paste&height=243&id=ua5020577&name=image.png&originHeight=243&originWidth=174&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6359&status=done&style=none&taskId=ua59494e0-e3a6-4b11-974a-d7c4c3874c0&title=&width=174" srcset="/img/loading.gif" lazyload alt="image.png"><br />利用DOM.style只能获取到行内的样式，设置也只能设置到行内。<br />设置到行内无所谓，但是因为写css的时候不建议写到行内，所以获取操作在大部分情况下，使用这个操作不合适。<br />如果我们想要用这个属性获取样式，需要确保已经用js设置过了。<br><a name="OJA4w"></a></p>
+<h4 id="设置样式"><a href="#设置样式" class="headerlink" title="设置样式"></a>设置样式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">dom.<span class="hljs-property">style</span>.样式名 = <span class="hljs-string">&quot;值&quot;</span><br></code></pre></td></tr></table></figure>
+<p><a name="ZMN8c"></a></p>
+<h4 id="获取样式"><a href="#获取样式" class="headerlink" title="获取样式"></a>获取样式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">dom.<span class="hljs-property">style</span>.样式名 <span class="hljs-comment">// 不一定能获取到，得看行内有没有对应的样式</span><br></code></pre></td></tr></table></figure>
+<p>既然上面的操作不能获取到我们想要的样式，js提供了一个全局方法叫<code>getComputedStyle</code></p>
+<blockquote>
+<p>获取样式的操作不常用，最多用的获取宽高，获取宽高我们会用其他的属性，不会用样式。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">getComputedStyle</span>(<span class="hljs-variable constant_">DOM</span>对象) <span class="hljs-comment">// 计算后的样式对象</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> 变量名 = <span class="hljs-title function_">getComputedStyle</span>(dom)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(变量名.<span class="hljs-property">css</span>属性名)<br></code></pre></td></tr></table></figure>
+<p>getComputedStyle可以用来获取伪元素样式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> 变量 = <span class="hljs-title function_">getComputedStyle</span>(dom, <span class="hljs-string">&#x27;after&#x27;</span>)<br><span class="hljs-comment">// 变量就是一个对象，after伪元素所有的样式 after可以换成before</span><br></code></pre></td></tr></table></figure>
+<p>我们能不能封装一个函数getStyle，用来获取某个元素的某个样式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getStyle</span> (ele, style) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_">getComputedStyle</span>(ele)[style]<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>未来我们会学习很多的属性用来获取特定的css值。<br><a name="F7ewY"></a></p>
+<h4 id="可以同时设置多个样式的操作"><a href="#可以同时设置多个样式的操作" class="headerlink" title="可以同时设置多个样式的操作"></a>可以同时设置多个样式的操作</h4><p>cssText<br />通过<code>DOM.style.cssText</code>进行获取和设置操作，它用来获取到style中的文本。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 200px; height: 200px;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript">dom.<span class="hljs-property">style</span>.<span class="hljs-property">cssText</span> <span class="hljs-comment">// width: 200px; height: 200px;</span><br><br>dom.<span class="hljs-property">style</span>.<span class="hljs-property">cssText</span> = <span class="hljs-string">&quot;height: 300px;&quot;</span> <span class="hljs-comment">// 直接把所有的style都给覆盖</span><br><span class="hljs-comment">// 如果要在原有基础上增加对应的样式，需要使用 +=</span><br>dom.<span class="hljs-property">style</span>.<span class="hljs-property">cssText</span> += <span class="hljs-string">&quot;新的样式&quot;</span><br></code></pre></td></tr></table></figure>
+<p>如果有相同属性，则新属性会覆盖旧属性。<br><a name="cee5F"></a></p>
+<h3 id="类名的设置和获取"><a href="#类名的设置和获取" class="headerlink" title="类名的设置和获取"></a>类名的设置和获取</h3><p>如果想要获取到所有的类名，需要通过<code>dom.className</code>通过这样的方式获取到className之后，我们也可以设置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(dom.<span class="hljs-property">className</span>) <span class="hljs-comment">// 对应元素上所有的类名</span><br>dom.<span class="hljs-property">className</span> = <span class="hljs-string">&quot;类名&quot;</span> <span class="hljs-comment">// 把元素之前类名全部删除，设置为新的类名</span><br><span class="hljs-comment">// 如果不想覆盖</span><br>dom.<span class="hljs-property">className</span> += <span class="hljs-string">&quot; 类名&quot;</span><br></code></pre></td></tr></table></figure>
+<p>但是这种操作很容易出现问题所以在后续js更新中，推出了新的方法<code>dom.classList</code></p>
+<ul>
+<li>add</li>
+<li>remove</li>
+<li>toggle</li>
+<li>replace</li>
+<li>contains<br><a name="S99CU"></a></li>
+</ul>
+<h4 id="如果我们想要添加相关的类名"><a href="#如果我们想要添加相关的类名" class="headerlink" title="如果我们想要添加相关的类名"></a>如果我们想要添加相关的类名</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">dom.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;类名&#x27;</span>, <span class="hljs-string">&quot;类名2&quot;</span>, <span class="hljs-string">&quot;类名n&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p>会依次给对应的元素上添加对应的类名。<br><a name="XRrLZ"></a></p>
+<h4 id="如果我们想要移除相关类名"><a href="#如果我们想要移除相关类名" class="headerlink" title="如果我们想要移除相关类名"></a>如果我们想要移除相关类名</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">dom.<span class="hljs-property">classList</span>.<span class="hljs-title function_">remove</span>(<span class="hljs-string">&#x27;类名&#x27;</span>, <span class="hljs-string">&quot;类名2&quot;</span>, <span class="hljs-string">&quot;类名n&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p>会删除对应元素上对应的类名<br><a name="Q4sfc"></a></p>
+<h4 id="切换类名有无"><a href="#切换类名有无" class="headerlink" title="切换类名有无"></a>切换类名有无</h4><p>当一个元素上有对应的类名时，就删除，如果没有，就添加</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">dom.<span class="hljs-property">classList</span>.<span class="hljs-title function_">toggle</span>(<span class="hljs-string">&quot;类名&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p><a name="xwDMf"></a></p>
+<h4 id="替换类名"><a href="#替换类名" class="headerlink" title="替换类名"></a>替换类名</h4><p>把旧的类名替换为新的类名</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">dom.<span class="hljs-property">classList</span>.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&quot;已有的类名&quot;</span>, <span class="hljs-string">&quot;新的类名&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p><a name="uqTMc"></a></p>
+<h4 id="有没有类名"><a href="#有没有类名" class="headerlink" title="有没有类名"></a>有没有类名</h4><p>用于判断元素中有没有某个类名，一般在判断条件中用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">dom.<span class="hljs-property">classList</span>.<span class="hljs-title function_">contains</span>(<span class="hljs-string">&quot;类名&quot;</span>) <span class="hljs-comment">// true 或者 false</span><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DOM</div>
+      <div>http://example.com/学习/js/36-DOM/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年8月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/37-js%E5%85%83%E7%B4%A0%E7%9A%84%E5%B8%B8%E8%A7%81%E5%B0%BA%E5%AF%B8/" title="js元素的常见尺寸">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">js元素的常见尺寸</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/35-%E6%95%B0%E7%BB%84%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95/" title="数组和字符串方法">
+                        <span class="hidden-mobile">数组和字符串方法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

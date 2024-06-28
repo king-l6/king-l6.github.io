@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="EChart是一个图表库，用来进行数据可视化操作，同样的库还有很多：蚂蚁金服的AntV，HightCharts 下载ECharts在官网下载，进入后，下载对应的版本即可echarts.js 使用ECharts使用ECharts很简单，我们只需要进行以下操作即可  引入ECharts 1234567891011121314&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&amp;quo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EChats">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/js/46.EChats/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="EChart是一个图表库，用来进行数据可视化操作，同样的库还有很多：蚂蚁金服的AntV，HightCharts 下载ECharts在官网下载，进入后，下载对应的版本即可echarts.js 使用ECharts使用ECharts很简单，我们只需要进行以下操作即可  引入ECharts 1234567891011121314&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&amp;quo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1662431605335-188e5da7-42fe-46ca-9c45-3fb7ba05eba1.png#clientId=uad51eafd-12e7-4&from=paste&height=761&id=u2be7a399&name=image.png&originHeight=761&originWidth=962&originalType=binary&ratio=1&rotation=0&showTitle=false&size=23330&status=done&style=none&taskId=u0b55bb6a-2209-45ff-aae6-87a257638a7&title=&width=962">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1662445299543-79499a69-181d-47c5-ac9d-a0bb026dbdc7.png#clientId=uad51eafd-12e7-4&from=paste&height=37&id=uf60cb2cf&name=image.png&originHeight=37&originWidth=507&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3427&status=done&style=none&taskId=uf317d2aa-7752-4393-a61c-a68b1095151&title=&width=507">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1662451389372-aef41640-7d69-4981-bdd6-0f8c64003acc.png#clientId=uad51eafd-12e7-4&from=paste&height=878&id=u45f4f00e&name=image.png&originHeight=878&originWidth=1857&originalType=binary&ratio=1&rotation=0&showTitle=false&size=125397&status=done&style=none&taskId=ue10aacb0-e126-41f3-a1fa-1ec21000ead&title=&width=1857">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1662452466912-291e9d08-f0eb-4905-8367-039dd0a00423.png#clientId=uad51eafd-12e7-4&from=paste&height=915&id=u167bdc9b&name=image.png&originHeight=915&originWidth=962&originalType=binary&ratio=1&rotation=0&showTitle=false&size=100554&status=done&style=none&taskId=u42a1c80e-5b6c-4393-bb6d-0eed0085974&title=&width=962">
+<meta property="article:published_time" content="2020-11-18T09:42:44.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:25:10.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1662431605335-188e5da7-42fe-46ca-9c45-3fb7ba05eba1.png#clientId=uad51eafd-12e7-4&from=paste&height=761&id=u2be7a399&name=image.png&originHeight=761&originWidth=962&originalType=binary&ratio=1&rotation=0&showTitle=false&size=23330&status=done&style=none&taskId=u0b55bb6a-2209-45ff-aae6-87a257638a7&title=&width=962">
+  
+  
+  
+  <title>EChats - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="EChats"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-11-18 17:42" pubdate>
+          2020年11月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">EChats</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>EChart是一个图表库，用来进行数据可视化操作，同样的库还有很多：蚂蚁金服的AntV，HightCharts<br><a name="QqrNK"></a></p>
+<h2 id="下载ECharts"><a href="#下载ECharts" class="headerlink" title="下载ECharts"></a>下载ECharts</h2><p>在<a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/download.html">官网下载</a>，进入后，下载对应的版本即可<br /><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2022/js/29344914/1664357899813-67de2b7e-aa35-4af4-ac73-5d99a5e6316d.js">echarts.js</a><br><a name="CExig"></a></p>
+<h2 id="使用ECharts"><a href="#使用ECharts" class="headerlink" title="使用ECharts"></a>使用ECharts</h2><p>使用ECharts很简单，我们只需要进行以下操作即可</p>
+<ol>
+<li><p>引入ECharts</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./js/echarts.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>在body中添加合适的容器，用于渲染图表</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;charts&quot;</span> style=<span class="hljs-string">&quot;height: 400px&quot;</span>&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+<p>这个元素的大小可以任意的修改</p>
+</li>
+<li><p>生成echarts的对象</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;charts&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height: 400px&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./js/echarts.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-comment">// let chart = echarts.init(上面生成的元素的DOM对象)</span></span><br><span class="language-javascript">    <span class="hljs-keyword">let</span> chart = echarts.<span class="hljs-title function_">init</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.charts&#x27;</span>))</span><br><span class="language-javascript">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>去<a target="_blank" rel="noopener" href="https://echarts.apache.org/examples/zh/index.html">案例中心</a>找到合适的案例打开复制对应的option（当然也可以自己写）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> option = &#123;<br>  <span class="hljs-attr">xAxis</span>: &#123;<br>    <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;category&#x27;</span>,<br>    <span class="hljs-attr">data</span>: [<span class="hljs-string">&#x27;Mon&#x27;</span>, <span class="hljs-string">&#x27;Tue&#x27;</span>, <span class="hljs-string">&#x27;Wed&#x27;</span>, <span class="hljs-string">&#x27;Thu&#x27;</span>, <span class="hljs-string">&#x27;Fri&#x27;</span>, <span class="hljs-string">&#x27;Sat&#x27;</span>, <span class="hljs-string">&#x27;Sun&#x27;</span>]<br>  &#125;,<br>  <span class="hljs-attr">yAxis</span>: &#123;<br>    <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;value&#x27;</span><br>  &#125;,<br>  <span class="hljs-attr">series</span>: [<br>    &#123;<br>      <span class="hljs-attr">data</span>: [<span class="hljs-number">150</span>, <span class="hljs-number">230</span>, <span class="hljs-number">224</span>, <span class="hljs-number">218</span>, <span class="hljs-number">135</span>, <span class="hljs-number">147</span>, <span class="hljs-number">260</span>],<br>      <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;line&#x27;</span><br>    &#125;<br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>调用setOption方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">chart.<span class="hljs-title function_">setOption</span>(option)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>打开网页，看效果</p>
+</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1662431605335-188e5da7-42fe-46ca-9c45-3fb7ba05eba1.png#clientId=uad51eafd-12e7-4&from=paste&height=761&id=u2be7a399&name=image.png&originHeight=761&originWidth=962&originalType=binary&ratio=1&rotation=0&showTitle=false&size=23330&status=done&style=none&taskId=u0b55bb6a-2209-45ff-aae6-87a257638a7&title=&width=962" srcset="/img/loading.gif" lazyload alt="image.png"><br />我们需要根据我们的需求修改样式。<br><a name="E8LLs"></a></p>
+<h2 id="模拟现有的一些图表提升自己的数据可视化能力"><a href="#模拟现有的一些图表提升自己的数据可视化能力" class="headerlink" title="模拟现有的一些图表提升自己的数据可视化能力"></a>模拟现有的一些图表提升自己的数据可视化能力</h2><p><a name="bcZ9m"></a></p>
+<h2 id="几个常见的配置项"><a href="#几个常见的配置项" class="headerlink" title="几个常见的配置项"></a>几个常见的配置项</h2><p>在option中有几个常用的配置项，我们要熟悉他们是做什么。<a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/option.html#title">所有的配置项看这个网址</a><br><a name="lM5F0"></a></p>
+<h3 id="color"><a href="#color" class="headerlink" title="color"></a>color</h3><p>可以配置一个数组，我们对应的series里的值会循环的从第一个到最后一个，循环使用颜色。当然颜色也可以单独定义。<br><a name="IDIbr"></a></p>
+<h3 id="xAxis-yAxis"><a href="#xAxis-yAxis" class="headerlink" title="xAxis yAxis"></a>xAxis yAxis</h3><p>设置X轴和Y轴的样式</p>
+<ul>
+<li>label 标签</li>
+<li>line 轴线</li>
+<li>tick 刻度<br><a name="X1ThZ"></a></li>
+</ul>
+<h3 id="toolTip"><a href="#toolTip" class="headerlink" title="toolTip"></a>toolTip</h3><p>鼠标移入时的提示信息<br><a name="wBHIt"></a></p>
+<h3 id="grid"><a href="#grid" class="headerlink" title="grid"></a>grid</h3><p>控制图表展示区域的<br><a name="QZPY4"></a></p>
+<h3 id="legend"><a href="#legend" class="headerlink" title="legend"></a>legend</h3><p>图表上的<img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1662445299543-79499a69-181d-47c5-ac9d-a0bb026dbdc7.png#clientId=uad51eafd-12e7-4&from=paste&height=37&id=uf60cb2cf&name=image.png&originHeight=37&originWidth=507&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3427&status=done&style=none&taskId=uf317d2aa-7752-4393-a61c-a68b1095151&title=&width=507" srcset="/img/loading.gif" lazyload alt="image.png">图例信息。<br><a name="hYk3Y"></a></p>
+<h3 id="series"><a href="#series" class="headerlink" title="series"></a>series</h3><p>每一个图的数据样式都可以在这里的某个对象中进行定义。这个数据是个数组。可以有多种图表类型。<br />如果我们有多个图表，我们就可以实现多个类型的表在一个坐标系中。<br><a name="FW7tU"></a></p>
+<h2 id="显示地图"><a href="#显示地图" class="headerlink" title="显示地图"></a>显示地图</h2><p>想要在echarts中展示地图，我们需要有对应的地图数据，可以去<a target="_blank" rel="noopener" href="http://datav.aliyun.com/portal/school/atlas/area_selector">阿里dataV下载</a><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1662451389372-aef41640-7d69-4981-bdd6-0f8c64003acc.png#clientId=uad51eafd-12e7-4&from=paste&height=878&id=u45f4f00e&name=image.png&originHeight=878&originWidth=1857&originalType=binary&ratio=1&rotation=0&showTitle=false&size=125397&status=done&style=none&taskId=ue10aacb0-e126-41f3-a1fa-1ec21000ead&title=&width=1857" srcset="/img/loading.gif" lazyload alt="image.png"><br />我们要的数据就是一个对象，我们需要把这个对象下载到本地。<br /><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2022/js/29344914/1664357899933-f00daa96-83f9-4c31-95db-0b388debfbff.js">china.js</a><br />在我们的网页中引入china.js，就会有一个变量<code>china</code><br><a name="vWfiM"></a></p>
+<h3 id="使用地图"><a href="#使用地图" class="headerlink" title="使用地图"></a>使用地图</h3><p>想要使用地图，需要在我们的代码中注册地图</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">echarts.<span class="hljs-title function_">registerMap</span>(<span class="hljs-string">&quot;自定义地图名称&quot;</span>, 地图数据)<br></code></pre></td></tr></table></figure>
+<p>在我们的例子里</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">echarts.<span class="hljs-title function_">registerMap</span>(<span class="hljs-string">&quot;china&quot;</span>, china)<br></code></pre></td></tr></table></figure>
+<p>然后初始化echarts，配置对应的option</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> chart = echarts.<span class="hljs-title function_">init</span>(dom对象)<br><br><span class="hljs-keyword">let</span> option = &#123;<br>  <span class="hljs-attr">geo</span>: &#123;<br>    <span class="hljs-attr">map</span>: <span class="hljs-string">&quot;自定义地图名称&quot;</span><br>  &#125;<br>&#125;<br><br>chart.<span class="hljs-title function_">setOption</span>(option)<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1662452466912-291e9d08-f0eb-4905-8367-039dd0a00423.png#clientId=uad51eafd-12e7-4&from=paste&height=915&id=u167bdc9b&name=image.png&originHeight=915&originWidth=962&originalType=binary&ratio=1&rotation=0&showTitle=false&size=100554&status=done&style=none&taskId=u42a1c80e-5b6c-4393-bb6d-0eed0085974&title=&width=962" srcset="/img/loading.gif" lazyload alt="image.png"><br />这个地图，其实是我们建立的特殊坐标系——地理坐标系。<br />我们可以通过配置geo.itemStyle改变默认时的样式，配置geo.select配置选中时的样式。配置geo.emphasis配置移入时的样式。<br><a name="EN4GW"></a></p>
+<h3 id="在地图上显示散点图"><a href="#在地图上显示散点图" class="headerlink" title="在地图上显示散点图"></a>在地图上显示散点图</h3><p><a target="_blank" rel="noopener" href="https://echarts.apache.org/examples/zh/editor.html?c=effectScatter-bmap">https://echarts.apache.org/examples/zh/editor.html?c=effectScatter-bmap</a><br />散点图的设置在series中，设置一个对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&#123;<br>    <span class="hljs-comment">// 坐标系设置成地理坐标系，默认是直角坐标系</span><br>    <span class="hljs-attr">coordinateSystem</span>: <span class="hljs-string">&#x27;geo&#x27;</span>,<br>    <span class="hljs-comment">// 地理坐标系中，data比较复杂 [&#123;name:&quot;名字&quot;, value: [经度, 纬度, 值]&#125;]</span><br>    <span class="hljs-attr">data</span>: <span class="hljs-title function_">convertData</span>(data),<br>    <span class="hljs-comment">// 散点图</span><br>    <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;scatter&#x27;</span>,<br>    <span class="hljs-comment">// symbolSize: function () &#123;&#125;</span><br>    <span class="hljs-comment">// 散点大小</span><br>    symbolSize (value) &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value)<br>      <span class="hljs-keyword">return</span> value[<span class="hljs-number">2</span>] / <span class="hljs-number">10</span><br>    &#125;<br>  &#125;<br></code></pre></td></tr></table></figure>
+<p>这样我们就可以在地图上展示散点图。<br />注意！！！geo只是添加地理坐标系。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>EChats</div>
+      <div>http://example.com/学习/js/46.EChats/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年11月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/9-%E5%88%86%E5%8C%85/" title="9.分包">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">9.分包</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/8-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%99%BB%E5%BD%95%E6%8E%88%E6%9D%83%EF%BC%88%E9%89%B4%E6%9D%83%EF%BC%89/" title="8.微信小程序登录授权（鉴权）">
+                        <span class="hidden-mobile">8.微信小程序登录授权（鉴权）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

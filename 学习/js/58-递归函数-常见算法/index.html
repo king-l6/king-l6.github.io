@@ -1,0 +1,694 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="递归函数【了解】导语：有个很经典的故事：从前有座山，山里有座庙，庙里有个老和尚，正在给小和尚讲故事！故事是什么呢？『从前有座山，山里有座庙，庙里有个老和尚，正在给小和尚讲故事！故事是什么呢？』…… 递归：  如果一个函数在内部调用自身本身，这个函数就是递归函数  好处  递归函数最大的好处在于可以精简程序中繁杂，重复调用程序   创建一个简单的递归 直接调用的递归  123456&#x2F;&#x2F; 直接调用；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="递归函数+常见算法">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/js/58-%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0-%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="递归函数【了解】导语：有个很经典的故事：从前有座山，山里有座庙，庙里有个老和尚，正在给小和尚讲故事！故事是什么呢？『从前有座山，山里有座庙，庙里有个老和尚，正在给小和尚讲故事！故事是什么呢？』…… 递归：  如果一个函数在内部调用自身本身，这个函数就是递归函数  好处  递归函数最大的好处在于可以精简程序中繁杂，重复调用程序   创建一个简单的递归 直接调用的递归  123456&#x2F;&#x2F; 直接调用；">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1653896315361-b23bb424-1b0a-457b-b80f-3d5f095afc6c.png#averageHue=%23f9f0f0&clientId=u0db55231-e831-4&errorMessage=unknown%20error&from=paste&height=199&id=u7d050629&name=image.png&originHeight=398&originWidth=832&originalType=binary&ratio=1&rotation=0&showTitle=false&size=133855&status=error&style=none&taskId=ucef7dfcb-3c1b-4c15-b0ad-0db54f8a4a8&title=&width=416">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1653896337083-2564e2c2-cf2f-4a3f-b4b0-c8ed0ebd14c5.png#averageHue=%23f1f1f1&clientId=u0db55231-e831-4&errorMessage=unknown%20error&from=paste&height=154&id=u682a6e66&name=image.png&originHeight=308&originWidth=546&originalType=binary&ratio=1&rotation=0&showTitle=false&size=71758&status=error&style=none&taskId=u14f73057-d3c7-4cd8-905a-6fd01ffeea2&title=&width=273">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/jpeg/22278242/1656399358826-7985eeac-573c-43d6-b44b-811a0c25b7f9.jpeg#averageHue=%2397892c&clientId=u969e022d-0f25-4&errorMessage=unknown%20error&from=paste&id=u4b4aeecc&originHeight=153&originWidth=236&originalType=url&ratio=1&rotation=0&showTitle=false&status=error&style=none&taskId=ua90d723c-262f-4f61-9dcd-767828c8eb4&title=">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1653896362270-4b9f19a8-e3fe-41de-9c64-74086a50101a.png#averageHue=%23f9fcf9&clientId=u0db55231-e831-4&errorMessage=unknown%20error&from=paste&height=371&id=ue8ed6e78&name=image.png&originHeight=742&originWidth=970&originalType=binary&ratio=1&rotation=0&showTitle=false&size=346260&status=error&style=none&taskId=ud81569ed-7f01-405a-af1f-24e29166396&title=&width=485">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1653896378700-5f787a99-d1df-4add-bda3-251229ea559d.png#averageHue=%23f8f8f8&clientId=u0db55231-e831-4&errorMessage=unknown%20error&from=paste&height=149&id=ubdb75e40&name=image.png&originHeight=298&originWidth=357&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9736&status=error&style=none&taskId=u146eb2b8-297a-45d3-be5a-199fd1d485b&title=&width=178.5">
+<meta property="article:published_time" content="2021-02-15T01:22:23.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:28:32.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1653896315361-b23bb424-1b0a-457b-b80f-3d5f095afc6c.png#averageHue=%23f9f0f0&clientId=u0db55231-e831-4&errorMessage=unknown%20error&from=paste&height=199&id=u7d050629&name=image.png&originHeight=398&originWidth=832&originalType=binary&ratio=1&rotation=0&showTitle=false&size=133855&status=error&style=none&taskId=ucef7dfcb-3c1b-4c15-b0ad-0db54f8a4a8&title=&width=416">
+  
+  
+  
+  <title>递归函数+常见算法 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="递归函数+常见算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-02-15 09:22" pubdate>
+          2021年2月15日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">递归函数+常见算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="e9bf03a1"></a></p>
+<h1 id="递归函数【了解】"><a href="#递归函数【了解】" class="headerlink" title="递归函数【了解】"></a>递归函数【了解】</h1><p>导语：有个很经典的故事：从前有座山，山里有座庙，庙里有个老和尚，正在给小和尚讲故事！故事是什么呢？『从前有座山，山里有座庙，庙里有个老和尚，正在给小和尚讲故事！故事是什么呢？』……</p>
+<p>递归：</p>
+<ul>
+<li>如果一个函数在内部调用自身本身，这个函数就是递归函数</li>
+</ul>
+<p>好处</p>
+<ul>
+<li>递归函数最大的好处在于可以精简程序中繁杂，重复调用程序</li>
+</ul>
+<p><a name="e1fc8f75"></a></p>
+<h4 id="创建一个简单的递归"><a href="#创建一个简单的递归" class="headerlink" title="创建一个简单的递归"></a>创建一个简单的递归</h4><ol>
+<li><p>直接调用的递归 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 直接调用；自己调用自己； 死递归</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">fun</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;from func&#x27;</span>);<br>  <span class="hljs-title function_">fun</span>();<br>&#125;<br><span class="hljs-title function_">fun</span>()<br></code></pre></td></tr></table></figure>
+
+</li>
+<li><p>间接调用的递归 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 间接调用自己</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;from foo&#x27;</span>);<br>  <span class="hljs-title function_">bar</span>();<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;from bar&#x27;</span>);<br>  <span class="hljs-title function_">foo</span>();<br>&#125;<br><span class="hljs-title function_">foo</span>()<br></code></pre></td></tr></table></figure>
+<p> <img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1653896315361-b23bb424-1b0a-457b-b80f-3d5f095afc6c.png#averageHue=%23f9f0f0&clientId=u0db55231-e831-4&errorMessage=unknown%20error&from=paste&height=199&id=u7d050629&name=image.png&originHeight=398&originWidth=832&originalType=binary&ratio=1&rotation=0&showTitle=false&size=133855&status=error&style=none&taskId=ucef7dfcb-3c1b-4c15-b0ad-0db54f8a4a8&title=&width=416" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+</li>
+<li><p>实现递归；递归要有最终的一个出口 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 递归的实现</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">age</span>(<span class="hljs-params">n</span>)&#123;<br>  <span class="hljs-comment">// 测试数据</span><br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(n);<br>  <span class="hljs-keyword">if</span>(n==<span class="hljs-number">1</span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">18</span>);<br>    <span class="hljs-keyword">return</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_">age</span>(n-<span class="hljs-number">1</span>);<br>&#125;<br><span class="hljs-title function_">age</span>(<span class="hljs-number">5</span>);<br></code></pre></td></tr></table></figure>
+<p>总结：递归只是一种思想，只不过在程序，依靠函数自身嵌套来实现</p>
+</li>
+</ol>
+<p><a name="54ac1af4"></a></p>
+<h4 id="使用递归求阶乘"><a href="#使用递归求阶乘" class="headerlink" title="使用递归求阶乘"></a>使用递归求阶乘</h4><p>案例：求1 _* 1+ 2 *  _2+ 3 * _3+ 4 * _4….的和</p>
+<ol>
+<li><p>普通写法 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sum</span>(<span class="hljs-params">n</span>)&#123;<br>  result = n <br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=n-<span class="hljs-number">1</span>; i&gt;=<span class="hljs-number">1</span>; i--)&#123;<br>  		result *= i<br>  &#125;<br>  <span class="hljs-keyword">return</span> result<br>&#125;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">sum</span>(<span class="hljs-number">10</span>));<br></code></pre></td></tr></table></figure>
+
+</li>
+<li><p>递归 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sum</span>(<span class="hljs-params">n</span>)&#123;<br>	<span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>)&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	&#125;<span class="hljs-keyword">else</span>&#123;<br>		<span class="hljs-keyword">return</span> n*n + <span class="hljs-title function_">sum</span>(n-<span class="hljs-number">1</span>);<br>	&#125;<br>&#125;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">sum</span>(<span class="hljs-number">5</span>));<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>总结：递归的好处 是 递归函数常用于检索大量数据，比如检索一个拥有300万个数的列表，从中查找某个数是否存在，如果用for遍历，会严重占用计算机计算能力，那么我们可以通过递归函数来减少搜索量。</p>
+<p><a name="6ff56370"></a></p>
+<h4 id="递归实现的特点"><a href="#递归实现的特点" class="headerlink" title="递归实现的特点"></a>递归实现的特点</h4><p>有进有出<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1653896337083-2564e2c2-cf2f-4a3f-b4b0-c8ed0ebd14c5.png#averageHue=%23f1f1f1&clientId=u0db55231-e831-4&errorMessage=unknown%20error&from=paste&height=154&id=u682a6e66&name=image.png&originHeight=308&originWidth=546&originalType=binary&ratio=1&rotation=0&showTitle=false&size=71758&status=error&style=none&taskId=u14f73057-d3c7-4cd8-905a-6fd01ffeea2&title=&width=273" srcset="/img/loading.gif" lazyload alt="image.png"><br />递归可以将复杂的程序变简单</p>
+<p>需求：如计算数字1+到100，判断数字是否小与100，判断变量是否小与100，小于100让他+1，然后输出当前变量i，直到100</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 普通写法</span><br><span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params">i</span>)&#123;<br>  i+=<span class="hljs-number">1</span>;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i);<br>  <span class="hljs-keyword">if</span>(i&lt;<span class="hljs-number">100</span>)&#123;<br>    i+=<span class="hljs-number">1</span>;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i);<br>    <span class="hljs-keyword">if</span>(i&lt;<span class="hljs-number">100</span>)&#123;<br>      i+=<span class="hljs-number">1</span>;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i);<br>    &#125;<br>  &#125;<br>&#125;<br><span class="hljs-title function_">test</span>(i);<br><br><span class="hljs-comment">// 改成递归函数</span><br><span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params">i</span>)&#123;<br>  i+=<span class="hljs-number">1</span>;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i);<br>  <span class="hljs-keyword">if</span>(i&lt;<span class="hljs-number">100</span>)&#123;<br>  		<span class="hljs-title function_">test</span>(i);<br>  &#125;<br>&#125;<br><span class="hljs-title function_">test</span>(i);<br></code></pre></td></tr></table></figure>
+<p>递归只是一种思想，只不过在程序，依靠函数自身嵌套来实现（递归使用的是压栈，弹栈，枪压子弹，叠书****）</p>
+<p><a name="21d68b2d"></a></p>
+<h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">n</span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(n);<br>    <span class="hljs-keyword">if</span>(n&gt;<span class="hljs-number">0</span>)&#123;<br>    		<span class="hljs-title function_">func</span>(n-<span class="hljs-number">1</span>);<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>    		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27; &#x27;</span>);<br>    &#125;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(n);<br>&#125;<br><span class="hljs-title function_">func</span>(<span class="hljs-number">3</span>);<br></code></pre></td></tr></table></figure>
+
+<p>案例：计算1到100之间相加之和；通过循环和递归两种方式实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 普通写法</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">sum_cycle</span>(<span class="hljs-params">n</span>)&#123;<br>    sum=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>    		sum+=i<br>    &#125;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(sum);<br>&#125;<br><span class="hljs-title function_">sum_cycle</span>(<span class="hljs-number">5</span>);<br><br><span class="hljs-comment">// 递归写法</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">sum_cycle</span>(<span class="hljs-params">n</span>)&#123;<br>    <span class="hljs-keyword">if</span>(n&gt;<span class="hljs-number">0</span>)&#123;<br>    		<span class="hljs-keyword">return</span> n + <span class="hljs-title function_">sum_cycle</span>(n-<span class="hljs-number">1</span>);<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>    		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">sum_cycle</span>(<span class="hljs-number">5</span>));<br></code></pre></td></tr></table></figure>
+
+<p><a name="e22f9700"></a></p>
+<h4 id="案例：小熊掰玉米"><a href="#案例：小熊掰玉米" class="headerlink" title="案例：小熊掰玉米"></a>案例：小熊掰玉米</h4><p>案例：小熊掰玉米 一天小熊来到一片玉米地，兴奋的掰了若干个玉米，他发现太多了，于是扔了其中一半，感觉还是有点多，于是又扔了一个后往家赶；当它走了一米的时候感觉有点累，于是扔掉其中的一半加一个，继续往前每走一米重复以往的动作，扔掉其中的一半加一个；当它走到10米时候，发现手中就剩一个了，有点伤感，也忘了开始自己摘了几个玉米了，那么你帮小熊算算，它开始掰了多少个玉米？<br /><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22278242/1656399358826-7985eeac-573c-43d6-b44b-811a0c25b7f9.jpeg#averageHue=%2397892c&clientId=u969e022d-0f25-4&errorMessage=unknown%20error&from=paste&id=u4b4aeecc&originHeight=153&originWidth=236&originalType=url&ratio=1&rotation=0&showTitle=false&status=error&style=none&taskId=ua90d723c-262f-4f61-9dcd-767828c8eb4&title=" srcset="/img/loading.gif" lazyload></p>
+<p>分析：小熊掰玉米，给定的是总的米数，但是获取10米需要依赖于9米，求9米，需要依赖8米…以此类推，所以想要获取10米的需要知道没走的时候，0米的时候手里有几个玉米</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getTotle</span>(<span class="hljs-params">length</span>)&#123;<br>	<span class="hljs-keyword">if</span>(length == <span class="hljs-number">0</span>)&#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	&#125;<span class="hljs-keyword">else</span>&#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>*(<span class="hljs-title function_">getTotle</span>(length-<span class="hljs-number">1</span>)+<span class="hljs-number">1</span>);<br>	&#125;<br>&#125;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">getTotle</span>(<span class="hljs-number">10</span>));<br></code></pre></td></tr></table></figure>
+
+<p>递归的特点：<br />	函数内部调用函数本身<br />	有进有出<br />	必须有出口<br />每次调用函数都会用掉一点内存，在足够多次数的函数调用发生后（在之前的调用返回后），空间就不够了，程序会以一个“超过最大递归深度”的错误信息结束。<br />面试题：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> a = <span class="hljs-number">10</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">show</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a); <span class="hljs-comment">// 结果？</span><br>  a = <span class="hljs-number">5</span>;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">window</span>.<span class="hljs-property">a</span>); <span class="hljs-comment">// 结果？</span><br>  <span class="hljs-keyword">var</span> a = <span class="hljs-number">20</span>;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a); <span class="hljs-comment">// 结果？</span><br>&#125;<br><span class="hljs-title function_">show</span>();<br></code></pre></td></tr></table></figure>
+
+<p><a name="5d7ecc89"></a></p>
+<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p>冒泡排序：依次比较相邻的两个值，如果后面的比前面的小，则将小的元素排到前面。依照这个规则进行多次并且递减的迭代，直到顺序正确。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1653896362270-4b9f19a8-e3fe-41de-9c64-74086a50101a.png#averageHue=%23f9fcf9&clientId=u0db55231-e831-4&errorMessage=unknown%20error&from=paste&height=371&id=ue8ed6e78&name=image.png&originHeight=742&originWidth=970&originalType=binary&ratio=1&rotation=0&showTitle=false&size=346260&status=error&style=none&taskId=ud81569ed-7f01-405a-af1f-24e29166396&title=&width=485" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> examplearr=[<span class="hljs-number">8</span>,<span class="hljs-number">94</span>,<span class="hljs-number">15</span>,<span class="hljs-number">88</span>,<span class="hljs-number">55</span>,<span class="hljs-number">76</span>,<span class="hljs-number">21</span>,<span class="hljs-number">39</span>];<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">sortarr</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;arr.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>;i++)&#123;<br>        <span class="hljs-comment">// for(j=0;j&lt;arr.length-1-i;j++)&#123; //更节省内存</span><br>        <span class="hljs-keyword">for</span>(j=<span class="hljs-number">0</span>;j&lt;arr.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>;j++)&#123;<br>            <span class="hljs-keyword">if</span>(arr[j]&gt;arr[j+<span class="hljs-number">1</span>])&#123;<br>                <span class="hljs-keyword">var</span> temp=arr[j];<br>                arr[j]=arr[j+<span class="hljs-number">1</span>];<br>                arr[j+<span class="hljs-number">1</span>]=temp;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> arr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><a name="cc128b01"></a></p>
+<h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1653896378700-5f787a99-d1df-4add-bda3-251229ea559d.png#averageHue=%23f8f8f8&clientId=u0db55231-e831-4&errorMessage=unknown%20error&from=paste&height=149&id=ubdb75e40&name=image.png&originHeight=298&originWidth=357&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9736&status=error&style=none&taskId=u146eb2b8-297a-45d3-be5a-199fd1d485b&title=&width=178.5" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="5690affe"></a></p>
+<h1 id="冒泡排序和选择排序对比"><a href="#冒泡排序和选择排序对比" class="headerlink" title="冒泡排序和选择排序对比"></a>冒泡排序和选择排序对比</h1><p>一般情况下对比两个算法的好坏，会从时间复杂度和空间复杂度两个方面进行对比；</p>
+<ul>
+<li>时间复杂度：指的是一个算法执行所耗费的时间。 </li>
+<li>空间复杂度：指运行完一个程序所需内存的大小。 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 生成1000个数字进行排序</span><br><span class="hljs-comment">// 1. 创建空数组，保存随机出来的数据</span><br><span class="hljs-keyword">var</span> getarr = [];<br><br><span class="hljs-comment">// 2. 获取当前时间</span><br><span class="hljs-keyword">var</span> oDate = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();<br><br><span class="hljs-comment">// 3. 获取随机数字</span><br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">100000</span>; i++)&#123;<br>	<span class="hljs-keyword">var</span> num = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>( <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>()*<span class="hljs-number">1000</span> );<br>	getarr.<span class="hljs-title function_">push</span>( num );<br>&#125;<br><br><span class="hljs-comment">// 4.调用选择排序或者冒泡排序</span><br><span class="hljs-title function_">xuanze</span>(getarr); <span class="hljs-comment">// 10W - 10m</span><br><span class="hljs-comment">// maopao(getarr); // 10W - 13354m</span><br><br><span class="hljs-comment">// 5. 获取时间差值</span><br>o.<span class="hljs-property">innerHTML</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() - oDate;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><a name="9bd81a1c"></a></p>
+<h1 id="二分查找法"><a href="#二分查找法" class="headerlink" title="二分查找法"></a>二分查找法</h1><p>二分查找也称折半查找（Binary Search），它是一种效率较高的查找方法。但是，折半查找要求线性表必须采用顺序存储结构，而且表中元素按关键字有序排列</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">binary_search</span>(<span class="hljs-params">num,list</span>)&#123;<br>    <span class="hljs-keyword">var</span> low = <span class="hljs-number">0</span>; <span class="hljs-comment">// 获取开始位置</span><br>    <span class="hljs-keyword">var</span> height = list.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>; <span class="hljs-comment">// 获取结束位置，下标值</span><br><br>    <span class="hljs-keyword">while</span>(low &lt;= height)&#123; <span class="hljs-comment">// 判断数组中是否有值</span><br>        mid = <span class="hljs-built_in">parseInt</span>((low + height)/<span class="hljs-number">2</span>); <span class="hljs-comment">// 获取数组中的中间值</span><br>        <span class="hljs-keyword">if</span>(list[mid] == num)&#123; <span class="hljs-comment">// 判断正好是中间值，返回下标</span><br>        		<span class="hljs-keyword">return</span> mid; <span class="hljs-comment">// </span><br>        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(list[mid] &gt; num)&#123; <span class="hljs-comment">// 如果中间值 &gt; 输入的数字，表示在左半部分</span><br>        		height = mid -<span class="hljs-number">1</span><br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>        		low = mid + <span class="hljs-number">1</span>; <span class="hljs-comment">// 如果中间值 &lt; 输入的数字，表示在右半部分</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>; <span class="hljs-comment">// 没找到</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ranyihang/p/16128154.html">JS十大经典排序方式 </a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>递归函数+常见算法</div>
+      <div>http://example.com/学习/js/58-递归函数-常见算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年2月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/59-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D%E6%B5%85%E6%8B%B7%E8%B4%9D/" title="引用类型和深拷贝浅拷贝">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">引用类型和深拷贝浅拷贝</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/57-%E9%97%AD%E5%8C%85%E5%92%8C%E8%BD%AE%E8%AF%A2%E6%9C%BA%E5%88%B6/" title="闭包和轮询机制">
+                        <span class="hidden-mobile">闭包和轮询机制</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

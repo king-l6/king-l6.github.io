@@ -1,0 +1,678 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1.Vuex 是什么？Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。  2.什么是“状态管理模式”？Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。让我们从一个简单的 Vue 计数应用开始：这个状态管理 包含以下几个部分：state，驱动应用的数据源；view，以声明方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vuex">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/vue/23.vuex/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="1.Vuex 是什么？Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。  2.什么是“状态管理模式”？Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。让我们从一个简单的 Vue 计数应用开始：这个状态管理 包含以下几个部分：state，驱动应用的数据源；view，以声明方式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331461341-858b49c8-7144-465f-a024-57c17d3d5b94.png#averageHue=%23272d36&clientId=u10f17d30-1f8b-4&from=paste&height=551&id=u7a702874&name=image.png&originHeight=992&originWidth=572&originalType=binary&ratio=1&rotation=0&showTitle=false&size=93664&status=done&style=none&taskId=ue16c459e-7d1d-4396-bf7a-9ab9df352b7&title=&width=317.77778619601423">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331492957-422fbae4-aa6f-4983-a73f-cb8bec6798eb.png#averageHue=%23fcf0f0&clientId=u10f17d30-1f8b-4&from=paste&height=800&id=u31fbd9c0&name=image.png&originHeight=1440&originWidth=1824&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7893953&status=done&style=none&taskId=u6143df89-0069-4c43-b70f-12887fe1612&title=&width=1013.3333601775">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331616502-37666ef8-d1bf-449c-9bb9-5db743cb3df0.png#averageHue=%23eeeeee&clientId=u10f17d30-1f8b-4&from=paste&height=487&id=uc2c91f3d&name=image.png&originHeight=877&originWidth=2560&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6747210&status=done&style=none&taskId=uf54faae9-2e1d-4b87-9295-d00f2880ccd&title=&width=1422.2222598982455">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1669299433316-53020fad-d0bf-41ec-899a-85456daffd5e.png#averageHue=%23fefefe&clientId=u53c85f43-f8af-4&from=paste&height=339&id=u2afb0afb&name=image.png&originHeight=610&originWidth=1022&originalType=binary&ratio=1&rotation=0&showTitle=false&size=187382&status=done&style=none&taskId=u66a86160-cb22-48cd-94c5-4b7bac0112d&title=&width=567.7777928187527">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1669299408875-e190f97f-0a7e-43e2-a050-00ad84fc79f1.png#averageHue=%23fefefe&clientId=u53c85f43-f8af-4&from=paste&height=114&id=u75710ad0&name=image.png&originHeight=206&originWidth=996&originalType=binary&ratio=1&rotation=0&showTitle=false&size=55150&status=done&style=none&taskId=u60f054fb-8a6d-4c84-8f6d-938e2cded23&title=&width=553.3333479916612">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331637782-d6399b7c-f932-42e6-9d63-473644e2408a.png#averageHue=%23fefdfb&clientId=u10f17d30-1f8b-4&from=paste&height=800&id=u59e0712c&name=image.png&originHeight=1440&originWidth=1832&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7928561&status=done&style=none&taskId=u3467a13e-bde4-4d45-b186-f63706cf5ed&title=&width=1017.777804739682">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1669299612713-c6921b7e-62ae-4322-ab9d-2c96a86863ad.png#averageHue=%23fefefe&clientId=u53c85f43-f8af-4&from=paste&height=560&id=u84cf9634&name=image.png&originHeight=1008&originWidth=1320&originalType=binary&ratio=1&rotation=0&showTitle=false&size=351037&status=done&style=none&taskId=u23c74db7-6d2f-47a1-95ff-a7dc5f4c1c3&title=&width=733.3333527600329">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331968821-c412f7ce-3692-4109-b466-287e226bc172.png#averageHue=%23bec8bb&clientId=u10f17d30-1f8b-4&from=paste&height=644&id=HRssb&name=image.png&originHeight=1160&originWidth=2560&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8924443&status=done&style=none&taskId=ud29d3574-b86f-483c-8734-3535748fdbf&title=&width=1422.2222598982455">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331980447-47c3ffb7-4ce4-47d9-8a71-b86392f0a73c.png#averageHue=%232a2e36&clientId=u10f17d30-1f8b-4&from=paste&height=800&id=v1sd8&name=image.png&originHeight=1440&originWidth=1992&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8620874&status=done&style=none&taskId=u5c7f6329-370c-43ef-a741-2f1f0be9842&title=&width=1106.6666959833224">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331985662-bf0f1a1b-af3d-4aaa-a3a1-e377a7d93805.png#averageHue=%2395afbc&clientId=u10f17d30-1f8b-4&from=paste&height=602&id=uJHk1&name=image.png&originHeight=1084&originWidth=2560&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8339750&status=done&style=none&taskId=uaeb9f518-0430-4563-b5ce-95d1f1327c2&title=&width=1422.2222598982455">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331988229-4a2bb4fd-72cd-40a7-87fc-66292ca78f1e.png#averageHue=%2330353d&clientId=u10f17d30-1f8b-4&from=paste&height=800&id=KMA20&name=image.png&originHeight=1440&originWidth=1764&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7634324&status=done&style=none&taskId=u650561a2-c539-4e0a-8487-c1ce55698b5&title=&width=980.0000259611348">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668332012225-ea274d80-4672-4f0f-b214-0e47d81bad1c.png#averageHue=%238da3b0&clientId=u10f17d30-1f8b-4&from=paste&height=800&id=u3035f7fa&name=image.png&originHeight=1440&originWidth=1691&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7318458&status=done&style=none&taskId=u5079da09-6e9b-412e-9487-f098913f11a&title=&width=939.4444693312239">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668332019395-c94436d6-0baa-42cf-b717-c112190050d8.png#averageHue=%2388a3b2&clientId=u10f17d30-1f8b-4&from=paste&height=800&id=u08647826&name=image.png&originHeight=1440&originWidth=2048&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8863194&status=done&style=none&taskId=u363bc287-7b78-4fac-a950-cbb11368615&title=&width=1137.7778079185964">
+<meta property="article:published_time" content="2021-04-30T05:03:47.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:45:00.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331461341-858b49c8-7144-465f-a024-57c17d3d5b94.png#averageHue=%23272d36&clientId=u10f17d30-1f8b-4&from=paste&height=551&id=u7a702874&name=image.png&originHeight=992&originWidth=572&originalType=binary&ratio=1&rotation=0&showTitle=false&size=93664&status=done&style=none&taskId=ue16c459e-7d1d-4396-bf7a-9ab9df352b7&title=&width=317.77778619601423">
+  
+  
+  
+  <title>vuex - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="vuex"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-30 13:03" pubdate>
+          2021年4月30日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          53 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vuex</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="tcInW"></a></p>
+<h1 id="1-Vuex-是什么？"><a href="#1-Vuex-是什么？" class="headerlink" title="1.Vuex 是什么？"></a>1.Vuex 是什么？</h1><p>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。<br />它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
+<p><a name="TK3wg"></a></p>
+<h1 id="2-什么是“状态管理模式”？"><a href="#2-什么是“状态管理模式”？" class="headerlink" title="2.什么是“状态管理模式”？"></a>2.什么是“状态管理模式”？</h1><p>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。<br />让我们从一个简单的 Vue 计数应用开始：<br />这个状态管理 包含以下几个部分：<br />state，驱动应用的数据源；<br />view，以声明方式将 state 映射到视图；<br />actions，响应在 view 上的用户输入导致的状态变化。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331461341-858b49c8-7144-465f-a024-57c17d3d5b94.png#averageHue=%23272d36&clientId=u10f17d30-1f8b-4&from=paste&height=551&id=u7a702874&name=image.png&originHeight=992&originWidth=572&originalType=binary&ratio=1&rotation=0&showTitle=false&size=93664&status=done&style=none&taskId=ue16c459e-7d1d-4396-bf7a-9ab9df352b7&title=&width=317.77778619601423" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="oVSBp"></a></p>
+<h1 id="3-vuex单向数据流"><a href="#3-vuex单向数据流" class="headerlink" title="3.vuex单向数据流"></a>3.vuex单向数据流</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331492957-422fbae4-aa6f-4983-a73f-cb8bec6798eb.png#averageHue=%23fcf0f0&clientId=u10f17d30-1f8b-4&from=paste&height=800&id=u31fbd9c0&name=image.png&originHeight=1440&originWidth=1824&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7893953&status=done&style=none&taskId=u6143df89-0069-4c43-b70f-12887fe1612&title=&width=1013.3333601775" srcset="/img/loading.gif" lazyload alt="image.png"><br />当用户单击，需要计数增加时（View）<br />并不能直接影响到count （State）<br />必须触发methods中某个方法，来改变count的值  （View —-&gt;Actions —&gt; State）<br />而当count值被改变，又进而重新渲染到页面 (State—&gt; View)<br><a name="F3Tu6"></a></p>
+<h1 id="4-Vuex的意义"><a href="#4-Vuex的意义" class="headerlink" title="4.Vuex的意义"></a>4.Vuex的意义</h1><p>当我们的应用遇到多个组件共享状态时，单向数据流的简洁性很容易被破坏：<br />1、多个视图依赖于同一状态。(状态即数据)<br />2、来自不同视图的行为需要变更同一状态。</p>
+<p>对于问题一，传参的方法对于多层嵌套的组件将会非常繁琐，并且对于兄弟组件间的状态传递无能为力。<br />对于问题二，我们经常会采用父子组件直接引用或者通过事件来变更和同步状态的多份拷贝。<br />以上的这些模式非常脆弱，通常会导致无法维护的代码。</p>
+<p>因此，我们为什么不把组件的共享状态抽取出来，以一个全局单例模式管理呢？在这种模式下，我们的组件树构成了一个巨大的“视图”，不管在树的哪个位置，任何组件都能获取状态或者触发行为！</p>
+<p>另外，通过定义和隔离状态管理中的各种概念并强制遵守一定的规则，我们的代码将会变得更结构化且易维护。</p>
+<p>这就是 Vuex 背后的基本思想，借鉴了 Flux、Redux、和 The Elm Architecture。与其他模式不同的是，Vuex 是专门为 Vue.js 设计的状态管理库，以利用 Vue.js 的细粒度数据响应机制来进行高效的状态更新。</p>
+<p>5.什么情况下我应该使用 Vuex？<br />虽然 Vuex 可以帮助我们管理共享状态，但也附带了更多的概念和框架。这需要对短期和长期效益进行权衡。       <br />如果您不打算开发大型单页应用，使用 Vuex 可能是繁琐冗余的。确实是如此——如果您的应用够简单，您最好不要使用 Vuex。但是，如果您需要构建一个中大型单页应用，您很可能会考虑如何更好地在组件外部管理状态，Vuex 将会成为自然而然的选择。<br />引用 Redux 的作者 Dan Abramov 的话说就是：Vuex就像眼镜：您自会知道什么时候需要它。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331616502-37666ef8-d1bf-449c-9bb9-5db743cb3df0.png#averageHue=%23eeeeee&clientId=u10f17d30-1f8b-4&from=paste&height=487&id=uc2c91f3d&name=image.png&originHeight=877&originWidth=2560&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6747210&status=done&style=none&taskId=uf54faae9-2e1d-4b87-9295-d00f2880ccd&title=&width=1422.2222598982455" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="D0S9v"></a></p>
+<h1 id="5-Vuex的运行机制"><a href="#5-Vuex的运行机制" class="headerlink" title="5.Vuex的运行机制"></a>5.Vuex的运行机制</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1669299433316-53020fad-d0bf-41ec-899a-85456daffd5e.png#averageHue=%23fefefe&clientId=u53c85f43-f8af-4&from=paste&height=339&id=u2afb0afb&name=image.png&originHeight=610&originWidth=1022&originalType=binary&ratio=1&rotation=0&showTitle=false&size=187382&status=done&style=none&taskId=u66a86160-cb22-48cd-94c5-4b7bac0112d&title=&width=567.7777928187527" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1669299408875-e190f97f-0a7e-43e2-a050-00ad84fc79f1.png#averageHue=%23fefefe&clientId=u53c85f43-f8af-4&from=paste&height=114&id=u75710ad0&name=image.png&originHeight=206&originWidth=996&originalType=binary&ratio=1&rotation=0&showTitle=false&size=55150&status=done&style=none&taskId=u60f054fb-8a6d-4c84-8f6d-938e2cded23&title=&width=553.3333479916612" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331637782-d6399b7c-f932-42e6-9d63-473644e2408a.png#averageHue=%23fefdfb&clientId=u10f17d30-1f8b-4&from=paste&height=800&id=u59e0712c&name=image.png&originHeight=1440&originWidth=1832&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7928561&status=done&style=none&taskId=u3467a13e-bde4-4d45-b186-f63706cf5ed&title=&width=1017.777804739682" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1669299612713-c6921b7e-62ae-4322-ab9d-2c96a86863ad.png#averageHue=%23fefefe&clientId=u53c85f43-f8af-4&from=paste&height=560&id=u84cf9634&name=image.png&originHeight=1008&originWidth=1320&originalType=binary&ratio=1&rotation=0&showTitle=false&size=351037&status=done&style=none&taskId=u23c74db7-6d2f-47a1-95ff-a7dc5f4c1c3&title=&width=733.3333527600329" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="z7v5X"></a></p>
+<h1 id="6-Vuex的实例：复杂组件之间传值"><a href="#6-Vuex的实例：复杂组件之间传值" class="headerlink" title="6.Vuex的实例：复杂组件之间传值"></a>6.Vuex的实例：复杂组件之间传值</h1><p>第一步：src&#x2F;store&#x2F;index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vuex</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span><br><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">Vuex</span>)<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vuex</span>.<span class="hljs-title class_">Store</span>(&#123;<br>    <span class="hljs-attr">state</span>: &#123;<br>        <span class="hljs-attr">selected</span>: [],<br>        <span class="hljs-attr">seller</span>: &#123;&#125;<br>    &#125;,<br>    <span class="hljs-attr">actions</span>: &#123;<br>        <span class="hljs-title function_">getSeller</span>(<span class="hljs-params">ctx, id</span>) &#123;<br>            axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;/api/getSeller&quot;</span>, &#123;<br>                <span class="hljs-attr">params</span>: &#123;<br>                    <span class="hljs-attr">id</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">id</span><br>                &#125;<br>            &#125;)<br>            .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;<br>                ctx.<span class="hljs-title function_">commit</span>(<span class="hljs-string">&quot;changeSeller&quot;</span>,res.<span class="hljs-property">data</span>)<br>            &#125;)<br>        &#125;<br>    &#125;,<br>  	<span class="hljs-attr">mutations</span>: &#123;<br>        <span class="hljs-title function_">addSelected</span>(<span class="hljs-params">state, food</span>) &#123;<br>            state.<span class="hljs-property">selected</span>.<span class="hljs-title function_">push</span>(food)<br>        &#125;,<br>        <span class="hljs-attr">changeSeller</span>:<span class="hljs-function">(<span class="hljs-params">state,data</span>)=&gt;</span>&#123;<br>            state.<span class="hljs-property">seller</span> = data<br>        &#125;<br>    &#125;,<br>    <span class="hljs-attr">getters</span>: &#123;<br>        <span class="hljs-attr">newSelected</span>: <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> &#123;<br>            <span class="hljs-keyword">return</span> state.<span class="hljs-property">selected</span>.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">item, index</span>) =&gt;</span> &#123;<br>                <span class="hljs-keyword">return</span> item.<span class="hljs-property">count</span><br>            &#125;)<br>        &#125;<br>    &#125;<br>&#125;)<br><br></code></pre></td></tr></table></figure>
+<p>第二步：src&#x2F;main.js， 注册store</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><br>......<br><br><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store&#x27;</span><br><br><span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>    router,<br>    store,<br>    <span class="hljs-attr">render</span>: <span class="hljs-function"><span class="hljs-params">h</span> =&gt;</span> <span class="hljs-title function_">h</span>(<span class="hljs-title class_">App</span>)<br>&#125;).$mount(<span class="hljs-string">&quot;#app&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+<p>第三步：在组件中使用数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 1.  在模板中使用：</span><br>&lt;p&gt;商家名称：&#123;&#123;$store.<span class="hljs-property">state</span>.<span class="hljs-property">seller</span>.<span class="hljs-property">name</span>&#125;&#125;&lt;/p&gt;<br><br><br><span class="hljs-comment">// 2.   ajax异步请求改变数据</span><br><span class="hljs-title function_">created</span>(<span class="hljs-params"></span>)&#123;<br>     <span class="hljs-variable language_">this</span>.<span class="hljs-property">id</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">$route</span>.<span class="hljs-property">params</span>.<span class="hljs-property">id</span>;<br>     <span class="hljs-variable language_">this</span>.<span class="hljs-property">$store</span>.<span class="hljs-title function_">dispatch</span>(<span class="hljs-string">&quot;getSeller&quot;</span>,<span class="hljs-variable language_">this</span>.<span class="hljs-property">id</span>)<br>&#125;,<br><br><span class="hljs-comment">// 3.  对状态管理中的数据过滤</span><br><span class="hljs-attr">computed</span>:&#123;<br>    <span class="hljs-title function_">selected2</span>(<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">$store</span>.<span class="hljs-property">getters</span>.<span class="hljs-property">newSelected</span><br>    &#125;<br>&#125;,<br><br><span class="hljs-comment">// 4.  同步改变数据</span><br><span class="hljs-variable language_">this</span>.<span class="hljs-property">$store</span>.<span class="hljs-title function_">commit</span>(<span class="hljs-string">&quot;addSelected&quot;</span>,<span class="hljs-variable language_">this</span>.<span class="hljs-property">food</span>)<br></code></pre></td></tr></table></figure>
+<p><a name="u18Tn"></a></p>
+<h1 id="7-Vuex的运行机制总结"><a href="#7-Vuex的运行机制总结" class="headerlink" title="7.Vuex的运行机制总结"></a>7.Vuex的运行机制总结</h1><p>一、new Vuex.Store() 实例中有四个主要选项 state, actions , mutations，getters，该实例要注册到new Vue()的根实例中<br />二、state 中存储状态 （即共享数据）， 在应用的任何一个组件，可以通过this.$store.state.键名来访问数据，而且数据是响应式，只要state数据改变，组件的部分即更新<br />三、但组件不能直接修改state中的数据，如果要修改，需要通过this.$store.dispatch()触发actions中定义的方法（可传值）<br />四、在actions中，可通过上下文(ctx)的commit方法，触发mutations中定义的方法，在mutations的方法中可改变state的值<br />五、actions中一般放获取异步数据的请求，如果请求不是异步，且数据不复杂，组件也可以直接调用 commit来触发mutations的方法，从而实现状态的修改</p>
+<p><a name="oole0"></a></p>
+<h1 id="面试题：为什么把异步操作放在actions中"><a href="#面试题：为什么把异步操作放在actions中" class="headerlink" title="面试题：为什么把异步操作放在actions中"></a>面试题：为什么把异步操作放在actions中</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html">因为异步操作本身是耗时的，当修改数据的时候，一开始数据还是空的<br>但是actions是可以使用异步请求的，表示actions是在异步请求过来之后，才对数据发生改变<br>有点类似于async和await中的await，你把方法放在actions之后，他就等着获取数据，获取到数据之后再去执行mutations中对数据的更改<br></code></pre></td></tr></table></figure>
+<p><a name="PvZlw"></a></p>
+<h1 id="8-Vuex的高级使用–getter"><a href="#8-Vuex的高级使用–getter" class="headerlink" title="8.Vuex的高级使用–getter"></a>8.Vuex的高级使用–getter</h1><p>有时候我们需要从 store 中的 state 中派生出一些状态，例如对列表进行过滤并计数：<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331968821-c412f7ce-3692-4109-b466-287e226bc172.png#averageHue=%23bec8bb&clientId=u10f17d30-1f8b-4&from=paste&height=644&id=HRssb&name=image.png&originHeight=1160&originWidth=2560&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8924443&status=done&style=none&taskId=ud29d3574-b86f-483c-8734-3535748fdbf&title=&width=1422.2222598982455" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331980447-47c3ffb7-4ce4-47d9-8a71-b86392f0a73c.png#averageHue=%232a2e36&clientId=u10f17d30-1f8b-4&from=paste&height=800&id=v1sd8&name=image.png&originHeight=1440&originWidth=1992&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8620874&status=done&style=none&taskId=u5c7f6329-370c-43ef-a741-2f1f0be9842&title=&width=1106.6666959833224" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331985662-bf0f1a1b-af3d-4aaa-a3a1-e377a7d93805.png#averageHue=%2395afbc&clientId=u10f17d30-1f8b-4&from=paste&height=602&id=uJHk1&name=image.png&originHeight=1084&originWidth=2560&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8339750&status=done&style=none&taskId=uaeb9f518-0430-4563-b5ce-95d1f1327c2&title=&width=1422.2222598982455" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="qGQHl"></a></p>
+<h1 id="9-Vuex-—-辅助函数的使用"><a href="#9-Vuex-—-辅助函数的使用" class="headerlink" title="9.Vuex —- 辅助函数的使用"></a>9.Vuex —- 辅助函数的使用</h1><p>this.$store.state.selectedAll的用法太繁琐<br />可以使用辅助函数，vuex有4个辅助函数<br />1）mapState 映射state中的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;p&gt;显示城市:&#123;&#123;city&#125;&#125;&lt;/p&gt;<br>import &#123; mapState &#125; from &#x27;vuex&#x27;<br>// 可以在computed中用mapState函数<br>computed:&#123;<br>  ...mapState([&#x27;city&#x27;,&#x27;students&#x27;]),<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>2）mapGetters 映射getters中的计算属性<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668331988229-4a2bb4fd-72cd-40a7-87fc-66292ca78f1e.png#averageHue=%2330353d&clientId=u10f17d30-1f8b-4&from=paste&height=800&id=KMA20&name=image.png&originHeight=1440&originWidth=1764&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7634324&status=done&style=none&taskId=u650561a2-c539-4e0a-8487-c1ce55698b5&title=&width=980.0000259611348" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;ul&gt;<br>    &lt;li v-for=&quot;(item,index) in selectStudent &quot; :key=&quot;index&quot;&gt;<br>      &#123;&#123;item.id&#125;&#125; --- &#123;&#123;item.name&#125;&#125; -- &#123;&#123;item.age&#125;&#125;<br>    &lt;/li&gt;<br>  &lt;/ul&gt;  <br>&lt;/template&gt;<br> export default &#123;<br>   import &#123;mapState,mapGetters&#125; from &#x27;vuex&#x27;;<br>             <br>   computed:&#123;<br>   		...mapGetters([&#x27;selectStudent&#x27;])<br>   &#125;<br> &#125;<br></code></pre></td></tr></table></figure>
+
+<p>3）也可在methods中用mapMutations 和mapActions</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; mapState,mapMutations&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span><br>...<br><span class="hljs-attr">methods</span>: &#123;<br>	...<span class="hljs-title function_">mapMutations</span>([<span class="hljs-string">&#x27;change&#x27;</span>])<br>&#125;<br><span class="hljs-comment">//然后直接用this.change方法名即可</span><br></code></pre></td></tr></table></figure>
+
+<p>注意：<br />mapState和mapGetters 必须在computed中<br />mapActions和mapMutations必须在methods中<br />解析mapState的格式：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zjslan_js/article/details/124223716">https://blog.csdn.net/zjslan_js&#x2F;article&#x2F;details&#x2F;124223716</a><br><a name="Rvt1m"></a></p>
+<h1 id="10-Vuex拆分—单文件拆分"><a href="#10-Vuex拆分—单文件拆分" class="headerlink" title="10.Vuex拆分—单文件拆分"></a>10.Vuex拆分—单文件拆分</h1><p>store&#x2F;state.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span>  &#123;<br>      city  <span class="hljs-string">&#x27;上海&#x27;</span>,<br>      <span class="hljs-attr">selectedAll</span>: []<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>store&#x2F;mutations.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span>  &#123;<br>    <span class="hljs-title function_">change</span>(<span class="hljs-params"></span>)&#123;  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>store&#x2F;index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vuex</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span><br><span class="hljs-keyword">import</span> state <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./state&#x27;</span><br><span class="hljs-keyword">import</span> mutations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./mutations&#x27;</span><br><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">Vuex</span>)<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vuex</span>.<span class="hljs-title class_">Store</span>(&#123;<br>	state,<br>	mutations<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p><a name="ePkfm"></a></p>
+<h1 id="11-Vuex的高级使用–module"><a href="#11-Vuex的高级使用–module" class="headerlink" title="11.Vuex的高级使用–module"></a>11.Vuex的高级使用–module</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668332012225-ea274d80-4672-4f0f-b214-0e47d81bad1c.png#averageHue=%238da3b0&clientId=u10f17d30-1f8b-4&from=paste&height=800&id=u3035f7fa&name=image.png&originHeight=1440&originWidth=1691&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7318458&status=done&style=none&taskId=u5079da09-6e9b-412e-9487-f098913f11a&title=&width=939.4444693312239" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668332019395-c94436d6-0baa-42cf-b717-c112190050d8.png#averageHue=%2388a3b2&clientId=u10f17d30-1f8b-4&from=paste&height=800&id=u08647826&name=image.png&originHeight=1440&originWidth=2048&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8863194&status=done&style=none&taskId=u363bc287-7b78-4fac-a950-cbb11368615&title=&width=1137.7778079185964" srcset="/img/loading.gif" lazyload alt="image.png"><br />案例：module 和 辅助函数 一起使用<br />store&#x2F;index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vuex</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span><br><span class="hljs-comment">// import moduleA from &#x27;./city&#x27;</span><br><br><span class="hljs-comment">// 使用router路由，也需要添加Vue.ues</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">Vuex</span>)<br><br><span class="hljs-keyword">let</span> moduleA = &#123;<br>  <span class="hljs-attr">state</span>:&#123;<br>    <span class="hljs-attr">city</span>:<span class="hljs-string">&#x27;郑州&#x27;</span><br>  &#125;,<br>  <span class="hljs-attr">actions</span>:&#123;<br>    <span class="hljs-title function_">changeCity</span>(<span class="hljs-params">ctx</span>)&#123;<br>      <span class="hljs-keyword">let</span> newCity = <span class="hljs-string">&#x27;北京&#x27;</span>;<br>      ctx.<span class="hljs-title function_">commit</span>(<span class="hljs-string">&#x27;changeCity&#x27;</span>,newCity)<br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">mutations</span>: &#123;<br>    <span class="hljs-title function_">changeCity</span>(<span class="hljs-params">state,data</span>)&#123;<br>      state.<span class="hljs-property">city</span> = data<br>    &#125;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">let</span> moduleB = &#123;<br>  <span class="hljs-attr">state</span>:&#123;<br>    <span class="hljs-attr">area</span>:<span class="hljs-string">&#x27;高新区&#x27;</span><br>  &#125;,<br>  <span class="hljs-attr">actions</span>:&#123;<br>    <span class="hljs-title function_">changeArea</span>(<span class="hljs-params">ctx</span>)&#123;<br>      <span class="hljs-keyword">let</span> newArea = <span class="hljs-string">&#x27;金水区&#x27;</span>;<br>      ctx.<span class="hljs-title function_">commit</span>(<span class="hljs-string">&#x27;changeArea&#x27;</span>,newArea)<br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">mutations</span>: &#123;<br>    <span class="hljs-title function_">changeArea</span>(<span class="hljs-params">state,newArea</span>)&#123;<br>      state.<span class="hljs-property">area</span> = newArea<br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">getters</span>:&#123;&#125;<br>&#125;<br><br><span class="hljs-comment">// 绑定到vuex.strore实例身上</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vuex</span>.<span class="hljs-title class_">Store</span>(&#123;<br>  <span class="hljs-attr">modules</span>: &#123;<br>    <span class="hljs-attr">a</span>:moduleA,<br>    <span class="hljs-attr">b</span>:moduleB<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>viws&#x2F;student.vue</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template lang=&quot;&quot;&gt;<br>    &lt;div&gt;<br>        &lt;h1&gt;学生信息页面&lt;/h1&gt;<br>        &lt;p&gt;显示城市：&#123;&#123;$store.state.a.city&#125;&#125;&lt;/p&gt;<br>        &lt;p&gt;显示区域：&#123;&#123;$store.state.b.area&#125;&#125;&lt;/p&gt;<br>        &lt;p&gt;&lt;button @click=&quot;change&quot;&gt;修改数据&lt;/button&gt;&lt;/p&gt;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br>&lt;script&gt;<br>import &#123;mapMutations&#125; from &#x27;vuex&#x27;<br>export default &#123;<br>    methods:&#123;<br>        ...mapMutations([&#x27;changeArea&#x27;,&#x27;changeCity&#x27;]),<br>        change()&#123;<br>            // 使用辅助函数<br>            this.changeCity(&#x27;北京&#x27;)<br>            this.changeArea(&#x27;朝阳群众&#x27;)<br>            // 原来的调用方式<br>            // this.$store.commit(&#x27;changeCity&#x27;,&#x27;北京&#x27;);<br>            // this.$store.commit(&#x27;changeArea&#x27;,&#x27;朝阳群众&#x27;);<br>        &#125;<br>    &#125;<br>&#125;<br>&lt;/script&gt;<br>&lt;style lang=&quot;&quot;&gt;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>vuex</div>
+      <div>http://example.com/学习/vue/23.vuex/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年4月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/vue/25-%E8%B7%AF%E7%94%B1%E8%BF%9B%E9%98%B6/" title="路由守卫">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">路由守卫</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/vue/22.token%E7%9A%84%E4%BD%BF%E7%94%A8/" title="token的使用">
+                        <span class="hidden-mobile">token的使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,679 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1.为什么使用虚拟滚动？首先提到一个现象，前端的性能瓶颈那就是页面的卡顿，当然这种页面的卡顿包含了多种原因。例如HTTP请求过多导致数据加载国漫，下载的静态文件非常大导致页面加载时间很长，js中一些算法响应的时间过长等。很多前端工程师都花费很多的精力在dom渲染上来优化页面加载。 2.浏览器渲染原理在我们讨论今天的这个虚拟滚动原理之前需要了解一下浏览器的渲染原理。 浏览器渲染页面的过程分为以下几步">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js实现虚拟滚动">
+<meta property="og:url" content="http://example.com/bilibili/%E5%AD%A6%E4%B9%A0/js%E5%AE%9E%E7%8E%B0%E8%99%9A%E6%8B%9F%E6%BB%9A%E5%8A%A8/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="1.为什么使用虚拟滚动？首先提到一个现象，前端的性能瓶颈那就是页面的卡顿，当然这种页面的卡顿包含了多种原因。例如HTTP请求过多导致数据加载国漫，下载的静态文件非常大导致页面加载时间很长，js中一些算法响应的时间过长等。很多前端工程师都花费很多的精力在dom渲染上来优化页面加载。 2.浏览器渲染原理在我们讨论今天的这个虚拟滚动原理之前需要了解一下浏览器的渲染原理。 浏览器渲染页面的过程分为以下几步">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://secure2.wostatic.cn/static/q8QUv7MNPy4rDmu6YdKhYK/image.png?auth_key=1691487122-ihZtGo7FfJHWtt8g2qQnwF-0-5a4c45ff89770bda3980d8a8b331f8d6">
+<meta property="og:image" content="https://secure2.wostatic.cn/static/whsD1frWo9KfNzrtzjbmUr/image.png?auth_key=1691487382-7dYgqgpLoSS7vQQTAMrdJX-0-720a6dffc5bd68bb8c7fa93d9b2c2762">
+<meta property="article:published_time" content="2023-08-08T08:13:44.000Z">
+<meta property="article:modified_time" content="2023-08-08T09:50:26.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://secure2.wostatic.cn/static/q8QUv7MNPy4rDmu6YdKhYK/image.png?auth_key=1691487122-ihZtGo7FfJHWtt8g2qQnwF-0-5a4c45ff89770bda3980d8a8b331f8d6">
+  
+  
+  
+  <title>js实现虚拟滚动 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="js实现虚拟滚动"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-08 16:13" pubdate>
+          2023年8月8日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">js实现虚拟滚动</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-为什么使用虚拟滚动？"><a href="#1-为什么使用虚拟滚动？" class="headerlink" title="1.为什么使用虚拟滚动？"></a>1.为什么使用虚拟滚动？</h1><p>首先提到一个现象，前端的性能瓶颈那就是页面的卡顿，当然这种页面的卡顿包含了多种原因。例如HTTP请求过多导致数据加载国漫，下载的静态文件非常大导致页面加载时间很长，js中一些算法响应的时间过长等。很多前端工程师都花费很多的精力在dom渲染上来优化页面加载。</p>
+<h1 id="2-浏览器渲染原理"><a href="#2-浏览器渲染原理" class="headerlink" title="2.浏览器渲染原理"></a>2.浏览器渲染原理</h1><p>在我们讨论今天的这个虚拟滚动原理之前需要了解一下浏览器的渲染原理。</p>
+<p>浏览器渲染页面的过程分为以下几步：</p>
+<ol>
+<li>解析html文件并生成 Dom Tree。</li>
+<li>CSS解析生成CSS Rule Tree。</li>
+<li>在渲染阶段，浏览器会把DOM Tree 和 CSS Rule Tree 给DOM Tree上的每个节点添加样式，并生成Render Tree。</li>
+<li>Render Tree（layout&#x2F;reflow），绘制元素尺寸、位置计算。</li>
+<li>将计算好的信息发给GPU并显示在页面。</li>
+</ol>
+<p>具体的浏览器原理在这篇文章不做过多的介绍，有兴趣的话可以去看我的另一篇文章《一篇文章理解浏览器渲染原理和机制》。</p>
+<h1 id="3-浏览器渲染瓶颈"><a href="#3-浏览器渲染瓶颈" class="headerlink" title="3.浏览器渲染瓶颈"></a>3.浏览器渲染瓶颈</h1><p>首先大家要明白重绘和回流(重排)的概念：</p>
+<ul>
+<li>重绘(repaint)：当Render Tree 中的一些元素需要更新元素本身的属性，只影响外观样式和颜色等，不影响整个布局。</li>
+<li>回流(reflow)：当Render Tree 中的某些元素因为规模、尺寸、位置等改变时，会影响整个布局。</li>
+</ul>
+<p>回流必定发生重绘，重绘不一定发生回流，所以大家可以知道，回流所造成的影响是比较大的，如果页面中频繁的触发回流的操作，那么最终造成页面卡顿也是肯定的。</p>
+<p>造成回流和重绘的操作有以下类别：</p>
+<ul>
+<li>页面初始化</li>
+<li>添加或者删除页面上的可视区DOM元素</li>
+<li>元素位置发生改变，定位和浮动，盒模型</li>
+<li>页面文本内容发生变化，影响输入框的大小改变。</li>
+<li>图片显示加载，如果没有加载图片又会被替换成相应提示文字信息。</li>
+<li>浏览器窗口尺寸大小变化（回流是根据视口大小来计算页面元素的位置和大小）。</li>
+</ul>
+<p>其实对于这些需要考虑的因素，一些浏览器也是做出了相应的处理，因为每次回流可能会造成巨大的影响，浏览器本身会实现一个队列记录每次回流时操作，当存放的操作数量达到一定值或者达到一定时间后会对队列中的操作进行清空，并一次性进行一次回流，让多次回流操作压缩成一次回流操作执行，提高效率。</p>
+<p>本文章将着重讲述关于滚动事件scroll event造成的影响。滚动事件本身不会造成太多的性能消耗，而是因为滚动事件伴随有大量的元素参与进来一起进行回流的操作才会影响浏览器的性能。例如一个表格有上万行数据，如果一次性展示在页面中，并且在滚动时显示对应偏移的数据，那么每一次滚动都会对这几万个元素进行回流，那么性能肯定会很差。</p>
+<p>浏览器的瓶颈主要在于：</p>
+<ol>
+<li>无法一次性渲染太多的DOM元素。</li>
+<li>每次滚动事件将会让对应的DOM中所有元素重新渲染。</li>
+</ol>
+<p>针对于浏览器的瓶颈问题，有三种解决办法：数据分页、无限滚动、虚拟滚动。</p>
+<h1 id="4-数据分页"><a href="#4-数据分页" class="headerlink" title="4.数据分页"></a>4.数据分页</h1><p>许多网页和应用程序都会用到这样的方，对需要展示的大量数据进行分割分页，后端已经做好了分页，前端只需要调用后端的接口传入相应的第几页的参数就能获取到，减少了一次性需要渲染的行数，但是如果查询的表列数非常多，还是可能会渲染很多元素，不是一个很稳定的方法。</p>
+<h1 id="5-无限滚动"><a href="#5-无限滚动" class="headerlink" title="5.无限滚动"></a>5.无限滚动</h1><p>该方法是在页面渲染一次性所能成手最大范围的数据量，当滚动条快接近底部时，再去追加渲染下一批需要渲染的元素，但是该方法的明显缺血在于，如果数据量过大，无限滚动下去那么最终所造成渲染的元素越来越多，性能也不会很好。</p>
+<h1 id="6-虚拟滚动"><a href="#6-虚拟滚动" class="headerlink" title="6.虚拟滚动"></a>6.虚拟滚动</h1><p>虚拟滚动其实就是综合数据分页和无限滚动的方法，在有限的视口中只渲染我们所能看到的数据，超出视口之外的数据就不进行渲染，可以通过计算可视范围内的但单元格，保证每一次滚动渲染的DOM元素都是可以控制的，不会担心像数据分页一样一次性渲染过多，也不会发生像无限滚动方案那样会存在数据堆积，是一种很好的解决办法。</p>
+<p>假设实际开发中服务端一次响应20万条列表数据，此时设备屏幕只允许容纳20条，那么用户理论上只可以看见20条数据，其他的数据不会进行渲染加载。如果前端将20万条数据全部渲染成DOM元素，可能造成程序卡顿，占用较大资源，非常影响用户体验，那么虚拟滚动技术就完美的解决了这一问题。</p>
+<p><img src="https://secure2.wostatic.cn/static/q8QUv7MNPy4rDmu6YdKhYK/image.png?auth_key=1691487122-ihZtGo7FfJHWtt8g2qQnwF-0-5a4c45ff89770bda3980d8a8b331f8d6" srcset="/img/loading.gif" lazyload></p>
+<p>如图所示，当我们进行滚动时，可视区域大小不变，渲染的元素数量也是可以控制的，合理的减少了不必要的DOM渲染，提高浏览器的性能。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">可以计算：卷入行数 = <span class="hljs-title function_">scrollTop</span>(卷入高度) / 每行的高度(itemH)<br></code></pre></td></tr></table></figure>
+
+<p>黄色边框内为可视区域，可视区域内的红色行表示在页面能展示的数据，每次滚动时，计算scrollTop的值，可视区域内的红色渲染部分高度可以略大于黄色边框可是高度，避免滚动的时候直接替换。</p>
+<p>如何计算可视区域渲染的元素以及实现虚拟滚动，步骤如下：</p>
+<ul>
+<li>统一设置每一行的高度需要相同，方便计算。</li>
+<li>需要计算渲染数据数量（数组的长度），根据每行的高度以及元素的总量计算整个DOM渲染容器的高度。</li>
+<li>获取可视区域的高度</li>
+<li>触发滚动事件后，计算偏移量（滚动条据顶距离），再根据可视区域高度计算本次偏移的截止量，得到需要渲染的具体数据。</li>
+<li>对于与表格的列来说，需要做虚拟滚动的话，在x轴同样可以根据以上步骤执行，实现横向虚拟滚动。</li>
+</ul>
+<h1 id="7-自定义封装一个虚拟滚动组件："><a href="#7-自定义封装一个虚拟滚动组件：" class="headerlink" title="7.自定义封装一个虚拟滚动组件："></a>7.自定义封装一个虚拟滚动组件：</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">//子组件：</span><br>&lt;template&gt;<br>  &lt;!-- 可视区盒子 --&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">&quot;`height:$&#123;viewH&#125;px;overflow-y:scroll`&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">    @<span class="hljs-attr">scroll</span>=<span class="hljs-string">&quot;handleScroll&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">    <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">&quot;`height:$&#123;scrollH&#125;px`&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item_box&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">:style</span>=<span class="hljs-string">&quot;`transform:translateY($&#123;offsetY&#125;px)`&quot;</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">:style</span>=<span class="hljs-string">&quot;`height:$&#123;itemH&#125;px`&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;(item,index) in list&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;index&quot;</span>&gt;</span></span><br><span class="language-xml">          &#123;&#123; item &#125;&#125;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>&lt;/template&gt;<br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;ScrollComponent&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">props</span>: &#123;</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">data</span>: <span class="hljs-title class_">Array</span>,   <span class="hljs-comment">// 列表总数据</span></span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">viewH</span>: <span class="hljs-title class_">Number</span>, <span class="hljs-comment">// 外部高度</span></span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">itemH</span>: <span class="hljs-title class_">Number</span>, <span class="hljs-comment">// 单项高度</span></span></span><br><span class="language-javascript"><span class="language-xml">  &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">  data () &#123;</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-keyword">return</span> &#123;</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">scrollH</span>: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-comment">// 整个滚动列表高度(总高度)</span></span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">list</span>: [],    <span class="hljs-comment">// 每次显示的数据</span></span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">showNum</span>: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-comment">// 页面需要显示的数量</span></span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">offsetY</span>: <span class="hljs-string">&#x27;&#x27;</span>,<span class="hljs-comment">// 动态偏移量- 外层的盒子进行滚动设置</span></span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">lastTime</span>: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-comment">//最新的时间</span></span></span><br><span class="language-javascript"><span class="language-xml">    &#125;</span></span><br><span class="language-javascript"><span class="language-xml">  &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">  mounted () &#123;</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 初始化计算</span></span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-variable language_">this</span>.<span class="hljs-property">scrollH</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>.<span class="hljs-property">length</span> * <span class="hljs-variable language_">this</span>.<span class="hljs-property">itemH</span></span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 计算可视化高度中能存几个列表，可以略多余可视化高度能存放的列表数量避免滚动时被替换</span></span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-variable language_">this</span>.<span class="hljs-property">showNum</span> = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">viewH</span> / <span class="hljs-variable language_">this</span>.<span class="hljs-property">itemH</span>) + <span class="hljs-number">1</span></span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 默认展示的几个数据</span></span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-variable language_">this</span>.<span class="hljs-property">list</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">showNum</span>)</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastTime</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">getTime</span>()</span></span><br><span class="language-javascript"><span class="language-xml">  &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">methods</span>: &#123;</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// handleScroll 滚动时候触发回调</span></span></span><br><span class="language-javascript"><span class="language-xml">    handleScroll (e) &#123;</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-comment">// 控制滚动时间间隔</span></span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">getTime</span>() - <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastTime</span> &gt; <span class="hljs-number">10</span>) &#123;</span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-keyword">let</span> scrollTop = e.<span class="hljs-property">target</span>.<span class="hljs-property">scrollTop</span> <span class="hljs-comment">//滚动条高度</span></span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-comment">// 每一次滚动后 根据scrollTop值获取一个可以整除itemH结果进行偏移</span></span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-comment">// 例如：scrollTop = 1220，1220 % this.itemH = 20 offsetY = 1220-20 = 1200</span></span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-variable language_">this</span>.<span class="hljs-property">offsetY</span> = scrollTop - (scrollTop % <span class="hljs-variable language_">this</span>.<span class="hljs-property">itemH</span>)</span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;卷入scrollTop值:&#x27;</span>, scrollTop, <span class="hljs-string">&#x27;卷入的行数：&#x27;</span>, scrollTop % <span class="hljs-variable language_">this</span>.<span class="hljs-property">itemH</span>);</span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-variable language_">this</span>.<span class="hljs-property">list</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>.<span class="hljs-title function_">slice</span>(</span></span><br><span class="language-javascript"><span class="language-xml">          <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(scrollTop / <span class="hljs-variable language_">this</span>.<span class="hljs-property">itemH</span>), <span class="hljs-comment">// 计算卷入了多少行</span></span></span><br><span class="language-javascript"><span class="language-xml">          <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(scrollTop / <span class="hljs-variable language_">this</span>.<span class="hljs-property">itemH</span>) + <span class="hljs-variable language_">this</span>.<span class="hljs-property">showNum</span></span></span><br><span class="language-javascript"><span class="language-xml">        )</span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastTime</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">getTime</span>() <span class="hljs-comment">//更新最新时间</span></span></span><br><span class="language-javascript"><span class="language-xml">      &#125;</span></span><br><span class="language-javascript"><span class="language-xml">    &#125;</span></span><br><span class="language-javascript"><span class="language-xml">  &#125;</span></span><br><span class="language-javascript"><span class="language-xml">&#125;</span></span><br><span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span></span><br><span class="language-css"><span class="language-xml"><span class="hljs-selector-class">.container</span> &#123;</span></span><br><span class="language-css"><span class="language-xml">  <span class="hljs-attribute">position</span>: relative;</span></span><br><span class="language-css"><span class="language-xml">  <span class="hljs-attribute">top</span>: <span class="hljs-number">200px</span>;</span></span><br><span class="language-css"><span class="language-xml">  <span class="hljs-attribute">left</span>: <span class="hljs-number">500px</span>;</span></span><br><span class="language-css"><span class="language-xml">  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid red;</span></span><br><span class="language-css"><span class="language-xml">  <span class="hljs-attribute">width</span>: <span class="hljs-number">500px</span>;</span></span><br><span class="language-css"><span class="language-xml">&#125;</span></span><br><span class="language-css"><span class="language-xml"><span class="hljs-selector-class">.item</span> &#123;</span></span><br><span class="language-css"><span class="language-xml">  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid pink;</span></span><br><span class="language-css"><span class="language-xml">&#125;</span></span><br><span class="language-css"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>父组件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">&lt;template&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">ScrollComponent</span> <span class="hljs-attr">:data</span>=<span class="hljs-string">&quot;dataList&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">:viewH</span>=<span class="hljs-string">&quot;viewH&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">:itemH</span>=<span class="hljs-string">&quot;itemH&quot;</span> /&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>&lt;/template&gt;<br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">import</span> <span class="hljs-title class_">ScrollComponent</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./components/ScrollComponent.vue&#x27;</span></span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;App&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">components</span>: &#123;</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-title class_">ScrollComponent</span></span></span><br><span class="language-javascript"><span class="language-xml">  &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">  data () &#123;</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-keyword">return</span> &#123;</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">dataList</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">11</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">11</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">11</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>],</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">viewH</span>: <span class="hljs-number">200</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">itemH</span>: <span class="hljs-number">40</span></span></span><br><span class="language-javascript"><span class="language-xml">    &#125;</span></span><br><span class="language-javascript"><span class="language-xml">  &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">  mounted () &#123;</span></span><br><span class="language-javascript"><span class="language-xml">  &#125;</span></span><br><span class="language-javascript"><span class="language-xml">&#125;</span></span><br><span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="language-css"><span class="language-xml">* &#123;</span></span><br><span class="language-css"><span class="language-xml">    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;</span></span><br><span class="language-css"><span class="language-xml">    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;</span></span><br><span class="language-css"><span class="language-xml">&#125;</span></span><br><span class="language-css"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>浏览器显示结果：</p>
+<p><img src="https://secure2.wostatic.cn/static/whsD1frWo9KfNzrtzjbmUr/image.png?auth_key=1691487382-7dYgqgpLoSS7vQQTAMrdJX-0-720a6dffc5bd68bb8c7fa93d9b2c2762" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>js实现虚拟滚动</div>
+      <div>http://example.com/bilibili/学习/js实现虚拟滚动/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/bilibili/%E5%AD%A6%E4%B9%A0/%E5%9C%A8vue%E4%B8%AD%E4%BD%BF%E7%94%A8xlsx%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC/" title="在vue中使用xlsx导出表格">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">在vue中使用xlsx导出表格</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/bilibili/%E5%AD%A6%E4%B9%A0/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98/" title="浏览器的缓存">
+                        <span class="hidden-mobile">浏览器的缓存</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

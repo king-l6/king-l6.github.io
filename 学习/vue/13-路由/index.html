@@ -1,0 +1,685 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1.spa（单页面应用）单页Web应用（single page web application，SPA），就是只有一张Web页面的应用。单页应用程序 (SPA) 是加载单个HTML 页面并在用户与应用程序交互时动态更新该页面的Web应用程序。   浏览器一开始会加载必需的HTML、CSS和JavaScript，所有的操作都在这张页面上完成，都由JavaScript来控制。因此，对单页应用来说模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="路由">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/vue/13-%E8%B7%AF%E7%94%B1/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="1.spa（单页面应用）单页Web应用（single page web application，SPA），就是只有一张Web页面的应用。单页应用程序 (SPA) 是加载单个HTML 页面并在用户与应用程序交互时动态更新该页面的Web应用程序。   浏览器一开始会加载必需的HTML、CSS和JavaScript，所有的操作都在这张页面上完成，都由JavaScript来控制。因此，对单页应用来说模块">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1667742939866-828ae0c1-59aa-4579-87ee-f08cee1b1173.png#averageHue=%232b2c25&clientId=u2e53a63d-39d0-4&from=paste&height=500&id=u11aecfa2&name=image.png&originHeight=2560&originWidth=1351&originalType=binary&ratio=1&rotation=0&showTitle=false&size=10395108&status=done&style=none&taskId=u16f33e84-e695-497e-881b-be684ba95c5&title=&width=263.9965515136719">
+<meta property="article:published_time" content="2021-04-21T05:03:47.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:43:10.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1667742939866-828ae0c1-59aa-4579-87ee-f08cee1b1173.png#averageHue=%232b2c25&clientId=u2e53a63d-39d0-4&from=paste&height=500&id=u11aecfa2&name=image.png&originHeight=2560&originWidth=1351&originalType=binary&ratio=1&rotation=0&showTitle=false&size=10395108&status=done&style=none&taskId=u16f33e84-e695-497e-881b-be684ba95c5&title=&width=263.9965515136719">
+  
+  
+  
+  <title>路由 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="路由"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-21 13:03" pubdate>
+          2021年4月21日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          69 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">路由</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="eK7Rl"></a></p>
+<h1 id="1-spa（单页面应用）"><a href="#1-spa（单页面应用）" class="headerlink" title="1.spa（单页面应用）"></a>1.spa（单页面应用）</h1><p>单页Web应用（single page web application，SPA），就是只有一张Web页面的应用。单页应用程序 (SPA) 是加载单个HTML 页面并在用户与应用程序交互时动态更新该页面的Web应用程序。   浏览器一开始会加载必需的HTML、CSS和JavaScript，所有的操作都在这张页面上完成，都由JavaScript来控制。因此，对单页应用来说模块化的开发和设计显得相当重要。 <br />特点<br />1.速度：更好的用户体验，让用户在web app感受native app的速度和流畅。<br />2.MVVM：经典MVVM开发模式，前后端各负其责。<br />3.ajax：重前端，业务逻辑全部在本地操作，数据都需要通过AJAX同步、提交。<br />4.路由：在URL中采用#号来作为当前视图的地址,改变#号后的参数，页面并不会重载。 <br />例如：<br />输入：<a target="_blank" rel="noopener" href="http://www.todolist.cn/getuser">http://www.todolist.cn/getuser</a>后，再输入<a target="_blank" rel="noopener" href="http://www.todolist.cn/getgoods,">http://www.todolist.cn/getgoods,</a> 页面刷新              <br />而输入：<a target="_blank" rel="noopener" href="http://www.todolist.cn/#/getuser">http://www.todolist.cn/#/getuser</a>后，再输入<a target="_blank" rel="noopener" href="http://www.todolist.cn/#/getgoods,">http://www.todolist.cn/#/getgoods,</a> 页面不刷新，且可通过location对象分析路由的不同</p>
+<p>单页Web应用（single page web application，SPA）是当今网站开发技术的弄潮儿，很多传统网站都在或者已经转型为单页Web应用，新的单页Web应用网站（包括移动平台上的）也如雨后春笋般涌现在人们的面前，如Gmail、Evernote、Trello等。如果你是一名Web开发人员，却还没开发过或者甚至是没有听说过单页应用，那你已经Out很久了。<br />单页Web应用和前端工程师们息息相关，因为主要的变革发生在浏览器端，用到的技术其实还是HTML+CSS+JavaScript，所有的浏览器都原生支持，当然有的浏览器因为具备一些高级特性，从而使得单页Web应用的用户体验更上一层楼。关于单页应用的优点和缺点，网上讲解的文章有很多，这里就不展开论述了。 单页Web应用，顾名思义，就是只有一张Web页面的应用。浏览器一开始会加载必需的HTML、CSS和JavaScript，之后所有的操作都在这张页面上完成，这一切都由JavaScript来控制。因此，单页Web应用会包含大量的JavaScript代码，复杂度可想而知，模块化开发和设计的重要性不言而喻。<br><a name="HPJ9j"></a></p>
+<h1 id="2-路由"><a href="#2-路由" class="headerlink" title="2.路由"></a>2.路由</h1><ol>
+<li>单页面应用中，视图的切换需要通过路由实现。</li>
+<li>路由的特点： 在URL中采用#号来作为当前视图的地址,改变#号后的参数，页面并不会重载。</li>
+</ol>
+<p>	</p>
+<p>如：<br />获取商品信息： <a target="_blank" rel="noopener" href="http://www.baidu.com/#/getGoods">http://www.baidu.com/#/getGoods</a>	<br />获取用户信息: <a target="_blank" rel="noopener" href="http://www.baidu.com/#/getUser3">http://www.baidu.com/#/getUser3</a></p>
+<ol start="3">
+<li>前端路由根据#后内容的改变，而去请求不同的内容，但是实际访问的还是那个页面，因为#后不管如何改变，页面地址是不变的<br><a name="DrrPb"></a></li>
+</ol>
+<h1 id="3-路由的实现-美团路由"><a href="#3-路由的实现-美团路由" class="headerlink" title="3.路由的实现-美团路由"></a>3.路由的实现-美团路由</h1><p><a name="V5jZ5"></a></p>
+<h3 id="第一步：-创建组件"><a href="#第一步：-创建组件" class="headerlink" title="第一步： 创建组件"></a>第一步： 创建组件</h3><p>创建组件 ：  首页、发现、订单、我的<br />引入路由插件<br /><script src="vue.js"></script><br /><script src="vue-router.js"></script></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Index</span> = &#123;<br>    <span class="hljs-attr">template</span>: <span class="hljs-string">`</span><br><span class="hljs-string">        &lt;div&gt;首页&lt;/div&gt;</span><br><span class="hljs-string">    `</span><br>&#125;<br><span class="hljs-keyword">const</span>  <span class="hljs-title class_">Find</span> = &#123;<br>    <span class="hljs-attr">template</span>: <span class="hljs-string">`</span><br><span class="hljs-string">        &lt;div&gt;发现&lt;/div&gt;</span><br><span class="hljs-string">    `</span><br>&#125;<br><br><span class="hljs-keyword">const</span>  <span class="hljs-title class_">Order</span> = &#123;<br>    <span class="hljs-attr">template</span>: <span class="hljs-string">`</span><br><span class="hljs-string">        &lt;div&gt;订单&lt;/div&gt;</span><br><span class="hljs-string">    `</span><br>&#125;<br><span class="hljs-keyword">const</span>  <span class="hljs-title class_">My</span> = &#123;<br>    <span class="hljs-attr">template</span>: <span class="hljs-string">`</span><br><span class="hljs-string">        &lt;div&gt;我的&lt;/div&gt;</span><br><span class="hljs-string">    `</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="csZUz"></a></p>
+<h3 id="第二步：-配置路由"><a href="#第二步：-配置路由" class="headerlink" title="第二步： 配置路由"></a>第二步： 配置路由</h3><ol>
+<li>每个路由都是一个对象，很多对象集合组成数组	</li>
+<li>当我们访问路由地址时，<router-view>这个内置组件	就会被渲染为路由对应的组件内容<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> routes = [<br>  &#123;<br>    <span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/&#x27;</span>,<br>    <span class="hljs-attr">component</span>: <span class="hljs-title class_">Index</span> <br>  &#125;,<br>  &#123;<br>    <span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/find&#x27;</span>,<br>    <span class="hljs-attr">component</span>: <span class="hljs-title class_">Find</span> <br>  &#125;,<br>  &#123;<br>    <span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/order&#x27;</span>,<br>    <span class="hljs-attr">component</span>: <span class="hljs-title class_">Order</span> <br>  &#125;,<br>  &#123;<br>    <span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/my&#x27;</span>,<br>    <span class="hljs-attr">component</span>: <span class="hljs-title class_">My</span> <br>  &#125;,<br><br>]<br></code></pre></td></tr></table></figure>
+<a name="Q9X3m"></a></li>
+</ol>
+<h3 id="第三步：-创建路由对象"><a href="#第三步：-创建路由对象" class="headerlink" title="第三步： 创建路由对象"></a>第三步： 创建路由对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> <span class="hljs-title class_">VueRouter</span>(&#123;<br>    <span class="hljs-attr">routes</span>: routes,<br>    <span class="hljs-attr">linkExactActiveClass</span>: <span class="hljs-string">&#x27;active&#x27;</span><br>&#125;);<br><br></code></pre></td></tr></table></figure>
+
+<p><a name="G67P7"></a></p>
+<h3 id="第四步：-将router放入new-Vue中"><a href="#第四步：-将router放入new-Vue中" class="headerlink" title="第四步： 将router放入new Vue中"></a>第四步： 将router放入new Vue中</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>      <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,<br>      <span class="hljs-comment">// router: router</span><br>      router<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p><a name="OubFJ"></a></p>
+<h3 id="第五步：-模板"><a href="#第五步：-模板" class="headerlink" title="第五步： 模板"></a>第五步： 模板</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>美团外卖<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">router-view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-view</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">nav</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/&quot;</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/find&quot;</span>&gt;</span>发现<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/order&quot;</span>&gt;</span>订单<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/my&quot;</span>&gt;</span>我的<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="jNlS2"></a></p>
+<h1 id="4-动态路由"><a href="#4-动态路由" class="headerlink" title="4.动态路由"></a>4.动态路由</h1><p>我们经常需要把某种模式匹配到的所有路由，全都映射到同个组件。例如，我们有一个 User 组件，对于所有 ID 各不相同的用户，都要使用这个组件来渲染。能够提供参数的路由即为动态路由<br />需求：<br />推荐列表：&#x2F;list?type&#x3D;recommend	<br />丽人列表：&#x2F;list?type&#x3D;beauty<br />旅游列表：&#x2F;list?type&#x3D;travel	<br />路由地址相同，都是要请求同一个组件，但携带参数不同，请求数据不同<br><a name="V04Ud"></a></p>
+<h3 id="4-1-动态路由实现过程"><a href="#4-1-动态路由实现过程" class="headerlink" title="4.1 动态路由实现过程"></a>4.1 动态路由实现过程</h3><p><a name="NBr6T"></a></p>
+<h4 id="第一步：-定义组件-List"><a href="#第一步：-定义组件-List" class="headerlink" title="第一步： 定义组件 List"></a>第一步： 定义组件 List</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">List</span> = &#123;<br>  <span class="hljs-attr">template</span>: <span class="hljs-string">`</span><br><span class="hljs-string">        &lt;div&gt;&#123;&#123;this.$route.params&#125;&#125;商品&lt;/div&gt;</span><br><span class="hljs-string">      `</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="njybl"></a></p>
+<h4 id="第二步：配置路由"><a href="#第二步：配置路由" class="headerlink" title="第二步：配置路由"></a>第二步：配置路由</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> routes = [<br>  &#123;<br>    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/list/:type&#x27;</span>, <br>    <span class="hljs-attr">component</span>: <span class="hljs-title class_">List</span><br>  &#125;<br>]<br><br><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> <span class="hljs-title class_">VueRouter</span>(&#123;<br>  routes<br>&#125;)<br><br><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>  <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,<br>  router<br>&#125;)<br><br></code></pre></td></tr></table></figure>
+<p><a name="QRZ1c"></a></p>
+<h4 id="第三步：-模板"><a href="#第三步：-模板" class="headerlink" title="第三步： 模板"></a>第三步： 模板</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">router-view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-view</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/list/recommend&quot;</span>&gt;</span>推荐<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/list/beauty&quot;</span>&gt;</span>丽人<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/list/travel&quot;</span>&gt;</span>旅行<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>总结：</p>
+<ol>
+<li>当单击“推荐” 时，切换到&#x2F;list路由 ， 同时将参数值recommend传给路由中的type参数  （即type&#x3D;recommend）</li>
+<li>在router-view中显示List组件, 同时，在组件内部可通过this.$route.params得到参数</li>
+<li>不管怎么修改&#x2F;后面的内容，组件都不会再重新触发created钩子函数了。所以想要在js中获取到新的params值 需要监听$route的改变<br><a name="tUP27"></a></li>
+</ol>
+<h3 id="4-2-动态路由-（监听路由变化的两种写法）"><a href="#4-2-动态路由-（监听路由变化的两种写法）" class="headerlink" title="4.2 动态路由 （监听路由变化的两种写法）"></a>4.2 动态路由 （监听路由变化的两种写法）</h3><p>方法一：使用created获取<br />不推荐！created默认只会被触发一次，所以每次获取的都是相同的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">List</span> = &#123;<br>    <span class="hljs-attr">template</span>: <span class="hljs-string">`</span><br><span class="hljs-string">      &lt;div&gt;&#123;&#123;this.$route.params&#125;&#125;商品&lt;/div&gt;</span><br><span class="hljs-string">    `</span>,<br>    <span class="hljs-title function_">created</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">$route</span>.<span class="hljs-property">params</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>方法二：使用updated<br />不可以！update也可以监听到其他数据的变化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">List</span> = &#123;<br>    <span class="hljs-attr">template</span>: <span class="hljs-string">`</span><br><span class="hljs-string">      &lt;div&gt;&#123;&#123;this.$route.params&#125;&#125;商品&lt;/div&gt;</span><br><span class="hljs-string">    `</span>,<br>    <span class="hljs-title function_">updated</span>(<span class="hljs-params"></span>) &#123;<br>				<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">$route</span>.<span class="hljs-property">params</span>);<br>		&#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>方案三：使用watch监听<br />不可以！每次点击都会重复请求，服务器压力过大</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">List</span> = &#123;<br>    <span class="hljs-attr">template</span>: <span class="hljs-string">`</span><br><span class="hljs-string">      &lt;div&gt;&#123;&#123;this.$route.params&#125;&#125;商品&lt;/div&gt;</span><br><span class="hljs-string">    `</span>,<br>    <span class="hljs-title function_">created</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">$route</span>.<span class="hljs-property">params</span>);<br>    &#125;,<br>    <span class="hljs-attr">watch</span>:&#123;<br>      $route()&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">$route</span>.<span class="hljs-property">params</span>);<br>      &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">List</span> = &#123;<br>  <span class="hljs-attr">template</span>: <span class="hljs-string">`</span><br><span class="hljs-string">        &lt;div&gt;&#123;&#123;this.$route.params&#125;&#125;商品&lt;/div&gt;</span><br><span class="hljs-string">      `</span>,<br>  <span class="hljs-attr">watch</span>:&#123;<br>    <span class="hljs-string">&#x27;$route&#x27;</span>: &#123;<br>      <span class="hljs-attr">handler</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">$route</span>.<span class="hljs-property">params</span>);<br>      &#125;,<br>      <span class="hljs-attr">immediate</span>: <span class="hljs-literal">true</span>  <span class="hljs-comment">//（立刻）</span><br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>注意：使用immediate: true；这个属性，默认为false。其值代表是否以当前的初始值执行handler的函数。</p>
+<p>方案四：最优解 keep-alive + created + key</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;keep-alive&gt;<br>			&lt;router-view :key=&quot;$route.fullPath&quot;&gt;&lt;/router-view&gt;<br>&lt;/keep-alive&gt;<br>&lt;script&gt;<br>  const List = &#123;<br>  		template: `<br>        &lt;div&gt;&#123;&#123;this.$route.params&#125;&#125;商品&lt;/div&gt;<br>      `,<br>  		created() &#123;<br>				console.log(this.$route.params.type);<br>			&#125;,<br>	&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+<p><a name="RVIwj"></a></p>
+<h1 id="5-获取路由参数的其他实现（-route-query）"><a href="#5-获取路由参数的其他实现（-route-query）" class="headerlink" title="5.获取路由参数的其他实现（$route.query）"></a>5.获取路由参数的其他实现（$route.query）</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/demo?id=2&quot;</span>&gt;</span>去往id为2的链接<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">:to</span>=<span class="hljs-string">&quot;&#123;path: &#x27;/demo&#x27;, query:&#123;id: 3&#125;&#125;&quot;</span>&gt;</span>去往id为3的链接<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">:to</span>=<span class="hljs-string">&quot;&#123;name: &#x27;demo&#x27;, query:&#123;id: 4&#125;&#125;&quot;</span>&gt;</span>去往id为3的链接<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> routes = [</span><br><span class="language-javascript">    &#123;</span><br><span class="language-javascript">      <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;demo&#x27;</span>,</span><br><span class="language-javascript">      <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/demo&#x27;</span>,</span><br><span class="language-javascript">      <span class="hljs-attr">component</span>: <span class="hljs-title class_">Demo</span></span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript">  ]</span><br><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> <span class="hljs-title class_">VueRouter</span>(&#123;</span><br><span class="language-javascript">    routes</span><br><span class="language-javascript">  &#125;)</span><br><span class="language-javascript">  </span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span><br><span class="language-javascript">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span><br><span class="language-javascript">    router</span><br><span class="language-javascript">  &#125;)</span><br><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> <span class="hljs-title class_">Demo</span> = &#123;</span><br><span class="language-javascript">      <span class="hljs-attr">template</span>: <span class="hljs-string">`</span></span><br><span class="hljs-string"><span class="language-javascript">        &lt;div&gt;&#123;&#123;$route.query&#125;&#125;&lt;/div&gt;</span></span><br><span class="hljs-string"><span class="language-javascript">      `</span>,</span><br><span class="language-javascript">      <span class="hljs-attr">methods</span>: &#123;</span><br><span class="language-javascript">        fn (to, <span class="hljs-keyword">from</span>)&#123;</span><br><span class="language-javascript">          <span class="hljs-comment">// to表示新的路由信息对象 from表示旧的路由信息对象</span></span><br><span class="language-javascript">          <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(to.<span class="hljs-property">query</span>)</span><br><span class="language-javascript">        &#125;</span><br><span class="language-javascript">      &#125;,</span><br><span class="language-javascript">      <span class="hljs-attr">watch</span>: &#123;</span><br><span class="language-javascript">        <span class="hljs-string">&#x27;$route&#x27;</span>: &#123;</span><br><span class="language-javascript">          <span class="hljs-attr">handler</span>: <span class="hljs-string">&#x27;fn&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">immediate</span>: <span class="hljs-literal">true</span></span><br><span class="language-javascript">        &#125;</span><br><span class="language-javascript">      &#125;</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="fG3ka"></a></p>
+<h1 id="6-嵌套路由"><a href="#6-嵌套路由" class="headerlink" title="6.嵌套路由"></a>6.嵌套路由</h1><p>需求：<br />首页：   &#x2F;index	<br />订单：   &#x2F;order	<br />电影&#x2F;演出：   &#x2F;movie<br />电影&#x2F;演出中有：<br />电影：   &#x2F;movie&#x2F;movieMovie<br />商城：   &#x2F;food&#x2F;movieShop<br />演出：   &#x2F;food&#x2F;movieShow而<br />电影、商城、演出三个模块版式不同，所以并不适合用动态路由</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 定义所需组件</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Index</span> = &#123;<br>    <span class="hljs-attr">template</span>:<span class="hljs-string">`</span><br><span class="hljs-string">      &lt;div&gt;首页&lt;/div&gt;</span><br><span class="hljs-string">    `</span><br>&#125;<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Order</span> = &#123;<br>    <span class="hljs-attr">template</span>:<span class="hljs-string">`</span><br><span class="hljs-string">      &lt;div&gt;订单&lt;/div&gt;</span><br><span class="hljs-string">    `</span><br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Movie</span> = &#123;<br>    <span class="hljs-attr">template</span>:<span class="hljs-string">`</span><br><span class="hljs-string">      &lt;div&gt;</span><br><span class="hljs-string">          &lt;div&gt;Movie版块&lt;/div&gt;</span><br><span class="hljs-string">          &lt;div&gt;</span><br><span class="hljs-string">              &lt;router-link to=&quot;/movie/movieMovie&quot;&gt;电影&lt;/router-link&gt;</span><br><span class="hljs-string">              &lt;router-link to=&quot;/movie/movieShop&quot;&gt;商城&lt;/router-link&gt;</span><br><span class="hljs-string">              &lt;router-link to=&quot;/movie/movieShow&quot;&gt;演出&lt;/router-link&gt;</span><br><span class="hljs-string">              &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="hljs-string">          &lt;/div&gt;</span><br><span class="hljs-string">      &lt;/div&gt;</span><br><span class="hljs-string">    `</span><br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Cake</span> = &#123;<br>    <span class="hljs-attr">template</span>:<span class="hljs-string">`</span><br><span class="hljs-string">      &lt;div&gt;电影&lt;/div&gt;</span><br><span class="hljs-string">    `</span><br>&#125;<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Rice</span> = &#123;<br>    <span class="hljs-attr">template</span>:<span class="hljs-string">`</span><br><span class="hljs-string">      &lt;div&gt;商城&lt;/div&gt;</span><br><span class="hljs-string">    `</span><br>&#125;<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Egg</span> = &#123;<br>    <span class="hljs-attr">template</span>:<span class="hljs-string">`</span><br><span class="hljs-string">      &lt;div&gt;演出&lt;/div&gt;</span><br><span class="hljs-string">    `</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>定义路由</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;wrap&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">router-view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-view</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/index&quot;</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/order&quot;</span>&gt;</span>订单<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/movie&quot;</span>&gt;</span>电影/演出<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><br>const routes = [<br>    &#123;<br>      path: &#x27;/&#x27;, <br>      component: Index<br>    &#125;,<br>    &#123;<br>      path: &#x27;/order&#x27;, <br>      component: Order<br>    &#125;,<br>    &#123;<br>      path: &#x27;/movie, <br>      component: Movie,<br>      children: [<br>          &#123;<br>            path: ‘movieMovie&#x27;, <br>            component:MovieMovie<br>          &#125;,<br>          &#123;<br>            path: ‘movieShop&#x27;, <br>            component:MovieShop<br>          &#125;,<br>          &#123;<br>            path: ‘movieShow&#x27;, <br>            component:MovieShow<br>          &#125;,<br>      ]<br>    &#125;<br>]<br>const router = new VueRouter(&#123;<br>  	routes<br>&#125;)<br><br>const app = new Vue(&#123;<br>    el: &#x27;#app&#x27;,<br>    router<br>&#125;)<br><br><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="jtnqr"></a></p>
+<h1 id="7-没有底部导航的路由跳转"><a href="#7-没有底部导航的路由跳转" class="headerlink" title="7.没有底部导航的路由跳转"></a>7.没有底部导航的路由跳转</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">router-view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-view</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-handlebars"><span class="language-xml"></span></span><br><span class="language-xml"><span class="language-handlebars">// 定义路由所需的组件</span></span><br><span class="language-xml"><span class="language-handlebars">const Index = &#123;</span></span><br><span class="language-xml"><span class="language-handlebars">    template: `</span></span><br><span class="language-xml"><span class="language-handlebars">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">            <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span>&gt;</span>首页的页面<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">            <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&#x27;/nearby&#x27;</span>&gt;</span>附近<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">            <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&#x27;/find&#x27;</span>&gt;</span>发现<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">    `</span></span><br><span class="language-xml"><span class="language-handlebars">&#125;</span></span><br><span class="language-xml"><span class="language-handlebars">const  Find = &#123;</span></span><br><span class="language-xml"><span class="language-handlebars">    template: `</span></span><br><span class="language-xml"><span class="language-handlebars">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">            <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&#x27;/index&#x27;</span>&gt;</span>回到首页<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>发现的页面<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">            </span></span><br><span class="language-xml"><span class="language-handlebars">            </span></span><br><span class="language-xml"><span class="language-handlebars">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">    `</span></span><br><span class="language-xml"><span class="language-handlebars">&#125;</span></span><br><span class="language-xml"><span class="language-handlebars">const  Nearby = &#123;</span></span><br><span class="language-xml"><span class="language-handlebars">    template: `</span></span><br><span class="language-xml"><span class="language-handlebars">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">            <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&#x27;/index&#x27;</span>&gt;</span>回到首页<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>附近的页面<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">    `</span></span><br><span class="language-xml"><span class="language-handlebars">&#125;</span></span><br><span class="language-xml"><span class="language-handlebars"></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1667742939866-828ae0c1-59aa-4579-87ee-f08cee1b1173.png#averageHue=%232b2c25&clientId=u2e53a63d-39d0-4&from=paste&height=500&id=u11aecfa2&name=image.png&originHeight=2560&originWidth=1351&originalType=binary&ratio=1&rotation=0&showTitle=false&size=10395108&status=done&style=none&taskId=u16f33e84-e695-497e-881b-be684ba95c5&title=&width=263.9965515136719" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>路由</div>
+      <div>http://example.com/学习/vue/13-路由/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年4月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/vue/15-%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%E5%BA%94%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%881%EF%BC%89/" title="单页面卡法应用注意事项（1）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">单页面卡法应用注意事项（1）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/vue/12-vue%E7%9A%84%E8%BF%87%E6%B8%A1%E5%92%8C%E5%8A%A8%E7%94%BB/" title="vue的过渡和动画">
+                        <span class="hidden-mobile">vue的过渡和动画</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

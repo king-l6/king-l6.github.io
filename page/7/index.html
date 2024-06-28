@@ -1,0 +1,678 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="king-l6">
+<meta property="og:url" content="http://example.com/page/7/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://pic1.zhimg.com/v2-d8dec03f31549212a73454cf89469000_r.jpg?source=1940ef5c') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="欢迎来到我的Hexo"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/9-%E5%88%86%E5%8C%85/" target="_self">
+          9.分包
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/9-%E5%88%86%E5%8C%85/" target="_self">
+        <div>
+          8.分包 8.分包分包加载官网链接：https://developers.weixin.qq.com/miniprogram/dev/framework/subpackages.html 使用分包 注意事项 若有收获，就点个赞吧冉姑娘👑2022-12-09 20:532740IP 属地河南举报分享到：正文### + Space标题3 回复关于语雀使用帮助数据安全服务协议English冉姑娘👑课
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-18 22:33" pubdate>
+              2020-11-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/%E5%AD%A6%E4%B9%A0/js/46.EChats/" target="_self">
+          EChats
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E5%AD%A6%E4%B9%A0/js/46.EChats/" target="_self">
+        <div>
+          EChart是一个图表库，用来进行数据可视化操作，同样的库还有很多：蚂蚁金服的AntV，HightCharts 下载ECharts在官网下载，进入后，下载对应的版本即可echarts.js 使用ECharts使用ECharts很简单，我们只需要进行以下操作即可  引入ECharts 1234567891011121314&lt;!DOCTYPE html&gt;&lt;html lang=&quo
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-18 17:42" pubdate>
+              2020-11-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/8-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%99%BB%E5%BD%95%E6%8E%88%E6%9D%83%EF%BC%88%E9%89%B4%E6%9D%83%EF%BC%89/" target="_self">
+          8.微信小程序登录授权（鉴权）
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/8-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%99%BB%E5%BD%95%E6%8E%88%E6%9D%83%EF%BC%88%E9%89%B4%E6%9D%83%EF%BC%89/" target="_self">
+        <div>
+          相关概念 （了解） openid 是表示用户在你的当前应用中的唯一标示,比如小程序，微信公众号等，这些都算是一个应用，如果你有多个应用，同一个用户的openId可能并不相同 小程序的openid相当重要，它是用户的唯一标识id，牵扯到支付，登录，授权等！你可以理解为小程序的账号，小程序是获取不到你的微信号的，这个属于私密信息!只能获取用户的昵称，头像，openid，session_key等
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-14 12:33" pubdate>
+              2020-11-14
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/7-%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6%E5%92%8C%E6%8E%88%E6%9D%83/" target="_self">
+          7.常用组件和授权
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/7-%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6%E5%92%8C%E6%8E%88%E6%9D%83/" target="_self">
+        <div>
+          swiper组件滑块视图容器。其中只可放置swiper-item组件page.wxml 12345678&lt;swiper indicator-dots=&quot;&#123;&#123;indicatorDots&#125;&#125;&quot;  autoplay=&quot;&#123;&#123;autoplay&#125;&#125;&quot; interval=&quot;&
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-11 12:33" pubdate>
+              2020-11-11
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/%E5%AD%A6%E4%B9%A0/js/45-FileReader/" target="_self">
+          FileReader
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E5%AD%A6%E4%B9%A0/js/45-FileReader/" target="_self">
+        <div>
+          基于该对象，我们可以实现对选中的读取操作 1let fileReader = new FileReader() fileReader读取的文件需要从input中获取 12345input.onchange = function () &#123;  let file = this.files[0] // 就是我们选中的文件  fileReader.readAsDataURL(file) // 读是
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-10 12:41" pubdate>
+              2020-11-10
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/6-%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91/" target="_self">
+          6.组件化开发
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/6-%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91/" target="_self">
+        <div>
+          1.创建新组件 在根目录创建components文件夹 创建对应页面的子文件夹 （例： indexpage—存放首页中相关的组件） 继续在indexpage内创建文件夹  (例： tab—定义tab组件的文件夹) 在tab上右击–&gt; 新建Component–&gt;输入名字–&gt;回车后会自动生成四个文件  tab.jstab.jsontab.wxmltab.wxss 2.在页面中引入组
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-09 20:33" pubdate>
+              2020-11-09
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/5-%E5%B8%B8%E7%94%A8API/" target="_self">
+          5.常用API
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/5-%E5%B8%B8%E7%94%A8API/" target="_self">
+        <div>
+          1.界面123456789101112131415161718192021222324252627282930313233343536373839404142//显示消息提示框wx.showToast(&#123;    title: &#x27;成功&#x27;,    icon: &#x27;success&#x27;,    duration: 2000  &#125;)//显示模态对话框
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-06 20:33" pubdate>
+              2020-11-06
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/4-page%E9%A1%B5%E9%9D%A2%E7%9A%84%E9%80%BB%E8%BE%91/" target="_self">
+          4.page页面的逻辑
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/4-page%E9%A1%B5%E9%9D%A2%E7%9A%84%E9%80%BB%E8%BE%91/" target="_self">
+        <div>
+          title: 3.wxml语法date: 2020-10-30 20:30:26tags: 1.page页面 在app.json的pages中可以添加或删除页面 每个页面由四个文件组件：  	 .js ： 页面逻辑	.json: 页面配置，可覆盖app.json中的配置	.wxml:  页面结构	.wxss:  页面样式  WXML（WeiXin Markup Language）是框架设计的一套
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-02 10:32" pubdate>
+              2020-11-02
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/%E5%AD%A6%E4%B9%A0/js/44-canvas/" target="_self">
+          canvas
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E5%AD%A6%E4%B9%A0/js/44-canvas/" target="_self">
+        <div>
+          在HTML5新增新的标签，名为画布，可以使用JS在上面完成对应的画的操作。正常情况我们可以把它当成一个img看待。 如何使用canvas HTML中使用canvas标签1&lt;canvas&gt;&lt;/canvas&gt; canvas默认的宽高是300x150的尺寸，如果想要修改这个值，不能使用css修改，需要直接设置对应的width和height属性，这个是html属性，不是css属性
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-01 15:40" pubdate>
+              2020-11-01
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/3-wxml%E8%AF%AD%E6%B3%95/" target="_self">
+          3.wxml语法
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/3-wxml%E8%AF%AD%E6%B3%95/" target="_self">
+        <div>
+          1.page页面 在app.json的pages中可以添加或删除页面 每个页面由四个文件组件：  	 .js ： 页面逻辑	.json: 页面配置，可覆盖app.json中的配置	.wxml:  页面结构	.wxss:  页面样式  WXML（WeiXin Markup Language）是框架设计的一套标签语言，结合基础组件、事件系统，可以构建出页面的结构。  2.WXML中常用组件 视图组件
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-30 20:30" pubdate>
+              2020-10-30
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/6/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#board">8</a><a class="page-number" href="/page/9/#board">9</a><a class="extend next" rel="next" href="/page/8/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

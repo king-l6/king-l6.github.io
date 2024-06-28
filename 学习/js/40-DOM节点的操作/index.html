@@ -1,0 +1,1095 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1 DOM 对象简介 1.1 什么是 DOMDOM：Document Object Model，文档对象模型。 作用：是一套规范文档内容的通用型标准。 1998年10月，DOM正式成为W3C的推荐标准。 第1级DOM（DOM Level 1，或DOM1）。为XML和HTML文档中的元素、节点、属性等提供了必备的属性和方法。结合了Netscape及微软公司开发的DHTML（动态HTML）思想。 2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM节点的操作">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/js/40-DOM%E8%8A%82%E7%82%B9%E7%9A%84%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="1 DOM 对象简介 1.1 什么是 DOMDOM：Document Object Model，文档对象模型。 作用：是一套规范文档内容的通用型标准。 1998年10月，DOM正式成为W3C的推荐标准。 第1级DOM（DOM Level 1，或DOM1）。为XML和HTML文档中的元素、节点、属性等提供了必备的属性和方法。结合了Netscape及微软公司开发的DHTML（动态HTML）思想。 2">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/rawait/rwpicgo/raw/master/teaching/2022-01-09/202201091652734.png#alt=image-20220109165211655#id=ayamx&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=">
+<meta property="og:image" content="https://gitee.com/rawait/rwpicgo/raw/master/teaching/2022-01-09/202201091705245.png#alt=image-20220109170510166#id=iBJD3&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=">
+<meta property="og:image" content="https://gitee.com/rawait/rwpicgo/raw/master/teaching/2022-01-09/202201091711852.png#alt=image-20220109171113772#id=zS0Vv&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=">
+<meta property="og:image" content="https://gitee.com/rawait/rwpicgo/raw/master/teaching/2022-01-09/202201091729646.png#alt=image-20220109172926540#id=p0lyl&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=">
+<meta property="og:image" content="https://gitee.com/rawait/rwpicgo/raw/master/teaching/2022-01-09/202201091729415.png#alt=image-20220109172935351#id=BQTU3&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1661221049750-ab20edda-3032-4b6b-b7f6-398e42288761.png#clientId=u458cc838-c42c-4&from=paste&height=559&id=uf791ca5c&name=image.png&originHeight=559&originWidth=532&originalType=binary&ratio=1&rotation=0&showTitle=false&size=36158&status=done&style=none&taskId=u988d6f4a-1c4b-4019-8f92-c86969990b9&title=&width=532">
+<meta property="article:published_time" content="2020-09-22T02:24:49.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:22:58.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/rawait/rwpicgo/raw/master/teaching/2022-01-09/202201091652734.png#alt=image-20220109165211655#id=ayamx&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=">
+  
+  
+  
+  <title>DOM节点的操作 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DOM节点的操作"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-09-22 10:24" pubdate>
+          2020年9月22日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          70 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">DOM节点的操作</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="0b6e32d3"></a></p>
+<h2 id="1-DOM-对象简介"><a href="#1-DOM-对象简介" class="headerlink" title="1 DOM 对象简介"></a>1 DOM 对象简介</h2><p><a name="388a74fd"></a></p>
+<h3 id="1-1-什么是-DOM"><a href="#1-1-什么是-DOM" class="headerlink" title="1.1 什么是 DOM"></a>1.1 什么是 DOM</h3><p>DOM：Document Object Model，文档对象模型。</p>
+<p>作用：是一套规范文档内容的通用型标准。</p>
+<p>1998年10月，DOM正式成为W3C的推荐标准。</p>
+<p>第1级DOM（DOM Level 1，或DOM1）。为XML和HTML文档中的元素、节点、属性等提供了必备的属性和方法。结合了Netscape及微软公司开发的DHTML（动态HTML）思想。</p>
+<p>2000年11月，发布了第2级DOM（DOM Level 2，或DOM2）。在DOM1的基础上增加了样式表对象模型。</p>
+<p>第3级DOM（DOM Level 3，或DOM3） 。在DOM2基础上增加了内容模型、文档验证以及键盘鼠标事件等功能。</p>
+<p>直到目前为止，DOM几乎被所有浏览器所支持。</p>
+<p><a name="0adc6841"></a></p>
+<h3 id="1-2-DOM-HTML-节点树"><a href="#1-2-DOM-HTML-节点树" class="headerlink" title="1.2 DOM HTML 节点树"></a>1.2 DOM HTML 节点树</h3><p>DOM HTML指的是DOM中为操作HTML文档提供的属性和方法。</p>
+<ul>
+<li>文档（Document）表示HTML文件。</li>
+<li>文档中的标签称为元素（Element）。</li>
+<li>文档中的所有内容称为节点（Node）。</li>
+</ul>
+<p>因此，一个HTML文件可以看作是所有元素组成的一个节点树，各元素节点之间有级别的划分 。</p>
+<p><img src="https://gitee.com/rawait/rwpicgo/raw/master/teaching/2022-01-09/202201091652734.png#alt=image-20220109165211655#id=ayamx&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>测试<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>链接<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>段落...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>HTML文档根据节点作用，分为标签节点、文本节点、属性节点和注释节点。 </li>
+<li>各节点之间的关系，又可分为以下几个方面： <ul>
+<li>根节点：<code>&lt;html&gt;</code> 标签是整个文档的根节点，有且仅由一个。</li>
+<li>子节点：指的是某一个节点的下级节点。</li>
+<li>父节点：指的是某一个节点的上级节点。</li>
+<li>兄弟节点：两个节点同属于一个父节点。</li>
+</ul>
+</li>
+</ul>
+<p><a name="99abc2a3"></a></p>
+<h3 id="1-3-DOM-对象的继承关系"><a href="#1-3-DOM-对象的继承关系" class="headerlink" title="1.3 DOM 对象的继承关系"></a>1.3 DOM 对象的继承关系</h3><p>在JavaScript中要对网页中的元素进行操作，可以利用document对象的getElementById()方法实现，但是此方法的返回值类型是什么？</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;test&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">var</span> test = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;test&#x27;</span>);</span><br><span class="language-javascript">    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(test);            <span class="hljs-comment">// 输出结果：&lt;div id=&quot;test&quot;&gt;&lt;/div&gt;</span></span><br><span class="language-javascript">    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(test.<span class="hljs-property">__proto__</span>);  <span class="hljs-comment">// 输出结果：HTMLDivElement &#123; …… &#125;</span></span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/rawait/rwpicgo/raw/master/teaching/2022-01-09/202201091705245.png#alt=image-20220109170510166#id=iBJD3&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>document和Element是两种不同类型的节点（Node）对象。</li>
+<li>它们不仅能够使用Node对象的一系列属性和方法完成节点操作。</li>
+<li>也可以使用特有的属性和方法完成不同类型节点的操作。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;test&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-keyword">var</span> test = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;test&#x27;</span>);</span><br><span class="language-javascript">  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(test.<span class="hljs-property">nodeName</span>);      <span class="hljs-comment">// 通过节点方式获取节点名，输出结果：DIV</span></span><br><span class="language-javascript">  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(test.<span class="hljs-property">tagName</span>);       <span class="hljs-comment">// 通过元素方式获取标签名，输出结果：DIV</span></span><br><span class="language-javascript">  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">nodeName</span>);  <span class="hljs-comment">// document属于节点，输出结果：#document</span></span><br><span class="language-javascript">  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">tagName</span>);   <span class="hljs-comment">// document不属于元素，输出结果：undefined</span></span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>除了document和Element对象，还有其他几种类型的节点对象也继承Node对象，如文本（Text）、注释（Comment）等。</p>
+<table>
+<thead>
+<tr>
+<th>Node.属性名</th>
+<th>值</th>
+<th>相应的对象</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ELEMEN_NODE</td>
+<td>1</td>
+<td>Element</td>
+<td>元素节点</td>
+</tr>
+<tr>
+<td>ATTRIBUTE_NODE</td>
+<td>2</td>
+<td>Attr</td>
+<td>属性节点</td>
+</tr>
+<tr>
+<td>TEXT_NODE</td>
+<td>3</td>
+<td>Text</td>
+<td>文本节点</td>
+</tr>
+<tr>
+<td>COMMENT_NODE</td>
+<td>8</td>
+<td>Comment</td>
+<td>注释节点</td>
+</tr>
+<tr>
+<td>DOCUMENT_NODE</td>
+<td>9</td>
+<td>Document</td>
+<td>文档节点</td>
+</tr>
+</tbody></table>
+<p><a name="9eacf727"></a></p>
+<h2 id="2-HTML-元素操作"><a href="#2-HTML-元素操作" class="headerlink" title="2 HTML 元素操作"></a>2 HTML 元素操作</h2><p><a name="e2ed5008"></a></p>
+<h3 id="2-1-获取操作的元素"><a href="#2-1-获取操作的元素" class="headerlink" title="2.1 获取操作的元素"></a>2.1 获取操作的元素</h3><ul>
+<li>document对象的方法和属性</li>
+<li>Element对象的方法和属性</li>
+</ul>
+<p><a name="6c530df6"></a></p>
+<h4 id="document对象的方法和属性"><a href="#document对象的方法和属性" class="headerlink" title="document对象的方法和属性"></a>document对象的方法和属性</h4><p>document对象提供了一些用于查找元素的方法，利用这些方法可以根据元素的id、name和class属性以及标签名称的方式获取操作的元素。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>document.getElementById()</td>
+<td>返回对拥有指定id的第一个对象的引用</td>
+</tr>
+<tr>
+<td>document.getElementsByName()</td>
+<td>返回带有指定名称的对象集合</td>
+</tr>
+<tr>
+<td>document.getElementsByTagName()</td>
+<td>返回带有指定标签名的对象集合</td>
+</tr>
+<tr>
+<td>document.getElementsByClassName()</td>
+<td>返回带有指定类名的对象集合（不支持IE6~8）</td>
+</tr>
+</tbody></table>
+<p>注意：除了document.getElementById()方法返回的是拥有指定id的元素外，其他方法返回的都是符合要求的一个集合。若要获取其中一个对象，可以通过下标的方式获取，默认从0开始。</p>
+<p>document对象提供一些属性，可用于获取文档中的元素。例如，获取所有表单标签、图片标签等。</p>
+<table>
+<thead>
+<tr>
+<th><strong>属性</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>document.body</td>
+<td>返回文档的body元素</td>
+</tr>
+<tr>
+<td>document.documentElement</td>
+<td>返回文档的html元素</td>
+</tr>
+<tr>
+<td>document.forms</td>
+<td>返回对文档中所有Form对象引用</td>
+</tr>
+<tr>
+<td>document.images</td>
+<td>返回对文档中所有Image对象引用</td>
+</tr>
+</tbody></table>
+<p><img src="https://gitee.com/rawait/rwpicgo/raw/master/teaching/2022-01-09/202201091711852.png#alt=image-20220109171113772#id=zS0Vv&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>document对象的body属性用于返回body元素。</li>
+<li>document对象的documentElement属性用于返回HTML文档的根节点html元素。</li>
+</ul>
+<p>通过document对象的方法与document对象的属性获取的操作元素表示的都是同一对象。</p>
+<p>如document.getElementsByTagName(‘body’)[0]与document.body全等。</p>
+<p><a name="c005f23f"></a></p>
+<h4 id="HTML5新增的document对象方法"><a href="#HTML5新增的document对象方法" class="headerlink" title="HTML5新增的document对象方法"></a>HTML5新增的document对象方法</h4><p>HTML5中为更方便获取操作的元素，为document对象新增了两个方法，分别为querySelector()和querySelectorAll()。</p>
+<ul>
+<li>querySelector()方法用于返回文档中匹配到指定的元素或CSS选择器的第1个对象的引用。</li>
+<li>querySelectorAll()方法用于返回文档中匹配到指定的元素或CSS选择器的对象集合。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 这两个方法的使用方式相同</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;div&#x27;</span>));        <span class="hljs-comment">// 获取匹配到的第1个div</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#box&#x27;</span>));       <span class="hljs-comment">// 获取id为box的第1个div</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.bar&#x27;</span>));       <span class="hljs-comment">// 获取class为bar的第1个div</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;div[name]&#x27;</span>));  <span class="hljs-comment">// 获取含有name属性的第1个div</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;div.bar&#x27;</span>));    <span class="hljs-comment">// 获取文档中class为bar的第1个div</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;div#box&#x27;</span>));    <span class="hljs-comment">// 获取文档中id为box的第1个div</span><br></code></pre></td></tr></table></figure>
+
+<p><a name="e198fd2b"></a></p>
+<h4 id="Element对象的方法和属性"><a href="#Element对象的方法和属性" class="headerlink" title="Element对象的方法和属性"></a>Element对象的方法和属性</h4><p>在DOM操作中，元素对象也提供了获取某个元素内指定元素的方法，常用的两个方法分别为getElementsByClassName()和getElementsByTagName()。它们的使用方式与document对象中同名方法相同。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;ul&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>PHP<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>JavaScript<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>jQuery<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">var</span> lis = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;ul&#x27;</span>).<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;li&#x27;</span>);</span><br><span class="language-javascript">    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(lis);<span class="hljs-comment">// 输出结果：(3) [li, li, li]</span></span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>除此之外，元素对象还提供了children属性用来获取指定元素的子元素。例如，获取上述示例中ul的子元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> lis = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;ul&#x27;</span>).<span class="hljs-property">children</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(lis);		<span class="hljs-comment">// 输出结果：(3) [li, li, ul]</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>元素对象的children属性返回的也是对象集合，若要获取其中一个对象，也需通过下标的方式获取，默认从0开始。</li>
+<li>另外，document对象中也有children属性，它的第一个子元素通常是html元素。</li>
+</ul>
+<p><a name="b4ddf126"></a></p>
+<h4 id="HTMLCollection对象"><a href="#HTMLCollection对象" class="headerlink" title="HTMLCollection对象"></a>HTMLCollection对象</h4><ul>
+<li>HTMLCollection对象：通过document对象或Element对象调用getElementsByClassName()方法、getElementsByTagName()方法、children属性等返回的对象集。</li>
+<li>NodeList对象：document对象调用getElementsByName()方法在Chrome和FireFox浏览器中返回的是NodeList对象，IE11返回的是HTMLCollection对象。</li>
+</ul>
+<p><strong>HTMLCollection与NodeList对象的区别：</strong></p>
+<ul>
+<li>HTMLCollection对象用于元素操作。</li>
+<li>NodeList对象用于节点操作。</li>
+</ul>
+<blockquote>
+<p>对于getElementsByClassName()方法、getElementsByTagName()方法和children属性返回的集合中可以将id和name自动转换为一个属性。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;test&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;test&quot;</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">var</span> lis1 = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;li&#x27;</span>);  <span class="hljs-comment">// 获取标签名为li的对象集合</span></span><br><span class="language-javascript">    <span class="hljs-keyword">var</span> test = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;test&#x27;</span>);      <span class="hljs-comment">// 获取id为test的li元素对象</span></span><br><span class="language-javascript">    lis1.<span class="hljs-property">test</span> === test;                              <span class="hljs-comment">// 比较结果：true</span></span><br><span class="language-javascript">    <span class="hljs-keyword">var</span> lis2 = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByName</span>(<span class="hljs-string">&#x27;test&#x27;</span>);   <span class="hljs-comment">// 获取name名为test的对象集合</span></span><br><span class="language-javascript">    lis1.<span class="hljs-property">test</span> === lis2[<span class="hljs-number">0</span>];                           <span class="hljs-comment">// 比较结果：true</span></span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><a name="4b270681"></a></p>
+<h3 id="2-2-元素内容"><a href="#2-2-元素内容" class="headerlink" title="2.2 元素内容"></a>2.2 元素内容</h3><p>JavaScript中，若要对获取的元素内容进行操作，则可以利用DOM提供的属性和方法实现。</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>属性</td>
+<td>innerHTML</td>
+<td>设置或返回元素开始和结束标签之间的HTML</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>innerText</td>
+<td>设置或返回元素中去除所有标签的内容</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>textContent</td>
+<td>设置或者返回指定节点的文本内容</td>
+</tr>
+<tr>
+<td>方法</td>
+<td>document.write()</td>
+<td>向文档写入指定的内容</td>
+</tr>
+<tr>
+<td>方法</td>
+<td>document.writeln()</td>
+<td>向文档写入指定的内容后并换行</td>
+</tr>
+</tbody></table>
+<ul>
+<li>属性属于Element对象，方法属于document对象。</li>
+<li>innerHTML在使用时会保持编写的格式以及标签样式。</li>
+<li>innerText则是去掉所有格式以及标签的纯文本内容。</li>
+<li>textContent属性在去掉标签后会保留文本格式。</li>
+</ul>
+<blockquote>
+<p>innerText属性在使用时可能会出现浏览器兼容的问题。因此，推荐在开发时尽可能的使用innerHTML获取或设置元素的文本内容。</p>
+</blockquote>
+<blockquote>
+<p>同时，innerHTML属性和document.write()方法在设置内容时有一定的区别，前者作用于指定的元素，后者则是重构整个HTML文档页面。因此，读者在开发中要根据实际的需要选择合适的实现方式</p>
+</blockquote>
+<p><a name="8bbab09b"></a></p>
+<h3 id="2-3-练习作业"><a href="#2-3-练习作业" class="headerlink" title="2.3 练习作业"></a>2.3 练习作业</h3><ul>
+<li>改变盒子大小 <ul>
+<li>编写HTML，设置div的大小。</li>
+<li>根据用户的点击次数完成盒子大小的改变。</li>
+<li>单击的次数为奇数时，盒子都变大，单击次数为偶数时，盒子都变小。</li>
+</ul>
+</li>
+</ul>
+<p><a name="911a56e6"></a></p>
+<h3 id="2-4-元素属性"><a href="#2-4-元素属性" class="headerlink" title="2.4 元素属性"></a>2.4 元素属性</h3><p>在DOM中，为了方便JavaScript获取、修改和遍历指定HTML元素的相关属性，提供了操作的属性和方法。</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>属性</td>
+<td>attributes</td>
+<td>返回一个元素的属性集合</td>
+</tr>
+<tr>
+<td>方法</td>
+<td>setAttribute(name, value)</td>
+<td>设置或者改变指定属性的值</td>
+</tr>
+<tr>
+<td>方法</td>
+<td>getAttribute(name)</td>
+<td>返回指定元素的属性值</td>
+</tr>
+<tr>
+<td>方法</td>
+<td>removeAttribute(name)</td>
+<td>从元素中删除指定的属性</td>
+</tr>
+</tbody></table>
+<p>利用attributes属性可以获取一个HTML元素的所有属性，以及所有属性的个数length。</p>
+<p><a name="99b2cba3"></a></p>
+<h3 id="2-5-元素样式"><a href="#2-5-元素样式" class="headerlink" title="2.5 元素样式"></a>2.5 元素样式</h3><p>通过元素属性的操作修改样式。</p>
+<p>元素样式语法：style.属性名称。</p>
+<ul>
+<li>需要去掉CSS样式名里的中横线“-”，并将第二个英文首字母大写。</li>
+<li>设置背景颜色的background-color，在style属性操作中，需要修改为backgroundColor。<br />| 名称 | 说明 |<br />| — | — |<br />| background | 设置或返回元素的背景属性 |<br />| backgroundColor | 设置或返回元素的背景色 |<br />| display | 设置或返回元素的显示类型 |<br />| height | 设置或返回元素的高度 |<br />| left | 设置或返回定位元素的左部位置 |<br />| listStyleType | 设置或返回列表项标记的类型 |<br />| overflow | 设置或返回如何处理呈现在元素框外面的内容 |<br />| textAlign | 设置或返回文本的水平对齐方式 |<br />| textDecoration | 设置或返回文本的修饰 |<br />| textIndent | 设置或返回文本第一行的缩进 |<br />| transform | 向元素应用2D或3D转换 |</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">var</span> ele = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;box&#x27;</span>);  <span class="hljs-comment">// 获取元素对象</span></span><br><span class="language-javascript">    ele.<span class="hljs-property">style</span>.<span class="hljs-property">width</span> = <span class="hljs-string">&#x27;100px&#x27;</span>;</span><br><span class="language-javascript">    ele.<span class="hljs-property">style</span>.<span class="hljs-property">height</span> = <span class="hljs-string">&#x27;100px&#x27;</span>;</span><br><span class="language-javascript">    ele.<span class="hljs-property">style</span>.<span class="hljs-property">backgroundColor</span> = <span class="hljs-string">&#x27;red&#x27;</span>;</span><br><span class="language-javascript">    ele.<span class="hljs-property">style</span>.<span class="hljs-property">transform</span> = <span class="hljs-string">&#x27;rotate(7deg)&#x27;</span>;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>CSS中的float样式与JavaScript的保留字冲突，在解决方案上不同的浏览器存在分歧。IE98则使用“styleFloat”。</p>
+</blockquote>
+<p>一个元素的类选择器可以有多个，在开发中如何对选择器列表进行操作？</p>
+<ul>
+<li>原来的解决方案：利用元素对象的className属性获取，获取的结果是字符型，然后再根据实际情况对字符串进行处理。</li>
+<li>HTML5提供的办法：新增的classList（只读）元素的类选择器列表。</li>
+</ul>
+<p>若一个div元素的class值为“box header navlist title”，如何删除header？</p>
+<ul>
+<li>HTML5解决方案：div元素对象.classList.toggle(“header”);</li>
+</ul>
+<p>除此之外，classList属性还提供了许多其他相关操作的方法和属性。</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>属性</td>
+<td>length</td>
+<td>可以获取元素类名的个数</td>
+</tr>
+<tr>
+<td>方法</td>
+<td>add()</td>
+<td>可以给元素添加类名，一次只能添加一个</td>
+</tr>
+<tr>
+<td>方法</td>
+<td>remove()</td>
+<td>可以将元素的类名删除，一次只能删除一个</td>
+</tr>
+<tr>
+<td>方法</td>
+<td>toggle()</td>
+<td>切换元素的样式，若元素之前没有指定名称的样式则添加，如果有则移除</td>
+</tr>
+<tr>
+<td>方法</td>
+<td>item()</td>
+<td>根据接收的数字索引参数，获取元素的类名</td>
+</tr>
+<tr>
+<td>方法</td>
+<td>contains</td>
+<td>判断元素是否包含指定名称的样式，若包含则返回true，否则返回false</td>
+</tr>
+</tbody></table>
+<p><a name="6f7fffa0"></a></p>
+<h3 id="2-6-练习作业"><a href="#2-6-练习作业" class="headerlink" title="2.6 练习作业"></a>2.6 练习作业</h3><ul>
+<li><br /></li>
+</ul>
+<p>标签栏切换效果</p>
+<ul>
+<li><br /></li>
+</ul>
+<p>编写HTML，实现标签栏的结构与样式的设计，其中class等于current表示当前显示的标签，默认是第一个标签。</p>
+<ul>
+<li><br /></li>
+</ul>
+<p>获取所有的标签与标签对应的显示内容。</p>
+<ul>
+<li><br /></li>
+</ul>
+<p>遍历并为每个标签添加鼠标滑过事件，在事件的处理函数中，遍历标签对应的所有显示内容，当鼠标滑过标签时，通过classList的add()方法添加current，否则通过remove()方法移出current。</p>
+<p><img src="https://gitee.com/rawait/rwpicgo/raw/master/teaching/2022-01-09/202201091729646.png#alt=image-20220109172926540#id=p0lyl&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/rawait/rwpicgo/raw/master/teaching/2022-01-09/202201091729415.png#alt=image-20220109172935351#id=BQTU3&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" srcset="/img/loading.gif" lazyload></p>
+<p><a name="3b869c70"></a></p>
+<h2 id="3-DOM-节点操作"><a href="#3-DOM-节点操作" class="headerlink" title="3 DOM 节点操作"></a>3 DOM 节点操作</h2><p><a name="c33fc1fb"></a></p>
+<h3 id="3-1-获取节点"><a href="#3-1-获取节点" class="headerlink" title="3.1 获取节点"></a>3.1 获取节点</h3><p>由于HTML文档可以看做是一个节点树，因此，可以利用操作节点的方式操作HTML中的元素。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>firstChild</td>
+<td>访问当前节点的首个子节点</td>
+</tr>
+<tr>
+<td>lastChild</td>
+<td>访问当前节点的最后一个子节点</td>
+</tr>
+<tr>
+<td>nodeName</td>
+<td>访问当前节点名称</td>
+</tr>
+<tr>
+<td>nodeValue</td>
+<td>访问当前节点的值</td>
+</tr>
+<tr>
+<td>nextSibling</td>
+<td>返回同一树层级中指定节点之后紧跟的节点</td>
+</tr>
+<tr>
+<td>previousSibling</td>
+<td>返回同一树层级中指定节点的前一个节点</td>
+</tr>
+<tr>
+<td>parentNode</td>
+<td>访问当前元素节点的父节点</td>
+</tr>
+<tr>
+<td>childNodes</td>
+<td>访问当前元素节点的所有子节点的集合</td>
+</tr>
+</tbody></table>
+<p><strong>childNodes属性与前面学习过的children属性的区别。</strong></p>
+<ul>
+<li>相同点：都可以获取某元素的子元素。</li>
+<li>不同点： childNodes属性用于节点操作，返回值中还会包括文本节点等其他类型的节点，是一个NodeList对象的集合。 children属性用于元素操作，返回的是HTMLCollection对象的集合</li>
+</ul>
+<blockquote>
+<p>childNodes属性在IE6~8不会获取文本节点，在IE9及以上版本和主流浏览器中则可以获取文本节点。</p>
+</blockquote>
+<p>此外，由于document对象继承自Node节点对象，因此document对象也可以进行以上的节点操作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 访问document节点的第1个子节点</span><br><span class="hljs-variable language_">document</span>.<span class="hljs-property">firstChild</span>;              <span class="hljs-comment">// 访问结果：&lt;!DOCTYPE html&gt;</span><br><span class="hljs-comment">// 访问document节点的第2个子节点</span><br><span class="hljs-variable language_">document</span>.<span class="hljs-property">firstChild</span>.<span class="hljs-property">nextSibling</span>;  <span class="hljs-comment">// 访问结果：&lt;html&gt;……&lt;/html&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><a name="57dc09fa"></a></p>
+<h3 id="3-2-节点追加"><a href="#3-2-节点追加" class="headerlink" title="3.2 节点追加"></a>3.2 节点追加</h3><p>在获取元素的节点后，还可以利用DOM提供的方法实现节点的添加，如创建一个li元素节点，为li元素节点创建一个文本节点等。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>document.createElement()</td>
+<td>创建元素节点</td>
+</tr>
+<tr>
+<td>document.createTextNode()</td>
+<td>创建文本节点</td>
+</tr>
+<tr>
+<td>document.createAttribute()</td>
+<td>创建属性节点</td>
+</tr>
+<tr>
+<td>appendChild()</td>
+<td>在指定元素的子节点列表的末尾添加一个节点</td>
+</tr>
+<tr>
+<td>insertBefore()</td>
+<td>为当前节点增加一个子节点（插入到指定子节点之前）</td>
+</tr>
+<tr>
+<td>getAttributeNode()</td>
+<td>返回指定名称的属性节点</td>
+</tr>
+<tr>
+<td>setAttributeNode()</td>
+<td>设置或者改变指定名称的属性节点</td>
+</tr>
+</tbody></table>
+<p>create系列的方法是由document对象提供的，与Node对象无关。</p>
+<p><a name="29af0a69"></a></p>
+<h3 id="3-3-节点删除"><a href="#3-3-节点删除" class="headerlink" title="3.3 节点删除"></a>3.3 节点删除</h3><p>语法：removeChild()和removeAttributeNode()方法实现。</p>
+<p>返回值：是被移出的元素节点或属性节点。</p>
+<p><a name="731e4447"></a></p>
+<h3 id="3-4-练习作业"><a href="#3-4-练习作业" class="headerlink" title="3.4 练习作业"></a>3.4 练习作业</h3><ul>
+<li>列表的增删和移动 <ul>
+<li>编写HTML代码，设计列表的结构与显示样式。</li>
+<li>编写SmartList对象，用于实现列表的生成。</li>
+<li>编写Find对象，用于获取指定前缀的元素，查找移动列表项的前后元素。</li>
+<li>编写List对象，用于创建列表对象，处理上移、下移、删除按钮的单击事件。</li>
+<li>编写add对象，控制添加区域是否显示、添加到列表内的操作或取消添加操作。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1661221049750-ab20edda-3032-4b6b-b7f6-398e42288761.png#clientId=u458cc838-c42c-4&from=paste&height=559&id=uf791ca5c&name=image.png&originHeight=559&originWidth=532&originalType=binary&ratio=1&rotation=0&showTitle=false&size=36158&status=done&style=none&taskId=u988d6f4a-1c4b-4019-8f92-c86969990b9&title=&width=532" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><a name="488a881b"></a></p>
+<h2 id="4-练习作业"><a href="#4-练习作业" class="headerlink" title="4 练习作业"></a>4 练习作业</h2><ul>
+<li>商品购物车 <ul>
+<li>编写HTML代码，设计购物车的结构与显示样式。</li>
+<li>编写ShopCart对象，用于完成购物车的所有功能。</li>
+<li>编写Find对象，用于获取指定前缀的元素。</li>
+<li>编写Cart对象，用来创建购物车，实现商品的添加、完成购物车的统计、全选以及商品删除功能。</li>
+<li>编写Item对象，创建购物车中的一件商品及商品的小计，商品的选择、商品数量的修改以及删除操作。</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DOM节点的操作</div>
+      <div>http://example.com/学习/js/40-DOM节点的操作/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年9月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/41-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="面向对象">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">面向对象</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/39-%E4%BA%8B%E4%BB%B6/" title="事件">
+                        <span class="hidden-mobile">事件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

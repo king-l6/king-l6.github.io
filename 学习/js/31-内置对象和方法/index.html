@@ -1,0 +1,716 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="内置对象Math、Array、String、Number、Date内置对象不需要重新声明，最多需要我们new 一下 MathMath不需要new，包含了一些常量属性和方法 PI圆周率PI，不是一个精确值，用于JS计算已经足够了。 三角函数 Math.sin() Math.cos() Math.tan() Math.asin() Math.acos() Math.atan() Math.atan2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内置对象和方法">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/js/31-%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="内置对象Math、Array、String、Number、Date内置对象不需要重新声明，最多需要我们new 一下 MathMath不需要new，包含了一些常量属性和方法 PI圆周率PI，不是一个精确值，用于JS计算已经足够了。 三角函数 Math.sin() Math.cos() Math.tan() Math.asin() Math.acos() Math.atan() Math.atan2">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660288870835-2a60658c-6bca-42ff-980e-6032b3b5a855.png#clientId=u4840162c-0084-4&from=paste&height=24&id=u10f63a12&name=image.png&originHeight=24&originWidth=322&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2094&status=done&style=none&taskId=u41814581-5144-4cf3-8dd0-03414f4babb&title=&width=322">
+<meta property="article:published_time" content="2020-07-18T09:14:04.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:20:16.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1660288870835-2a60658c-6bca-42ff-980e-6032b3b5a855.png#clientId=u4840162c-0084-4&from=paste&height=24&id=u10f63a12&name=image.png&originHeight=24&originWidth=322&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2094&status=done&style=none&taskId=u41814581-5144-4cf3-8dd0-03414f4babb&title=&width=322">
+  
+  
+  
+  <title>内置对象和方法 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="内置对象和方法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-07-18 17:14" pubdate>
+          2020年7月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">内置对象和方法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="SArO4"></a></p>
+<h2 id="内置对象"><a href="#内置对象" class="headerlink" title="内置对象"></a>内置对象</h2><p>Math、Array、String、Number、Date<br />内置对象不需要重新声明，最多需要我们new 一下<br><a name="LTPg9"></a></p>
+<h2 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h2><p>Math不需要new，包含了一些常量属性和方法<br><a name="PRYpp"></a></p>
+<h3 id="PI"><a href="#PI" class="headerlink" title="PI"></a>PI</h3><p>圆周率PI，不是一个精确值，用于JS计算已经足够了。<br><a name="gPANz"></a></p>
+<h3 id="三角函数"><a href="#三角函数" class="headerlink" title="三角函数"></a>三角函数</h3><ul>
+<li>Math.sin()</li>
+<li>Math.cos()</li>
+<li>Math.tan()</li>
+<li>Math.asin()</li>
+<li>Math.acos()</li>
+<li>Math.atan()</li>
+<li>Math.atan2()</li>
+</ul>
+<p>sin cos tan里边写的参数是弧度单位.<br />1弧度 &#x3D; 180 &#x2F; PI 度<br />1度 &#x3D; PI &#x2F; 180 弧度<br />asin acos atan 根据正弦余弦正切值求出对应的角的弧度.<br />atan2(x, y) 指的是对边长度和临边长度.<br><a name="McHIc"></a></p>
+<h3 id="Math-random"><a href="#Math-random" class="headerlink" title="Math.random()"></a>Math.random()</h3><p>随机数生成 0 - 1的随机数，包含0 不包含1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> 变量 = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>()<br></code></pre></td></tr></table></figure>
+<p>如果我们想生成0-n的随机数，可以通过下面的操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> 变量 = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * n<br></code></pre></td></tr></table></figure>
+<p>如果我们想生成0-n的随机整数数，可以通过下面的操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> 变量 = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * n)<br><span class="hljs-keyword">let</span> 变量 = <span class="hljs-built_in">parseInt</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * n)<br></code></pre></td></tr></table></figure>
+<p>如果我们想生成m - n的随机数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> 变量  = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (n - m + <span class="hljs-number">1</span>) + m)<br></code></pre></td></tr></table></figure>
+<p><a name="AZOQG"></a></p>
+<h3 id="Math-max-Math-min"><a href="#Math-max-Math-min" class="headerlink" title="Math.max Math.min"></a>Math.max Math.min</h3><p>可以通过对应的方法获取多个数中的最大值或者最小值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> maxNum = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(参数<span class="hljs-number">1</span>, 参数<span class="hljs-number">2</span>, 参数n) <span class="hljs-comment">// 返回的值为最大值</span><br><span class="hljs-keyword">let</span> minNum = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(参数<span class="hljs-number">1</span>, 参数<span class="hljs-number">2</span>, 参数n) <span class="hljs-comment">// 返回的值为最小值</span><br></code></pre></td></tr></table></figure>
+<p><a name="hzY95"></a></p>
+<h3 id="获取约等数"><a href="#获取约等数" class="headerlink" title="获取约等数"></a>获取约等数</h3><ul>
+<li>Math.round(num) 四舍五入</li>
+<li>Math.floor(num) 去尾取整</li>
+<li>Math.ceil(num) 进一取整<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * <span class="hljs-number">100</span>) <span class="hljs-comment">// 0 - 100 不包含100</span><br><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * <span class="hljs-number">100</span> + <span class="hljs-number">1</span>) <span class="hljs-comment">// 0 - 100 包含100</span><br></code></pre></td></tr></table></figure>
+<a name="bkvEV"></a></li>
+</ul>
+<h3 id="Math-abs-num"><a href="#Math-abs-num" class="headerlink" title="Math.abs(num)"></a>Math.abs(num)</h3><p>获取到一个数的绝对值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>(-<span class="hljs-number">1</span>) <span class="hljs-comment">// 1</span><br><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>(<span class="hljs-number">1</span>) <span class="hljs-comment">// 1</span><br></code></pre></td></tr></table></figure>
+<p><a name="umHg7"></a></p>
+<h3 id="求次方开方"><a href="#求次方开方" class="headerlink" title="求次方开方"></a>求次方开方</h3><ul>
+<li>Math.sqrt</li>
+<li>Math.cbrt</li>
+<li>Math.pow</li>
+<li>Math.hypot<br><a name="McL3H"></a></li>
+</ul>
+<h4 id="Math-pow"><a href="#Math-pow" class="headerlink" title="Math.pow"></a>Math.pow</h4><p>求一个数的几次方</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">pow</span>(数字, 幂)<br><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">pow</span>(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>) <span class="hljs-comment">// 4</span><br><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">pow</span>(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// 8</span><br><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">pow</span>(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>/<span class="hljs-number">2</span>) <span class="hljs-comment">// 1.414</span><br><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">pow</span>(<span class="hljs-number">2</span>, -<span class="hljs-number">2</span>) <span class="hljs-comment">// 0.25</span><br></code></pre></td></tr></table></figure>
+<p><a name="dTNhD"></a></p>
+<h4 id="Math-sqrt"><a href="#Math-sqrt" class="headerlink" title="Math.sqrt"></a>Math.sqrt</h4><p>求一个数的平方根</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sqrt</span>(<span class="hljs-number">4</span>) <span class="hljs-comment">// 2</span><br><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sqrt</span>(<span class="hljs-number">16</span>) <span class="hljs-comment">// 4</span><br></code></pre></td></tr></table></figure>
+<p><a name="Dnkst"></a></p>
+<h4 id="Math-cbrt"><a href="#Math-cbrt" class="headerlink" title="Math.cbrt"></a>Math.cbrt</h4><p>求一个数的立方根</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">cbrt</span>(<span class="hljs-number">8</span>) <span class="hljs-comment">// 2 </span><br></code></pre></td></tr></table></figure>
+<p><a name="Wo3vC"></a></p>
+<h4 id="Math-hypot"><a href="#Math-hypot" class="headerlink" title="Math.hypot"></a>Math.hypot</h4><p>所有参数的平方和求平方根, 勾股定理中,可以直接帮我们计算斜边.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">hypot</span>(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>) <span class="hljs-comment">// 5  3 * 3 + 4 * 4 = 25  5 * 5 = 25</span><br></code></pre></td></tr></table></figure>
+<p><a name="hfRGh"></a></p>
+<h2 id="Date日期对象"><a href="#Date日期对象" class="headerlink" title="Date日期对象"></a>Date日期对象</h2><p>下面的对象都需要new <br />Date用来获取计算机上时间.使用前需要先生成日期对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> 变量 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1660288870835-2a60658c-6bca-42ff-980e-6032b3b5a855.png#clientId=u4840162c-0084-4&from=paste&height=24&id=u10f63a12&name=image.png&originHeight=24&originWidth=322&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2094&status=done&style=none&taskId=u41814581-5144-4cf3-8dd0-03414f4babb&title=&width=322" srcset="/img/loading.gif" lazyload alt="image.png"><br />打印出来的这个日期是一个字符串,但实际上是一个对象.想要看到这个对象的原本面目,打印时使用数组包裹.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> date = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([date])<br></code></pre></td></tr></table></figure>
+<p>new Date可以自己生成对应的自定义的时间。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-number">5000</span>) <span class="hljs-comment">// 在1970年1月1日0点0分0秒0毫秒 + 5000毫秒 </span><br><span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">&quot;2000&quot;</span>) <span class="hljs-comment">// 2000年</span><br><span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">&quot;2019-12-2&quot;</span>) <span class="hljs-comment">// 2019年12月2日</span><br></code></pre></td></tr></table></figure>
+<p><a name="jUKNM"></a></p>
+<h3 id="获取时间"><a href="#获取时间" class="headerlink" title="获取时间"></a>获取时间</h3><p><a name="wG2Gx"></a></p>
+<h4 id="getYear-getFullYear"><a href="#getYear-getFullYear" class="headerlink" title="getYear getFullYear"></a>getYear getFullYear</h4><p>一般用getFullYear获取固定的年份, getYear获取到的是距离1900年的年数.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(date.<span class="hljs-title function_">getFullYear</span>()) <span class="hljs-comment">// 2022</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(date.<span class="hljs-title function_">getYear</span>()) <span class="hljs-comment">// 122</span><br></code></pre></td></tr></table></figure>
+<p><a name="UxXve"></a></p>
+<h4 id="getMonth"><a href="#getMonth" class="headerlink" title="getMonth"></a>getMonth</h4><p>获取到的值从0开始,到11结束,0-11分别代表 1-12月.在进行月份的计算时,要+1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> month = date.<span class="hljs-title function_">getMonth</span>() + <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<p><a name="apFji"></a></p>
+<h4 id="getDay"><a href="#getDay" class="headerlink" title="getDay"></a>getDay</h4><p>表示当天是一周中的第几天,从0开始到6结束.0表示周日,其他数字表示对应周一到周六</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> day = date.<span class="hljs-title function_">getDay</span>() <br></code></pre></td></tr></table></figure>
+<p><a name="VdFhs"></a></p>
+<h4 id="getDate"><a href="#getDate" class="headerlink" title="getDate"></a>getDate</h4><p>获取到当天的日期,几号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> d = date.<span class="hljs-title function_">getDate</span>() <span class="hljs-comment">// 12</span><br></code></pre></td></tr></table></figure>
+<p><a name="ZKriA"></a></p>
+<h4 id="getHours"><a href="#getHours" class="headerlink" title="getHours"></a>getHours</h4><p>获取小时<br><a name="ItCpY"></a></p>
+<h4 id="getMiuntes"><a href="#getMiuntes" class="headerlink" title="getMiuntes"></a>getMiuntes</h4><p>获取分钟<br><a name="agb9q"></a></p>
+<h4 id="getSeconds"><a href="#getSeconds" class="headerlink" title="getSeconds"></a>getSeconds</h4><p>获取秒数<br><a name="W6jvs"></a></p>
+<h4 id="getMilliseconds"><a href="#getMilliseconds" class="headerlink" title="getMilliseconds"></a>getMilliseconds</h4><p>获取毫秒数<br><a name="C6eNR"></a></p>
+<h4 id="getTime"><a href="#getTime" class="headerlink" title="getTime()"></a>getTime()</h4><p>时间戳:严格意义上来讲,时间戳表示当前时间距离1970年1月1日0点0分0秒的秒数.但是,js获取到的是毫秒数.<br />我们可以通过 new Date().getTime() 获取到距离1970年1月1日0点0分0秒的毫秒数.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> date = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()<br>date.<span class="hljs-title function_">getTime</span>()<br></code></pre></td></tr></table></figure>
+<p>我们一般不用它,一般使用新的用法<code>Date.now()</code><br><a name="apPuO"></a></p>
+<h3 id="设置时间"><a href="#设置时间" class="headerlink" title="设置时间"></a>设置时间</h3><p>所有的日期对象中设置时间的方法叫<code>setXXX</code>.设置时，我们可以超出对应的上限，超出后，会跑到下一个时间<br><a name="IbOrU"></a></p>
+<h4 id="setDate"><a href="#setDate" class="headerlink" title="setDate"></a>setDate</h4><p>设置当前日期对象中的date值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> date = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() <span class="hljs-comment">// 今天 2022 8 12</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(date.<span class="hljs-title function_">getDate</span>()) <span class="hljs-comment">// 12</span><br>date.<span class="hljs-title function_">setDate</span>(<span class="hljs-number">1</span>)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(date.<span class="hljs-title function_">getDate</span>()) <span class="hljs-comment">// 1</span><br></code></pre></td></tr></table></figure>
+<p><a name="Y21Qx"></a></p>
+<h4 id="setFullYear"><a href="#setFullYear" class="headerlink" title="setFullYear"></a>setFullYear</h4><p>设置当前的日期对象的年份</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> date = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()<br>date.<span class="hljs-title function_">setFullYear</span>(<span class="hljs-number">2000</span>) <span class="hljs-comment">// 这个日期对象的getFullYear就是2000</span><br></code></pre></td></tr></table></figure>
+<p><a name="NIyb0"></a></p>
+<h4 id="setMonth"><a href="#setMonth" class="headerlink" title="setMonth"></a>setMonth</h4><p>设置当前的日期对象的月份</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> date = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()<br>date.<span class="hljs-title function_">setMonth</span>(<span class="hljs-number">8</span>) <span class="hljs-comment">// 这个日期对象的getMonth就是8</span><br>date.<span class="hljs-title function_">setMonth</span>(<span class="hljs-number">12</span>)<br></code></pre></td></tr></table></figure>
+<p><a name="HWLf9"></a></p>
+<h4 id="setHours"><a href="#setHours" class="headerlink" title="setHours"></a>setHours</h4><p>设置对应的小时数<br><a name="zPLhN"></a></p>
+<h4 id="setMinutes"><a href="#setMinutes" class="headerlink" title="setMinutes"></a>setMinutes</h4><p>设置对应的分钟数<br><a name="PrYNf"></a></p>
+<h4 id="setSeconds"><a href="#setSeconds" class="headerlink" title="setSeconds"></a>setSeconds</h4><p>设置对应的秒数<br><a name="tnEjT"></a></p>
+<h4 id="setMilliseconds"><a href="#setMilliseconds" class="headerlink" title="setMilliseconds"></a>setMilliseconds</h4><p>设置对应的毫秒数<br><a name="jcGIH"></a></p>
+<h4 id="setTime"><a href="#setTime" class="headerlink" title="setTime"></a>setTime</h4><p>参数为毫秒数，或生成一个1970年过对应毫秒数后的一个时间对象。<br><a name="Vy3Sj"></a></p>
+<h3 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h3><p>GMT 格林尼治时间（世界时）<br />UTC 协调世界时（原子时）这种更精确。后续使用相关的Date方法时也建议使用UTC相关方法<br />&#96;</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>内置对象和方法</div>
+      <div>http://example.com/学习/js/31-内置对象和方法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年7月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/32-%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9C%AC%E8%B4%A8/" title="对象的本质">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">对象的本质</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/30-%E6%95%B0%E7%BB%84%E5%92%8C%E5%AF%B9%E8%B1%A1/" title="数组和对象">
+                        <span class="hidden-mobile">数组和对象</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

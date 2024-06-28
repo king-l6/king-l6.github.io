@@ -1,0 +1,683 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="DOM中的事件是一个很中要的东西，它可以让用户和浏览器之间进行交互，以此来实现人机交互效果。 DOM事件DOM事件分为DOM0级事件和DOM2级事件。DOM0级其实不存在，我们把DOM最初的版本叫0级。在DOM2级的时候更新了一种新的事件绑定的方式，所以才有了所谓DOM0级和DOM2级事件。  click keyup keydown keypress scroll mouseover  DOM事件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/js/39-%E4%BA%8B%E4%BB%B6/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="DOM中的事件是一个很中要的东西，它可以让用户和浏览器之间进行交互，以此来实现人机交互效果。 DOM事件DOM事件分为DOM0级事件和DOM2级事件。DOM0级其实不存在，我们把DOM最初的版本叫0级。在DOM2级的时候更新了一种新的事件绑定的方式，所以才有了所谓DOM0级和DOM2级事件。  click keyup keydown keypress scroll mouseover  DOM事件">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1661131976626-5f6b4055-d840-4260-b354-881ab15956e5.png#clientId=u1fdf6eb0-b2d7-4&from=paste&height=742&id=u15cf8ac2&name=image.png&originHeight=742&originWidth=1048&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27061&status=done&style=none&taskId=u32605a83-a259-48d5-b27c-2b458b9a94c&title=&width=1048">
+<meta property="article:published_time" content="2020-09-16T09:23:11.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:22:40.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1661131976626-5f6b4055-d840-4260-b354-881ab15956e5.png#clientId=u1fdf6eb0-b2d7-4&from=paste&height=742&id=u15cf8ac2&name=image.png&originHeight=742&originWidth=1048&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27061&status=done&style=none&taskId=u32605a83-a259-48d5-b27c-2b458b9a94c&title=&width=1048">
+  
+  
+  
+  <title>事件 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="事件"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-09-16 17:23" pubdate>
+          2020年9月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          26 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">事件</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>DOM中的事件是一个很中要的东西，它可以让用户和浏览器之间进行交互，以此来实现人机交互效果。<br><a name="eLkgZ"></a></p>
+<h2 id="DOM事件"><a href="#DOM事件" class="headerlink" title="DOM事件"></a>DOM事件</h2><p>DOM事件分为DOM0级事件和DOM2级事件。DOM0级其实不存在，我们把DOM最初的版本叫0级。在DOM2级的时候更新了一种新的事件绑定的方式，所以才有了所谓DOM0级和DOM2级事件。</p>
+<ul>
+<li>click</li>
+<li>keyup keydown keypress</li>
+<li>scroll</li>
+<li>mouseover</li>
+</ul>
+<p>DOM事件在去使用的过程中，语法很简单。<br><a name="Hm2qc"></a></p>
+<h3 id="绑定事件"><a href="#绑定事件" class="headerlink" title="绑定事件"></a>绑定事件</h3><p>DOM0级事件绑定：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable constant_">DOM</span>.<span class="hljs-property">on</span>事件名 = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <br>&#125;<br><br><span class="hljs-comment">// 该方法绑定时无法同时给同一个元素绑定多个相同的事件</span><br><span class="hljs-variable constant_">DOM</span>.<span class="hljs-property">onclick</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;&#125;<br><span class="hljs-variable constant_">DOM</span>.<span class="hljs-property">onclick</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;&#125; <span class="hljs-comment">// 这个会覆盖上面的</span><br></code></pre></td></tr></table></figure>
+<p>DOM2级事件绑定:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;事件名&quot;</span>, 事件句柄, isCapture)<br><br><span class="hljs-comment">// 一般这么写</span><br><span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;事件名&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;&#125;, <span class="hljs-literal">false</span>)<br></code></pre></td></tr></table></figure>
+<p>IE8及以下版本需要使用<code>attachEvent()</code>了解即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">attachEvent</span>(<span class="hljs-string">&#x27;on事件类型&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;&#125;)<br></code></pre></td></tr></table></figure>
+<p><a name="WrLhC"></a></p>
+<h3 id="移除事件"><a href="#移除事件" class="headerlink" title="移除事件"></a>移除事件</h3><p>DOM0级事件移除</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable constant_">DOM</span>.<span class="hljs-property">onclick</span> = <span class="hljs-literal">null</span><br></code></pre></td></tr></table></figure>
+<p>DOM2级事件移除</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&quot;事件名&quot;</span>, 事件句柄, isCapture)<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">handler</span> () &#123;&#125;<br><br><span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;事件名&#x27;</span>, handler, <span class="hljs-literal">false</span>)<br><span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&#x27;事件名&#x27;</span>, handler, <span class="hljs-literal">false</span>)<br><br><span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;事件名&#x27;</span>, handler, <span class="hljs-literal">true</span>)<br><span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&#x27;事件名&#x27;</span>, handler, <span class="hljs-literal">true</span>)<br></code></pre></td></tr></table></figure>
+
+<p><a name="Yt57O"></a></p>
+<h2 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h2><p>最早的时候，浏览器市场被网景公司netscape占据，后来微软推出了IE抢占市场，后来网景就倒闭了。<br />两个浏览器有不同的思想。netScape浏览器，在事件执行操作上，推崇事件捕获。而IE浏览器推崇事件冒泡<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1661131976626-5f6b4055-d840-4260-b354-881ab15956e5.png#clientId=u1fdf6eb0-b2d7-4&from=paste&height=742&id=u15cf8ac2&name=image.png&originHeight=742&originWidth=1048&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27061&status=done&style=none&taskId=u32605a83-a259-48d5-b27c-2b458b9a94c&title=&width=1048" srcset="/img/loading.gif" lazyload alt="image.png"><br />事件流在最早有两种相对的事件流：冒泡事件流和捕获事件流。<br><a name="S5hKW"></a></p>
+<h3 id="冒泡事件流"><a href="#冒泡事件流" class="headerlink" title="冒泡事件流"></a>冒泡事件流</h3><p>当我们触发一个元素的事件时，会从这个这个元素沿着DOM树向上冒泡，有相同事件的元素会执行对应元素上的事件，没有则继续冒泡，直到到document结束。图中红色部分。<br><a name="ixagK"></a></p>
+<h3 id="捕获事件流"><a href="#捕获事件流" class="headerlink" title="捕获事件流"></a>捕获事件流</h3><p>当我们触发一个元素的事件时，会从document沿着DOM树向下捕获， 直到找到这个元素位置，途径的元素有对应事件，则执行，和冒泡顺序相反<br><a name="s5aOF"></a></p>
+<h3 id="DOM2级事件有了标准事件流"><a href="#DOM2级事件有了标准事件流" class="headerlink" title="DOM2级事件有了标准事件流"></a>DOM2级事件有了标准事件流</h3><p>在标准的事件流中，先捕获，到达事件源元素，再冒泡。具体实在捕获阶段执行事件还是在冒泡阶段执行事件，需要看第三个参数是true还是false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;事件&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;&#125;, <span class="hljs-literal">false</span>) <span class="hljs-comment">// 在冒泡阶段执行事件</span><br><span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;事件&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;&#125;, <span class="hljs-literal">true</span>) <span class="hljs-comment">// 在捕获阶段执行事件</span><br></code></pre></td></tr></table></figure>
+<p><a name="gUJRE"></a></p>
+<h3 id="事件流带来的好处和坏处"><a href="#事件流带来的好处和坏处" class="headerlink" title="事件流带来的好处和坏处"></a>事件流带来的好处和坏处</h3><p><a name="OaVs9"></a></p>
+<h4 id="事件委托（事件代理）"><a href="#事件委托（事件代理）" class="headerlink" title="事件委托（事件代理）"></a>事件委托（事件代理）</h4><p>使用js添加到页面上的内容，可以用事件委托。如果要给一大堆相同的元素添加相同的事件，也可以使用事件委托。<br />把本该自己执行的事件添加到自己的父元素或者祖先元素上，然后利用事件对象限制执行的条件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">e.<span class="hljs-property">target</span> <span class="hljs-comment">// 具体的事件作用的元素</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>可以给后续添加的元素绑定事件</li>
+<li>节省内存<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs javascript">祖先元素.<span class="hljs-property">on</span>事件类型 = <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>  <span class="hljs-keyword">if</span> (e.<span class="hljs-property">target</span>.<span class="hljs-property">xxx</span> === <span class="hljs-string">&quot;xxx&quot;</span>) &#123;<br>    <span class="hljs-comment">// 执行对应的操作</span><br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 当元素代理的事件过多时，可以使用switch</span><br>祖先元素.<span class="hljs-property">on</span>事件类型 = <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>  <span class="hljs-keyword">switch</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">xxx</span>) &#123;<br>    <span class="hljs-keyword">case</span> 值<span class="hljs-number">1</span>: <br>      <br>      <span class="hljs-keyword">break</span><br>    <span class="hljs-keyword">case</span> 值<span class="hljs-number">2</span>:<br><br>      <span class="hljs-keyword">break</span><br>    <span class="hljs-keyword">case</span> 值<span class="hljs-number">3</span>:<br><br>      <span class="hljs-keyword">break</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<a name="yAuMY"></a></li>
+</ul>
+<h4 id="阻止冒泡"><a href="#阻止冒泡" class="headerlink" title="阻止冒泡"></a>阻止冒泡</h4><p>冒泡在有些时候需要被阻止，当元素本身和内部元素有相同类型的事件执行时，一般需要阻止冒泡</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">dom.<span class="hljs-property">onclick</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>  e.<span class="hljs-title function_">stopPropagation</span>()<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>阻止冒泡在IE低版本浏览器中，可以使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">e.<span class="hljs-property">cancelBubble</span> = <span class="hljs-literal">true</span> <br></code></pre></td></tr></table></figure>
+<p>现在无所谓了，记住第一种方式即可。<br><a name="wQRxg"></a></p>
+<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><p>事件对象是在所有的事件中都会自动生成的一个对象。这个对象叫事件对象Event<br><a name="Z7jI4"></a></p>
+<h3 id="如何获取到事件对象？"><a href="#如何获取到事件对象？" class="headerlink" title="如何获取到事件对象？"></a>如何获取到事件对象？</h3><p>直接在事件函数中，填入形参<code>e</code>即可在函数中把e当成事件对象使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable constant_">DOM</span>.<span class="hljs-property">on</span>事件名 = <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>  <span class="hljs-comment">// 给事件函数写一个形参一般用 e evt event 都可以</span><br>  <span class="hljs-comment">// 在函数内部就可以使用这个参数了</span><br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e) <span class="hljs-comment">// 千万不要考虑，这个e哪来的。</span><br>&#125;<br><br><span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;事件名&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;&#125;, <span class="hljs-literal">false</span>)<br></code></pre></td></tr></table></figure>
+<p>IE8的时候，是不能用这个e的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable constant_">DOM</span>.<span class="hljs-property">on</span>事件名 = <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>  <span class="hljs-comment">// 直接获取window.event</span><br>  e = e || <span class="hljs-variable language_">window</span>.<span class="hljs-property">event</span> <span class="hljs-comment">// 现在无所谓了</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>事件对象中，包含了很多我们有用的属性，后续我们慢慢讲解。<br><a name="vDELk"></a></p>
+<h3 id="阻止浏览器默认行为"><a href="#阻止浏览器默认行为" class="headerlink" title="阻止浏览器默认行为"></a>阻止浏览器默认行为</h3><p>诸如a标签跳转，表单提交，鼠标右键打开菜单，这些操作都是浏览器的默认行为。<br />a标签跳转，在网页中，有很多时候，我们需要借助a标签的特性，但是又不想发生任何跳转，我们就需要取消浏览器默认行为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">dom.<span class="hljs-property">on</span>事件 = <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>  e.<span class="hljs-title function_">preventDefault</span>()<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>还可以直接返回false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript">dom.<span class="hljs-property">on</span>事件 = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// 其他代码</span><br>  <br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>还可以</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript">dom.<span class="hljs-property">on</span>事件 = <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br><br>  e.<span class="hljs-property">returnValue</span> = <span class="hljs-literal">false</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>一般a标签不会用这个方式，我们会使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;javascript:;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;javascript:void(0);&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="klqql"></a></p>
+<h3 id="事件对象中的位置信息"><a href="#事件对象中的位置信息" class="headerlink" title="事件对象中的位置信息"></a>事件对象中的位置信息</h3><p><a name="tdRXN"></a></p>
+<h4 id="e-screenX-x2F-e-screenY"><a href="#e-screenX-x2F-e-screenY" class="headerlink" title="e.screenX &#x2F; e.screenY"></a>e.screenX &#x2F; e.screenY</h4><p>鼠标点击的位置距离屏幕左侧&#x2F;顶部的距离<br><a name="kfr0M"></a></p>
+<h4 id="e-clientX-x2F-e-clientY"><a href="#e-clientX-x2F-e-clientY" class="headerlink" title="e.clientX &#x2F; e.clientY"></a>e.clientX &#x2F; e.clientY</h4><p>鼠标点击的位置，距离浏览器窗口左侧&#x2F;顶部的距离<br><a name="yuyuS"></a></p>
+<h4 id="e-layerX-x2F-e-layerY"><a href="#e-layerX-x2F-e-layerY" class="headerlink" title="e.layerX &#x2F; e.layerY"></a>e.layerX &#x2F; e.layerY</h4><p>默认情况下，和clientX一样，如果元素中有定位属性，则基于该元素offsetParent的距离，如果元素自身有定位属性，则距离自身左侧&#x2F;顶部的距离。<br><a name="F0HJd"></a></p>
+<h4 id="e-offsetX-x2F-e-offsetY"><a href="#e-offsetX-x2F-e-offsetY" class="headerlink" title="e.offsetX &#x2F; e.offsetY"></a>e.offsetX &#x2F; e.offsetY</h4><p>距离border内侧的距离</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>事件</div>
+      <div>http://example.com/学习/js/39-事件/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年9月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/40-DOM%E8%8A%82%E7%82%B9%E7%9A%84%E6%93%8D%E4%BD%9C/" title="DOM节点的操作">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">DOM节点的操作</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/38-%E5%AE%9A%E6%97%B6%E5%99%A8/" title="定时器">
+                        <span class="hidden-mobile">定时器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

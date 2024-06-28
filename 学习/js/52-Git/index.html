@@ -1,0 +1,869 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="背景作者是Linux之父，因为吐槽SVN难用，所以就自己开发了一个。 版本控制工具版本控制工具主流的有  git svn  我们要学习的git，版本控制工具就是可以帮助我们将代码进行备份存档，当我们想要用某个版本时，可以直接读档，读取对应的代码。并且解决了和同事间一起开发合并代码的问题。 Git的前期准备 下载Git因为服务器是国外，下载很慢，所以可以腾讯软件中心。 安装Git的安装及其简单，虽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/js/52-Git/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="背景作者是Linux之父，因为吐槽SVN难用，所以就自己开发了一个。 版本控制工具版本控制工具主流的有  git svn  我们要学习的git，版本控制工具就是可以帮助我们将代码进行备份存档，当我们想要用某个版本时，可以直接读档，读取对应的代码。并且解决了和同事间一起开发合并代码的问题。 Git的前期准备 下载Git因为服务器是国外，下载很慢，所以可以腾讯软件中心。 安装Git的安装及其简单，虽">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984149750-d5f29c51-3131-48cd-9fae-e75e62e7f95c.png#averageHue=%2397bab1&clientId=ub2fa58c0-4ac3-4&from=paste&height=250&id=u89efaaac&name=image.png&originHeight=250&originWidth=318&originalType=binary&ratio=1&rotation=0&showTitle=false&size=49765&status=done&style=none&taskId=ub1407eec-db2b-4637-b3bf-f6c6cd1b4b5&title=&width=318">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984170246-177a5c43-7ca9-4bbb-a86d-0689b771e927.png#averageHue=%23f9f8f5&clientId=ub2fa58c0-4ac3-4&from=paste&height=602&id=ua4312867&name=image.png&originHeight=602&originWidth=716&originalType=binary&ratio=1&rotation=0&showTitle=false&size=59120&status=done&style=none&taskId=u56b872b2-3b2d-459b-bfda-a394b7d0202&title=&width=716">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984262731-25d0680f-7afa-4243-8911-314e38ee0bf4.png#averageHue=%23e5eef2&clientId=ub2fa58c0-4ac3-4&from=paste&height=303&id=u10b3a5d9&name=image.png&originHeight=303&originWidth=819&originalType=binary&ratio=1&rotation=0&showTitle=false&size=51390&status=done&style=none&taskId=u8c8bdd18-df87-4d71-9186-77ae3a15ce4&title=&width=819">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984408536-46038baf-c8c3-4150-b889-d9972497d1ce.png#averageHue=%23f1f0f0&clientId=ub2fa58c0-4ac3-4&from=paste&height=392&id=u462541e1&name=image.png&originHeight=392&originWidth=499&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9599&status=done&style=none&taskId=u207347c4-7ce6-4323-a574-98bbdf4a027&title=&width=499">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984467988-1c22323a-5425-495f-831c-b2e0d5675d37.png#averageHue=%23e4e4e4&clientId=ub2fa58c0-4ac3-4&from=paste&height=284&id=ua8a119cb&name=image.png&originHeight=284&originWidth=230&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12720&status=done&style=none&taskId=u3f9cf14a-629e-46a6-ba79-41c7d9de66a&title=&width=230">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984542976-8d44d9fd-8563-4435-86dd-61f411b2c61a.png#averageHue=%23252525&clientId=ub2fa58c0-4ac3-4&from=paste&height=512&id=u3bccefbb&name=image.png&originHeight=512&originWidth=979&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22418&status=done&style=none&taskId=ucd07b0fd-57a6-4339-9e52-5f42c6d4f57&title=&width=979">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984833938-523133cf-f5e8-4ffc-af81-5eb8bd1cf326.png#averageHue=%23f6f5f5&clientId=ub2fa58c0-4ac3-4&from=paste&height=546&id=uf2c1efb6&name=image.png&originHeight=546&originWidth=1301&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22161&status=done&style=none&taskId=uab2502ce-d9c6-4136-a5b5-12043c3732c&title=&width=1301">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984989430-2ee310cb-09cd-4b74-a7a3-23a8c742d2c9.png#averageHue=%23e3e3e3&clientId=ub2fa58c0-4ac3-4&from=paste&height=344&id=u695fc446&name=image.png&originHeight=344&originWidth=230&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14786&status=done&style=none&taskId=u6c667f30-0bf9-4176-be5b-dfcdf2f64ca&title=&width=230">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985026548-46859b84-be65-43c3-922f-d26fe0f12688.png#averageHue=%231c1b1b&clientId=ub2fa58c0-4ac3-4&from=paste&height=370&id=ud4cb378f&name=image.png&originHeight=370&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17634&status=done&style=none&taskId=u9fd14cbf-01ad-4241-ae1a-11c6087904e&title=&width=581">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985060394-c8d809ed-4201-4174-b348-263d6e8e7b60.png#averageHue=%23fafaf9&clientId=ub2fa58c0-4ac3-4&from=paste&height=124&id=u20e5177c&name=image.png&originHeight=124&originWidth=642&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8332&status=done&style=none&taskId=u3b96afa5-259a-4f6d-b01f-a7b25eec80f&title=&width=642">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985117925-c66e69b3-e0c2-4e39-af8b-3bf2200baf6c.png#averageHue=%234c8fba&clientId=ub2fa58c0-4ac3-4&from=paste&height=294&id=u02a85fa4&name=image.png&originHeight=294&originWidth=223&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11755&status=done&style=none&taskId=u9d2f646e-4060-47ed-86f3-38556ffb743&title=&width=223">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985152380-da5516d6-f971-4fc0-b200-550e927e1d9a.png#averageHue=%23242d35&clientId=ub2fa58c0-4ac3-4&from=paste&height=321&id=ufdb7b08e&name=image.png&originHeight=321&originWidth=616&originalType=binary&ratio=1&rotation=0&showTitle=false&size=28825&status=done&style=none&taskId=u7f29abc9-bde8-42b2-9151-ee7f963434b&title=&width=616">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985255865-a903d6b2-e966-48f7-9fde-bb1754de442d.png#averageHue=%231774b2&clientId=ub2fa58c0-4ac3-4&from=paste&height=346&id=u0cdc6374&name=image.png&originHeight=346&originWidth=346&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14836&status=done&style=none&taskId=u4159b244-7f98-4364-9991-26f626b50e4&title=&width=346">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985355920-57e76e9e-92d3-431b-a380-b5fe41f7be91.png#clientId=ub2fa58c0-4ac3-4&from=paste&height=288&id=u4487824f&name=image.png&originHeight=288&originWidth=49&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4385&status=done&style=none&taskId=u2a84b8a5-3d17-4809-b7ff-bc1e1e192ec&title=&width=49">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985478683-997e3c7d-45a0-409f-8c57-bbbe0a7ebd02.png#averageHue=%2316689f&clientId=ub2fa58c0-4ac3-4&from=paste&height=312&id=u074769cd&name=image.png&originHeight=312&originWidth=340&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14217&status=done&style=none&taskId=u96e7b955-c301-488f-b8f1-3346f73fa3e&title=&width=340">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985669641-fb109074-0957-40cf-b6c0-f5cb6eca4c84.png#averageHue=%231f1e1b&clientId=ub2fa58c0-4ac3-4&from=paste&height=370&id=ueb5f975b&name=image.png&originHeight=370&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21829&status=done&style=none&taskId=u74c28f01-e08d-4fe6-a0e1-b667c8d1a5e&title=&width=581">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985702075-f3bbd0ba-9f64-4e36-be37-e96fadbbe1f8.png#averageHue=%2377a894&clientId=ub2fa58c0-4ac3-4&from=paste&height=296&id=u61c8e3e2&name=image.png&originHeight=296&originWidth=426&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17505&status=done&style=none&taskId=u8ce8118c-5182-4eb7-872a-114557d2b14&title=&width=426">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985744483-97390dd3-34ef-4d40-bc9c-ec24e3a04324.png#averageHue=%231d5376&clientId=ub2fa58c0-4ac3-4&from=paste&height=300&id=u279bff14&name=image.png&originHeight=300&originWidth=389&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16657&status=done&style=none&taskId=u85c0b629-4289-4465-87a6-3ecff434b16&title=&width=389">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986067833-adce5ca0-72a3-4980-b66e-f69f21d3ec78.png#averageHue=%23201e1c&clientId=ub2fa58c0-4ac3-4&from=paste&height=370&id=udbac1680&name=image.png&originHeight=370&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=34998&status=done&style=none&taskId=u44500d92-4e26-47c8-88a0-4d6438416cd&title=&width=581">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986324351-5d5d1515-56aa-464b-91ff-cb85e09b40de.png#averageHue=%231877b7&clientId=ub2fa58c0-4ac3-4&from=paste&height=307&id=ud48b613d&name=image.png&originHeight=307&originWidth=356&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19014&status=done&style=none&taskId=uad3e26c9-8222-4865-a9f7-50d6106b264&title=&width=356">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986420557-a1dba137-bf08-41e2-b339-c38f1f9f19c6.png#averageHue=%23050301&clientId=ub2fa58c0-4ac3-4&from=paste&height=260&id=u9c09083b&name=image.png&originHeight=260&originWidth=557&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17777&status=done&style=none&taskId=ubb4fca5e-97d2-4283-8ca3-2bd68588b65&title=&width=557">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986453901-c2f93079-e40a-4c7b-b02f-6517d4b42eef.png#averageHue=%232b383f&clientId=ub2fa58c0-4ac3-4&from=paste&height=140&id=u0d8dc537&name=image.png&originHeight=140&originWidth=385&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11722&status=done&style=none&taskId=uff7e3121-7194-470f-96df-419541d123e&title=&width=385">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986515072-84ff21a6-feb3-4339-9cd6-01c7fb0c29b3.png#averageHue=%23718d92&clientId=ub2fa58c0-4ac3-4&from=paste&height=423&id=ub74dc64f&name=image.png&originHeight=423&originWidth=460&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21836&status=done&style=none&taskId=uf7535f26-e379-42ab-b427-f0139b3c385&title=&width=460">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986550682-776dd0e9-1873-4222-aaa8-db513a44f6c1.png#averageHue=%232b2a29&clientId=ub2fa58c0-4ac3-4&from=paste&height=258&id=u7d821682&name=image.png&originHeight=258&originWidth=631&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27928&status=done&style=none&taskId=u54c153d8-4013-487f-9c1e-d7eb9029e40&title=&width=631">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986707920-8b93a58f-9a64-4f94-a462-558dd8bbabbc.png#averageHue=%2320445a&clientId=ub2fa58c0-4ac3-4&from=paste&height=186&id=ud6721c66&name=image.png&originHeight=186&originWidth=634&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18410&status=done&style=none&taskId=u4f11244c-2583-4257-b6e9-7823f72b93d&title=&width=634">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986748226-776fbbce-199b-4b0e-86cd-b3049b3b5669.png#averageHue=%2321323e&clientId=ub2fa58c0-4ac3-4&from=paste&height=176&id=uf4d83e7f&name=image.png&originHeight=176&originWidth=364&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7821&status=done&style=none&taskId=ufb1adb5f-a083-4081-8e8d-a69c5529585&title=&width=364">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986760537-25533964-31eb-4036-a91c-7e6e92f3042d.png#averageHue=%231478b9&clientId=ub2fa58c0-4ac3-4&from=paste&height=92&id=ue186061c&name=image.png&originHeight=92&originWidth=224&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6876&status=done&style=none&taskId=u5168bdc6-7558-4c5e-a475-46caf132d01&title=&width=224">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986798526-a7180958-2541-49ed-980f-adee3f531623.png#averageHue=%2399beba&clientId=ub2fa58c0-4ac3-4&from=paste&height=148&id=ucd5d0b4d&name=image.png&originHeight=148&originWidth=616&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8897&status=done&style=none&taskId=u06db2b1b-24e3-4878-a34e-39e59821840&title=&width=616">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664001816164-032d9b82-2a1e-49c8-8e3f-e90a1d6205be.png#averageHue=%231e3b4f&clientId=u6e20e23e-5a1c-4&from=paste&height=101&id=uf81a0a1e&name=image.png&originHeight=101&originWidth=289&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6297&status=done&style=none&taskId=u067c8e3e-38f7-4815-942d-93f7f907f57&title=&width=289">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664001854012-53dbda8d-cbc8-46e6-826c-5d3ace030d6d.png#averageHue=%23193a50&clientId=u6e20e23e-5a1c-4&from=paste&height=132&id=u6f62dd66&name=image.png&originHeight=132&originWidth=606&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8807&status=done&style=none&taskId=ud1d104bd-2bc1-4c2b-88d2-91880c9d6fd&title=&width=606">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664001878557-f86e6c90-d14d-4a5c-bd3b-0dde46344280.png#averageHue=%2333373a&clientId=u6e20e23e-5a1c-4&from=paste&height=64&id=ub62d5f61&name=image.png&originHeight=64&originWidth=615&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6447&status=done&style=none&taskId=u1d75c744-407c-4275-9ced-fa6ca453f56&title=&width=615">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664001900224-9b277819-a1cf-40d6-887f-5a1eeda2857a.png#averageHue=%231280c7&clientId=u6e20e23e-5a1c-4&from=paste&height=44&id=ufdbc39be&name=image.png&originHeight=44&originWidth=169&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3815&status=done&style=none&taskId=u89a05f59-e997-47e3-9212-c447711eafb&title=&width=169">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664002054625-695f5f67-c30d-4c2d-98ce-4fcf5f3a3cb3.png#averageHue=%232c2b2a&clientId=u6e20e23e-5a1c-4&from=paste&height=75&id=u082f9a6b&name=image.png&originHeight=75&originWidth=656&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6485&status=done&style=none&taskId=u575910fb-f1fd-4da8-a3a7-53a397ab7ec&title=&width=656">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664004914038-16d00576-afc4-42c2-8dce-79dfd45e43ea.png#averageHue=%23f9f9f8&clientId=u6e20e23e-5a1c-4&from=paste&height=760&id=uf6981127&name=image.png&originHeight=760&originWidth=1481&originalType=binary&ratio=1&rotation=0&showTitle=false&size=37753&status=done&style=none&taskId=u5ad11b96-df08-434e-ab1f-57ecdcb82f0&title=&width=1481">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005307562-f54b8544-a278-4619-b134-81218080dbe2.png#averageHue=%23f4f1ef&clientId=u6e20e23e-5a1c-4&from=paste&height=185&id=u88f8b6de&name=image.png&originHeight=185&originWidth=509&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19904&status=done&style=none&taskId=uccb79998-5246-4e9d-ba61-452f01c1036&title=&width=509">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005202062-7953f919-82db-4b1a-9544-a4bcd688738d.png#averageHue=%23f7fcfc&clientId=u6e20e23e-5a1c-4&from=paste&height=286&id=ud0bb087b&name=image.png&originHeight=286&originWidth=406&originalType=binary&ratio=1&rotation=0&showTitle=false&size=23363&status=done&style=none&taskId=uc61799d3-559d-4413-851d-26a6b3dc29b&title=&width=406">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005337981-ad7c2170-b80c-49f6-998e-d550768677c2.png#averageHue=%23fdfcfc&clientId=u6e20e23e-5a1c-4&from=paste&height=693&id=ubb2f1284&name=image.png&originHeight=693&originWidth=875&originalType=binary&ratio=1&rotation=0&showTitle=false&size=48586&status=done&style=none&taskId=ub63e3ec1-a186-48d7-82bf-2b7318e1dff&title=&width=875">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005357864-9a62953f-ffa5-4a5d-9f05-88532c4e5e30.png#averageHue=%23b3b2b2&clientId=u6e20e23e-5a1c-4&from=paste&height=826&id=u8d8e9c79&name=image.png&originHeight=826&originWidth=1214&originalType=binary&ratio=1&rotation=0&showTitle=false&size=66256&status=done&style=none&taskId=u44075962-9774-4b3f-9f54-e34c286e2d4&title=&width=1214">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005539779-86065a07-8f33-4852-a0e1-07081d8906d6.png#averageHue=%231a1a1a&clientId=u6e20e23e-5a1c-4&from=paste&height=370&id=u13aa5b4b&name=image.png&originHeight=370&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14452&status=done&style=none&taskId=ue4955df1-fd9a-4ffe-81a1-dc8ddb78026&title=&width=581">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005571501-1b47399d-e330-45b0-b5be-9c8a279df96a.png#averageHue=%23675a50&clientId=u6e20e23e-5a1c-4&from=paste&height=202&id=ud5d1aba8&name=image.png&originHeight=202&originWidth=499&originalType=binary&ratio=1&rotation=0&showTitle=false&size=10328&status=done&style=none&taskId=u670e5ca2-3738-4ddb-bd3d-ac141c93bdf&title=&width=499">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005600980-e0772afb-9b9f-4943-836f-16253262988e.png#averageHue=%23f6f5f5&clientId=u6e20e23e-5a1c-4&from=paste&height=46&id=u47eb5477&name=image.png&originHeight=46&originWidth=465&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3761&status=done&style=none&taskId=uc4239666-6aad-4999-8343-a69d7132ce0&title=&width=465">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005717160-8e900207-f4b2-4e1e-bc82-c97e5bafe4b2.png#averageHue=%231c1b1b&clientId=u6e20e23e-5a1c-4&from=paste&height=370&id=ua0cc3902&name=image.png&originHeight=370&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20825&status=done&style=none&taskId=u05690946-e2d0-471e-8534-3de71bdf7af&title=&width=581">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005794620-7e328822-a84a-4024-b451-c77dfd9e9af8.png#averageHue=%23dfdfdf&clientId=u6e20e23e-5a1c-4&from=paste&height=281&id=ua5893451&name=image.png&originHeight=281&originWidth=456&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9259&status=done&style=none&taskId=u4e6427f3-4e76-4ca4-8b10-b0daa5ed1c4&title=&width=456">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664006063654-ec3e01f3-12d5-4037-ab18-ac3cdb57bf26.png#averageHue=%23fbfaf9&clientId=u6e20e23e-5a1c-4&from=paste&height=539&id=u20e7f646&name=image.png&originHeight=539&originWidth=589&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42458&status=done&style=none&taskId=u3dbee6e0-a919-4558-80bd-bf8e36afef3&title=&width=589">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005898058-9e1b4255-f772-4800-b609-16bd89ca32eb.png#averageHue=%23221f1d&clientId=u6e20e23e-5a1c-4&from=paste&height=370&id=uf98dd7f3&name=image.png&originHeight=370&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=37220&status=done&style=none&taskId=ued6c502f-ffdf-44b6-adec-2e84fa54337&title=&width=581">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005932466-becf976c-b201-47e3-95f0-15e13eed5904.png#averageHue=%231f7dbb&clientId=u6e20e23e-5a1c-4&from=paste&height=25&id=u46f07ad2&name=image.png&originHeight=25&originWidth=104&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1817&status=done&style=none&taskId=u4fe8057a-fa85-4a97-9be7-ca77f32dde8&title=&width=104">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005939773-d55672f6-7a53-40f8-88e3-16c19c8a1530.png#averageHue=%230e6ba8&clientId=u6e20e23e-5a1c-4&from=paste&height=39&id=ubdd592b9&name=image.png&originHeight=39&originWidth=108&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1887&status=done&style=none&taskId=u2d3419c7-52da-4d75-a322-125ee42bc12&title=&width=108">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005952463-dd2e2039-9ef9-43eb-ab43-6abafdf011b8.png#averageHue=%230a466e&clientId=u6e20e23e-5a1c-4&from=paste&height=180&id=u2fc7876e&name=image.png&originHeight=180&originWidth=613&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14420&status=done&style=none&taskId=u5790799a-e9c8-4ec7-8b1b-bd313fe6a71&title=&width=613">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664006179933-960b4ca3-6c3f-4f4d-8106-b5179b1b7805.png#averageHue=%236f7b78&clientId=u6e20e23e-5a1c-4&from=paste&height=517&id=u4fb326d7&name=image.png&originHeight=517&originWidth=635&originalType=binary&ratio=1&rotation=0&showTitle=false&size=45745&status=done&style=none&taskId=ue50d2cae-7c49-442f-8ac8-df728dbe04e&title=&width=635">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664006258223-7a50ee98-2bc0-4e78-a0e1-3d7a6cda45b2.png#averageHue=%23177abb&clientId=u6e20e23e-5a1c-4&from=paste&height=409&id=u57002b48&name=image.png&originHeight=409&originWidth=302&originalType=binary&ratio=1&rotation=0&showTitle=false&size=13243&status=done&style=none&taskId=uc0efccb0-73bf-412b-9d1e-b0802df2ba4&title=&width=302">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664006324302-74b07aee-0214-4e99-bb76-b7c45db8632f.png#averageHue=%23fefdfc&clientId=u6e20e23e-5a1c-4&from=paste&height=137&id=u3299e225&name=image.png&originHeight=137&originWidth=1193&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20772&status=done&style=none&taskId=u7966464b-4c5f-4296-b951-85aee3f886d&title=&width=1193">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664006683481-d07b88ab-9aa5-4b38-9485-668f3e7de877.png#averageHue=%230a81cf&clientId=u6e20e23e-5a1c-4&from=paste&height=39&id=uf762cdf4&name=image.png&originHeight=39&originWidth=139&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1978&status=done&style=none&taskId=uf841a820-262f-42c3-990f-4d8bc46e943&title=&width=139">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664006699982-3c885bed-2b68-4d14-9491-969db42c6d99.png#averageHue=%231b6aa0&clientId=u6e20e23e-5a1c-4&from=paste&height=291&id=u55f04965&name=image.png&originHeight=291&originWidth=306&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12169&status=done&style=none&taskId=u69c69a24-47b8-4165-8ca4-b777f51c438&title=&width=306">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664158180458-1a960a0d-30c8-40ab-8142-68ef2fa9eded.png#averageHue=%23242a2f&clientId=u0d4fdf08-c778-4&from=paste&height=275&id=ue9c9a373&name=image.png&originHeight=275&originWidth=603&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27402&status=done&style=none&taskId=u3b462a66-0f91-4bd2-9859-e6ca1ffc54c&title=&width=603">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664158217766-b41162b2-0d1b-4bad-9f75-fb68e8aa33a3.png#averageHue=%231d4661&clientId=u0d4fdf08-c778-4&from=paste&height=535&id=u8c87f52d&name=image.png&originHeight=535&originWidth=688&originalType=binary&ratio=1&rotation=0&showTitle=false&size=61335&status=done&style=none&taskId=u644cb847-8e8d-4346-8e6a-734a683eb4d&title=&width=688">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664158250134-9b2d04cf-0339-47dd-b854-ab12cc0b525f.png#averageHue=%23232a31&clientId=u0d4fdf08-c778-4&from=paste&height=224&id=u50eb7fa8&name=image.png&originHeight=224&originWidth=605&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16336&status=done&style=none&taskId=u78c8e1a3-cd0d-436c-b1af-a868c877396&title=&width=605">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664158272847-39bc9548-a177-47fb-8ac6-67e53293f437.png#averageHue=%231b6a9f&clientId=u0d4fdf08-c778-4&from=paste&height=304&id=ub1fde6e9&name=image.png&originHeight=304&originWidth=317&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11637&status=done&style=none&taskId=u78905591-078b-415e-9bd3-e12b4ffe128&title=&width=317">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664158897442-f01faec8-9e67-4bd8-97a2-d3f1b6374744.png#averageHue=%23293338&clientId=u0d4fdf08-c778-4&from=paste&height=84&id=uc47cba5b&name=image.png&originHeight=84&originWidth=453&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6252&status=done&style=none&taskId=u08721e5c-1938-47e9-976a-d2460a3c6e8&title=&width=453">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664158908857-54913f8e-fdea-4c27-8f2e-0f7075ada88b.png#averageHue=%2326292b&clientId=u0d4fdf08-c778-4&from=paste&height=101&id=u7ea1888d&name=image.png&originHeight=101&originWidth=415&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5165&status=done&style=none&taskId=ua8865ba5-2fe3-4946-af82-60580f99143&title=&width=415">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664158930685-473d39e3-b13e-46eb-8651-9cbf0f9ec0ec.png#averageHue=%23b3a681&clientId=u0d4fdf08-c778-4&from=paste&height=247&id=ue3ae070b&name=image.png&originHeight=247&originWidth=1090&originalType=binary&ratio=1&rotation=0&showTitle=false&size=29453&status=done&style=none&taskId=uc3198571-73a8-4023-83ff-11c34ede68e&title=&width=1090">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664159137559-e0ed8e0f-5b2e-4e3b-9b93-f404ff463f17.png#averageHue=%23ab956e&clientId=u0d4fdf08-c778-4&from=paste&height=317&id=u31988f07&name=image.png&originHeight=317&originWidth=825&originalType=binary&ratio=1&rotation=0&showTitle=false&size=35210&status=done&style=none&taskId=u4915b7b7-f0f9-4b29-9ff3-5185e67ec51&title=&width=825">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664164859118-74b9179a-6d0b-4edb-b495-e46611fd2ad4.png#averageHue=%235cbcfb&clientId=u0d4fdf08-c778-4&from=paste&height=422&id=u45c61d58&name=image.png&originHeight=422&originWidth=603&originalType=binary&ratio=1&rotation=0&showTitle=false&size=30403&status=done&style=none&taskId=u8202f756-3a35-453f-be31-7137f1ebc19&title=&width=603">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664164882222-521dfc53-2e9f-4dc6-9c1c-c5f9f547f58b.png#averageHue=%235cbbfb&clientId=u0d4fdf08-c778-4&from=paste&height=931&id=u43ca120f&name=image.png&originHeight=931&originWidth=592&originalType=binary&ratio=1&rotation=0&showTitle=false&size=35290&status=done&style=none&taskId=u130f80e8-2ff3-433a-920c-34445c3c7ed&title=&width=592">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664179856626-090519af-74f5-47e1-8d7e-5505612ad7d2.png#averageHue=%23ededed&clientId=u0d4fdf08-c778-4&from=paste&id=ua05fd7b6&name=image.png&originHeight=1616&originWidth=1200&originalType=url&ratio=1&rotation=0&showTitle=false&size=674229&status=done&style=none&taskId=u7a91e140-8d8e-4b43-8369-feaf97dca4a&title=">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664180689527-ad189a61-c520-423f-bc00-585c367294d4.png#averageHue=%231a1817&clientId=u0d4fdf08-c778-4&from=paste&height=496&id=u0a449341&name=image.png&originHeight=496&originWidth=574&originalType=binary&ratio=1&rotation=0&showTitle=false&size=26801&status=done&style=none&taskId=u85b6b441-3f99-4119-ab00-73323cb719a&title=&width=574">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664180715916-cc6cf06d-7e7d-4869-8921-c775516b70b1.png#averageHue=%23050302&clientId=u0d4fdf08-c778-4&from=paste&height=381&id=udea35cf9&name=image.png&originHeight=381&originWidth=541&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22816&status=done&style=none&taskId=uff9ca460-25e4-4fdd-b817-8cc3a741fb4&title=&width=541">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664180794407-12d04219-cc67-4321-ba40-192fc86bd415.png#averageHue=%23f2e3ca&clientId=u0d4fdf08-c778-4&from=paste&height=854&id=ua9d3d2cf&name=image.png&originHeight=854&originWidth=1309&originalType=binary&ratio=1&rotation=0&showTitle=false&size=109196&status=done&style=none&taskId=uac983b20-9ad6-4060-9fbb-443bf6b8263&title=&width=1309">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664180851975-63f55f6e-0f66-4695-b583-ae5a0d5148a7.png#averageHue=%23fcfaf8&clientId=u0d4fdf08-c778-4&from=paste&height=364&id=ua3969d07&name=image.png&originHeight=364&originWidth=954&originalType=binary&ratio=1&rotation=0&showTitle=false&size=41305&status=done&style=none&taskId=u0bb546f9-4fd2-4bca-982e-5d8189afcc5&title=&width=954">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664180914073-3a1d2b62-21f4-4d9d-b26c-ac1f378220fc.png#averageHue=%231d1c1b&clientId=u0d4fdf08-c778-4&from=paste&height=370&id=u1173eaef&name=image.png&originHeight=370&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18503&status=done&style=none&taskId=ubbe9ccca-5f49-44c3-bdbf-85f8793f37f&title=&width=581">
+<meta property="article:published_time" content="2020-12-29T09:56:43.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:27:02.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984149750-d5f29c51-3131-48cd-9fae-e75e62e7f95c.png#averageHue=%2397bab1&clientId=ub2fa58c0-4ac3-4&from=paste&height=250&id=u89efaaac&name=image.png&originHeight=250&originWidth=318&originalType=binary&ratio=1&rotation=0&showTitle=false&size=49765&status=done&style=none&taskId=ub1407eec-db2b-4637-b3bf-f6c6cd1b4b5&title=&width=318">
+  
+  
+  
+  <title>Git - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Git"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-12-29 17:56" pubdate>
+          2020年12月29日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Git</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="KoSaD"></a></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>作者是Linux之父，因为吐槽SVN难用，所以就自己开发了一个。<br><a name="m6LM5"></a></p>
+<h3 id="版本控制工具"><a href="#版本控制工具" class="headerlink" title="版本控制工具"></a>版本控制工具</h3><p>版本控制工具主流的有</p>
+<ul>
+<li>git</li>
+<li>svn</li>
+</ul>
+<p>我们要学习的git，版本控制工具就是可以帮助我们将代码进行备份存档，当我们想要用某个版本时，可以直接读档，读取对应的代码。并且解决了和同事间一起开发合并代码的问题。<br><a name="bfQNm"></a></p>
+<h2 id="Git的前期准备"><a href="#Git的前期准备" class="headerlink" title="Git的前期准备"></a>Git的前期准备</h2><p><a name="gSztg"></a></p>
+<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984149750-d5f29c51-3131-48cd-9fae-e75e62e7f95c.png#averageHue=%2397bab1&clientId=ub2fa58c0-4ac3-4&from=paste&height=250&id=u89efaaac&name=image.png&originHeight=250&originWidth=318&originalType=binary&ratio=1&rotation=0&showTitle=false&size=49765&status=done&style=none&taskId=ub1407eec-db2b-4637-b3bf-f6c6cd1b4b5&title=&width=318" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984170246-177a5c43-7ca9-4bbb-a86d-0689b771e927.png#averageHue=%23f9f8f5&clientId=ub2fa58c0-4ac3-4&from=paste&height=602&id=ua4312867&name=image.png&originHeight=602&originWidth=716&originalType=binary&ratio=1&rotation=0&showTitle=false&size=59120&status=done&style=none&taskId=u56b872b2-3b2d-459b-bfda-a394b7d0202&title=&width=716" srcset="/img/loading.gif" lazyload alt="image.png"><br />因为服务器是国外，下载很慢，所以可以腾讯软件中心。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984262731-25d0680f-7afa-4243-8911-314e38ee0bf4.png#averageHue=%23e5eef2&clientId=ub2fa58c0-4ac3-4&from=paste&height=303&id=u10b3a5d9&name=image.png&originHeight=303&originWidth=819&originalType=binary&ratio=1&rotation=0&showTitle=false&size=51390&status=done&style=none&taskId=u8c8bdd18-df87-4d71-9186-77ae3a15ce4&title=&width=819" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="X5ZXU"></a></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>Git的安装及其简单，虽然配置很多，但是默认全部下一步即可，注意！！！！安装路径不要有中文。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984408536-46038baf-c8c3-4150-b889-d9972497d1ce.png#averageHue=%23f1f0f0&clientId=ub2fa58c0-4ac3-4&from=paste&height=392&id=u462541e1&name=image.png&originHeight=392&originWidth=499&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9599&status=done&style=none&taskId=u207347c4-7ce6-4323-a574-98bbdf4a027&title=&width=499" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="TjGDJ"></a></p>
+<h3 id="测试是否安装成功"><a href="#测试是否安装成功" class="headerlink" title="测试是否安装成功"></a>测试是否安装成功</h3><p>安装成功后，右键会有<code>Git Bash Here</code>，我们也可以使用windows自带的终端。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984467988-1c22323a-5425-495f-831c-b2e0d5675d37.png#averageHue=%23e4e4e4&clientId=ub2fa58c0-4ac3-4&from=paste&height=284&id=ua8a119cb&name=image.png&originHeight=284&originWidth=230&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12720&status=done&style=none&taskId=u3f9cf14a-629e-46a6-ba79-41c7d9de66a&title=&width=230" srcset="/img/loading.gif" lazyload alt="image.png"><br />window + R，输入<code>cmd</code>打开终端，然后输入<code>git</code><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984542976-8d44d9fd-8563-4435-86dd-61f411b2c61a.png#averageHue=%23252525&clientId=ub2fa58c0-4ac3-4&from=paste&height=512&id=u3bccefbb&name=image.png&originHeight=512&originWidth=979&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22418&status=done&style=none&taskId=ucd07b0fd-57a6-4339-9e52-5f42c6d4f57&title=&width=979" srcset="/img/loading.gif" lazyload alt="image.png"><br />如果说提示</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html">&#x27;git&#x27; 不是内部或外部命令，也不是可运行的程序<br>或批处理文件。<br></code></pre></td></tr></table></figure>
+<p>表示没有安装成功。<br><a name="qtpgi"></a></p>
+<h2 id="注意问题"><a href="#注意问题" class="headerlink" title="注意问题"></a>注意问题</h2><p>一会大家在提交的时候，可能会出现提交不了的情况，因为git在下载后，需要先配置下自己的用户名和邮箱<br />需要在<code>git bash</code>里输入这些</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global user.name <span class="hljs-string">&quot;用户名&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global user.email <span class="hljs-string">&quot;邮箱地址&quot;</span><br></code></pre></td></tr></table></figure>
+<p><a name="jF2vz"></a></p>
+<h2 id="Git原理"><a href="#Git原理" class="headerlink" title="Git原理"></a>Git原理</h2><p>git本地仓库原理<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984833938-523133cf-f5e8-4ffc-af81-5eb8bd1cf326.png#averageHue=%23f6f5f5&clientId=ub2fa58c0-4ac3-4&from=paste&height=546&id=uf2c1efb6&name=image.png&originHeight=546&originWidth=1301&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22161&status=done&style=none&taskId=uab2502ce-d9c6-4136-a5b5-12043c3732c&title=&width=1301" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="LxOor"></a></p>
+<h2 id="使用Git"><a href="#使用Git" class="headerlink" title="使用Git"></a>使用Git</h2><p>我们需要把一个文件夹变成一个Git仓库<br><a name="XKLqQ"></a></p>
+<h3 id="初始化git仓库"><a href="#初始化git仓库" class="headerlink" title="初始化git仓库"></a>初始化git仓库</h3><p>我们要使用下面的命令进行仓库的初始化操作。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git init<br></code></pre></td></tr></table></figure>
+<p>在我们要初始化成仓库的文件夹中，右键，打开<code>git bash here</code><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663984989430-2ee310cb-09cd-4b74-a7a3-23a8c742d2c9.png#averageHue=%23e3e3e3&clientId=ub2fa58c0-4ac3-4&from=paste&height=344&id=u695fc446&name=image.png&originHeight=344&originWidth=230&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14786&status=done&style=none&taskId=u6c667f30-0bf9-4176-be5b-dfcdf2f64ca&title=&width=230" srcset="/img/loading.gif" lazyload alt="image.png">  <br />在打开的窗口中输入 <code>git init</code>回车<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985026548-46859b84-be65-43c3-922f-d26fe0f12688.png#averageHue=%231c1b1b&clientId=ub2fa58c0-4ac3-4&from=paste&height=370&id=ud4cb378f&name=image.png&originHeight=370&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17634&status=done&style=none&taskId=u9fd14cbf-01ad-4241-ae1a-11c6087904e&title=&width=581" srcset="/img/loading.gif" lazyload alt="image.png"><br />初始化完成后，如果我们开启隐藏文件，会看到里面有<code>.git</code>文件夹<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985060394-c8d809ed-4201-4174-b348-263d6e8e7b60.png#averageHue=%23fafaf9&clientId=ub2fa58c0-4ac3-4&from=paste&height=124&id=u20e5177c&name=image.png&originHeight=124&originWidth=642&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8332&status=done&style=none&taskId=u3b96afa5-259a-4f6d-b01f-a7b25eec80f&title=&width=642" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="ywopf"></a></p>
+<h4 id="我们也可以使用VSCode进行可视化操作"><a href="#我们也可以使用VSCode进行可视化操作" class="headerlink" title="我们也可以使用VSCode进行可视化操作"></a>我们也可以使用VSCode进行可视化操作</h4><p>打开VSCode的第三个选项<code>源代码管理</code><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985117925-c66e69b3-e0c2-4e39-af8b-3bf2200baf6c.png#averageHue=%234c8fba&clientId=ub2fa58c0-4ac3-4&from=paste&height=294&id=u02a85fa4&name=image.png&originHeight=294&originWidth=223&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11755&status=done&style=none&taskId=u9d2f646e-4060-47ed-86f3-38556ffb743&title=&width=223" srcset="/img/loading.gif" lazyload alt="image.png"><br />点击初始化仓库<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985152380-da5516d6-f971-4fc0-b200-550e927e1d9a.png#averageHue=%23242d35&clientId=ub2fa58c0-4ac3-4&from=paste&height=321&id=ufdb7b08e&name=image.png&originHeight=321&originWidth=616&originalType=binary&ratio=1&rotation=0&showTitle=false&size=28825&status=done&style=none&taskId=u7f29abc9-bde8-42b2-9151-ee7f963434b&title=&width=616" srcset="/img/loading.gif" lazyload alt="image.png"><br />等待片刻即可初始化完成<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985255865-a903d6b2-e966-48f7-9fde-bb1754de442d.png#averageHue=%231774b2&clientId=ub2fa58c0-4ac3-4&from=paste&height=346&id=u0cdc6374&name=image.png&originHeight=346&originWidth=346&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14836&status=done&style=none&taskId=u4159b244-7f98-4364-9991-26f626b50e4&title=&width=346" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="tu3xc"></a></p>
+<h3 id="文件状态"><a href="#文件状态" class="headerlink" title="文件状态"></a>文件状态</h3><p>当我们添加，修改，删除某些文件时，我们的<code>源代码管理</code>中就会有对应文件的更改记录<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985355920-57e76e9e-92d3-431b-a380-b5fe41f7be91.png#clientId=ub2fa58c0-4ac3-4&from=paste&height=288&id=u4487824f&name=image.png&originHeight=288&originWidth=49&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4385&status=done&style=none&taskId=u2a84b8a5-3d17-4809-b7ff-bc1e1e192ec&title=&width=49" srcset="/img/loading.gif" lazyload alt="image.png"><br />对应的源代码管理的图表上就会出现角标显示文件更改的数量。点开之后可以查看具体信息<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985478683-997e3c7d-45a0-409f-8c57-bbbe0a7ebd02.png#averageHue=%2316689f&clientId=ub2fa58c0-4ac3-4&from=paste&height=312&id=u074769cd&name=image.png&originHeight=312&originWidth=340&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14217&status=done&style=none&taskId=u96e7b955-c301-488f-b8f1-3346f73fa3e&title=&width=340" srcset="/img/loading.gif" lazyload alt="image.png"><br />后面的<code>u</code>代表了不同的状态。更改的文件不在暂存区，需要我们进行暂存。<br><a name="LAPLK"></a></p>
+<h3 id="暂存文件"><a href="#暂存文件" class="headerlink" title="暂存文件"></a>暂存文件</h3><p><a name="CRzrw"></a></p>
+<h4 id="第一种方式-命令的方式"><a href="#第一种方式-命令的方式" class="headerlink" title="第一种方式 命令的方式"></a>第一种方式 命令的方式</h4><p>使用<code>git add .</code>可以快速暂存所有的文件，如果我们只想暂存某个或者某些文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git add 文件名 文件名2<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985669641-fb109074-0957-40cf-b6c0-f5cb6eca4c84.png#averageHue=%231f1e1b&clientId=ub2fa58c0-4ac3-4&from=paste&height=370&id=ueb5f975b&name=image.png&originHeight=370&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21829&status=done&style=none&taskId=u74c28f01-e08d-4fe6-a0e1-b667c8d1a5e&title=&width=581" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="o97XC"></a></p>
+<h4 id="第二种方式-VSCode可视化操作"><a href="#第二种方式-VSCode可视化操作" class="headerlink" title="第二种方式 VSCode可视化操作"></a>第二种方式 VSCode可视化操作</h4><p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985702075-f3bbd0ba-9f64-4e36-be37-e96fadbbe1f8.png#averageHue=%2377a894&clientId=ub2fa58c0-4ac3-4&from=paste&height=296&id=u61c8e3e2&name=image.png&originHeight=296&originWidth=426&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17505&status=done&style=none&taskId=u8ce8118c-5182-4eb7-872a-114557d2b14&title=&width=426" srcset="/img/loading.gif" lazyload alt="image.png"><br />点一下对应的<code>+</code>即可让VSCode帮我们执行<code>git add .</code>的命令<br />文件后也有暂存的按钮，可以单独暂存某个文件。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663985744483-97390dd3-34ef-4d40-bc9c-ec24e3a04324.png#averageHue=%231d5376&clientId=ub2fa58c0-4ac3-4&from=paste&height=300&id=u279bff14&name=image.png&originHeight=300&originWidth=389&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16657&status=done&style=none&taskId=u85c0b629-4289-4465-87a6-3ecff434b16&title=&width=389" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="Zk7Nc"></a></p>
+<h3 id="提交文件"><a href="#提交文件" class="headerlink" title="提交文件"></a>提交文件</h3><p><a name="jjMEM"></a></p>
+<h4 id="第一种方式-命令的方式-1"><a href="#第一种方式-命令的方式-1" class="headerlink" title="第一种方式 命令的方式"></a>第一种方式 命令的方式</h4><p>输入<code>git commit -m &quot;提交信息&quot;</code><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986067833-adce5ca0-72a3-4980-b66e-f69f21d3ec78.png#averageHue=%23201e1c&clientId=ub2fa58c0-4ac3-4&from=paste&height=370&id=udbac1680&name=image.png&originHeight=370&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=34998&status=done&style=none&taskId=u44500d92-4e26-47c8-88a0-4d6438416cd&title=&width=581" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="twpQA"></a></p>
+<h4 id="第二种方式-VSCode可视化操作-1"><a href="#第二种方式-VSCode可视化操作-1" class="headerlink" title="第二种方式 VSCode可视化操作"></a>第二种方式 VSCode可视化操作</h4><p>直接暂存后，输入提交信息，然后点击提交即可。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986324351-5d5d1515-56aa-464b-91ff-cb85e09b40de.png#averageHue=%231877b7&clientId=ub2fa58c0-4ac3-4&from=paste&height=307&id=ud48b613d&name=image.png&originHeight=307&originWidth=356&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19014&status=done&style=none&taskId=uad3e26c9-8222-4865-a9f7-50d6106b264&title=&width=356" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="eGPli"></a></p>
+<h3 id="查看自己的提交记录"><a href="#查看自己的提交记录" class="headerlink" title="查看自己的提交记录"></a>查看自己的提交记录</h3><p>我们通过<code>git log</code>命令查看我们的提交记录<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986420557-a1dba137-bf08-41e2-b339-c38f1f9f19c6.png#averageHue=%23050301&clientId=ub2fa58c0-4ac3-4&from=paste&height=260&id=u9c09083b&name=image.png&originHeight=260&originWidth=557&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17777&status=done&style=none&taskId=ubb4fca5e-97d2-4283-8ca3-2bd68588b65&title=&width=557" srcset="/img/loading.gif" lazyload alt="image.png"><br />我们也可以有更好的可视化的方案，在VSCode中安装一个插件<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986453901-c2f93079-e40a-4c7b-b02f-6517d4b42eef.png#averageHue=%232b383f&clientId=ub2fa58c0-4ac3-4&from=paste&height=140&id=u0d8dc537&name=image.png&originHeight=140&originWidth=385&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11722&status=done&style=none&taskId=uff7e3121-7194-470f-96df-419541d123e&title=&width=385" srcset="/img/loading.gif" lazyload alt="image.png"><br />安装后，在<code>源代码管理</code>中会新增一个图标<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986515072-84ff21a6-feb3-4339-9cd6-01c7fb0c29b3.png#averageHue=%23718d92&clientId=ub2fa58c0-4ac3-4&from=paste&height=423&id=ub74dc64f&name=image.png&originHeight=423&originWidth=460&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21836&status=done&style=none&taskId=uf7535f26-e379-42ab-b427-f0139b3c385&title=&width=460" srcset="/img/loading.gif" lazyload alt="image.png"><br />点击即可打开一个可视化的提交记录界面。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986550682-776dd0e9-1873-4222-aaa8-db513a44f6c1.png#averageHue=%232b2a29&clientId=ub2fa58c0-4ac3-4&from=paste&height=258&id=u7d821682&name=image.png&originHeight=258&originWidth=631&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27928&status=done&style=none&taskId=u54c153d8-4013-487f-9c1e-d7eb9029e40&title=&width=631" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="Sb3Ry"></a></p>
+<h3 id="临时查看之前版本代码"><a href="#临时查看之前版本代码" class="headerlink" title="临时查看之前版本代码"></a>临时查看之前版本代码</h3><p>在<code>git history</code>插件中，点击对应提交记录的more，然后渲染checkout<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986707920-8b93a58f-9a64-4f94-a462-558dd8bbabbc.png#averageHue=%2320445a&clientId=ub2fa58c0-4ac3-4&from=paste&height=186&id=ud6721c66&name=image.png&originHeight=186&originWidth=634&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18410&status=done&style=none&taskId=u4f11244c-2583-4257-b6e9-7823f72b93d&title=&width=634" srcset="/img/loading.gif" lazyload alt="image.png"><br />选择后，左下角的<code>分支</code>就会变成对应的<code>hash值</code><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986748226-776fbbce-199b-4b0e-86cd-b3049b3b5669.png#averageHue=%2321323e&clientId=ub2fa58c0-4ac3-4&from=paste&height=176&id=uf4d83e7f&name=image.png&originHeight=176&originWidth=364&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7821&status=done&style=none&taskId=ufb1adb5f-a083-4081-8e8d-a69c5529585&title=&width=364" srcset="/img/loading.gif" lazyload alt="image.png"><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986760537-25533964-31eb-4036-a91c-7e6e92f3042d.png#averageHue=%231478b9&clientId=ub2fa58c0-4ac3-4&from=paste&height=92&id=ue186061c&name=image.png&originHeight=92&originWidth=224&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6876&status=done&style=none&taskId=u5168bdc6-7558-4c5e-a475-46caf132d01&title=&width=224" srcset="/img/loading.gif" lazyload alt="image.png"><br />如果想切回到主代码，点击左下角的分支名，选择master即可。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663986798526-a7180958-2541-49ed-980f-adee3f531623.png#averageHue=%2399beba&clientId=ub2fa58c0-4ac3-4&from=paste&height=148&id=ucd5d0b4d&name=image.png&originHeight=148&originWidth=616&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8897&status=done&style=none&taskId=u06db2b1b-24e3-4878-a34e-39e59821840&title=&width=616" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="bI3WM"></a></p>
+<h2 id="Git分支"><a href="#Git分支" class="headerlink" title="Git分支"></a>Git分支</h2><p>Git中可以有很多分支，数量不限。分支的目的是进行隔离开发，让同一个项目的开发者之间互不影响，最终我们会把分支上的代码合并到某一个分支上。<br />master分支是主分支（默认分支）git初始化后自带的分支（因为master有一个对黑人不好的含义，所以Github就把主分支命名为main分支了）<br />一般开发分为以下几类分支</p>
+<ul>
+<li>master 主分支 所有人都不会直接在这上面修改代码。</li>
+<li>develop 开发分支 开发时共同维护的分支，代码有bug，所有人也都不会直接在这上面修改代码</li>
+<li>feature-功能 功能分支 如果你负责某个功能，你就在这个项目上的develop分支上创建出自己的功能分支进行开发。开发完成后合并到develop上</li>
+<li>release-版本分支 从合并后的develop上进行创建的分支，由测试人员测试，开发人员解决问题，解决的同时，要将代码合并到develop上。最终可见bug修复完成后，能够进入到发布流程。合并到master</li>
+<li>hotfix-版本  从master上检出新的分支 hotfix-版本 修复bug后合并到master和develop上。</li>
+</ul>
+<p><a name="CA51K"></a></p>
+<h3 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h3><p><a name="ZV7n6"></a></p>
+<h4 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h4><p>master在初始化时自动生成。<br />创建分支使用<code>git branch</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git branch 分支名<br></code></pre></td></tr></table></figure>
+<p><a name="r1k3B"></a></p>
+<h4 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h4><p>检出分支（checkout）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git checkout 分支名<br></code></pre></td></tr></table></figure>
+<p>如何检出的同时创建分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git checkout -b 分支名<br></code></pre></td></tr></table></figure>
+<p><a name="IJOaL"></a></p>
+<h3 id="VSCode可视化"><a href="#VSCode可视化" class="headerlink" title="VSCode可视化"></a>VSCode可视化</h3><p>点击VSCode左下角的master<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664001816164-032d9b82-2a1e-49c8-8e3f-e90a1d6205be.png#averageHue=%231e3b4f&clientId=u6e20e23e-5a1c-4&from=paste&height=101&id=uf81a0a1e&name=image.png&originHeight=101&originWidth=289&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6297&status=done&style=none&taskId=u067c8e3e-38f7-4815-942d-93f7f907f57&title=&width=289" srcset="/img/loading.gif" lazyload alt="image.png"><br />在打开的窗口中选中第一个，按回车<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664001854012-53dbda8d-cbc8-46e6-826c-5d3ace030d6d.png#averageHue=%23193a50&clientId=u6e20e23e-5a1c-4&from=paste&height=132&id=u6f62dd66&name=image.png&originHeight=132&originWidth=606&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8807&status=done&style=none&taskId=ud1d104bd-2bc1-4c2b-88d2-91880c9d6fd&title=&width=606" srcset="/img/loading.gif" lazyload alt="image.png"><br />然后输入分支名<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664001878557-f86e6c90-d14d-4a5c-bd3b-0dde46344280.png#averageHue=%2333373a&clientId=u6e20e23e-5a1c-4&from=paste&height=64&id=ub62d5f61&name=image.png&originHeight=64&originWidth=615&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6447&status=done&style=none&taskId=u1d75c744-407c-4275-9ced-fa6ca453f56&title=&width=615" srcset="/img/loading.gif" lazyload alt="image.png"><br />按回车后，自动检出新分支<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664001900224-9b277819-a1cf-40d6-887f-5a1eeda2857a.png#averageHue=%231280c7&clientId=u6e20e23e-5a1c-4&from=paste&height=44&id=ufdbc39be&name=image.png&originHeight=44&originWidth=169&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3815&status=done&style=none&taskId=u89a05f59-e997-47e3-9212-c447711eafb&title=&width=169" srcset="/img/loading.gif" lazyload alt="image.png"><br />想要看到所有的分支记录，需要在git history的面版中的第二个下拉框选择 <code>All branches</code><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664002054625-695f5f67-c30d-4c2d-98ce-4fcf5f3a3cb3.png#averageHue=%232c2b2a&clientId=u6e20e23e-5a1c-4&from=paste&height=75&id=u082f9a6b&name=image.png&originHeight=75&originWidth=656&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6485&status=done&style=none&taskId=u575910fb-f1fd-4da8-a3a7-53a397ab7ec&title=&width=656" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="ET7vn"></a></p>
+<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><p>远程仓库解决了代码同步的问题，如果我电脑上的仓库删除，那么我的仓库就彻底没了。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664004914038-16d00576-afc4-42c2-8dce-79dfd45e43ea.png#averageHue=%23f9f9f8&clientId=u6e20e23e-5a1c-4&from=paste&height=760&id=uf6981127&name=image.png&originHeight=760&originWidth=1481&originalType=binary&ratio=1&rotation=0&showTitle=false&size=37753&status=done&style=none&taskId=u5ad11b96-df08-434e-ab1f-57ecdcb82f0&title=&width=1481" srcset="/img/loading.gif" lazyload alt="image.png">所以在本地的基础上就有了远程的概念，大家所有人的代码，都放在云端。<br />远程仓库有很多很多类：</p>
+<ul>
+<li>国内 Gitee</li>
+<li>国外 Github</li>
+<li>国外 GitLab</li>
+<li>国内 Coding</li>
+<li>还有很多很多……</li>
+</ul>
+<p>不管用什么，我们一定需要有一个远程仓库地址。<br><a name="Bno15"></a></p>
+<h3 id="使用远程仓库"><a href="#使用远程仓库" class="headerlink" title="使用远程仓库"></a>使用远程仓库</h3><ol>
+<li>我们已经在本地仓库中开发了了一段时间了，我们现在想把代码上传到云端</li>
+<li>我们还没有项目，现在云端创建一个项目，在本地方法</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005307562-f54b8544-a278-4619-b134-81218080dbe2.png#averageHue=%23f4f1ef&clientId=u6e20e23e-5a1c-4&from=paste&height=185&id=u88f8b6de&name=image.png&originHeight=185&originWidth=509&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19904&status=done&style=none&taskId=uccb79998-5246-4e9d-ba61-452f01c1036&title=&width=509" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="VLAZe"></a></p>
+<h4 id="第一种情况"><a href="#第一种情况" class="headerlink" title="第一种情况"></a>第一种情况</h4><p>在Gitee上新建仓库<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005202062-7953f919-82db-4b1a-9544-a4bcd688738d.png#averageHue=%23f7fcfc&clientId=u6e20e23e-5a1c-4&from=paste&height=286&id=ud0bb087b&name=image.png&originHeight=286&originWidth=406&originalType=binary&ratio=1&rotation=0&showTitle=false&size=23363&status=done&style=none&taskId=uc61799d3-559d-4413-851d-26a6b3dc29b&title=&width=406" srcset="/img/loading.gif" lazyload alt="image.png"><br />点击后，填入相关信息<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005337981-ad7c2170-b80c-49f6-998e-d550768677c2.png#averageHue=%23fdfcfc&clientId=u6e20e23e-5a1c-4&from=paste&height=693&id=ubb2f1284&name=image.png&originHeight=693&originWidth=875&originalType=binary&ratio=1&rotation=0&showTitle=false&size=48586&status=done&style=none&taskId=ub63e3ec1-a186-48d7-82bf-2b7318e1dff&title=&width=875" srcset="/img/loading.gif" lazyload alt="image.png"><br />点击创建<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005357864-9a62953f-ffa5-4a5d-9f05-88532c4e5e30.png#averageHue=%23b3b2b2&clientId=u6e20e23e-5a1c-4&from=paste&height=826&id=u8d8e9c79&name=image.png&originHeight=826&originWidth=1214&originalType=binary&ratio=1&rotation=0&showTitle=false&size=66256&status=done&style=none&taskId=u44075962-9774-4b3f-9f54-e34c286e2d4&title=&width=1214" srcset="/img/loading.gif" lazyload alt="image.png"><br />在已经开发了一些的项目中，运行命令。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005539779-86065a07-8f33-4852-a0e1-07081d8906d6.png#averageHue=%231a1a1a&clientId=u6e20e23e-5a1c-4&from=paste&height=370&id=u13aa5b4b&name=image.png&originHeight=370&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14452&status=done&style=none&taskId=ue4955df1-fd9a-4ffe-81a1-dc8ddb78026&title=&width=581" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="cKa3Z"></a></p>
+<h5 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h5><p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005571501-1b47399d-e330-45b0-b5be-9c8a279df96a.png#averageHue=%23675a50&clientId=u6e20e23e-5a1c-4&from=paste&height=202&id=ud5d1aba8&name=image.png&originHeight=202&originWidth=499&originalType=binary&ratio=1&rotation=0&showTitle=false&size=10328&status=done&style=none&taskId=u670e5ca2-3738-4ddb-bd3d-ac141c93bdf&title=&width=499" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git remote add origin 你的远程仓库的地址<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005600980-e0772afb-9b9f-4943-836f-16253262988e.png#averageHue=%23f6f5f5&clientId=u6e20e23e-5a1c-4&from=paste&height=46&id=u47eb5477&name=image.png&originHeight=46&originWidth=465&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3761&status=done&style=none&taskId=uc4239666-6aad-4999-8343-a69d7132ce0&title=&width=465" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005717160-8e900207-f4b2-4e1e-bc82-c97e5bafe4b2.png#averageHue=%231c1b1b&clientId=u6e20e23e-5a1c-4&from=paste&height=370&id=ua0cc3902&name=image.png&originHeight=370&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20825&status=done&style=none&taskId=u05690946-e2d0-471e-8534-3de71bdf7af&title=&width=581" srcset="/img/loading.gif" lazyload alt="image.png"><br />输入 <code>git push -u origin &quot;master&quot;</code>然后回车（这个master是分支名，如果我想上传其他分支，就切换到其他分支，然后写其他分支的名字）<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005794620-7e328822-a84a-4024-b451-c77dfd9e9af8.png#averageHue=%23dfdfdf&clientId=u6e20e23e-5a1c-4&from=paste&height=281&id=ua5893451&name=image.png&originHeight=281&originWidth=456&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9259&status=done&style=none&taskId=u4e6427f3-4e76-4ca4-8b10-b0daa5ed1c4&title=&width=456" srcset="/img/loading.gif" lazyload alt="image.png"><br />输入用户名（邮箱）和密码。（就是我们注册Gitee的邮箱和密码）<br />注意！！！！这里的用户名密码，这辈子只需要输入一次。他们会被保存到电脑“凭据管理器”<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664006063654-ec3e01f3-12d5-4037-ab18-ac3cdb57bf26.png#averageHue=%23fbfaf9&clientId=u6e20e23e-5a1c-4&from=paste&height=539&id=u20e7f646&name=image.png&originHeight=539&originWidth=589&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42458&status=done&style=none&taskId=u3dbee6e0-a919-4558-80bd-bf8e36afef3&title=&width=589" srcset="/img/loading.gif" lazyload alt="image.png"><br />如果别人已经在你的电脑保存过他的密码，可以把其中的gitee的账号密码删除<br />确定后看到命令行中出现下列界面表示成功<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005898058-9e1b4255-f772-4800-b609-16bd89ca32eb.png#averageHue=%23221f1d&clientId=u6e20e23e-5a1c-4&from=paste&height=370&id=uf98dd7f3&name=image.png&originHeight=370&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=37220&status=done&style=none&taskId=ued6c502f-ffdf-44b6-adec-2e84fa54337&title=&width=581" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005932466-becf976c-b201-47e3-95f0-15e13eed5904.png#averageHue=%231f7dbb&clientId=u6e20e23e-5a1c-4&from=paste&height=25&id=u46f07ad2&name=image.png&originHeight=25&originWidth=104&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1817&status=done&style=none&taskId=u4fe8057a-fa85-4a97-9be7-ca77f32dde8&title=&width=104" srcset="/img/loading.gif" lazyload alt="image.png"><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005939773-d55672f6-7a53-40f8-88e3-16c19c8a1530.png#averageHue=%230e6ba8&clientId=u6e20e23e-5a1c-4&from=paste&height=39&id=ubdd592b9&name=image.png&originHeight=39&originWidth=108&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1887&status=done&style=none&taskId=u2d3419c7-52da-4d75-a322-125ee42bc12&title=&width=108" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664005952463-dd2e2039-9ef9-43eb-ab43-6abafdf011b8.png#averageHue=%230a466e&clientId=u6e20e23e-5a1c-4&from=paste&height=180&id=u2fc7876e&name=image.png&originHeight=180&originWidth=613&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14420&status=done&style=none&taskId=u5790799a-e9c8-4ec7-8b1b-bd313fe6a71&title=&width=613" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="VNhwg"></a></p>
+<h5 id="VSCode操作更简单"><a href="#VSCode操作更简单" class="headerlink" title="VSCode操作更简单"></a>VSCode操作更简单</h5><p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664006179933-960b4ca3-6c3f-4f4d-8106-b5179b1b7805.png#averageHue=%236f7b78&clientId=u6e20e23e-5a1c-4&from=paste&height=517&id=u4fb326d7&name=image.png&originHeight=517&originWidth=635&originalType=binary&ratio=1&rotation=0&showTitle=false&size=45745&status=done&style=none&taskId=ue50d2cae-7c49-442f-8ac8-df728dbe04e&title=&width=635" srcset="/img/loading.gif" lazyload alt="image.png"><br />然后把远程仓库的地址粘进去回车即可。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664006258223-7a50ee98-2bc0-4e78-a0e1-3d7a6cda45b2.png#averageHue=%23177abb&clientId=u6e20e23e-5a1c-4&from=paste&height=409&id=u57002b48&name=image.png&originHeight=409&originWidth=302&originalType=binary&ratio=1&rotation=0&showTitle=false&size=13243&status=done&style=none&taskId=uc0efccb0-73bf-412b-9d1e-b0802df2ba4&title=&width=302" srcset="/img/loading.gif" lazyload alt="image.png"><br />然后发布分支。<br />然后在远程就可以看到我们的发布的远程分支了<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664006324302-74b07aee-0214-4e99-bb76-b7c45db8632f.png#averageHue=%23fefdfc&clientId=u6e20e23e-5a1c-4&from=paste&height=137&id=u3299e225&name=image.png&originHeight=137&originWidth=1193&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20772&status=done&style=none&taskId=u7966464b-4c5f-4296-b951-85aee3f886d&title=&width=1193" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="nFYJs"></a></p>
+<h4 id="第二种情况"><a href="#第二种情况" class="headerlink" title="第二种情况"></a>第二种情况</h4><p>创建项目后，获得到远程仓库的地址。使用克隆命令，克隆到本地</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> 远程地址<br></code></pre></td></tr></table></figure>
+<p>进行提交操作后<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664006683481-d07b88ab-9aa5-4b38-9485-668f3e7de877.png#averageHue=%230a81cf&clientId=u6e20e23e-5a1c-4&from=paste&height=39&id=uf762cdf4&name=image.png&originHeight=39&originWidth=139&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1978&status=done&style=none&taskId=uf841a820-262f-42c3-990f-4d8bc46e943&title=&width=139" srcset="/img/loading.gif" lazyload alt="image.png"><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664006699982-3c885bed-2b68-4d14-9491-969db42c6d99.png#averageHue=%231b6aa0&clientId=u6e20e23e-5a1c-4&from=paste&height=291&id=u55f04965&name=image.png&originHeight=291&originWidth=306&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12169&status=done&style=none&taskId=u69c69a24-47b8-4165-8ca4-b777f51c438&title=&width=306" srcset="/img/loading.gif" lazyload alt="image.png"><br />点击这两个圈的任意一个，就可以把本地仓库最新提交的内容上传到远程仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 上传远程仓库也可以用命令的方法</span><br>git push<br></code></pre></td></tr></table></figure>
+<p><a name="fbju1"></a></p>
+<h3 id="远程版本高于本地"><a href="#远程版本高于本地" class="headerlink" title="远程版本高于本地"></a>远程版本高于本地</h3><p>本地需要拉取远程版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git pull<br></code></pre></td></tr></table></figure>
+<p><a name="rCV0F"></a></p>
+<h2 id="个人项目我们应该怎么Git维护"><a href="#个人项目我们应该怎么Git维护" class="headerlink" title="个人项目我们应该怎么Git维护"></a>个人项目我们应该怎么Git维护</h2><ol>
+<li>在远程创建一个项目</li>
+<li>克隆到本地</li>
+<li>进行开发<ol>
+<li>完成一个功能 提交 （尽量多次提交）</li>
+<li>功能完成后 push到远程</li>
+</ol>
+</li>
+<li>我们在多个地方进行开发<ol>
+<li>不管在哪开发，我们都要离开前push</li>
+<li>换一个新的环境，如果没有项目则克隆，如果有项目，但是不是最新，要git pull</li>
+</ol>
+</li>
+</ol>
+<p><a name="pIY5T"></a></p>
+<h3 id="必须要会的操作"><a href="#必须要会的操作" class="headerlink" title="必须要会的操作"></a>必须要会的操作</h3><p>克隆、暂存、提交、推送、拉取<br><a name="TXvMx"></a></p>
+<h2 id="远程仓库和本地仓库的关系"><a href="#远程仓库和本地仓库的关系" class="headerlink" title="远程仓库和本地仓库的关系"></a>远程仓库和本地仓库的关系</h2><p>如果想要把一个远程仓库下载到本地，我们需要使用<code>克隆</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> 远程仓库地址<br></code></pre></td></tr></table></figure>
+<p>本地已经有仓库，只是比远程仓库中少一部份内容，要进行同步</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git pull<br></code></pre></td></tr></table></figure>
+<p>本地仓库比远程的仓库内容多，要进行同步</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git push<br></code></pre></td></tr></table></figure>
+<p>当我们完成某个小功能时</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">git add . <span class="hljs-comment"># 暂存</span><br>git commit -m <span class="hljs-string">&quot;提交信息&quot;</span> <span class="hljs-comment"># 提交到本地仓库</span><br><br>git push <span class="hljs-comment"># 提交到远程仓库</span><br></code></pre></td></tr></table></figure>
+<p><a name="xN3lI"></a></p>
+<h2 id="使用Git到公司后我们应该干嘛"><a href="#使用Git到公司后我们应该干嘛" class="headerlink" title="使用Git到公司后我们应该干嘛"></a>使用Git到公司后我们应该干嘛</h2><p>到公司后先要项目源码</p>
+<ul>
+<li>公司的git仓库是自己搭建的</li>
+<li>公司的git仓库借助了目前主流的 Gitee Github Coding<br><a name="CpsyO"></a></li>
+</ul>
+<h3 id="自己搭建的"><a href="#自己搭建的" class="headerlink" title="自己搭建的"></a>自己搭建的</h3><p>要自己的账号，让管理员把你拉到对应的项目中<br><a name="ahmeK"></a></p>
+<h3 id="借助了其他的仓库"><a href="#借助了其他的仓库" class="headerlink" title="借助了其他的仓库"></a>借助了其他的仓库</h3><p>先看自己有没有账号，如果有则告知管理员，把你加入到项目中。如果没有账号，则自己注册账号，然后发给管理员，让他把你加入到项目中。<br><a name="t0NHb"></a></p>
+<h2 id="公司项目"><a href="#公司项目" class="headerlink" title="公司项目"></a>公司项目</h2><p><a name="q61QP"></a></p>
+<h3 id="如果你是项目负责人"><a href="#如果你是项目负责人" class="headerlink" title="如果你是项目负责人"></a>如果你是项目负责人</h3><ul>
+<li>在远程仓库中新建项目</li>
+<li>把开发者邀请到项目中</li>
+<li>下载项目并创建对应的分支</li>
+<li>制定规范<br><a name="oPGzN"></a></li>
+</ul>
+<h4 id="创建合适的分支"><a href="#创建合适的分支" class="headerlink" title="创建合适的分支"></a>创建合适的分支</h4><p>一个项目默认有master，应该再创建develop分支，作为开发时合并的分支。<br />要求团队中开发者根据自己功能创建自己的功能分支。<br><a name="b6zJr"></a></p>
+<h3 id="如果我是项目开发者"><a href="#如果我是项目开发者" class="headerlink" title="如果我是项目开发者"></a>如果我是项目开发者</h3><ol>
+<li>先从develop分支创建自己的功能分支</li>
+<li>然后写自己的功能<ol>
+<li>提交</li>
+<li>推送</li>
+<li>循环a b 直到功能结束</li>
+</ol>
+</li>
+<li>切换到develop分支上，然后合并我们的分支<br><a name="C2RG5"></a></li>
+</ol>
+<h4 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h4><p>先同步一下代码（哪怕没有新的更新）<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664158180458-1a960a0d-30c8-40ab-8142-68ef2fa9eded.png#averageHue=%23242a2f&clientId=u0d4fdf08-c778-4&from=paste&height=275&id=ue9c9a373&name=image.png&originHeight=275&originWidth=603&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27402&status=done&style=none&taskId=u3b462a66-0f91-4bd2-9859-e6ca1ffc54c&title=&width=603" srcset="/img/loading.gif" lazyload alt="image.png"><br />切换到develop分支上，然后点击<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664158217766-b41162b2-0d1b-4bad-9f75-fb68e8aa33a3.png#averageHue=%231d4661&clientId=u0d4fdf08-c778-4&from=paste&height=535&id=u8c87f52d&name=image.png&originHeight=535&originWidth=688&originalType=binary&ratio=1&rotation=0&showTitle=false&size=61335&status=done&style=none&taskId=u644cb847-8e8d-4346-8e6a-734a683eb4d&title=&width=688" srcset="/img/loading.gif" lazyload alt="image.png"><br />在打开的窗口中，点我们的功能分支。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664158250134-9b2d04cf-0339-47dd-b854-ab12cc0b525f.png#averageHue=%23232a31&clientId=u0d4fdf08-c778-4&from=paste&height=224&id=u50eb7fa8&name=image.png&originHeight=224&originWidth=605&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16336&status=done&style=none&taskId=u78c8e1a3-cd0d-436c-b1af-a868c877396&title=&width=605" srcset="/img/loading.gif" lazyload alt="image.png"><br />如果没有冲突，就直接推送即可<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664158272847-39bc9548-a177-47fb-8ac6-67e53293f437.png#averageHue=%231b6a9f&clientId=u0d4fdf08-c778-4&from=paste&height=304&id=ub1fde6e9&name=image.png&originHeight=304&originWidth=317&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11637&status=done&style=none&taskId=u78905591-078b-415e-9bd3-e12b4ffe128&title=&width=317" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="sCTXS"></a></p>
+<h2 id="合并冲突"><a href="#合并冲突" class="headerlink" title="合并冲突"></a>合并冲突</h2><p>当多个人同时修改同一个文件时，未来提交会冲突。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664158897442-f01faec8-9e67-4bd8-97a2-d3f1b6374744.png#averageHue=%23293338&clientId=u0d4fdf08-c778-4&from=paste&height=84&id=uc47cba5b&name=image.png&originHeight=84&originWidth=453&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6252&status=done&style=none&taskId=u08721e5c-1938-47e9-976a-d2460a3c6e8&title=&width=453" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664158908857-54913f8e-fdea-4c27-8f2e-0f7075ada88b.png#averageHue=%2326292b&clientId=u0d4fdf08-c778-4&from=paste&height=101&id=u7ea1888d&name=image.png&originHeight=101&originWidth=415&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5165&status=done&style=none&taskId=ua8865ba5-2fe3-4946-af82-60580f99143&title=&width=415" srcset="/img/loading.gif" lazyload alt="image.png"><br />冲突文件后会有一个叹号。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664158930685-473d39e3-b13e-46eb-8651-9cbf0f9ec0ec.png#averageHue=%23b3a681&clientId=u0d4fdf08-c778-4&from=paste&height=247&id=ue3ae070b&name=image.png&originHeight=247&originWidth=1090&originalType=binary&ratio=1&rotation=0&showTitle=false&size=29453&status=done&style=none&taskId=uc3198571-73a8-4023-83ff-11c34ede68e&title=&width=1090" srcset="/img/loading.gif" lazyload alt="image.png"><br />点击后，找到上面类似的相关的结构<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664159137559-e0ed8e0f-5b2e-4e3b-9b93-f404ff463f17.png#averageHue=%23ab956e&clientId=u0d4fdf08-c778-4&from=paste&height=317&id=u31988f07&name=image.png&originHeight=317&originWidth=825&originalType=binary&ratio=1&rotation=0&showTitle=false&size=35210&status=done&style=none&taskId=u4915b7b7-f0f9-4b29-9ff3-5185e67ec51&title=&width=825" srcset="/img/loading.gif" lazyload alt="image.png"><br />问：如果你们合并时代码冲突了怎么办？<br />答：我们借助开发工具VSCode中的功能，如果合并有冲突，在对应的代码上VSCode会提供三个选项，保留当前代码，保留传入代码，都保留，我们开发者之间沟通，了解需要保留的代码然后选择合适的选项，最后进行提交推送集合。<br><a name="VqeRe"></a></p>
+<h2 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h2><p>.gitignore文件，可以实现对仓库中某些文件的忽略<br />在项目中新建一个.gitignore文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 忽略文件</span><br>文件名<br><span class="hljs-comment"># 忽略文件夹</span><br>文件夹名/<br><span class="hljs-comment"># 忽略文件夹中的文件</span><br>文件名/文件名<br></code></pre></td></tr></table></figure>
+<p><a name="SfwiM"></a></p>
+<h2 id="学习命令"><a href="#学习命令" class="headerlink" title="学习命令"></a>学习命令</h2><p><a name="wVP8Q"></a></p>
+<h3 id="合并merge和变基rebase的区别"><a href="#合并merge和变基rebase的区别" class="headerlink" title="合并merge和变基rebase的区别"></a>合并merge和变基rebase的区别</h3><p>两者都能实现把代码合并的功能，前者合并后提交记录在不同的分支上，后者在一条分支上，看起来更简洁。<br />变基操作更复杂<br><a name="QwFJM"></a></p>
+<h4 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h4><p>合并需要切换到版本低的分支上，然后<code>git merge 版本高的分支</code><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664164859118-74b9179a-6d0b-4edb-b495-e46611fd2ad4.png#averageHue=%235cbcfb&clientId=u0d4fdf08-c778-4&from=paste&height=422&id=u45c61d58&name=image.png&originHeight=422&originWidth=603&originalType=binary&ratio=1&rotation=0&showTitle=false&size=30403&status=done&style=none&taskId=u8202f756-3a35-453f-be31-7137f1ebc19&title=&width=603" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="Z58vR"></a></p>
+<h4 id="变基"><a href="#变基" class="headerlink" title="变基"></a>变基</h4><p>切换到develop分支，然后变基到自己的分支上，然后其他一样的操作，就能让develop分支保持最新，包含所有人的代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git rebase 分支名<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664164882222-521dfc53-2e9f-4dc6-9c1c-c5f9f547f58b.png#averageHue=%235cbbfb&clientId=u0d4fdf08-c778-4&from=paste&height=931&id=u43ca120f&name=image.png&originHeight=931&originWidth=592&originalType=binary&ratio=1&rotation=0&showTitle=false&size=35290&status=done&style=none&taskId=u130f80e8-2ff3-433a-920c-34445c3c7ed&title=&width=592" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="WtDsS"></a></p>
+<h2 id="Git中不同角色的分工"><a href="#Git中不同角色的分工" class="headerlink" title="Git中不同角色的分工"></a>Git中不同角色的分工</h2><p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664179856626-090519af-74f5-47e1-8d7e-5505612ad7d2.png#averageHue=%23ededed&clientId=u0d4fdf08-c778-4&from=paste&id=ua05fd7b6&name=image.png&originHeight=1616&originWidth=1200&originalType=url&ratio=1&rotation=0&showTitle=false&size=674229&status=done&style=none&taskId=u7a91e140-8d8e-4b43-8369-feaf97dca4a&title=" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="FofZI"></a></p>
+<h3 id="管理员"><a href="#管理员" class="headerlink" title="管理员"></a>管理员</h3><ol>
+<li>创建项目</li>
+<li>克隆项目</li>
+<li>创建合适的分支</li>
+<li>变身成为开发者<br><a name="bi6Um"></a></li>
+</ol>
+<h3 id="开发者（这个就是我们的工作，其他的不管）"><a href="#开发者（这个就是我们的工作，其他的不管）" class="headerlink" title="开发者（这个就是我们的工作，其他的不管）"></a>开发者（这个就是我们的工作，其他的不管）</h3><ol>
+<li>克隆项目（如果电脑上没有项目时做的事情）</li>
+<li>切换到开发分支</li>
+<li>创建一个分支（功能分支）feature-xxx</li>
+<li>开发<ol>
+<li>暂存</li>
+<li>提交</li>
+<li>推送</li>
+<li>循环上面三步直到功能完成</li>
+</ol>
+</li>
+<li>切换到develop，然后拉取最新的develop分支</li>
+<li>和我们的自己的feature分支进行合并。<br><a name="G1dPY"></a></li>
+</ol>
+<h3 id="版本发布者"><a href="#版本发布者" class="headerlink" title="版本发布者"></a>版本发布者</h3><ol>
+<li>从最新develop上创建一条新的分支 release-v版本号。</li>
+<li>测试进行测试，测试出来的问题由对应的人员进行修复</li>
+<li>把修复后的代码，合并到develop上。直到所有的可见bug修复完成</li>
+<li>合并到master上</li>
+<li>打上一个标签<br><a name="Fp2Re"></a></li>
+</ol>
+<h3 id="热修复"><a href="#热修复" class="headerlink" title="热修复"></a>热修复</h3><ol>
+<li>从master上创建一条新分支hotfix-v版本号</li>
+<li>修复bug</li>
+<li>将代码合并到master和develop</li>
+<li>打上标签</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/tat5fQLFl7D7dQ9GTs8LEQ">https://mp.weixin.qq.com/s/tat5fQLFl7D7dQ9GTs8LEQ</a><br><a name="S9MVE"></a></p>
+<h2 id="SSH地址的使用"><a href="#SSH地址的使用" class="headerlink" title="SSH地址的使用"></a>SSH地址的使用</h2><p>如何生成ssh公钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh-keygen -C <span class="hljs-string">&quot;邮箱地址&quot;</span>  <br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664180689527-ad189a61-c520-423f-bc00-585c367294d4.png#averageHue=%231a1817&clientId=u0d4fdf08-c778-4&from=paste&height=496&id=u0a449341&name=image.png&originHeight=496&originWidth=574&originalType=binary&ratio=1&rotation=0&showTitle=false&size=26801&status=done&style=none&taskId=u85b6b441-3f99-4119-ab00-73323cb719a&title=&width=574" srcset="/img/loading.gif" lazyload alt="image.png"><br />生成的地址在<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664180715916-cc6cf06d-7e7d-4869-8921-c775516b70b1.png#averageHue=%23050302&clientId=u0d4fdf08-c778-4&from=paste&height=381&id=udea35cf9&name=image.png&originHeight=381&originWidth=541&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22816&status=done&style=none&taskId=uff9ca460-25e4-4fdd-b817-8cc3a741fb4&title=&width=541" srcset="/img/loading.gif" lazyload alt="image.png"><br />生成公钥后，把公钥加入到对应的ssh列表中。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664180794407-12d04219-cc67-4321-ba40-192fc86bd415.png#averageHue=%23f2e3ca&clientId=u0d4fdf08-c778-4&from=paste&height=854&id=ua9d3d2cf&name=image.png&originHeight=854&originWidth=1309&originalType=binary&ratio=1&rotation=0&showTitle=false&size=109196&status=done&style=none&taskId=uac983b20-9ad6-4060-9fbb-443bf6b8263&title=&width=1309" srcset="/img/loading.gif" lazyload alt="image.png"><br />把上面生成的公钥用VSCode打开，复制粘贴即可<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664180851975-63f55f6e-0f66-4695-b583-ae5a0d5148a7.png#averageHue=%23fcfaf8&clientId=u0d4fdf08-c778-4&from=paste&height=364&id=ua3969d07&name=image.png&originHeight=364&originWidth=954&originalType=binary&ratio=1&rotation=0&showTitle=false&size=41305&status=done&style=none&taskId=u0bb546f9-4fd2-4bca-982e-5d8189afcc5&title=&width=954" srcset="/img/loading.gif" lazyload alt="image.png"><br />点击确定添加。</p>
+<p>首次进行Git克隆时，会进行询问<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664180914073-3a1d2b62-21f4-4d9d-b26c-ac1f378220fc.png#averageHue=%231d1c1b&clientId=u0d4fdf08-c778-4&from=paste&height=370&id=u1173eaef&name=image.png&originHeight=370&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18503&status=done&style=none&taskId=ubbe9ccca-5f49-44c3-bdbf-85f8793f37f&title=&width=581" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Git</div>
+      <div>http://example.com/学习/js/52-Git/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年12月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/53-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">正则表达式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/51-%E5%9C%B0%E5%9B%BE/" title="地图">
+                        <span class="hidden-mobile">地图</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,683 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="swiper组件滑块视图容器。其中只可放置swiper-item组件page.wxml 12345678&lt;swiper indicator-dots&#x3D;&quot;&amp;#123;&amp;#123;indicatorDots&amp;#125;&amp;#125;&quot;  autoplay&#x3D;&quot;&amp;#123;&amp;#123;autoplay&amp;#125;&amp;#125;&quot; interval&#x3D;&quot;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="7.常用组件和授权">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/7-%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6%E5%92%8C%E6%8E%88%E6%9D%83/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="swiper组件滑块视图容器。其中只可放置swiper-item组件page.wxml 12345678&lt;swiper indicator-dots&#x3D;&quot;&amp;#123;&amp;#123;indicatorDots&amp;#125;&amp;#125;&quot;  autoplay&#x3D;&quot;&amp;#123;&amp;#123;autoplay&amp;#125;&amp;#125;&quot; interval&#x3D;&quot;&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/22278242/1672802137137-a3c1fdb4-bc86-49c4-bf63-23b99612d6d5.png#averageHue=%23fefefe&clientId=uf6664770-8d22-4&from=paste&height=104&id=u0ccf3a99&name=image.png&originHeight=188&originWidth=1134&originalType=binary&ratio=1&rotation=0&showTitle=false&size=45101&status=done&style=none&taskId=u5ff22d80-c418-4228-9bb1-80366588dab&title=&width=630.000016689301">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/22278242/1672748776655-f5b73bc7-4d06-4d75-8a8b-4d115bf6882e.png#averageHue=%23fcfcfc&clientId=u01a0f796-752b-4&from=paste&height=339&id=uc84dcf84&name=image.png&originHeight=1178&originWidth=990&originalType=binary&ratio=1&rotation=0&showTitle=false&size=150702&status=done&style=none&taskId=u586d3a4e-7acc-4441-bf00-ec4fb1661eb&title=&width=285">
+<meta property="article:published_time" content="2020-11-11T04:33:47.000Z">
+<meta property="article:modified_time" content="2023-03-20T12:36:32.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2023/png/22278242/1672802137137-a3c1fdb4-bc86-49c4-bf63-23b99612d6d5.png#averageHue=%23fefefe&clientId=uf6664770-8d22-4&from=paste&height=104&id=u0ccf3a99&name=image.png&originHeight=188&originWidth=1134&originalType=binary&ratio=1&rotation=0&showTitle=false&size=45101&status=done&style=none&taskId=u5ff22d80-c418-4228-9bb1-80366588dab&title=&width=630.000016689301">
+  
+  
+  
+  <title>7.常用组件和授权 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="7.常用组件和授权"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-11-11 12:33" pubdate>
+          2020年11月11日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          72 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">7.常用组件和授权</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="PKwOe"></a></p>
+<h1 id="swiper组件"><a href="#swiper组件" class="headerlink" title="swiper组件"></a>swiper组件</h1><p>滑块视图容器。其中只可放置swiper-item组件<br />page.wxml</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">swiper</span> <span class="hljs-attr">indicator-dots</span>=<span class="hljs-string">&quot;&#123;&#123;indicatorDots&#125;&#125;&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">autoplay</span>=<span class="hljs-string">&quot;&#123;&#123;autoplay&#125;&#125;&quot;</span> <span class="hljs-attr">interval</span>=<span class="hljs-string">&quot;&#123;&#123;interval&#125;&#125;&quot;</span> <span class="hljs-attr">duration</span>=<span class="hljs-string">&quot;&#123;&#123;duration&#125;&#125;&quot;</span> <span class="hljs-attr">circular</span>=<span class="hljs-string">&quot;&#123;&#123;true&#125;&#125;&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">block</span> <span class="hljs-attr">wx:for</span>=<span class="hljs-string">&quot;&#123;&#123;imgUrls&#125;&#125;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">swiper-item</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&#123;&#123;item&#125;&#125;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;slide-image&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;355&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;150&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">swiper-item</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">block</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">swiper</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>page.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-attr">data</span>: &#123;<br>    <span class="hljs-attr">imgUrls</span>: [<br>      <span class="hljs-string">&#x27;http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg&#x27;</span>,<br>      <span class="hljs-string">&#x27;http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg&#x27;</span>,<br>      <span class="hljs-string">&#x27;http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg&#x27;</span><br>    ],<br>    <span class="hljs-attr">indicatorDots</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">autoplay</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">interval</span>: <span class="hljs-number">3000</span>,<br>    <span class="hljs-attr">duration</span>: <span class="hljs-number">1000</span><br>  &#125;,<br><br></code></pre></td></tr></table></figure>
+<p><a name="y5XDT"></a></p>
+<h1 id="scroll-view：-可滚动视图区域"><a href="#scroll-view：-可滚动视图区域" class="headerlink" title="scroll-view：    可滚动视图区域"></a>scroll-view：    可滚动视图区域</h1><p>可滚动视图区域。使用竖向滚动时，需要给scroll-view一个固定高度，通过 WXSS 设置 height。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;!-- 页面容器 --&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-comment">&lt;!-- 左侧菜单 --&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;left&quot;</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">scroll-view</span> <span class="hljs-attr">scroll-y</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:for</span>=<span class="hljs-string">&quot;&#123;&#123;goodsClass&#125;&#125;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;&#123;&#123;activeIndex === index ?&#x27;active&#x27;:&#x27;&#x27;&#125;&#125;&quot;</span> <span class="hljs-attr">wx:key</span>=<span class="hljs-string">&quot;index&quot;</span> <span class="hljs-attr">bindtap</span>=<span class="hljs-string">&quot;toggle&quot;</span> <span class="hljs-attr">data-index</span>=<span class="hljs-string">&quot;&#123;&#123;index&#125;&#125;&quot;</span>&gt;</span>&#123;&#123;item.name&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">scroll-view</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-comment">&lt;!-- 右侧 --&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;right&quot;</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">scroll-view</span> <span class="hljs-attr">scroll-y</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">scroll-into-view</span>=<span class="hljs-string">&quot;class&#123;&#123;curIndex&#125;&#125;&quot;</span> <span class="hljs-attr">scroll-with-animation</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">bindscroll</span>=<span class="hljs-string">&quot;scroll&quot;</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;class-box&quot;</span> <span class="hljs-attr">wx:for</span>=<span class="hljs-string">&quot;&#123;&#123;goodsClass&#125;&#125;&quot;</span> <span class="hljs-attr">wx:key</span>=<span class="hljs-string">&quot;index&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;class&#123;&#123;index&#125;&#125;&quot;</span>&gt;</span></span><br><span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;title&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">text</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;iconfont icon-gouwuche&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span>&#123;&#123;item.name&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span><br><span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-box&quot;</span> <span class="hljs-attr">wx:for</span>=<span class="hljs-string">&quot;&#123;&#123;item.foods&#125;&#125;&quot;</span> <span class="hljs-attr">wx:for-item</span>=<span class="hljs-string">&quot;food&quot;</span> <span class="hljs-attr">wx:for-index</span>=<span class="hljs-string">&quot;idx&quot;</span> <span class="hljs-attr">wx:key</span>=<span class="hljs-string">&quot;idx&quot;</span>&gt;</span></span><br><span class="language-xml">                <span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span>菜名:&#123;&#123;food.name&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span><br><span class="language-xml">                <span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span>价格：&#123;&#123;food.price&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span><br><span class="language-xml">              <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">scroll-view</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span><br><br></code></pre></td></tr></table></figure>
+
+<p>pages&#x2F;classify&#x2F;classify.wxss </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 页面容器 */</span><br><span class="hljs-selector-class">.container</span> &#123;<br>   <span class="hljs-attribute">position</span>: absolute;<br>   <span class="hljs-attribute">display</span>: flex;<br>   <span class="hljs-attribute">flex-direction</span>: row;<br>   <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>   <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;<br>   <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>   <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>   <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#f00</span>;<br>&#125;<br><span class="hljs-comment">/* 左侧菜单 */</span><br><span class="hljs-selector-class">.left</span> &#123;<br>  <span class="hljs-attribute">box-sizing</span>: border-box;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1</span>rpx solid red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200</span>rpx;<br>&#125;<br>scroll-view &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">overflow</span>: hidden;<br>&#125;<br><br><span class="hljs-selector-class">.left</span> view,<br><span class="hljs-selector-class">.right</span> <span class="hljs-selector-class">.item-box</span>&#123;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1</span>rpx solid <span class="hljs-number">#aaa</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">20</span>rpx;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">200</span>rpx;<br>&#125;<br><span class="hljs-selector-class">.left</span> view<span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">1</span>)&#123;<br>  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.left</span> <span class="hljs-selector-class">.active</span>&#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#0ff</span>;<br>&#125; <br><br><span class="hljs-comment">/* 右侧 */</span><br><span class="hljs-selector-class">.right</span> &#123;<br>  <span class="hljs-attribute">box-sizing</span>: border-box;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1</span>rpx solid red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-selector-class">.right</span> <span class="hljs-selector-class">.title</span> &#123;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">10</span>rpx;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#f00</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50</span>rpx;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>注意</strong>：使用竖向滚动时，需要给scroll-view一个固定高度，通过 WXSS 设置 height。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> goodsClass <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../../mock/data.js&#x27;</span><br><span class="hljs-title class_">Page</span>(&#123;<br><span class="hljs-attr">data</span>: &#123;<br>  <span class="hljs-attr">goodsClass</span>: [],<br>  <span class="hljs-attr">activeIndex</span>: <span class="hljs-number">0</span>,<br>  <span class="hljs-attr">curIndex</span>:<span class="hljs-number">0</span>,<br>  <span class="hljs-attr">listHeight</span>: []<br>&#125;,<br><span class="hljs-comment">//页面初始化时，加载数据</span><br><span class="hljs-title function_">onLoad</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-comment">//发起网络请求</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setData</span>(&#123;<br>    goodsClass<br>  &#125;)<br>&#125;,<br>   <br><br><span class="hljs-comment">//当页面渲染完毕，获取每一个类别top偏移值</span><br><span class="hljs-title function_">onReady</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-keyword">const</span> query = wx.<span class="hljs-title function_">createSelectorQuery</span>();<br>  query.<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">&quot;.class-box&quot;</span>).<span class="hljs-title function_">boundingClientRect</span>();<br>  query.<span class="hljs-title function_">exec</span>(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;<br>    <span class="hljs-keyword">let</span> tempArr = res[<span class="hljs-number">0</span>].<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">item</span>=&gt;</span>&#123;<br>      <span class="hljs-keyword">return</span> item.<span class="hljs-property">top</span>-<span class="hljs-number">5.5</span><br>    &#125;)<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setData</span>(&#123;<br>      <span class="hljs-attr">listHeight</span>: tempArr<br>    &#125;)<br>  &#125;)<br>&#125;,<br><span class="hljs-comment">//当切换左侧菜单时</span><br><span class="hljs-title function_">toggle</span>(<span class="hljs-params">e</span>)&#123;<br>  <span class="hljs-keyword">let</span> index = e.<span class="hljs-property">target</span>.<span class="hljs-property">dataset</span>.<span class="hljs-property">index</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setData</span>(&#123;<br>    <span class="hljs-attr">activeIndex</span>: index,<br>    <span class="hljs-attr">curIndex</span>: index<br>  &#125;)<br>&#125;,<br><br><br><span class="hljs-comment">// 当右侧滚动时</span><br><span class="hljs-title function_">scroll</span>(<span class="hljs-params">e</span>)&#123;<br>  <span class="hljs-keyword">let</span> scrollTop = e.<span class="hljs-property">detail</span>.<span class="hljs-property">scrollTop</span><br>  <span class="hljs-keyword">let</span> flag = <span class="hljs-literal">true</span>;<br>  <span class="hljs-keyword">let</span> index;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>.<span class="hljs-property">listHeight</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>; i++) &#123;<br>    <span class="hljs-keyword">if</span> (scrollTop &gt;= <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>.<span class="hljs-property">listHeight</span>[i] &amp;&amp; scrollTop &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>.<span class="hljs-property">listHeight</span>[i + <span class="hljs-number">1</span>]) &#123;<br>      flag = <span class="hljs-literal">false</span>;<br>      index = i;<br>      <span class="hljs-keyword">break</span>;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">if</span> (flag) &#123;<br>    index = <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>.<span class="hljs-property">listHeight</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;<br>  &#125;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setData</span>(&#123;<br>    <span class="hljs-attr">activeIndex</span>: index<br>  &#125;)<br>&#125;<br>&#125;)<br><br></code></pre></td></tr></table></figure>
+<p><a name="IFsJA"></a></p>
+<h1 id="微信授权"><a href="#微信授权" class="headerlink" title="微信授权"></a>微信授权</h1><p>部分接口需要经过用户授权同意才能调用。我们把这些接口按使用范围分成多个 scope ，用户选择对 scope 来进行授权，当授权给一个 scope 之后，其对应的所有接口都可以直接使用。    <br />此类接口调用时：   </p>
+<ol>
+<li>如果用户未接受或拒绝过此权限，会弹窗询问用户，用户点击同意后方可调用接口；   </li>
+<li>如果用户已授权，可以直接调用接口；    </li>
+<li>如果用户已拒绝授权，则不会出现弹窗，而是直接进入接口 fail 回调。请开发者兼容用户拒绝授权的场景</li>
+</ol>
+<p>wx.getSetting(Object object)</p>
+<ol>
+<li>获取用户的当前设置。返回值中只会出现小程序已经向用户请求过的权限。 </li>
+<li>示例代码        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript">wx.<span class="hljs-title function_">getSetting</span>(&#123;<br>  success (res) &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">authSetting</span>)<br>      <span class="hljs-comment">// res.authSetting = &#123;</span><br>      <span class="hljs-comment">//   &quot;scope.userInfo&quot;: true,</span><br>      <span class="hljs-comment">//   &quot;scope.userLocation&quot;: true</span><br>      <span class="hljs-comment">// &#125;</span><br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+一旦用户明确同意或拒绝过授权，其授权关系会记录在后台，直到用户主动删除小程序。<br />在微信中把小程序删除掉，即删除授权关系<br><a name="p7HWP"></a></li>
+</ol>
+<h1 id="微信授权-（了解，有些需要权限）"><a href="#微信授权-（了解，有些需要权限）" class="headerlink" title="微信授权 （了解，有些需要权限）"></a>微信授权 （了解，有些需要权限）</h1><p>scope 列表       <br /><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/authorize.html">https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/authorize.html</a>    <br />scope	对应接口	描述    <br />scope.userInfo	wx.getUserInfo	用户信息    <br />scope.userLocation	wx.getLocation, wx.chooseLocation	地理位置    <br />scope.userLocationBackground	wx.startLocationUpdateBackground	后台定位    <br />scope.address	wx.chooseAddress	通讯地址    <br />scope.invoiceTitle	wx.chooseInvoiceTitle	发票抬头    <br />scope.invoice	wx.chooseInvoice	获取发票    <br />scope.werun	wx.getWeRunData	微信运动步数    <br />scope.record	wx.startRecord	录音功能    <br />scope.writePhotosAlbum	wx.saveImageToPhotosAlbum, wx.saveVideoToPhotosAlbum	保存到相册    <br />scope.camera	camera 组件	摄像头<br />注意：有些接口针对非个人开发者，且完成了认证的小程序开放（不包含海外主体）。<br />需谨慎使用，若用户举报较多或被发现在不必要场景下使用，微信有权永久回收该小程序的该接口权限。<br><a name="Svl4t"></a></p>
+<h1 id="获取用户信息"><a href="#获取用户信息" class="headerlink" title="获取用户信息"></a>获取用户信息</h1><ol>
+<li>通过下面代码，弹出授权弹窗，确定后，即可获取用户信息<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- html --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">button</span>  <span class="hljs-attr">bindtap</span>=<span class="hljs-string">&quot;onGetUserInfo&quot;</span>&gt;</span>获取用户信息<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- js代码: --&gt;</span><br>onGetUserInfo(e)&#123;<br>  wx.getUserProfile(&#123;<br>    desc: &#x27;用于完善会员资料&#x27;, // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写<br>    success: (res) =&gt; &#123;<br>      this.setData(&#123;<br>          userInfo: res.userInfo,<br>          hasUserInfo: true<br>      &#125;)<br>    &#125;<br>  &#125;)<br>&#125;<br><br></code></pre></td></tr></table></figure>
+获取用户信息和授权用户信息的操作，从2022年11月9日起就被禁用了，现在官网推荐，获取头像昵称请使用<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/userProfile.html">头像昵称填写能力</a>手动添加的方式实现<br />并且添加的时候，可以将 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/input.html">input</a> 组件 type 的值设置为 nickname，当用户在此 input 进行输入时，键盘上方会展示微信昵称。<br />参考链接：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/community/develop/doc/00022c683e8a80b29bed2142b56c01">https://developers.weixin.qq.com/community/develop/doc/00022c683e8a80b29bed2142b56c01</a><br><a name="kWRvK"></a></li>
+</ol>
+<h1 id="map地图的使用"><a href="#map地图的使用" class="headerlink" title="map地图的使用"></a>map地图的使用</h1><ol>
+<li><p>在app.json中添加</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-string">&quot;permission&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;scope.userLocation&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;desc&quot;</span>: <span class="hljs-string">&quot;你的位置信息将用于小程序位置接口的效果展示&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>调用地理定位接口</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript">wx.<span class="hljs-title function_">getLocation</span>(&#123;<br>  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;gcj02&#x27;</span>,<br>  <span class="hljs-attr">success</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res);<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 返回值</span><br><br><span class="hljs-attr">accuracy</span>: <span class="hljs-number">65</span><br><span class="hljs-attr">buildingId</span>: <span class="hljs-string">&quot;&quot;</span><br><span class="hljs-attr">direction</span>: -<span class="hljs-number">1</span><br><span class="hljs-attr">errMsg</span>: <span class="hljs-string">&quot;getLocation:ok&quot;</span><br><span class="hljs-attr">floorName</span>: <span class="hljs-string">&quot;1000&quot;</span><br><span class="hljs-attr">horizontalAccuracy</span>: <span class="hljs-number">65</span><br><span class="hljs-attr">latitude</span>: <span class="hljs-number">34.82350540161133</span><br><span class="hljs-attr">longitude</span>: <span class="hljs-number">113.64183807373047</span><br><span class="hljs-attr">provider</span>: <span class="hljs-string">&quot;gps&quot;</span><br><span class="hljs-attr">speed</span>: -<span class="hljs-number">1</span><br><span class="hljs-attr">verticalAccuracy</span>: <span class="hljs-number">10</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>地图组件 （需要用getLocation获取经纬度）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">map</span> <span class="hljs-attr">longitude</span>=<span class="hljs-string">&quot;&#123;&#123;longitude&#125;&#125;&quot;</span> <span class="hljs-attr">latitude</span>=<span class="hljs-string">&quot;&#123;&#123;latitude&#125;&#125;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">map</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="Bcwpb"></a></p>
+</li>
+</ol>
+<h1 id="微信小程序之逆地址解析"><a href="#微信小程序之逆地址解析" class="headerlink" title="微信小程序之逆地址解析"></a>微信小程序之逆地址解析</h1><p>腾讯地图参考链接：<a target="_blank" rel="noopener" href="https://lbs.qq.com/service/webService/webServiceGuide/webServiceOverview">https://lbs.qq.com/service/webService/webServiceGuide/webServiceOverview</a><br /><img src="https://cdn.nlark.com/yuque/0/2023/png/22278242/1672802137137-a3c1fdb4-bc86-49c4-bf63-23b99612d6d5.png#averageHue=%23fefefe&clientId=uf6664770-8d22-4&from=paste&height=104&id=u0ccf3a99&name=image.png&originHeight=188&originWidth=1134&originalType=binary&ratio=1&rotation=0&showTitle=false&size=45101&status=done&style=none&taskId=u5ff22d80-c418-4228-9bb1-80366588dab&title=&width=630.000016689301" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ol>
+<li>注册腾讯地图账号</li>
+<li>添加key值</li>
+</ol>
+<p>注意：添加key值的时候，需要勾选webServeAPI<br /><img src="https://cdn.nlark.com/yuque/0/2023/png/22278242/1672748776655-f5b73bc7-4d06-4d75-8a8b-4d115bf6882e.png#averageHue=%23fcfcfc&clientId=u01a0f796-752b-4&from=paste&height=339&id=uc84dcf84&name=image.png&originHeight=1178&originWidth=990&originalType=binary&ratio=1&rotation=0&showTitle=false&size=150702&status=done&style=none&taskId=u586d3a4e-7acc-4441-bf00-ec4fb1661eb&title=&width=285" srcset="/img/loading.gif" lazyload alt="image.png"><br />需要勾选微信小程序：添加自己的小程序的appid</p>
+<ol start="3">
+<li>小程序服务器域名配置</li>
+</ol>
+<p>参考当前文章：<a target="_blank" rel="noopener" href="https://lbs.qq.com/service/webService/webServiceGuide/miniprogram">https://lbs.qq.com/service/webService/webServiceGuide/miniprogram</a></p>
+<ol start="4">
+<li>操作代码</li>
+</ol>
+<p>同地图的显示，需要配置app.json中的permission<br />如果真机测试获取不到效果，需要添加requiredPrivateInfos</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-string">&quot;permission&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;scope.userLocation&quot;</span>: &#123;<br>      <span class="hljs-string">&quot;desc&quot;</span>: <span class="hljs-string">&quot;你的位置信息将用于小程序位置接口的效果展示&quot;</span><br>    &#125;<br>&#125;,<br><span class="hljs-string">&quot;requiredPrivateInfos&quot;</span>: [<span class="hljs-string">&quot;getLocation&quot;</span>, <span class="hljs-string">&quot;chooseLocation&quot;</span>] <span class="hljs-comment">// 在手机上获取地图的时候，需要添加</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-attr">onLoad</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">let</span> self = <span class="hljs-variable language_">this</span>;<br>    wx.<span class="hljs-title function_">getLocation</span>(&#123;<br>      <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;gcj02&#x27;</span>,<br>      <span class="hljs-title function_">success</span>(<span class="hljs-params">res</span>) &#123;<br>        <span class="hljs-keyword">const</span> latitude = res.<span class="hljs-property">latitude</span><br>        <span class="hljs-keyword">const</span> longitude = res.<span class="hljs-property">longitude</span><br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(latitude, longitude);<br>        <span class="hljs-keyword">let</span> key = <span class="hljs-string">&quot;FTHBZ-3FYRP-7OJDL-V42LI-VF5WS-KOFVM&quot;</span> <span class="hljs-comment">// 自己的腾讯地图key值</span><br>        self.<span class="hljs-title function_">getCityInfo</span>(latitude, longitude, key)<br>      &#125;,<br>      <span class="hljs-title function_">fail</span>(<span class="hljs-params">error</span>) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;获取位置信息失败...&quot;</span>)<br>      &#125;<br>    &#125;)<br>  &#125;,<br><br><br><span class="hljs-title function_">getCityInfo</span>(<span class="hljs-params">lat, lng, mapKey, callback</span>) &#123;<br>    <span class="hljs-comment">// 逆位置解析：根据经纬度，获取地址名称</span><br>    <span class="hljs-comment">// 位置解析：根据地址名称，获取经纬度</span><br>    <span class="hljs-comment">// 逆位置解析</span><br>    <span class="hljs-comment">// https://lbs.qq.com/webservice_v1/guide-gcoder.html</span><br>    wx.<span class="hljs-title function_">request</span>(&#123;<br>      <span class="hljs-attr">url</span>: <span class="hljs-string">`https://apis.map.qq.com/ws/geocoder/v1/?location=<span class="hljs-subst">$&#123;lat&#125;</span>,<span class="hljs-subst">$&#123;lng&#125;</span>&amp;key=<span class="hljs-subst">$&#123;mapKey&#125;</span>`</span>,<br>      <span class="hljs-attr">success</span>: <span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">data</span>.<span class="hljs-property">result</span>);<br>      &#125;<br>    &#125;)<br>  &#125;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 解析结果：（一部分）</span><br><br><span class="hljs-attr">d_info</span>:<br><span class="hljs-attr">adcode</span>: <span class="hljs-string">&quot;410105&quot;</span><br><span class="hljs-attr">city</span>: <span class="hljs-string">&quot;郑州市&quot;</span><br><span class="hljs-attr">city_code</span>: <span class="hljs-string">&quot;156410100&quot;</span><br><span class="hljs-attr">district</span>: <span class="hljs-string">&quot;金水区&quot;</span><br><span class="hljs-attr">location</span>: &#123;<span class="hljs-attr">lat</span>: <span class="hljs-number">34.776218</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">113.625</span>&#125;<br><span class="hljs-attr">name</span>: <span class="hljs-string">&quot;中国,河南省,郑州市,金水区&quot;</span><br><span class="hljs-attr">nation</span>: <span class="hljs-string">&quot;中国&quot;</span><br><span class="hljs-attr">nation_code</span>: <span class="hljs-string">&quot;156&quot;</span><br><span class="hljs-attr">province</span>: <span class="hljs-string">&quot;河南省&quot;</span><br><span class="hljs-attr">__proto__</span>: <span class="hljs-title class_">Object</span><br><span class="hljs-attr">address</span>: <span class="hljs-string">&quot;河南省郑州市金水区金水东路&quot;</span><br><span class="hljs-attr">address_component</span>:<br><span class="hljs-attr">city</span>: <span class="hljs-string">&quot;郑州市&quot;</span><br><span class="hljs-attr">district</span>: <span class="hljs-string">&quot;金水区&quot;</span><br><span class="hljs-attr">nation</span>: <span class="hljs-string">&quot;中国&quot;</span><br><span class="hljs-attr">province</span>: <span class="hljs-string">&quot;河南省&quot;</span><br><span class="hljs-attr">street</span>: <span class="hljs-string">&quot;金水东路&quot;</span><br><span class="hljs-attr">street_number</span>: <span class="hljs-string">&quot;金水东路&quot;</span><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>7.常用组件和授权</div>
+      <div>http://example.com/学习/小程序/7-常用组件和授权/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年11月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/8-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%99%BB%E5%BD%95%E6%8E%88%E6%9D%83%EF%BC%88%E9%89%B4%E6%9D%83%EF%BC%89/" title="8.微信小程序登录授权（鉴权）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">8.微信小程序登录授权（鉴权）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/45-FileReader/" title="FileReader">
+                        <span class="hidden-mobile">FileReader</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

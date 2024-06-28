@@ -1,0 +1,764 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="跨域请求数据 什么是跨域什么是跨域：跨域，是指浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器对JavaScript实施的安全限制什么是同域：协议, 域名, 端口号 完全一致, 是同域.		协议: http, https		域名: 一级域名, 二级域名, 三级域名		端口号: 80(http), 443(https)等 1234https:&#x2F;&#x2F;www.oa.ranyihang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跨域请求">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/js/60-%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="跨域请求数据 什么是跨域什么是跨域：跨域，是指浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器对JavaScript实施的安全限制什么是同域：协议, 域名, 端口号 完全一致, 是同域.		协议: http, https		域名: 一级域名, 二级域名, 三级域名		端口号: 80(http), 443(https)等 1234https:&#x2F;&#x2F;www.oa.ranyihang">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1653898105048-b7fe2bce-8560-4adb-aafe-07a426610e96.png#averageHue=%23e8e9e5&clientId=u1b2c6a01-5777-4&from=paste&height=313&id=udc5f01f3&name=image-20210909233443199.png&originHeight=438&originWidth=782&originalType=binary&ratio=1&rotation=0&showTitle=false&size=211342&status=done&style=none&taskId=uf4c098d8-25f7-4f8e-9df3-0c23f55c5c2&title=&width=559">
+<meta property="article:published_time" content="2021-02-28T11:29:16.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:29:12.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1653898105048-b7fe2bce-8560-4adb-aafe-07a426610e96.png#averageHue=%23e8e9e5&clientId=u1b2c6a01-5777-4&from=paste&height=313&id=udc5f01f3&name=image-20210909233443199.png&originHeight=438&originWidth=782&originalType=binary&ratio=1&rotation=0&showTitle=false&size=211342&status=done&style=none&taskId=uf4c098d8-25f7-4f8e-9df3-0c23f55c5c2&title=&width=559">
+  
+  
+  
+  <title>跨域请求 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="跨域请求"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-02-28 19:29" pubdate>
+          2021年2月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          53 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">跨域请求</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="4be5c6fb"></a></p>
+<h3 id="跨域请求数据"><a href="#跨域请求数据" class="headerlink" title="跨域请求数据"></a>跨域请求数据</h3><p><a name="32d193d5"></a></p>
+<h3 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h3><p>什么是跨域：跨域，是指浏览器不能执行其他网站的脚本。它是由<strong>浏览器的同源策略</strong>造成的，是浏览器对JavaScript实施的安全限制<br />什么是同域：协议, 域名, 端口号 完全一致, 是同域.<br />		协议: http, https<br />		域名: 一级域名, 二级域名, 三级域名<br />		端口号: 80(http), 443(https)等</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-attr">https</span>:<span class="hljs-comment">//www.oa.ranyihang.com:8080</span><br><span class="hljs-attr">https</span>:<span class="hljs-comment">//www.oa.ranyihang.com:8081</span><br><span class="hljs-attr">https</span>:<span class="hljs-comment">//www.ranyihang.com:8080</span><br><span class="hljs-attr">http</span>:<span class="hljs-comment">//www.oa.ranyihang.com:8080</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1653898105048-b7fe2bce-8560-4adb-aafe-07a426610e96.png#averageHue=%23e8e9e5&clientId=u1b2c6a01-5777-4&from=paste&height=313&id=udc5f01f3&name=image-20210909233443199.png&originHeight=438&originWidth=782&originalType=binary&ratio=1&rotation=0&showTitle=false&size=211342&status=done&style=none&taskId=uf4c098d8-25f7-4f8e-9df3-0c23f55c5c2&title=&width=559" srcset="/img/loading.gif" lazyload alt="image-20210909233443199.png"></p>
+<p><a name="4a4b502d"></a></p>
+<h3 id="如何解决跨域问题"><a href="#如何解决跨域问题" class="headerlink" title="如何解决跨域问题"></a>如何解决跨域问题</h3><p>原生JS解决跨域问题有三种方式：Jsonp，postMessage，CORS<br />	前端：Jsonp<br />	后端：CORS</p>
+<p><a name="6c81fa9a"></a></p>
+<h3 id="数据地址"><a href="#数据地址" class="headerlink" title="数据地址"></a>数据地址</h3><p>百度数据地址：<a target="_blank" rel="noopener" href="https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=javascript&cb=jQuery1102076227855690958_1542010335391&_=1542010335404">https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=javascript&cb=jQuery1102076227855690958_1542010335391&amp;_&#x3D;1542010335404</a></p>
+<p><a name="14395158"></a></p>
+<h3 id="jsonp跨域"><a href="#jsonp跨域" class="headerlink" title="jsonp跨域"></a>jsonp跨域</h3><p>前端发送请求<br />后端配合回调函数<br />好处：</p>
+<ol>
+<li>javascript 兼容性比较好</li>
+<li>不需要服务器支持，直接在本地运行</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>它只支持GET请求而不支持POST等其它类型的HTTP请求</li>
+<li>它只支持跨域HTTP请求这种情况，不能解决不同域的两个页面之间如何进行JavaScript调用的问题。</li>
+<li>jsonp在调用失败的时候不会返回各种HTTP状态码。</li>
+<li>安全性。万一假如提供jsonp的服务存在页面注入漏洞，即它返回的javascript的内容被人控制的。那么结果是什么？所有调用这个 jsonp的网站都会存在漏洞。于是无法把危险控制在一个域名下…所以在使用jsonp的时候必须要保证使用的jsonp服务必须是安全可信的</li>
+</ol>
+<p>作业接口：<br /><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37635519/article/details/90666312">https://blog.csdn.net/qq_37635519&#x2F;article&#x2F;details&#x2F;90666312</a></p>
+<ul>
+<li>淘宝商品搜索建议<br /><code>http://suggest.taobao.com/sug?code=utf-8&amp;q=商品关键字&amp;callback=cb</code> <a target="_blank" rel="noopener" href="https://suggest.taobao.com/sug?code=utf-8&q=%E5%8D%AB%E8%A1%A3&callback=cb">测试用例</a><br /><code>ps</code>:callback是回调函数设定<br><a name="dsztO"></a></li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p><a name="f7aaeb6b"></a></p>
+<h3 id="CORS实现跨域请求"><a href="#CORS实现跨域请求" class="headerlink" title="CORS实现跨域请求"></a>CORS实现跨域请求</h3><p>php页面配置请求内容</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Origin:http://www.abc.com&#x27;</span>); <span class="hljs-comment">// 允许一个访问</span><br><span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Origin:*&#x27;</span>); <span class="hljs-comment">// 允许所有访问</span><br><span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;您已经访问成功&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>发送ajax请求</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;inp&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">var</span> oInp=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#inp&#x27;</span>);</span><br><span class="language-javascript"><span class="hljs-title function_">addEvent</span>(oInp,<span class="hljs-string">&#x27;click&#x27;</span>,getMsg);</span><br><span class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getMsg</span>(<span class="hljs-params"></span>)&#123;</span><br><span class="language-javascript">		url=<span class="hljs-string">&#x27;http://192.168.64.2/1.6/2.getCors.php&#x27;</span>;</span><br><span class="language-javascript">		<span class="hljs-title function_">ajaxPostAsyn</span>(url,<span class="hljs-string">&#x27;&#x27;</span>,ok,error);</span><br><span class="language-javascript">		<span class="hljs-keyword">function</span> <span class="hljs-title function_">ok</span>(<span class="hljs-params">res</span>)&#123;</span><br><span class="language-javascript">			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">responseText</span>);</span><br><span class="language-javascript">		&#125;</span><br><span class="language-javascript">		<span class="hljs-keyword">function</span> <span class="hljs-title function_">error</span>(<span class="hljs-params"></span>)&#123;</span><br><span class="language-javascript">			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;error&#x27;</span>);</span><br><span class="language-javascript">		&#125;</span><br><span class="language-javascript">&#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="Se77m"></a></p>
+<h3 id="补充：URLURL对象"><a href="#补充：URLURL对象" class="headerlink" title="补充：URLURL对象"></a>补充：URLURL对象</h3><p>URL 是互联网的基础设施之一。浏览器提供了一些原生对象，用来管理 URL。<br><a name="cpI3e"></a></p>
+<h4 id="1-URL-的编码和解码"><a href="#1-URL-的编码和解码" class="headerlink" title="1. URL 的编码和解码"></a><br />1. URL 的编码和<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E8%A7%A3%E7%A0%81&spm=1001.2101.3001.7020">解码</a></h4><p><br />网页的 URL 只能包含合法的字符。合法字符分成两类。</p>
+<ul>
+<li>URL 元字符：分号（;），逗号（,），斜杠（&#x2F;），问号（?），冒号（:），at（@），&amp;，等号（&#x3D;），加号（+），美元符号（$），井号（#）</li>
+<li>语义字符：a-z，A-Z，0-9，连词号（-），下划线（_），点（.），感叹号（!），波浪线（~），星号（*），单引号（’），圆括号（()）</li>
+</ul>
+<p>除了以上字符，其他字符出现在 URL 之中都必须转义，规则是根据操作系统的默认编码，将每个字节转为百分号（%）加上两个大写的十六进制字母。<br />比如，UTF-8 的操作系统上，<a target="_blank" rel="noopener" href="http://www.example.com/q=%E6%98%A5%E8%8A%82%E8%BF%99%E4%B8%AA">http://www.example.com/q=春节这个</a> URL 之中，汉字“春节”不是 URL 的合法字符，所以被浏览器自动转成<a target="_blank" rel="noopener" href="http://www.example.com/q=%E6%98%A5%E8%8A%82%E3%80%82%E5%85%B6%E4%B8%AD%EF%BC%8C%E2%80%9C%E6%98%A5%E2%80%9D%E8%BD%AC%E6%88%90%E4%BA%86%E6%98%A5%EF%BC%8C%E2%80%9C%E8%8A%82%E2%80%9D%E8%BD%AC%E6%88%90%E4%BA%86%E8%8A%82%E3%80%82%E8%BF%99%E6%98%AF%E5%9B%A0%E4%B8%BA%E2%80%9C%E6%98%A5%E2%80%9D%E5%92%8C%E2%80%9C%E8%8A%82%E2%80%9D%E7%9A%84">http://www.example.com/q=%E6%98%A5%E8%8A%82。其中，“春”转成了%E6%98%A5，“节”转成了%E8%8A%82。这是因为“春”和“节”的</a> UTF-8 编码分别是E6 98 A5和E8 8A 82，将每个字节前面加上百分号，就构成了 URL 编码。</p>
+<p><a name="Sk2ip"></a></p>
+<h4 id="2-URL-接口"><a href="#2-URL-接口" class="headerlink" title="2. URL 接口"></a>2. URL 接口</h4><p><br />URL接口是一个构造函数，浏览器原生提供，可以用来构造、解析和编码 URL。一般情况下，通过window.URL可以拿到这个构造函数。<br><a name="QUCGw"></a></p>
+<h3 id="URL的编码-x2F-解码方式"><a href="#URL的编码-x2F-解码方式" class="headerlink" title="URL的编码&#x2F;解码方式"></a>URL的编码&#x2F;解码方式</h3><p>JavaScript 提供四个 URL 的编码&#x2F;解码方法。</p>
+<ul>
+<li>encodeURI()</li>
+<li>encodeURIComponent()</li>
+<li>decodeURI()</li>
+<li>decodeURIComponent()</li>
+</ul>
+<p><a name="Urldd"></a></p>
+<h4 id="1-encodeURI"><a href="#1-encodeURI" class="headerlink" title="1. encodeURI()"></a>1. encodeURI()</h4><p>encodeURI()方法用于转码整个 URL。它的参数是一个字符串，代表整个 URL。它会将元字符和语义字符之外的字符，都进行转义。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">encodeURI</span>(<span class="hljs-string">&#x27;http://www.example.com/q=春节&#x27;</span>)<br><span class="hljs-comment">// &quot;http://www.example.com/q=%E6%98%A5%E8%8A%82&quot;</span><br></code></pre></td></tr></table></figure>
+<p><a name="kxB5N"></a></p>
+<h4 id="2-encodeURIComponent"><a href="#2-encodeURIComponent" class="headerlink" title="2. encodeURIComponent()"></a>2. encodeURIComponent()</h4><p>encodeURIComponent()方法用于转码 URL 的组成部分，会转码除了语义字符之外的所有字符，即元字符也会被转码。所以，它不能用于转码整个 URL。它接受一个参数，就是 URL 的片段。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">encodeURIComponent</span>(<span class="hljs-string">&#x27;春节&#x27;</span>) <br><span class="hljs-comment">// &quot;%E6%98%A5%E8%8A%82&quot; </span><br><span class="hljs-built_in">encodeURIComponent</span>(<span class="hljs-string">&#x27;http://www.example.com/q=春节&#x27;</span>) <br><span class="hljs-comment">// &quot;http%3A%2F%2Fwww.example.com%2Fq%3D%E6%98%A5%E8%8A%82&quot; 1234</span><br></code></pre></td></tr></table></figure>
+<p>上面代码中，encodeURIComponent()会连 URL 元字符一起转义，所以如果转码整个 URL 就会出错。<br><a name="ttf4b"></a></p>
+<h4 id="3-decodeURI"><a href="#3-decodeURI" class="headerlink" title="3. decodeURI()"></a><br />3. decodeURI()</h4><p>decodeURI()方法用于整个 URL 的解码。它是encodeURI()方法的逆运算。它接受一个参数，就是转码后的 URL。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">decodeURI</span>(<span class="hljs-string">&#x27;http://www.example.com/q=%E6%98%A5%E8%8A%82&#x27;</span>) <br><span class="hljs-comment">// &quot;http://www.example.com/q=春节&quot; 12</span><br></code></pre></td></tr></table></figure>
+<p><a name="Flvlk"></a></p>
+<h4 id="4-decodeURIComponent"><a href="#4-decodeURIComponent" class="headerlink" title="4. decodeURIComponent()"></a>4. decodeURIComponent()</h4><p>decodeURIComponent()用于URL 片段的解码。它是encodeURIComponent()方法的逆运算。它接受一个参数，就是转码后的 URL 片段。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">decodeURIComponent</span>(<span class="hljs-string">&#x27;%E6%98%A5%E8%8A%82&#x27;</span>) <span class="hljs-comment">// &quot;春节&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><a name="syCjL"></a></p>
+<h3 id="URL接口常用属性"><a href="#URL接口常用属性" class="headerlink" title="URL接口常用属性"></a>URL接口常用属性</h3><p><a name="SFF96"></a></p>
+<h4 id="1-URL接口"><a href="#1-URL接口" class="headerlink" title="1. URL接口"></a>1. URL接口</h4><p>URL接口是一个构造函数，浏览器原生提供，可以用来构造、解析和编码 URL。一般情况下，通过window.URL可以拿到这个构造函数。<br />URL作为构造函数，可以生成 URL 实例。它接受一个表示 URL 的字符串作为参数。如果参数不是合法的 URL，会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> url = <span class="hljs-keyword">new</span> <span class="hljs-title function_">URL</span>(<span class="hljs-string">&#x27;http://www.example.com/index.html&#x27;</span>); <br><span class="hljs-comment">// url.href &quot;http://www.example.com/index.html&quot; 123</span><br></code></pre></td></tr></table></figure>
+<p>如果参数是另一个 URL 实例，构造函数会自动读取该实例的href属性，作为实际参数。<br />如果 URL 字符串是一个相对路径，那么需要表示绝对路径的第二个参数，作为计算基准。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> url1 = <span class="hljs-keyword">new</span> <span class="hljs-title function_">URL</span>(<span class="hljs-string">&#x27;index.html&#x27;</span>, <span class="hljs-string">&#x27;http://example.com&#x27;</span>); <br>url1.<span class="hljs-property">href</span> <span class="hljs-comment">// &quot;http://example.com/index.html&quot; </span><br><span class="hljs-keyword">var</span> url2 = <span class="hljs-keyword">new</span> <span class="hljs-title function_">URL</span>(<span class="hljs-string">&#x27;page2.html&#x27;</span>, <span class="hljs-string">&#x27;http://example.com/page1.html&#x27;</span>); <br>url2.<span class="hljs-property">href</span> <span class="hljs-comment">// &quot;http://example.com/page2.html&quot; </span><br><span class="hljs-keyword">var</span> url3 = <span class="hljs-keyword">new</span> <span class="hljs-title function_">URL</span>(<span class="hljs-string">&#x27;..&#x27;</span>, <span class="hljs-string">&#x27;http://example.com/a/b.html&#x27;</span>) <br>url3.<span class="hljs-property">href</span> <span class="hljs-comment">// &quot;http://example.com/&quot;</span><br></code></pre></td></tr></table></figure>
+<p><a name="jTbQz"></a></p>
+<h4 id="2-URL接口实例属性"><a href="#2-URL接口实例属性" class="headerlink" title="2. URL接口实例属性"></a>2. URL接口实例属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>URL.href</td>
+<td>返回整个 URL</td>
+</tr>
+<tr>
+<td>URL.protocol</td>
+<td>返回协议，以冒号:结尾</td>
+</tr>
+<tr>
+<td>URL.hostname</td>
+<td>返回域名</td>
+</tr>
+<tr>
+<td>URL.host</td>
+<td>返回域名与端口，包含:号，默认的80和443端口会省略</td>
+</tr>
+<tr>
+<td>URL.port</td>
+<td>返回端口</td>
+</tr>
+<tr>
+<td>URL.origin</td>
+<td>返回协议、域名和端口【只读】</td>
+</tr>
+<tr>
+<td>URL.pathname</td>
+<td>返回路径，以斜杠&#x2F;开头</td>
+</tr>
+<tr>
+<td>URL.search</td>
+<td>返回查询字符串，以问号?开头</td>
+</tr>
+<tr>
+<td>URL.searchParams</td>
+<td>返回一个URLSearchParams实例，该属性是Location对象没有的</td>
+</tr>
+<tr>
+<td>URL.hash</td>
+<td>返回片段识别符，以井号#开头</td>
+</tr>
+<tr>
+<td>URL.password</td>
+<td>返回域名前面的密码</td>
+</tr>
+<tr>
+<td>URL.username</td>
+<td>返回域名前面的用户名</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><br><span class="hljs-keyword">var</span> url = <span class="hljs-keyword">new</span> <span class="hljs-title function_">URL</span>(<span class="hljs-string">&#x27;http://user:passwd@www.example.com:4097/path/a.html?x=111#part1&#x27;</span>);<br><br>url.<span class="hljs-property">href</span><br><span class="hljs-comment">// &quot;http://user:passwd@www.example.com:4097/path/a.html?x=111#part1&quot;</span><br>url.<span class="hljs-property">protocol</span><br><span class="hljs-comment">// &quot;http:&quot;</span><br>url.<span class="hljs-property">hostname</span><br><span class="hljs-comment">// &quot;www.example.com&quot;</span><br>url.<span class="hljs-property">host</span><br><span class="hljs-comment">// &quot;www.example.com:4097&quot;</span><br>url.<span class="hljs-property">port</span><br><span class="hljs-comment">// &quot;4097&quot;</span><br>url.<span class="hljs-property">origin</span><br><span class="hljs-comment">// &quot;http://www.example.com:4097&quot;</span><br>url.<span class="hljs-property">pathname</span><br><span class="hljs-comment">// &quot;/path/a.html&quot;</span><br>url.<span class="hljs-property">search</span><br><span class="hljs-comment">// &quot;?x=111&quot;</span><br>url.<span class="hljs-property">searchParams</span><br><span class="hljs-comment">// URLSearchParams &#123;&#125;</span><br>url.<span class="hljs-property">hash</span><br><span class="hljs-comment">// &quot;#part1&quot;</span><br>url.<span class="hljs-property">password</span><br><span class="hljs-comment">// &quot;passwd&quot;</span><br>url.<span class="hljs-property">username</span><br><span class="hljs-comment">// &quot;user&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><a name="Co7fW"></a></p>
+<h4 id="3-静态方法"><a href="#3-静态方法" class="headerlink" title="3. 静态方法"></a>3. 静态方法</h4><ol>
+<li>URL.createObjectURL()</li>
+</ol>
+<p>URL.createObjectURL()方法用来为上传&#x2F;下载的文件、流媒体文件生成一个 URL 字符串。这个字符串代表了File对象或Blob对象的 URL。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// HTML 代码如下 </span><br><span class="hljs-comment">// &lt;div id=&quot;display&quot;/&gt; </span><br><span class="hljs-comment">// &lt;input type=&quot;file&quot;  id=&quot;fileElem&quot;   multiple  accept=&quot;image/*&quot;  οnchange=&quot;handleFiles(this.files)&quot;&gt; </span><br><span class="hljs-keyword">var</span> div = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;display&#x27;</span>); <br><span class="hljs-keyword">function</span> <span class="hljs-title function_">handleFiles</span>(<span class="hljs-params">files</span>) &#123;   <br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; files.<span class="hljs-property">length</span>; i++) &#123;     <br>    <span class="hljs-keyword">var</span> img = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;img&#x27;</span>);     <br>    img.<span class="hljs-property">src</span> = <span class="hljs-variable language_">window</span>.<span class="hljs-property">URL</span>.<span class="hljs-title function_">createObjectURL</span>(files[i]);     <br>    div.<span class="hljs-title function_">appendChild</span>(img);   <br>  &#125; <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>上面代码中，URL.createObjectURL()方法用来为上传的文件生成一个 URL 字符串，作为元素的图片来源。<br />该方法生成的 URL 就像下面的样子。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-attr">blob</span>:<span class="hljs-attr">http</span>:<span class="hljs-comment">//localhost/c745ef73-ece9-46da-8f66-ebes574789b1 1</span><br></code></pre></td></tr></table></figure>
+<p>注意，每次使用URL.createObjectURL()方法，都会在内存里面生成一个 URL 实例。如果不再需要该方法生成的 URL 字符串，为了节省内存，可以使用URL.revokeObjectURL()方法释放这个实例。</p>
+<ol start="2">
+<li>URL.revokeObjectURL()</li>
+</ol>
+<p>URL.revokeObjectURL()方法用来释放URL.createObjectURL()方法生成的 URL 实例。它的参数就是URL.createObjectURL()方法返回的 URL 字符串。<br />下面为上一段的示例加上URL.revokeObjectURL()。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> div = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;display&#x27;</span>); <br><span class="hljs-keyword">function</span> <span class="hljs-title function_">handleFiles</span>(<span class="hljs-params">files</span>) &#123;   <br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; files.<span class="hljs-property">length</span>; i++) &#123;     <br>    <span class="hljs-keyword">var</span> img = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;img&#x27;</span>);     <br>    img.<span class="hljs-property">src</span> = <span class="hljs-variable language_">window</span>.<span class="hljs-property">URL</span>.<span class="hljs-title function_">createObjectURL</span>(files[i]);     <br>    div.<span class="hljs-title function_">appendChild</span>(img);     <br>    img.<span class="hljs-property">onload</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;       <br>      <span class="hljs-variable language_">window</span>.<span class="hljs-property">URL</span>.<span class="hljs-title function_">revokeObjectURL</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">src</span>);     <br>    &#125;   <br>  &#125; <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>上面代码中，一旦图片加载成功以后，为本地文件生成的 URL 字符串就没用了，于是可以在img.onload回调函数里面，通过URL.revokeObjectURL()方法卸载这个 URL 实例。</p>
+<p><a name="msJVh"></a></p>
+<h4 id="案例：点击商品显示商品详细信息【使用url-jsonserver】"><a href="#案例：点击商品显示商品详细信息【使用url-jsonserver】" class="headerlink" title="案例：点击商品显示商品详细信息【使用url+jsonserver】"></a>案例：点击商品显示商品详细信息【使用url+jsonserver】</h4><p>URL参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/beeworkshop/article/details/106854195">https://blog.csdn.net/beeworkshop/article/details/106854195</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>跨域请求</div>
+      <div>http://example.com/学习/js/60-跨域请求/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年2月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/61-json-server/" title="json-server">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">json-server</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/59-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D%E6%B5%85%E6%8B%B7%E8%B4%9D/" title="引用类型和深拷贝浅拷贝">
+                        <span class="hidden-mobile">引用类型和深拷贝浅拷贝</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

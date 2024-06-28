@@ -1,0 +1,708 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. 在Andriod真机测试出错1VM59:247 error occurs:ENOENT: no such file or directory, access &amp;#x27;&#x2F;storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.tencent.mm&#x2F;MicroMsg&#x2F;wxanewfiles&#x2F;461ac1a77238ddbbf2b7c9824f32db9a&#x2F;miniprogr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10问题和解决">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/10.%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="1. 在Andriod真机测试出错1VM59:247 error occurs:ENOENT: no such file or directory, access &amp;#x27;&#x2F;storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.tencent.mm&#x2F;MicroMsg&#x2F;wxanewfiles&#x2F;461ac1a77238ddbbf2b7c9824f32db9a&#x2F;miniprogr">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-21T04:03:47.000Z">
+<meta property="article:modified_time" content="2023-03-20T12:39:28.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>10问题和解决 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="10问题和解决"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-11-21 12:03" pubdate>
+          2020年11月21日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          26 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">10问题和解决</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="853471bc"></a></p>
+<h1 id="1-在Andriod真机测试出错"><a href="#1-在Andriod真机测试出错" class="headerlink" title="1. 在Andriod真机测试出错"></a>1. 在Andriod真机测试出错</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">VM59:247 <span class="hljs-built_in">error</span> occurs:ENOENT: <span class="hljs-literal">no</span> such file <span class="hljs-keyword">or</span> directory, access <span class="hljs-string">&#x27;/storage/emulated/0/Android/data/com.tencent.mm/MicroMsg/wxanewfiles/461ac1a77238ddbbf2b7c9824f32db9a/miniprogramLog/log2&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>解决方案<br />在真机测试的二维码界面，把真机测试2.0， 改为真机测试1.0</li>
+</ul>
+<p><a name="203195ef"></a></p>
+<h1 id="2-在wxml中用typeof报错"><a href="#2-在wxml中用typeof报错" class="headerlink" title="2. 在wxml中用typeof报错"></a>2. 在wxml中用typeof报错</h1><ul>
+<li><p>wxml中不支持js的typeof </p>
+</li>
+<li><p>wxml中需要使用js逻辑，可使用wxs </p>
+</li>
+<li><p>wxs模块 </p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stylus">WXS 代码可以编写在 wxml 文件中的 &lt;wxs&gt; 标签内，或以 <span class="hljs-selector-class">.wxs</span> 为后缀名的文件内。<br>每一个 <span class="hljs-selector-class">.wxs</span> 文件和 &lt;wxs&gt; 标签都是一个单独的模块。<br><br>每个模块都有自己独立的作用域。即在一个模块里面定义的变量与函数，默认为私有的，对其他模块不可见。<br><br>一个模块要想对外暴露其内部的私有变量与函数，只能通过 module<span class="hljs-selector-class">.exports</span> 实现。<br></code></pre></td></tr></table></figure>
+
+</li>
+<li><p>实现步骤 </p>
+<ol>
+<li><p>根目录 wxs&#x2F;util.wxs </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> result = <span class="hljs-keyword">function</span> (<span class="hljs-params">val</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> (<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(val)) !== <span class="hljs-string">&#x27;number&#x27;</span><br>&#125;<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">result</span>: result<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</li>
+<li><p>页面test.js</p>
+</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs lisp">Page(&#123;<br>  data: &#123;<br>    person: &#x27;&#123;<span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;aa&quot;</span>,<span class="hljs-string">&quot;age&quot;</span>: <span class="hljs-number">18</span>&#125;&#x27;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>页面test.wxml <figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">wxs</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/wxs/util.wxs&quot;</span> <span class="hljs-attr">module</span>=<span class="hljs-string">&quot;tools&quot;</span> /&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:if</span>=<span class="hljs-string">&quot;</span></span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">tools.result</span>(<span class="hljs-name">person</span>)&#125;&#125;</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>&gt;</span>显示<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<p><a name="0e850143"></a></p>
+<h1 id="3-如何取消小程序中的云开发模式"><a href="#3-如何取消小程序中的云开发模式" class="headerlink" title="3. 如何取消小程序中的云开发模式"></a>3. 如何取消小程序中的云开发模式</h1><ol>
+<li>打开小程序项目， 单击“云开发”， 打开云开发控制台</li>
+<li>单击右上角”设置“， ”环境设置“ ， 在”环境名称“ 右侧的名字上单击， 在下拉菜单中单击”管理我的环境“</li>
+<li>在弹出的“环境管理”中， 鼠标移至下方的环境名称上，即显示“删除”</li>
+<li>删除即可</li>
+</ol>
+<p><a name="937fb44f"></a></p>
+<h1 id="4-引入图标字体时报错"><a href="#4-引入图标字体时报错" class="headerlink" title="4. 引入图标字体时报错"></a>4. 引入图标字体时报错</h1><ul>
+<li><p>报错信息<br />[渲染层网络层错误] Failed to load local font resource &#x2F;pages&#x2F;fonts&#x2F;iconfont.woff2?t&#x3D;1661753720519-do-not-use-local-path-.&#x2F;assets&#x2F;css&#x2F;iconfont.wxss&amp;11&amp;7<br />the server responded with a status of 500 (HTTP&#x2F;1.1 500 Internal Server Error) </p>
+</li>
+<li><p>错误原因<br />字体文件的路径应该使用相对根目录的路径，而不是相对当前文档的路径 </p>
+</li>
+<li><p>错误代码<br />iconfont.wxss </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@font-face</span> &#123;<br>  <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;iconfont&quot;</span>; <br>  <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;../fonts/iconfont.woff2?t=1661753720519&#x27;</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;woff2&#x27;</span>),<br>       <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;../fonts/iconfont.woff?t=1661753720519&#x27;</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;woff&#x27;</span>),<br>       <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;../fonts/iconfont.ttf?t=1661753720519&#x27;</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;truetype&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</li>
+<li><p>正确代码 </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@font-face</span> &#123;<br>  <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;iconfont&quot;</span>; <br>  <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;/assets/fonts/iconfont.woff2?t=1661753720519&#x27;</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;woff2&#x27;</span>),<br>       <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;/assets/fonts/iconfont.woff?t=1661753720519&#x27;</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;woff&#x27;</span>),<br>       <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;/assets/iconfont.ttf?t=1661753720519&#x27;</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;truetype&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><a name="258fdd59"></a></p>
+<h1 id="5-按官网引入vant的日历组件后不显示"><a href="#5-按官网引入vant的日历组件后不显示" class="headerlink" title="5. 按官网引入vant的日历组件后不显示"></a>5. 按官网引入vant的日历组件后不显示</h1><ul>
+<li><p>错误原因<br />官网模版如下，但是在json中， 只引入了van-calendar, 没有引入van-cell组件 </p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">van-cell</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;选择单个日期&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;</span></span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">date</span> &#125;&#125;</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span> <span class="hljs-attr">bind:click</span>=<span class="hljs-string">&quot;onDisplay&quot;</span> /&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">van-calendar</span> <span class="hljs-attr">show</span>=<span class="hljs-string">&quot;</span></span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">show</span> &#125;&#125;</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span> <span class="hljs-attr">bind:close</span>=<span class="hljs-string">&quot;onClose&quot;</span> <span class="hljs-attr">bind:confirm</span>=<span class="hljs-string">&quot;onConfirm&quot;</span> /&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+</li>
+<li><p>解决方案： </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&#123;<br>    <span class="hljs-string">&quot;usingComponents&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;van-calendar&quot;</span>: <span class="hljs-string">&quot;@vant/weapp/calendar/index&quot;</span>,<br>        <span class="hljs-string">&quot;van-cell&quot;</span>: <span class="hljs-string">&quot;@vant/weapp/cell/index&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><a name="0639ade0"></a></p>
+<h1 id="6-使用vant日历组件报错"><a href="#6-使用vant日历组件报错" class="headerlink" title="6. 使用vant日历组件报错"></a>6. 使用vant日历组件报错</h1><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">[渲染层网络层错误] Failed to load font https:<span class="hljs-regexp">//</span>at.alicdn.com<span class="hljs-regexp">/t/</span>font_2553510_iv4v8nulyz.woff2?t=<span class="hljs-number">1649083952952</span><br>net::ERR_CACHE_MISS <br>(env: Windows,mp,<span class="hljs-number">1.06</span>.<span class="hljs-number">2208010</span>; lib: <span class="hljs-number">2.7</span>.<span class="hljs-number">7</span>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>解决方案：<br />更改右上角“详情” , “本地设置”, ”调试基础库“ 版本</li>
+</ul>
+<p><a name="3f01f140"></a></p>
+<h1 id="7-Vant样式无效"><a href="#7-Vant样式无效" class="headerlink" title="7. Vant样式无效"></a>7. Vant样式无效</h1><ol>
+<li>重新再终端安装vant<br />npm i @vant&#x2F;weapp -S –production </li>
+<li>“工具”菜单—-构建npm </li>
+<li>重启开发者工具即可</li>
+</ol>
+<p><a name="5ae52e1b"></a></p>
+<h1 id="8-wxml中无论写什么都不显示"><a href="#8-wxml中无论写什么都不显示" class="headerlink" title="8. wxml中无论写什么都不显示"></a>8. wxml中无论写什么都不显示</h1><p>原因：  page.js中为空， 写入基础代码即可</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">Page</span><span class="hljs-params">(&#123;&#125;)</span></span><br></code></pre></td></tr></table></figure>
+
+<p><a name="b64f599d"></a></p>
+<h1 id="9-在project-config-json中配置云开发失败"><a href="#9-在project-config-json中配置云开发失败" class="headerlink" title="9. 在project.config.json中配置云开发失败"></a>9. 在project.config.json中配置云开发失败</h1><p>原因： 课件中复制过来有不规范字符<br />解决方案：  手敲出来即可</p>
+<p><a name="f4b82521"></a></p>
+<h1 id="10-数据更新后视图不渲染"><a href="#10-数据更新后视图不渲染" class="headerlink" title="10. 数据更新后视图不渲染"></a>10. 数据更新后视图不渲染</h1><ul>
+<li><p>错误代码： </p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">this</span>.<span class="hljs-class"><span class="hljs-keyword">data</span>.list.push()</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>解决方案<br />必须使用this.setData更新数据，才能触发视图更新</p>
+</li>
+</ul>
+<p><a name="40f1c73a"></a></p>
+<h1 id="11-事件处理函数中接收不到dataset"><a href="#11-事件处理函数中接收不到dataset" class="headerlink" title="11.  事件处理函数中接收不到dataset"></a>11.  事件处理函数中接收不到dataset</h1><ul>
+<li>错误原因： e.target 应该换为 e.currentTarget</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>10问题和解决</div>
+      <div>http://example.com/学习/小程序/10.问题和解决/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年11月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/47-AJAX/" title="AJAX">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">AJAX</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/9-%E5%88%86%E5%8C%85/" title="9.分包">
+                        <span class="hidden-mobile">9.分包</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

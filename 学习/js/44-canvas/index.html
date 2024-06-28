@@ -1,0 +1,674 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="在HTML5新增新的标签，名为画布，可以使用JS在上面完成对应的画的操作。正常情况我们可以把它当成一个img看待。 如何使用canvas HTML中使用canvas标签1&lt;canvas&gt;&lt;&#x2F;canvas&gt; canvas默认的宽高是300x150的尺寸，如果想要修改这个值，不能使用css修改，需要直接设置对应的width和height属性，这个是html属性，不是css属性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/js/44-canvas/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="在HTML5新增新的标签，名为画布，可以使用JS在上面完成对应的画的操作。正常情况我们可以把它当成一个img看待。 如何使用canvas HTML中使用canvas标签1&lt;canvas&gt;&lt;&#x2F;canvas&gt; canvas默认的宽高是300x150的尺寸，如果想要修改这个值，不能使用css修改，需要直接设置对应的width和height属性，这个是html属性，不是css属性">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1661998891509-9b5153e2-e353-4d22-a8d7-eda5de42a56e.png#clientId=u564888cd-c8cf-4&from=paste&height=539&id=u0c982c0e&name=image.png&originHeight=539&originWidth=1122&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20275&status=done&style=none&taskId=u65ddc924-0563-444c-aace-fd5c0ff26df&title=&width=1122">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1662003986138-2e19b8a0-c370-48be-a2dc-d328652d41f4.png#clientId=u564888cd-c8cf-4&from=paste&height=189&id=u030dfaef&name=image.png&originHeight=189&originWidth=203&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4355&status=done&style=none&taskId=uc51de5a0-d041-43df-840f-7e5c1777a81&title=&width=203">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1662105980949-8acee0c2-1059-40ef-8544-eaf71b7b6f51.png#clientId=u3a5663ea-f4fd-4&from=paste&height=662&id=u3f26fb59&name=image.png&originHeight=662&originWidth=887&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4795&status=done&style=none&taskId=u6021637a-5bdc-4645-8866-9dc0e1ee3db&title=&width=887">
+<meta property="article:published_time" content="2020-11-01T07:40:46.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:24:18.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1661998891509-9b5153e2-e353-4d22-a8d7-eda5de42a56e.png#clientId=u564888cd-c8cf-4&from=paste&height=539&id=u0c982c0e&name=image.png&originHeight=539&originWidth=1122&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20275&status=done&style=none&taskId=u65ddc924-0563-444c-aace-fd5c0ff26df&title=&width=1122">
+  
+  
+  
+  <title>canvas - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="canvas"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-11-01 15:40" pubdate>
+          2020年11月1日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">canvas</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>在HTML5新增新的标签，名为画布，可以使用JS在上面完成对应的画的操作。正常情况我们可以把它当成一个img看待。<br><a name="waiqp"></a></p>
+<h2 id="如何使用canvas"><a href="#如何使用canvas" class="headerlink" title="如何使用canvas"></a>如何使用canvas</h2><p><a name="p8Roi"></a></p>
+<h3 id="HTML中使用canvas标签"><a href="#HTML中使用canvas标签" class="headerlink" title="HTML中使用canvas标签"></a>HTML中使用canvas标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">canvas</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>canvas默认的宽高是300x150的尺寸，如果想要修改这个值，不能使用css修改，需要直接设置对应的width和height属性，这个是html属性，不是css属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;500&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;300&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>如果我们想要设置要给全屏的canvas，需要使用js进行设置，设置为全屏的宽高</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> canvas = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;canvas&#x27;</span>)<br>canvas.<span class="hljs-property">width</span> = <span class="hljs-variable language_">window</span>.<span class="hljs-property">innerWidth</span><br>canvas.<span class="hljs-property">height</span> = <span class="hljs-variable language_">window</span>.<span class="hljs-property">innerHeight</span><br></code></pre></td></tr></table></figure>
+<p>当我们设置了全屏后，会有滚动条，原因和img标签一样，行内块元素默认下方会有空白。一定要记得去掉body的margin值</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">canvas</span> &#123;<br>  <span class="hljs-attribute">display</span>: block;<br>&#125;<br><br><span class="hljs-comment">/* 或者 */</span><br><span class="hljs-selector-tag">canvas</span> &#123;<br>  <span class="hljs-attribute">vertical-align</span>: middle;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="v9hls"></a></p>
+<h3 id="JavaScript中进行绘图"><a href="#JavaScript中进行绘图" class="headerlink" title="JavaScript中进行绘图"></a>JavaScript中进行绘图</h3><p>在画布上进行绘制需要使用canvas的方法获取一个值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> canvas = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;canvas&#x27;</span>)<br><span class="hljs-comment">// 获取ctx</span><br><span class="hljs-keyword">let</span> ctx = canvas.<span class="hljs-title function_">getContext</span>(<span class="hljs-string">&#x27;2d&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<p>上面两行代码是固定写法。几乎上所有的绘图操作，都是在ctx对象中的。<br><a name="fMXy4"></a></p>
+<h2 id="如何画"><a href="#如何画" class="headerlink" title="如何画"></a>如何画</h2><p><a name="N3C3y"></a></p>
+<h3 id="坐标"><a href="#坐标" class="headerlink" title="坐标"></a>坐标</h3><p>画布的左上角是0， 0的位置，x轴向右为正方向，y轴向下为正方向。<br><a name="c0Tpu"></a></p>
+<h3 id="描边"><a href="#描边" class="headerlink" title="描边"></a>描边</h3><p>我们在绘制好路径后，可以通过<code>ctx.stroke()</code>进行描边操作<br><a name="tOlXp"></a></p>
+<h3 id="填充"><a href="#填充" class="headerlink" title="填充"></a>填充</h3><p>我们在绘制好路径后，可以通过<code>ctx.fill()</code>进行填充操作<br><a name="GDoI2"></a></p>
+<h3 id="画线"><a href="#画线" class="headerlink" title="画线"></a>画线</h3><p>可以使用moveTo和lineTo进行划线操作.<br /><code>ctx.moveTo(x, y)</code>指起始点，参数分别指起始点坐标<br /><code>ctx.lineTo(x, y)</code>指终点，参数为终点坐标。<br />设置后，我们还需要通过<code>ctx.stroke()</code>进行描边。<br />线可以跟着画很多条。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">ctx.<span class="hljs-title function_">moveTo</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)<br>ctx.<span class="hljs-title function_">lineTo</span>(<span class="hljs-number">100</span>, <span class="hljs-number">100</span>)<br>ctx.<span class="hljs-title function_">stroke</span>()<br></code></pre></td></tr></table></figure>
+<p><a name="nixCY"></a></p>
+<h3 id="画矩形"><a href="#画矩形" class="headerlink" title="画矩形"></a>画矩形</h3><p>画矩形有很多方法</p>
+<ul>
+<li>ctx.fillRect()</li>
+<li>ctx.strokeRect()</li>
+<li>ctx.rect() 再进行描边或者填充</li>
+<li>clearRect()</li>
+</ul>
+<p>四个方法参数一致，都有四个参数，分别为<code>x, y, w, h</code><br />x, y表示矩形左上角点的坐标。w, h表示宽高</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript">ctx.<span class="hljs-title function_">fillRect</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">50</span>) <span class="hljs-comment">// 填充</span><br>ctx.<span class="hljs-title function_">strokeRect</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">50</span>) <span class="hljs-comment">// 描边</span><br><br>ctx.<span class="hljs-title function_">rect</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">50</span>)<br>ctx.<span class="hljs-title function_">fill</span>()<br><span class="hljs-comment">// 或者 </span><br>ctx.<span class="hljs-title function_">rect</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">50</span>)<br>ctx.<span class="hljs-title function_">stroke</span>()<br></code></pre></td></tr></table></figure>
+<p>最后一个方法，是清除掉一块矩形区域</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">ctx.<span class="hljs-title function_">clearRect</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>)<br></code></pre></td></tr></table></figure>
+<p>清除画布在动画阶段有用。<br />坐标系<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1661998891509-9b5153e2-e353-4d22-a8d7-eda5de42a56e.png#clientId=u564888cd-c8cf-4&from=paste&height=539&id=u0c982c0e&name=image.png&originHeight=539&originWidth=1122&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20275&status=done&style=none&taskId=u65ddc924-0563-444c-aace-fd5c0ff26df&title=&width=1122" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="Cih6w"></a></p>
+<h3 id="画圆弧"><a href="#画圆弧" class="headerlink" title="画圆弧"></a>画圆弧</h3><p>弧度单位 180deg &#x3D; Math.PI rad<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1662003986138-2e19b8a0-c370-48be-a2dc-d328652d41f4.png#clientId=u564888cd-c8cf-4&from=paste&height=189&id=u030dfaef&name=image.png&originHeight=189&originWidth=203&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4355&status=done&style=none&taskId=uc51de5a0-d041-43df-840f-7e5c1777a81&title=&width=203" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript">ctx.<span class="hljs-title function_">arc</span>(x, y, 半径, 开始弧度, 结束弧度, 是否逆时针)<br><br>ctx.<span class="hljs-title function_">stroke</span>() <span class="hljs-comment">// 描边</span><br>ctx.<span class="hljs-title function_">fill</span>() <span class="hljs-comment">// 填充</span><br></code></pre></td></tr></table></figure>
+
+<p><a name="tn893"></a></p>
+<h2 id="画图"><a href="#画图" class="headerlink" title="画图"></a>画图</h2><p>把一个图片或者视频的一帧绘制到canvas上</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">ctx.<span class="hljs-title function_">drawImage</span>(img或者video的dom对象, 很多参数)<br></code></pre></td></tr></table></figure>
+<p>该方法有三种用法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">ctx.<span class="hljs-title function_">drawImage</span>(对象, cx, cy)<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1662105980949-8acee0c2-1059-40ef-8544-eaf71b7b6f51.png#clientId=u3a5663ea-f4fd-4&from=paste&height=662&id=u3f26fb59&name=image.png&originHeight=662&originWidth=887&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4795&status=done&style=none&taskId=u6021637a-5bdc-4645-8866-9dc0e1ee3db&title=&width=887" srcset="/img/loading.gif" lazyload alt="image.png"><br />该操作不会对图片进行缩放，直接把原尺寸放在canvas对应的位置上。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">ctx.<span class="hljs-title function_">drawImage</span>(image, cx, cy, cw, ch)<br></code></pre></td></tr></table></figure>
+<p>cx、cy表示canvas上的位置<br />cw表示在canvas上绘制的图片宽度<br />ch表示在canvas上绘制的图片高度<br />这个操作会把图片完整绘制，进行缩放，如果canvas不够大，就只显示canvas的大小</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">drawImage</span>(image, sx, sy, sw, sh, cx, cy, cw, ch)<br></code></pre></td></tr></table></figure>
+<p>这个操作，可以把图片上某个区域裁切，然后画到canvas上。</p>
+<p><a name="xqS8R"></a></p>
+<h2 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h2><p><a name="j9NH6"></a></p>
+<h3 id="描边颜色"><a href="#描边颜色" class="headerlink" title="描边颜色"></a>描边颜色</h3><p>通过设置<code>ctx.strokStyle = &quot;颜色色值&quot;</code>就可以把当前path中的描边颜色修改<br><a name="fdrr6"></a></p>
+<h3 id="填充颜色"><a href="#填充颜色" class="headerlink" title="填充颜色"></a>填充颜色</h3><p>通过设置<code>ctx.fillStyle = &quot;颜色色值&quot;</code>就可以把当前path中的填充颜色修改<br><a name="ebwLI"></a></p>
+<h2 id="canvas中动画的原理是什么"><a href="#canvas中动画的原理是什么" class="headerlink" title="canvas中动画的原理是什么"></a>canvas中动画的原理是什么</h2><p>canvas中的动画原理和dom动画原理不一样，DOM动画是改变位置或者属性即可，canvas需要先清除画布内容再重新绘制。<br><a name="G2Pr1"></a></p>
+<h2 id="QRCode-js"><a href="#QRCode-js" class="headerlink" title="QRCode.js"></a>QRCode.js</h2><p>利用一定的规则，把文本变成二维码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">new</span> <span class="hljs-title class_">QRCode</span>(要生成到哪个元素中, <span class="hljs-string">&quot;文本&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>canvas</div>
+      <div>http://example.com/学习/js/44-canvas/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年11月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/4-page%E9%A1%B5%E9%9D%A2%E7%9A%84%E9%80%BB%E8%BE%91/" title="4.page页面的逻辑">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">4.page页面的逻辑</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/%E5%B0%8F%E7%A8%8B%E5%BA%8F/3-wxml%E8%AF%AD%E6%B3%95/" title="3.wxml语法">
+                        <span class="hidden-mobile">3.wxml语法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

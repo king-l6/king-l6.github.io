@@ -1,0 +1,775 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ECMAScript是欧洲计算机协会提出的规范，我们JS的语法就是用这个语法，Javascript分为三部分ECMAScript + DOM + BOMIE8浏览器支持ES3，IE9之后支持ES5，没有ES4，因为ES4的修改过于激进，所以没有成为标准。2015年ES2015标准提出。从这个标准之后，ES版本都是以年份作为描述，前端界还会以数字称呼，称为ES6。每一年ECMAScript都会新增">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/js/48-ES6/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="ECMAScript是欧洲计算机协会提出的规范，我们JS的语法就是用这个语法，Javascript分为三部分ECMAScript + DOM + BOMIE8浏览器支持ES3，IE9之后支持ES5，没有ES4，因为ES4的修改过于激进，所以没有成为标准。2015年ES2015标准提出。从这个标准之后，ES版本都是以年份作为描述，前端界还会以数字称呼，称为ES6。每一年ECMAScript都会新增">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663135930368-da6eae79-0115-4cb9-90da-dad1bb07cfc6.png#averageHue=%23ffffff&clientId=u7c75106e-4c45-4&from=paste&height=117&id=u1df243bd&name=image.png&originHeight=117&originWidth=215&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2184&status=done&style=none&taskId=u8ede120e-fc78-4de7-af52-a24ed45ec87&title=&width=215">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663140799420-dc007fd1-b3e8-4841-b592-328102b73381.png#averageHue=%23fefefe&clientId=u7c75106e-4c45-4&from=paste&height=152&id=udaefa729&name=image.png&originHeight=152&originWidth=228&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6404&status=done&style=none&taskId=ua0fbc7de-c2b4-45c8-883a-96d41769d21&title=&width=228">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663732809148-573adeb9-8eec-414f-a7ca-c356c971c642.png#clientId=u2bb6a95f-c34f-4&from=paste&height=54&id=u70a1d102&name=image.png&originHeight=54&originWidth=363&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4447&status=done&style=none&taskId=u8e9c6294-aa29-45f8-8256-6b6b658ac0d&title=&width=363">
+<meta property="article:published_time" content="2020-11-30T07:05:18.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:25:36.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1663135930368-da6eae79-0115-4cb9-90da-dad1bb07cfc6.png#averageHue=%23ffffff&clientId=u7c75106e-4c45-4&from=paste&height=117&id=u1df243bd&name=image.png&originHeight=117&originWidth=215&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2184&status=done&style=none&taskId=u8ede120e-fc78-4de7-af52-a24ed45ec87&title=&width=215">
+  
+  
+  
+  <title>ES6 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ES6"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-11-30 15:05" pubdate>
+          2020年11月30日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          62 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ES6</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p> ECMAScript是欧洲计算机协会提出的规范，我们JS的语法就是用这个语法，Javascript分为三部分ECMAScript + DOM + BOM<br />IE8浏览器支持ES3，IE9之后支持ES5，没有ES4，因为ES4的修改过于激进，所以没有成为标准。2015年ES2015标准提出。从这个标准之后，ES版本都是以年份作为描述，前端界还会以数字称呼，称为ES6。每一年ECMAScript都会新增一些新的api，但是新增的内容都比较少，所以我们统称后续的ECMAScript为ES6+。<br />新出的标准浏览器兼容性不好，有一个插件应运而生<code>Babel</code>，可以帮助我们把ES6代码转换成ES5代码，基本上，这个转换过程是无感的。所以我们在开发时，可以肆无忌惮使用ES6语法，也推荐大家使用ES6语法。<br><a name="lNlOZ"></a></p>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>箭头函数是函数的一个新的写法，它能够带来更简便的函数写法。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">let fn = () =&gt; &#123;&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663135930368-da6eae79-0115-4cb9-90da-dad1bb07cfc6.png#averageHue=%23ffffff&clientId=u7c75106e-4c45-4&from=paste&height=117&id=u1df243bd&name=image.png&originHeight=117&originWidth=215&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2184&status=done&style=none&taskId=u8ede120e-fc78-4de7-af52-a24ed45ec87&title=&width=215" srcset="/img/loading.gif" lazyload alt="image.png"><br />把原本的function删除，然后在()后面添加了<code>=&gt;</code>，所有的箭头函数都是匿名函数。<br><a name="M09PN"></a></p>
+<h3 id="箭头函数可以简化的写法"><a href="#箭头函数可以简化的写法" class="headerlink" title="箭头函数可以简化的写法"></a>箭头函数可以简化的写法</h3><p>我们使用箭头函数函数时会遇到一下简化写法</p>
+<ul>
+<li>只有一个参数</li>
+<li>只有返回值</li>
+<li>只有返回值且返回值是一个对象<br><a name="nxD6s"></a></li>
+</ul>
+<h4 id="只有一个参数"><a href="#只有一个参数" class="headerlink" title="只有一个参数"></a>只有一个参数</h4><p>只有一个参数时，不需要添加 <code>()</code>可以省略<br />正常函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> fn = <span class="hljs-keyword">function</span> (<span class="hljs-params">参数</span>) &#123;&#125;<br></code></pre></td></tr></table></figure>
+<p>转成箭头函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> <span class="hljs-title function_">fn</span> = (<span class="hljs-params">参数</span>) =&gt; &#123;&#125;<br></code></pre></td></tr></table></figure>
+<p>简化后</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> fn = 参数 =&gt; &#123;&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="yMs6C"></a></p>
+<h4 id="只有返回值"><a href="#只有返回值" class="headerlink" title="只有返回值"></a>只有返回值</h4><p>正常函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> fn = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;返回值&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>箭头函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> <span class="hljs-title function_">fn</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;返回值&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>简化后</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> <span class="hljs-title function_">fn</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-string">&quot;返回值&quot;</span><br></code></pre></td></tr></table></figure>
+<p><a name="FHn14"></a></p>
+<h4 id="返回值如果是对象"><a href="#返回值如果是对象" class="headerlink" title="返回值如果是对象"></a>返回值如果是对象</h4><p>普通函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> fn = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span>&#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>箭头函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> <span class="hljs-title function_">fn</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span>&#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>简化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> <span class="hljs-title function_">fn</span> = (<span class="hljs-params"></span>) =&gt; (&#123;<span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span>&#125;)<br></code></pre></td></tr></table></figure>
+<p>注意！！！！！推荐大家使用箭头函数，但是对象中的方法不要用箭头函数，事件函数不要用箭头函数，因为箭头函数的this指向和普通函数不一样。<br><a name="sLjGx"></a></p>
+<h3 id="箭头函数的this指向问题"><a href="#箭头函数的this指向问题" class="headerlink" title="箭头函数的this指向问题"></a>箭头函数的this指向问题</h3><p>箭头函数中的this指向谁！！！声明箭头函数时，箭头函数所在作用域的this指向。<br />箭头函数的这个特性解决了什么问题呢？？？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript">btn.<span class="hljs-property">onclick</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">innerText</span> = <span class="hljs-string">&quot;加载中……&quot;</span><br>  <span class="hljs-comment">// let _this = this</span><br>  axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;https://cnodejs.org/api/v1/topics&quot;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>)<br>    <span class="hljs-comment">// 使用了箭头函数，我们就不需要再事先获取到this，然后再使用新的变量</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">innerText</span> = <span class="hljs-string">&quot;加载完成&quot;</span><br>    <span class="hljs-comment">// _this.innerText = &quot;加载完成&quot;</span><br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="l5toa"></a></p>
+<h3 id="分析之前的代码"><a href="#分析之前的代码" class="headerlink" title="分析之前的代码"></a>分析之前的代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">fetch</span>(url).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.<span class="hljs-title function_">json</span>())<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]<br><br>arr.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">num</span>) &#123;<br>  <span class="hljs-keyword">return</span> num + <span class="hljs-number">1</span><br>&#125;)<br><br>arr.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> num + <span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> <span class="hljs-title function_">fn</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-function">() =&gt;</span> <span class="hljs-function">() =&gt;</span> <span class="hljs-function">() =&gt;</span> <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<p><a name="AZMmy"></a></p>
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><p>承诺，在声明函数时承诺好，如果成功就执行resolve，如果失败就执行reject。定义resolve和reject函数的人，是使用这个Promise对象的人。<br />Promise有三个状态，分别时等待中，成功，失败。<br />注意！！！！三个状态只能成等待中变成成功，或者从等待中变成失败，如果已经成功成功或者失败，就不能再改变状态</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> 异步函数 () &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-comment">// 模拟几率</span><br>      <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() &gt; <span class="hljs-number">0.5</span>) &#123;<br>        <span class="hljs-comment">// 来了</span><br>        <span class="hljs-title function_">resolve</span>()<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-title function_">reject</span>()<br>      &#125;<br>    &#125;, <span class="hljs-number">3000</span>)<br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript">异步函数().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-comment">// resolve函数</span><br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;一起走&quot;</span>)<br>&#125;).<span class="hljs-title function_">catch</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;自己走&#x27;</span>)<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>为什么有些函数调用之后，可以调用.then方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">axios.<span class="hljs-title function_">get</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;&#125;).<span class="hljs-title function_">catch</span>(<span class="hljs-function">() =&gt;</span> &#123;&#125;)<br></code></pre></td></tr></table></figure>
+<p>因为这些函数在封装时，上来返回了一个<code>new Proimise</code>。promise对象中有三个方法。</p>
+<ul>
+<li>then(() &#x3D;&gt; {}) 异步操作成功时执行的函数</li>
+<li>catch(() &#x3D;&gt; {}) 异步操作失败时执行的函数</li>
+<li>finally(() &#x3D;&gt; {}) 不管成功还是失败都会执行的函数。</li>
+</ul>
+<p>我们今天的目标是，未来看到.then或者.catch时，知道这个函数内部返回了一个promise对象。后一个.then里的参数，是前一个.then return的结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript">函数().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span><br>&#125;)<br>.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> &#123;<br>  <span class="hljs-comment">// num就是1</span><br>  <br>&#125;)<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663140799420-dc007fd1-b3e8-4841-b592-328102b73381.png#averageHue=%23fefefe&clientId=u7c75106e-4c45-4&from=paste&height=152&id=udaefa729&name=image.png&originHeight=152&originWidth=228&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6404&status=done&style=none&taskId=ua0fbc7de-c2b4-45c8-883a-96d41769d21&title=&width=228" srcset="/img/loading.gif" lazyload alt="image.png"><br />Promise中所有的方法.then.catch.finally调用之后，都会返回这个promise对象。并且会按链式的顺序执行对应的then中的方法<br><a name="slzmo"></a></p>
+<h2 id="数组方法"><a href="#数组方法" class="headerlink" title="数组方法"></a>数组方法</h2><p>forEach map filter find findIndex some every reduce reduceRight<br><a name="wjmF6"></a></p>
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>筛选，调用后得到一个数组，这个数组的内部结构和原数组相同，长度大概率不同，会变少。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript">arr.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span> 或者 <span class="hljs-literal">false</span> <br>  <span class="hljs-comment">// 如果上面返回true 则item就会被放在新数组中，如果为false，则不执行任何操作。</span><br>  <span class="hljs-comment">// 所谓的新数组，是我们对应的filter的返回值</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+<p><a name="HtKYX"></a></p>
+<h3 id="some"><a href="#some" class="headerlink" title="some"></a>some</h3><p>判断某个数组中是否有符合条件的值。返回值为布尔值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">arr.<span class="hljs-title function_">some</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> <span class="hljs-literal">true</span>或者<span class="hljs-literal">false</span>) <br></code></pre></td></tr></table></figure>
+<p>只要有一个返回值为true，则停止遍历，返回some的结果为true，如果都返回false，则some结果为false<br><a name="svVKC"></a></p>
+<h3 id="every"><a href="#every" class="headerlink" title="every"></a>every</h3><p>判断某个数组中是否全部符合条件的值。返回值为布尔值<br />与some相反，只要有一个不符合条件，结果为false，如果全部都符合条件，则结果为true</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">arr.<span class="hljs-title function_">every</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> <span class="hljs-literal">true</span> 或者 <span class="hljs-literal">false</span>)<br></code></pre></td></tr></table></figure>
+<p><a name="IbATi"></a></p>
+<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>用来查找第一个符合条件的值<br />返回值是第一个符合条件的值，只要第一次函数中返回true，则会把正在遍历的item给作为返回值返回</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">arr.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> <span class="hljs-literal">true</span> 或者 <span class="hljs-literal">false</span>)<br></code></pre></td></tr></table></figure>
+<p><a name="IjFAP"></a></p>
+<h3 id="findIndex"><a href="#findIndex" class="headerlink" title="findIndex"></a>findIndex</h3><p>用来查找第一个符合条件的值的下标</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">arr.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> <span class="hljs-literal">true</span> 或者 <span class="hljs-literal">false</span>)<br></code></pre></td></tr></table></figure>
+<p><a name="CH02P"></a></p>
+<h3 id="reduce-x2F-reduceRight"><a href="#reduce-x2F-reduceRight" class="headerlink" title="reduce&#x2F;reduceRight"></a>reduce&#x2F;reduceRight</h3><p>每次遍历都会保留上一次的返回值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript">arr.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">prevValue, curValue, index, arr</span>) =&gt;</span> &#123;<br><br>  <span class="hljs-keyword">return</span> 值 <span class="hljs-comment">// 这个值是下一次函数执行的prevValue</span><br>&#125;, 初始值) <span class="hljs-comment">// 初始值是第一次函数执行的prevValue</span><br></code></pre></td></tr></table></figure>
+<p><a name="z0kra"></a></p>
+<h3 id="flat"><a href="#flat" class="headerlink" title="flat"></a>flat</h3><p>扁平化数组，没有flat函数我们需要自己封装递归函数进行扁平化。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">arr.<span class="hljs-title function_">flat</span>(层数)<br></code></pre></td></tr></table></figure>
+<p>如果我们不知道有几层的情况下，可以使用Infinity</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">arr.<span class="hljs-title function_">flat</span>(<span class="hljs-title class_">Infinity</span>)<br></code></pre></td></tr></table></figure>
+<p><a name="dkyno"></a></p>
+<h3 id="fill"><a href="#fill" class="headerlink" title="fill"></a>fill</h3><p>在数组对应的位置范围填充相同的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">arr.<span class="hljs-title function_">fill</span>(值, 开始下标, 结束下标) <span class="hljs-comment">// 后两个值可选</span><br></code></pre></td></tr></table></figure>
+<p><a name="p5MbB"></a></p>
+<h3 id="includes"><a href="#includes" class="headerlink" title="includes"></a>includes</h3><p>判断一个数组中是否包含某个值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">arr.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;值&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p><a name="Em76H"></a></p>
+<h3 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of()"></a>Array.of()</h3><p>可以把参数变成数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Array</span>.<span class="hljs-title function_">of</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// [1,2,3]</span><br></code></pre></td></tr></table></figure>
+<p><a name="R3ldT"></a></p>
+<h4 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h4><p>直接设置给构造函数上的方法，叫静态方法，不需要new直接使用构造函数调用即可。数组中有三个静态方法</p>
+<ul>
+<li>Array.from</li>
+<li>Array.isArray</li>
+<li>Array.of<br><a name="hzLvw"></a></li>
+</ul>
+<h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><p>解构赋值，可以实现直接从数组或者对象中取值赋值给变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> [变量名, 变量名<span class="hljs-number">2</span>, , 变量名<span class="hljs-number">4</span>] = [值, 值<span class="hljs-number">2</span>, 值<span class="hljs-number">3</span>, 值<span class="hljs-number">4</span>]<br><span class="hljs-comment">// 相当于</span><br><span class="hljs-keyword">let</span> 变量名 = 数组[<span class="hljs-number">0</span>]<br><span class="hljs-keyword">let</span> 变量名<span class="hljs-number">2</span> = 数组[<span class="hljs-number">1</span>]<br><span class="hljs-keyword">let</span> 变量名<span class="hljs-number">4</span> = 数组[<span class="hljs-number">3</span>]<br><br><br><span class="hljs-keyword">let</span> &#123; 变量名, 变量名<span class="hljs-number">2</span> &#125; = &#123; 属性名: <span class="hljs-string">&quot;值&quot;</span>, 变量名<span class="hljs-number">2</span>(本质是属性名): <span class="hljs-string">&quot;值&quot;</span> &#125; <span class="hljs-comment">// 属性名和变量需要相同</span><br><br><span class="hljs-keyword">let</span> &#123; a, b &#125; = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span> &#125; <br></code></pre></td></tr></table></figure>
+<p>解构赋值很容易遇到一种情况，我们要使用的名字和已有变量名冲突（重复）了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> name = <span class="hljs-string">&quot;张三&quot;</span><br><br><span class="hljs-keyword">let</span> &#123;name, age&#125; = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;李四&quot;</span>,<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">18</span><br>&#125;<br><br><span class="hljs-comment">// 因为name已经声明了，所以第三行的name就会报错：变量已经声明</span><br><span class="hljs-comment">// 我们可以使用别名解决这个问题</span><br><span class="hljs-keyword">let</span> &#123;<span class="hljs-attr">name</span>: 别名, age&#125; = &#123;<br>	<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;李四&quot;</span>,<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">18</span><br>&#125;<br><br><span class="hljs-comment">// 别名就是变量名</span><br></code></pre></td></tr></table></figure>
+<p><a name="TvIWs"></a></p>
+<h3 id="参数解构"><a href="#参数解构" class="headerlink" title="参数解构"></a>参数解构</h3><p>我们可以把函数的形参进行解构，在函数内部可以直接使用解构后的值，更方便使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span> (obj) &#123;<br>	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">x</span>, obj.<span class="hljs-property">y</span>)<br>&#125;<br><br><span class="hljs-title function_">fn</span>(&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">2</span>&#125;)<br><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn2</span> (&#123;x, y&#125;) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x, y)<br>&#125;<br><span class="hljs-title function_">fn</span>(&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">2</span>&#125;)<br><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn3</span> ([x, y]) &#123;<br>&#125;<br><br><span class="hljs-title function_">fn3</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>])<br></code></pre></td></tr></table></figure>
+<p><a name="puRCx"></a></p>
+<h2 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h2><p>扩展运算的作用可以简单理解为：把数组的中括号，和对象的{}直接去掉。直接去除后，里面的数据格式，我是无法在JS的环境的中独立存在。扩展运算符的操作需要被放置在合适的位置上。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br><span class="hljs-keyword">let</span> _arr = [...arr] <span class="hljs-comment">// [1,2,3] 这是一个浅拷贝过程</span><br><br><span class="hljs-keyword">let</span> obj = &#123;<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">c</span>: <span class="hljs-number">3</span>&#125;<br><span class="hljs-keyword">let</span> _obj = &#123;...obj&#125; <span class="hljs-comment">// &#123;a: 1, b: 2, c: 3&#125; 这是一个浅拷贝过程</span><br><br><span class="hljs-keyword">let</span> arr2 = [...arr, ...arr] <span class="hljs-comment">// [1,2,3,1,2,3]</span><br></code></pre></td></tr></table></figure>
+<p>在我们使用map操作时，可以保留原有数据的基础上，添加新的属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr = [&#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;张三&quot;</span>&#125;, &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;李四&quot;</span>&#125;]<br><br>arr.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">stu</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> &#123;<br>    ...stu,<br>    <span class="hljs-attr">classroom</span>: <span class="hljs-string">&quot;王屋山&quot;</span><br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p><a name="b1LQD"></a></p>
+<h2 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h2><p>这个运算符可以用来代替arguments。当遇到不定参数时，可以使用rest。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sum</span> (...nums) &#123;<br>  nums就是一个数组，传参时我们需要传很多个单个的值，这些值会被放在一个数组中，这个数组就是nums<br>&#125;<br><br><span class="hljs-title function_">sum</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>) <span class="hljs-comment">// nums就是[1,2,3]</span><br></code></pre></td></tr></table></figure>
+<p>可以把剩余没有声明形参的参数收集变成数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span> (a, b, c, ...args) &#123;&#125;<br><br><span class="hljs-title function_">fn</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>) <span class="hljs-comment">// a 1 b 2 c 3 args是[4,5,6]</span><br></code></pre></td></tr></table></figure>
+<p><a name="S7Maa"></a></p>
+<h2 id="对象中的新写法"><a href="#对象中的新写法" class="headerlink" title="对象中的新写法"></a>对象中的新写法</h2><p><a name="CYLw1"></a></p>
+<h3 id="属性写法"><a href="#属性写法" class="headerlink" title="属性写法"></a>属性写法</h3><p>当属性的名字和变量相同时，我们可以只写一个属性名即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> name = <span class="hljs-string">&quot;张三&quot;</span><br><br><span class="hljs-keyword">let</span> obj = &#123;<br>  <span class="hljs-comment">// name: name</span><br>  name<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="Kmrx5"></a></p>
+<h3 id="方法写法"><a href="#方法写法" class="headerlink" title="方法写法"></a>方法写法</h3><p>当我们要设置方法时，可以直接省略 <code>:function</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> obj = &#123;<br>  <span class="hljs-comment">// fn: function () &#123;&#125;,</span><br>	fn () &#123;<br>    <br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="amFc3"></a></p>
+<h2 id="async-await"><a href="#async-await" class="headerlink" title="async await"></a>async await</h2><p>异步函数，可以把函数内部的异步操作转换为同步写法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> 函数名 () &#123;<br>  <span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> 原始值或者<span class="hljs-title class_">Promise</span>对象<br>  <span class="hljs-comment">// 下面的代码，会等上面的异步处理结束后才执行。</span><br>&#125;<br><br><br><span class="hljs-keyword">async</span> getData () &#123;<br>  <span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;接口地址&quot;</span>, &#123;<span class="hljs-attr">params</span>: &#123;参数&#125;&#125;)<br>  <span class="hljs-comment">// 处理res</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>因为变成了同步操作，同时代码有可能得到错误信息，如果要处理错误，可以是try catch</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">async</span> getData () &#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;接口地址&quot;</span>, &#123;<span class="hljs-attr">params</span>: &#123;参数&#125;&#125;)<br>  	<span class="hljs-comment">// 处理res</span><br>  &#125; <span class="hljs-keyword">catch</span> (err) &#123;<br>  	<span class="hljs-comment">// 处理错误操作</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>重要！！！！async函数，返回值是一个promise对象。所以我们如果要得到函数里的自己的返回值，需要使用.then获取</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span> () &#123;<br><br>  <span class="hljs-keyword">return</span> <span class="hljs-number">10</span><br>&#125;<br><br><span class="hljs-title function_">fn</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>	<span class="hljs-comment">// res 就是 10</span><br>&#125;)<br><br><span class="hljs-comment">// 或者如果还要用async 就需要再封装一个函数（比较麻烦）</span><br><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">init</span> () &#123;<br>	<span class="hljs-keyword">let</span> num = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fn</span>()<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(num) <span class="hljs-comment">// 10</span><br>&#125;<br><br><span class="hljs-title function_">init</span>()<br></code></pre></td></tr></table></figure>
+<p><a name="HsYR1"></a></p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p><a name="FeE6C"></a></p>
+<h3 id="函数参数默认值"><a href="#函数参数默认值" class="headerlink" title="函数参数默认值"></a>函数参数默认值</h3><p>ES6中提出了函数参数默认值的写法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span> (形参=<span class="hljs-string">&quot;默认值&quot;</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(形参)<br>&#125;<br><br><span class="hljs-title function_">fn</span>() <span class="hljs-comment">// 默认值</span><br></code></pre></td></tr></table></figure>
+<p>如果不传参，则默认就是对应的默认值</p>
+<p>下面的知识不属于ES6<br><a name="vrXAY"></a></p>
+<h3 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h3><p>表示函数调用时实际传入的参数的集合，是一个类数组对象。一般函数不定数量参数时可以使用arguments<br><a name="pvu7C"></a></p>
+<h3 id="arguments-callee"><a href="#arguments-callee" class="headerlink" title="arguments.callee"></a>arguments.callee</h3><p>这个就表示函数本身，在一些匿名函数完成递归调用时使用。<br><a name="bj9QX"></a></p>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><p>这个知识点很重要。<br />模块化发展历史单独引入js-&gt;CommonJS(nodejs)-&gt;AMD（require.js）-&gt;CMD（sea.js）-&gt;UMD-&gt;ESModule(现在主流的)<br><a name="kmRDG"></a></p>
+<h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><p>想要在浏览器中使用模块化，需要在script标签添加<code>type=&quot;module&quot;</code>，并且需要在服务器环境下打开。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="uUhLl"></a></p>
+<h3 id="导出模块"><a href="#导出模块" class="headerlink" title="导出模块"></a>导出模块</h3><p>导出模块有两种方法</p>
+<ul>
+<li>export </li>
+<li>export default<br><a name="JZyNz"></a></li>
+</ul>
+<h4 id="export-default"><a href="#export-default" class="headerlink" title="export default"></a>export default</h4><p>默认导出（最方便的导出方式），这种导出方式只能导出一次，如果想要多次导出，就需要使用export进行导出。这种方式不需要我们考虑命名的问题。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> 任意值<br></code></pre></td></tr></table></figure>
+<p>所谓的任意值，可以是任意的数据类型。<br><a name="LSbLM"></a></p>
+<h4 id="export"><a href="#export" class="headerlink" title="export"></a>export</h4><p>可以导出多个模块</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 第一种方法</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> 变量名 = 任意值<br><br><span class="hljs-comment">// 第二种方法</span><br><span class="hljs-keyword">let</span> 变量名 = 任意值<br><br><span class="hljs-keyword">export</span> &#123;<br>  <span class="hljs-comment">// 如果变量名和模块名一致</span><br>  变量名,<br>	变量名 <span class="hljs-keyword">as</span> 模块名 <span class="hljs-comment">// 一般导出时不改名字</span><br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="y5bLY"></a></p>
+<h3 id="导入模块"><a href="#导入模块" class="headerlink" title="导入模块"></a>导入模块</h3><p>导入模块使用import 有三种导入方式<br><a name="hskDW"></a></p>
+<h4 id="import-导入默认导出的模块"><a href="#import-导入默认导出的模块" class="headerlink" title="import 导入默认导出的模块"></a>import 导入默认导出的模块</h4><p>这种操作最简单，不需要考虑名字，自己自定义一个即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> 自定义的名字 <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;模块文件路径&quot;</span><br></code></pre></td></tr></table></figure>
+<p>注意！！！如果模块中没有 export default，则会报错。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1663732809148-573adeb9-8eec-414f-a7ca-c356c971c642.png#clientId=u2bb6a95f-c34f-4&from=paste&height=54&id=u70a1d102&name=image.png&originHeight=54&originWidth=363&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4447&status=done&style=none&taskId=u8e9c6294-aa29-45f8-8256-6b6b658ac0d&title=&width=363" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="SND8M"></a></p>
+<h4 id="import-导入-export导出的模块"><a href="#import-导入-export导出的模块" class="headerlink" title="import 导入 export导出的模块"></a>import 导入 export导出的模块</h4><p>使用export导出的模块，在导入时，名字需要和导出时的名字一致</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; 模块名 &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;模块文件路径&quot;</span><br><span class="hljs-comment">// 如果有多个模块需要导入，则使用 &quot;,&quot; 隔开</span><br><span class="hljs-keyword">import</span> &#123; 模块名, 模块名<span class="hljs-number">2</span>, 模块名n &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;模块文件路径&quot;</span><br><span class="hljs-comment">// 如果要导入的模块名和现有变量有冲突，我们可以改名字</span><br><span class="hljs-keyword">import</span> &#123; 模块名 <span class="hljs-keyword">as</span> 别名, 模块名n &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;模块文件路径&quot;</span><br><span class="hljs-comment">// 如果我们不知道里面有什么模块，想要全部导出作为对象查看</span><br><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> 自定义的名字 <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;模块文件路径&quot;</span><br></code></pre></td></tr></table></figure>
+<p><a name="rA1vQ"></a></p>
+<h4 id="当一个模块中既有默认导出，又有普通导出，导入可以一起写"><a href="#当一个模块中既有默认导出，又有普通导出，导入可以一起写" class="headerlink" title="当一个模块中既有默认导出，又有普通导出，导入可以一起写"></a>当一个模块中既有默认导出，又有普通导出，导入可以一起写</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> 自定义名字 <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;模块路径&quot;</span><br><span class="hljs-keyword">import</span> &#123;模块名&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;模块路径&quot;</span><br><br><span class="hljs-comment">// 可以写在一起</span><br><span class="hljs-keyword">import</span> 自定义名字, &#123;模块名&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;模块路径&quot;</span><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ES6</div>
+      <div>http://example.com/学习/js/48-ES6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年11月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/49-%E5%AD%98%E5%82%A8/" title="存储">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">存储</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/47-AJAX/" title="AJAX">
+                        <span class="hidden-mobile">AJAX</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

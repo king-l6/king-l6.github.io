@@ -1,0 +1,652 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Node.js发布于2009年5月，由Ryan Dahl开发，是一个基于Chrome V8引擎的JavaScript运行环境，使用了一个事件驱动、非阻塞式I&#x2F;O模型，让JavaScript 运行在服务端的开发平台，它让JavaScript成为与PHP、Python、Perl、Ruby等服务端语言平起平坐的脚本语言。 Node.js对一些特殊用例进行优化，提供替代的API，使得V8在非浏览">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/js/54-node/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="Node.js发布于2009年5月，由Ryan Dahl开发，是一个基于Chrome V8引擎的JavaScript运行环境，使用了一个事件驱动、非阻塞式I&#x2F;O模型，让JavaScript 运行在服务端的开发平台，它让JavaScript成为与PHP、Python、Perl、Ruby等服务端语言平起平坐的脚本语言。 Node.js对一些特殊用例进行优化，提供替代的API，使得V8在非浏览">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664346343021-193563ba-591b-490e-9256-4d72d45d944f.png#averageHue=%23f4f3f2&clientId=uf24dd2cb-c769-4&from=paste&height=230&id=u13d685f0&name=image.png&originHeight=230&originWidth=399&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11082&status=done&style=none&taskId=u16626e32-156a-4e09-af2f-962742b3545&title=&width=399">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664346359098-7315e744-feff-4fd7-a6e1-be19d314b748.png#averageHue=%231e1e1e&clientId=uf24dd2cb-c769-4&from=paste&height=512&id=u8083dbf2&name=image.png&originHeight=512&originWidth=979&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7813&status=done&style=none&taskId=u73837195-c2fe-4400-8d5c-8e4e7069ef0&title=&width=979">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664346403260-24930a19-2e7e-4ad6-a650-613857e328e1.png#averageHue=%232b2c25&clientId=uf24dd2cb-c769-4&from=paste&height=372&id=u04539e3e&name=image.png&originHeight=372&originWidth=734&originalType=binary&ratio=1&rotation=0&showTitle=false&size=15687&status=done&style=none&taskId=u8f85e438-63e0-4082-b102-50ae3dc036b&title=&width=734">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664346479110-9677387f-448a-4b09-9d65-11c20b5c7095.png#averageHue=%232c2d25&clientId=uf24dd2cb-c769-4&from=paste&height=372&id=ud9706a20&name=image.png&originHeight=372&originWidth=734&originalType=binary&ratio=1&rotation=0&showTitle=false&size=23926&status=done&style=none&taskId=udfbc0cda-bd7b-4085-b010-d608259fa9d&title=&width=734">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664346863263-26d64766-64eb-4bb0-9eba-282e75048286.png#averageHue=%231e1e1e&clientId=uf24dd2cb-c769-4&from=paste&height=512&id=uf6caff29&name=image.png&originHeight=512&originWidth=979&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7857&status=done&style=none&taskId=u830dc999-0473-4eb2-a331-2ff0784dc11&title=&width=979">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664347004947-3a2caf5f-0a64-47e6-a30b-08fa8690c380.png#clientId=uf24dd2cb-c769-4&from=paste&height=580&id=u1cdc73ef&name=image.png&originHeight=580&originWidth=674&originalType=binary&ratio=1&rotation=0&showTitle=false&size=86218&status=done&style=none&taskId=u1c1d25c8-809d-4887-aedf-f37fd5df3ec&title=&width=674">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664347030139-92693ecf-5e8e-4cb0-a759-fd4f3cecb864.png#clientId=uf24dd2cb-c769-4&from=paste&height=253&id=uf222e650&name=image.png&originHeight=253&originWidth=539&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6899&status=done&style=none&taskId=u392672a5-1f66-4bf9-af24-acc23667bb9&title=&width=539">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664347280416-9e750827-4c65-4128-9564-16e883944c39.png#clientId=uf24dd2cb-c769-4&from=paste&height=319&id=u64d98212&name=image.png&originHeight=319&originWidth=515&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5701&status=done&style=none&taskId=ub1ad3e06-5320-4563-b5ec-61811474199&title=&width=515">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664347389148-03d24aa5-590e-45d7-976f-5d5c4c112192.png#clientId=uf24dd2cb-c769-4&from=paste&height=754&id=u56e78574&name=image.png&originHeight=754&originWidth=445&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22266&status=done&style=none&taskId=ue063b97a-69c2-40f3-8048-dc9654cb13e&title=&width=445">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664345561346-c713dc1e-1a34-4901-8b23-bb8a656bf9e4.png#clientId=uf24dd2cb-c769-4&from=paste&height=493&id=ucb55909f&name=image.png&originHeight=493&originWidth=650&originalType=binary&ratio=1&rotation=0&showTitle=false&size=48589&status=done&style=none&taskId=u1355c424-a36c-46ee-833e-5141c55a28d&title=&width=650">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664345767512-c246965d-390d-42ef-b818-734ac5fb0811.png#clientId=uf24dd2cb-c769-4&from=paste&height=126&id=uee4a8f6d&name=image.png&originHeight=126&originWidth=282&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2374&status=done&style=none&taskId=u4d33d0dc-6255-4d90-bc7c-26c890f200a&title=&width=282">
+<meta property="article:published_time" content="2021-01-20T10:53:57.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:27:48.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/203294/1664346343021-193563ba-591b-490e-9256-4d72d45d944f.png#averageHue=%23f4f3f2&clientId=uf24dd2cb-c769-4&from=paste&height=230&id=u13d685f0&name=image.png&originHeight=230&originWidth=399&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11082&status=done&style=none&taskId=u16626e32-156a-4e09-af2f-962742b3545&title=&width=399">
+  
+  
+  
+  <title>node - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="node"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-01-20 18:53" pubdate>
+          2021年1月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">node</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Node.js发布于2009年5月，由Ryan Dahl开发，是一个基于<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Chrome/5633839?fromModule=lemma_inlink">Chrome</a> <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/V8/6178125?fromModule=lemma_inlink">V8</a>引擎的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/JavaScript/321142?fromModule=lemma_inlink">JavaScript</a>运行环境，使用了一个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8/9597519?fromModule=lemma_inlink">事件驱动</a>、非阻塞式I&#x2F;O模型，让JavaScript 运行在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9C%8D%E5%8A%A1%E7%AB%AF/6492316?fromModule=lemma_inlink">服务端</a>的开发平台，它让JavaScript成为与<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/PHP/9337?fromModule=lemma_inlink">PHP</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Python/407313?fromModule=lemma_inlink">Python</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Perl/851577?fromModule=lemma_inlink">Perl</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Ruby/11419?fromModule=lemma_inlink">Ruby</a>等服务端语言平起平坐的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80/1379708?fromModule=lemma_inlink">脚本语言</a>。 <br />Node.js对一些特殊用例进行优化，提供替代的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/API/10154?fromModule=lemma_inlink">API</a>，使得V8在非浏览器环境下运行得更好，V8引擎执行Javascript的速度非常快，性能非常好，基于Chrome JavaScript运行时建立的平台， 用于方便地搭建响应速度快、易于扩展的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8/2196523?fromModule=lemma_inlink">网络应用</a>。<br />NodeJS是一个JS运行环境，不是新的语言<br><a name="GpH8l"></a></p>
+<h2 id="必备知识-终端"><a href="#必备知识-终端" class="headerlink" title="必备知识-终端"></a>必备知识-终端</h2><p>每个系统都有<code>终端</code>，以windows系统为例，windows7之后默认有两个终端<code>cmd</code>和<code>powershell</code>，在我们日常使用中，cmd不容易报错。对于前端来讲没有任何区别<br />我们安装Git时自带了<code>git bash</code>这也是个终端。<br />所以咱们的电脑有三个终端<code>cmd``powsershell``bash</code>，用哪个都行。<br><a name="n8c7r"></a></p>
+<h3 id="打开终端"><a href="#打开终端" class="headerlink" title="打开终端"></a>打开终端</h3><p><a name="OZJnO"></a></p>
+<h4 id="cmd"><a href="#cmd" class="headerlink" title="cmd"></a>cmd</h4><p><code>windows+R</code>打开运行，然后输入cmd<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664346343021-193563ba-591b-490e-9256-4d72d45d944f.png#averageHue=%23f4f3f2&clientId=uf24dd2cb-c769-4&from=paste&height=230&id=u13d685f0&name=image.png&originHeight=230&originWidth=399&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11082&status=done&style=none&taskId=u16626e32-156a-4e09-af2f-962742b3545&title=&width=399" srcset="/img/loading.gif" lazyload alt="image.png"><br />回车即可<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664346359098-7315e744-feff-4fd7-a6e1-be19d314b748.png#averageHue=%231e1e1e&clientId=uf24dd2cb-c769-4&from=paste&height=512&id=u8083dbf2&name=image.png&originHeight=512&originWidth=979&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7813&status=done&style=none&taskId=u73837195-c2fe-4400-8d5c-8e4e7069ef0&title=&width=979" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="ccVWq"></a></p>
+<h4 id="powershell"><a href="#powershell" class="headerlink" title="powershell"></a>powershell</h4><p>同样的方法，把<code>cmd</code>更改成<code>powershell</code><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664346403260-24930a19-2e7e-4ad6-a650-613857e328e1.png#averageHue=%232b2c25&clientId=uf24dd2cb-c769-4&from=paste&height=372&id=u04539e3e&name=image.png&originHeight=372&originWidth=734&originalType=binary&ratio=1&rotation=0&showTitle=false&size=15687&status=done&style=none&taskId=u8f85e438-63e0-4082-b102-50ae3dc036b&title=&width=734" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="F0PKC"></a></p>
+<h4 id="怎么从powershell跳转到cmd"><a href="#怎么从powershell跳转到cmd" class="headerlink" title="怎么从powershell跳转到cmd"></a>怎么从powershell跳转到cmd</h4><p>在powershell的界面 输入<code>cmd</code>回车即可<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664346479110-9677387f-448a-4b09-9d65-11c20b5c7095.png#averageHue=%232c2d25&clientId=uf24dd2cb-c769-4&from=paste&height=372&id=ud9706a20&name=image.png&originHeight=372&originWidth=734&originalType=binary&ratio=1&rotation=0&showTitle=false&size=23926&status=done&style=none&taskId=udfbc0cda-bd7b-4085-b010-d608259fa9d&title=&width=734" srcset="/img/loading.gif" lazyload alt="image.png"><br />为什么会有这样的需求，前端的一些命令在powershell默认禁止执行，需要配置解开进制的操作。<br />可以在这里解决powsershell默认禁用的操作。<br /><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/028f93c338c1">https://www.jianshu.com/p/028f93c338c1</a><br><a name="WfDb1"></a></p>
+<h3 id="终端路径"><a href="#终端路径" class="headerlink" title="终端路径"></a>终端路径</h3><p>我们打开的终端，都是自动打开的路径的。未来我们需要用终端时，都是要在我们的项目中用的。我们在运行中打开的cmd，路径不是我们的项目。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664346863263-26d64766-64eb-4bb0-9eba-282e75048286.png#averageHue=%231e1e1e&clientId=uf24dd2cb-c769-4&from=paste&height=512&id=uf6caff29&name=image.png&originHeight=512&originWidth=979&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7857&status=done&style=none&taskId=u830dc999-0473-4eb2-a331-2ff0784dc11&title=&width=979" srcset="/img/loading.gif" lazyload alt="image.png"><br />我们想要跳转到我们的项目目录。如果能够直接打开就跳转到对应的目录最好。<br><a name="CX7DU"></a></p>
+<h4 id="如何在对应的目录中打开终端"><a href="#如何在对应的目录中打开终端" class="headerlink" title="如何在对应的目录中打开终端"></a>如何在对应的目录中打开终端</h4><p>终端中显示的路径需要是我们对应的目录的路径<br />在资源管理器中，打开项目目录，然后在地址栏里输入<code>cmd</code>回车<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664347004947-3a2caf5f-0a64-47e6-a30b-08fa8690c380.png#clientId=uf24dd2cb-c769-4&from=paste&height=580&id=u1cdc73ef&name=image.png&originHeight=580&originWidth=674&originalType=binary&ratio=1&rotation=0&showTitle=false&size=86218&status=done&style=none&taskId=u1c1d25c8-809d-4887-aedf-f37fd5df3ec&title=&width=674" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664347030139-92693ecf-5e8e-4cb0-a759-fd4f3cecb864.png#clientId=uf24dd2cb-c769-4&from=paste&height=253&id=uf222e650&name=image.png&originHeight=253&originWidth=539&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6899&status=done&style=none&taskId=u392672a5-1f66-4bf9-af24-acc23667bb9&title=&width=539" srcset="/img/loading.gif" lazyload alt="image.png"><br />路径就是我们的项目路径。<br />注意！！！！打开终端一定要确认路径是否正确，再操作代码<br><a name="xTeSg"></a></p>
+<h3 id="掌握几个终端的基本命令"><a href="#掌握几个终端的基本命令" class="headerlink" title="掌握几个终端的基本命令"></a>掌握几个终端的基本命令</h3><p>终端可以输入命令，在输入命令前，你得确保是终端环境。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664347280416-9e750827-4c65-4128-9564-16e883944c39.png#clientId=uf24dd2cb-c769-4&from=paste&height=319&id=u64d98212&name=image.png&originHeight=319&originWidth=515&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5701&status=done&style=none&taskId=ub1ad3e06-5320-4563-b5ec-61811474199&title=&width=515" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="sk5os"></a></p>
+<h4 id="dir"><a href="#dir" class="headerlink" title="dir"></a>dir</h4><p>查看当前目录中所有的文件和文件夹<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664347389148-03d24aa5-590e-45d7-976f-5d5c4c112192.png#clientId=uf24dd2cb-c769-4&from=paste&height=754&id=u56e78574&name=image.png&originHeight=754&originWidth=445&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22266&status=done&style=none&taskId=ue063b97a-69c2-40f3-8048-dc9654cb13e&title=&width=445" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="jpLzI"></a></p>
+<h4 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h4><p>进入到某个路径下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ./文件夹名字<br><span class="hljs-built_in">cd</span> 绝对路径（需要是当前盘符路径）<br></code></pre></td></tr></table></figure>
+<p><a name="xRvGT"></a></p>
+<h4 id="跳转到某个盘符"><a href="#跳转到某个盘符" class="headerlink" title="跳转到某个盘符"></a>跳转到某个盘符</h4><p>直接输入<code>盘符:</code>回车</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">d:<br></code></pre></td></tr></table></figure>
+<p><a name="aWQqu"></a></p>
+<h4 id="执行记录中的命令"><a href="#执行记录中的命令" class="headerlink" title="执行记录中的命令"></a>执行记录中的命令</h4><p>我们在终端执行过的命令都会被记录，按方向键 上 下 可以切换记录。<br><a name="AKVcZ"></a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664345561346-c713dc1e-1a34-4901-8b23-bb8a656bf9e4.png#clientId=uf24dd2cb-c769-4&from=paste&height=493&id=ucb55909f&name=image.png&originHeight=493&originWidth=650&originalType=binary&ratio=1&rotation=0&showTitle=false&size=48589&status=done&style=none&taskId=u1355c424-a36c-46ee-833e-5141c55a28d&title=&width=650" srcset="/img/loading.gif" lazyload alt="image.png"><br />下载后一直下一步安装即可。最后一步勾选，安装python等工具，一般都会失败。如果失败，自己手动安装python。<br><a name="uJCr6"></a></p>
+<h3 id="是否安装成功"><a href="#是否安装成功" class="headerlink" title="是否安装成功"></a>是否安装成功</h3><p>打开<code>终端</code>，输入<code>node -v</code>回车，如果能正常看到版本，则表示安装成功。<br />继续尝试输入<code>npm -v</code>回车，可以看到版本，表示npm安装成功<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/203294/1664345767512-c246965d-390d-42ef-b818-734ac5fb0811.png#clientId=uf24dd2cb-c769-4&from=paste&height=126&id=uee4a8f6d&name=image.png&originHeight=126&originWidth=282&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2374&status=done&style=none&taskId=u4d33d0dc-6255-4d90-bc7c-26c890f200a&title=&width=282" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="JpTxu"></a></p>
+<h3 id="使用nodejs运行js文件"><a href="#使用nodejs运行js文件" class="headerlink" title="使用nodejs运行js文件"></a>使用nodejs运行js文件</h3><p>nodejs只有 ECMASCript + NodeJSApi 没有DOM和BOM</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">node xxx.js <span class="hljs-comment"># 可以运行我们的js代码</span><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>node</div>
+      <div>http://example.com/学习/js/54-node/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年1月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/55-%E9%AB%98%E9%A2%91%E9%9D%A2%E8%AF%95%E9%A2%98/" title="高频面试题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">高频面试题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/53-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">
+                        <span class="hidden-mobile">正则表达式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

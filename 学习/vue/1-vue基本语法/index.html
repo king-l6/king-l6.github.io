@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="课程目标  了解vue的特点 理解vue的运行机制 掌握vue的基础语法    1. vue的特点 1.0 什么是MVC，什么是MVVMMVC：全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，是一种软件设计典范，将业务逻辑、数据、界面显示分离组织代码的形式M：model层，主要处理数据的curd	V：view 视图层">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue基本语法">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/vue/1-vue%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="课程目标  了解vue的特点 理解vue的运行机制 掌握vue的基础语法    1. vue的特点 1.0 什么是MVC，什么是MVVMMVC：全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，是一种软件设计典范，将业务逻辑、数据、界面显示分离组织代码的形式M：model层，主要处理数据的curd	V：view 视图层">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1661313474459-ff7fd5fa-7926-4a53-8d30-cbdc98274cb7.png#averageHue=%23f2eee7&clientId=u0368daff-1c05-4&errorMessage=unknown%20error&from=paste&height=500&id=u6860fb52&name=image.png&originHeight=900&originWidth=1200&originalType=binary&ratio=1&rotation=0&showTitle=false&size=336996&status=error&style=none&taskId=u63481835-abd8-414f-a597-145dfd337db&title=&width=666.6666843273026">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1661438628286-c60ec040-8001-4606-bbbe-4299d8980d24.png#averageHue=%23f0f0f0&clientId=ue16017ea-5d94-4&errorMessage=unknown%20error&from=paste&height=156&id=u3d96af7c&name=image.png&originHeight=280&originWidth=1260&originalType=binary&ratio=1&rotation=0&showTitle=false&size=79519&status=error&style=none&taskId=uc781c0d0-48fc-475d-b7e7-d4d6b8f1640&title=&width=700.0000185436678">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1661438677196-42778447-b94d-4010-bd4c-1f39e99f4106.png#averageHue=%23fbf9f2&clientId=ue16017ea-5d94-4&errorMessage=unknown%20error&from=paste&height=237&id=ud3b9ebee&name=image.png&originHeight=427&originWidth=887&originalType=binary&ratio=1&rotation=0&showTitle=false&size=69584&status=error&style=none&taskId=ueb6cb47c-ba84-4825-b46d-f54a8d4d39f&title=&width=492.7777908319312">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1661482191563-6943c832-3649-4606-8f43-9d207fc6b9ce.png#averageHue=%23f4f4f3&clientId=u96de9006-1761-4&errorMessage=unknown%20error&from=paste&height=502&id=u5ca3de37&name=image.png&originHeight=628&originWidth=1113&originalType=binary&ratio=1&rotation=0&showTitle=false&size=112761&status=error&style=none&taskId=u1ce6cd85-45f8-4b26-9aab-e2b872f54fe&title=&width=890.4">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1661309786715-78b748ac-ff9a-4f6a-b199-5532a50dd14b.png#averageHue=%234a545c&clientId=u1efb9bbd-6891-4&errorMessage=unknown%20error&from=paste&height=256&id=lM1im&name=image.png&originHeight=460&originWidth=460&originalType=binary&ratio=1&rotation=0&showTitle=false&size=318566&status=error&style=none&taskId=u08cf6c4e-c0a0-4326-b567-8ecbce6f2ac&title=&width=255.555562325466">
+<meta property="article:published_time" content="2021-03-23T04:03:47.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:39:46.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1661313474459-ff7fd5fa-7926-4a53-8d30-cbdc98274cb7.png#averageHue=%23f2eee7&clientId=u0368daff-1c05-4&errorMessage=unknown%20error&from=paste&height=500&id=u6860fb52&name=image.png&originHeight=900&originWidth=1200&originalType=binary&ratio=1&rotation=0&showTitle=false&size=336996&status=error&style=none&taskId=u63481835-abd8-414f-a597-145dfd337db&title=&width=666.6666843273026">
+  
+  
+  
+  <title>vue基本语法 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="vue基本语法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-03-23 12:03" pubdate>
+          2021年3月23日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vue基本语法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>课程目标</p>
+<ol>
+<li>了解vue的特点</li>
+<li>理解vue的运行机制</li>
+<li>掌握vue的基础语法</li>
+</ol>
+</blockquote>
+<p><a name="7a1209c4"></a></p>
+<h2 id="1-vue的特点"><a href="#1-vue的特点" class="headerlink" title="1. vue的特点"></a>1. vue的特点</h2><p><a name="rasqQ"></a></p>
+<h3 id="1-0-什么是MVC，什么是MVVM"><a href="#1-0-什么是MVC，什么是MVVM" class="headerlink" title="1.0 什么是MVC，什么是MVVM"></a>1.0 什么是MVC，什么是MVVM</h3><p>MVC：全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，是一种软件设计典范，将业务逻辑、数据、界面显示分离组织代码的形式<br />M：model层，主要处理数据的curd<br />	V：view 视图层，前端页面<br />	C：controller 控制器蹭，也被称为业务逻辑层，路由也是这里面的，最重要的是conrtol，数据的业务逻辑。例：登陆，注销<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1661313474459-ff7fd5fa-7926-4a53-8d30-cbdc98274cb7.png#averageHue=%23f2eee7&clientId=u0368daff-1c05-4&errorMessage=unknown%20error&from=paste&height=500&id=u6860fb52&name=image.png&originHeight=900&originWidth=1200&originalType=binary&ratio=1&rotation=0&showTitle=false&size=336996&status=error&style=none&taskId=u63481835-abd8-414f-a597-145dfd337db&title=&width=666.6666843273026" srcset="/img/loading.gif" lazyload alt="image.png"><br />前端主要负责MVC中的V（view）着一层，主要工作就是和界面打交道，来制作前端页面效果</p>
+<p>MVVM：是Model-View-ViewModel的简写，MVVM是前端视图层的概念，主要关注于视图层分离，也就是说：MVVM把前端的视图层，分为了三部分，Model，View，VM(ViewModel)<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1661438628286-c60ec040-8001-4606-bbbe-4299d8980d24.png#averageHue=%23f0f0f0&clientId=ue16017ea-5d94-4&errorMessage=unknown%20error&from=paste&height=156&id=u3d96af7c&name=image.png&originHeight=280&originWidth=1260&originalType=binary&ratio=1&rotation=0&showTitle=false&size=79519&status=error&style=none&taskId=uc781c0d0-48fc-475d-b7e7-d4d6b8f1640&title=&width=700.0000185436678" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1661438677196-42778447-b94d-4010-bd4c-1f39e99f4106.png#averageHue=%23fbf9f2&clientId=ue16017ea-5d94-4&errorMessage=unknown%20error&from=paste&height=237&id=ud3b9ebee&name=image.png&originHeight=427&originWidth=887&originalType=binary&ratio=1&rotation=0&showTitle=false&size=69584&status=error&style=none&taskId=ueb6cb47c-ba84-4825-b46d-f54a8d4d39f&title=&width=492.7777908319312" srcset="/img/loading.gif" lazyload alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1661482191563-6943c832-3649-4606-8f43-9d207fc6b9ce.png#averageHue=%23f4f4f3&clientId=u96de9006-1761-4&errorMessage=unknown%20error&from=paste&height=502&id=u5ca3de37&name=image.png&originHeight=628&originWidth=1113&originalType=binary&ratio=1&rotation=0&showTitle=false&size=112761&status=error&style=none&taskId=u1ce6cd85-45f8-4b26-9aab-e2b872f54fe&title=&width=890.4" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="7b6f4881"></a></p>
+<h3 id="1-1-三大前端框架"><a href="#1-1-三大前端框架" class="headerlink" title="1.1 三大前端框架"></a>1.1 三大前端框架</h3><p>目前前端有三个非常流行的框架，非别是angularjs,reactjs,vuejs。而这三个当中，vuejs的受欢迎度目前是最高的，而开发vuejs的就是一个中国人尤雨溪。<br />vue是国人开发的，叫做尤雨溪，他也是html5版clear的打造人；<br />2014年2月，开源了一个前端开发库Vue.js<br />2016年9月，加盟阿里巴巴weex团队，尤雨溪（尤大神，背后宣传支持）称他将以技术顾问的身份加入 Weex 团队来做 Vue 和 Weex 的 JavaScript runtime 整合，目标是让大家能用 Vue 的语法跨三端。<br />任何一个创始人在语言推广初期，都会借助于大企业；比如python借助谷歌；php借助百度；vue借助阿里巴巴都是一样的；<br />从14年到现在仅仅六七年的时间，vue的用户使用量远远超过预期；<br />国外的网站：<a target="_blank" rel="noopener" href="https://vuejs.org/">https://vuejs.org/</a><br />国内的网站 使用中文版的：<a target="_blank" rel="noopener" href="https://cn.vuejs.org/">https://cn.vuejs.org/</a><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1661309786715-78b748ac-ff9a-4f6a-b199-5532a50dd14b.png#averageHue=%234a545c&clientId=u1efb9bbd-6891-4&errorMessage=unknown%20error&from=paste&height=256&id=lM1im&name=image.png&originHeight=460&originWidth=460&originalType=binary&ratio=1&rotation=0&showTitle=false&size=318566&status=error&style=none&taskId=u08cf6c4e-c0a0-4326-b567-8ecbce6f2ac&title=&width=255.555562325466" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="13288966"></a></p>
+<h3 id="1-2-vue的优势"><a href="#1-2-vue的优势" class="headerlink" title="1.2 vue的优势"></a>1.2 vue的优势</h3><ul>
+<li>Vue致力解决的问题与React一致，但却提供了另外一套解决方案。Vue使用模板系统而不是JSX，使其对现有应用的升级更加容易</li>
+<li>Vue的开发者尤雨溪是中国人，框架本身提供了大量丰富的中文文档，这也为Vue的发展和使用带来巨大的优势。</li>
+<li>Vue框架适合于需要快速上手、上线的应用，还适用于迁移传统的多单面应用。<br><a name="hdXKb"></a></li>
+</ul>
+<h3 id="1-3-官网地址"><a href="#1-3-官网地址" class="headerlink" title="1.3 官网地址"></a>1.3 官网地址</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://vuejs.org/">https://vuejs.org/</a>  国外的网站</li>
+<li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/">https://cn.vuejs.org/</a>  国内的网站 使用中文版的<br><a name="IO4aS"></a></li>
+</ul>
+<h2 id="2-vue的下载和使用"><a href="#2-vue的下载和使用" class="headerlink" title="2. vue的下载和使用"></a>2. vue的下载和使用</h2><p><a name="eNjX4"></a></p>
+<h3 id="2-1-直接用-引入"><a href="#2-1-直接用-引入" class="headerlink" title="2.1 直接用 引入"></a>2.1 <a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/installation.html#%E7%9B%B4%E6%8E%A5%E7%94%A8-lt-script-gt-%E5%BC%95%E5%85%A5">直接用<script> 引入</a></h3><p><a name="m1Gw1"></a></p>
+<h3 id="2-2-使用CDN"><a href="#2-2-使用CDN" class="headerlink" title="2.2 使用CDN"></a>2.2 使用CDN</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/vue&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="QTQUz"></a></p>
+<h3 id="2-3-使用npm安装"><a href="#2-3-使用npm安装" class="headerlink" title="2.3 使用npm安装"></a>2.3 使用npm安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install -g @vue/cli<br></code></pre></td></tr></table></figure>
+<p><a name="jv0I1"></a></p>
+<h2 id="3-挂载点配置"><a href="#3-挂载点配置" class="headerlink" title="3. 挂载点配置"></a>3. 挂载点配置</h2><p><a name="YWqaq"></a></p>
+<h3 id="3-1-vue的模板"><a href="#3-1-vue的模板" class="headerlink" title="3.1 vue的模板"></a>3.1 vue的模板</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;change&quot;</span>&gt;</span>改变数据<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- &#123;&#123;&#125;&#125;里是js的表达式 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#123;&#123;msg - 8&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><a name="A2ug2"></a></p>
+<h3 id="3-2-vue的实例化"><a href="#3-2-vue的实例化" class="headerlink" title="3.2 vue的实例化"></a>3.2 vue的实例化</h3><p>创建vue实例传入option</p>
+<blockquote>
+<p>option中主要有三个内容<br>el：<br>类型：string （#app）| HTMLElement  （document.querySelector）<br>作用：决定之后Vue实例会管理哪一个DOM。<br>data：<br>类型：Object | Function （组件当中data必须是一个函数）<br>作用：Vue实例对应的数据对象。<br>methods：<br>类型：{[key:string]:Function}<br>作用：定义属于Vue的一些方法，可以在其他地方调用，也可以在指令中使用</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// jquery是以DOM做为驱动</span><br><span class="hljs-comment">// Vue是以数据做为驱动</span><br><span class="hljs-comment">// 编程范式：声明式</span><br><span class="hljs-keyword">let</span> vm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123; <span class="hljs-comment">// 创建vue实例，实力化出来的vm就是MVVM中的调度者</span><br>  <span class="hljs-comment">// 挂载点</span><br>  <span class="hljs-attr">el</span>: <span class="hljs-string">&quot;#app&quot;</span>, <span class="hljs-comment">// element 元素</span><br>  <span class="hljs-attr">data</span>: &#123; <span class="hljs-comment">// data属性：存放el中需要的数据</span><br>    <span class="hljs-comment">//只有注册在data当中的数据才是响应式数据，数据改变，会触发视图的重新渲染</span><br>    <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;hello world&#x27;</span>, <span class="hljs-comment">// vue中不存在dom操作，直接通过渲染的方式显示</span><br>    <span class="hljs-attr">book</span>:[<br>      &#123;<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-string">&quot;&quot;</span>&#125;<br>    ]<br>  &#125;,<br>  <span class="hljs-comment">// 方法</span><br>  <span class="hljs-attr">methods</span>: &#123;<br>    <span class="hljs-title function_">change</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-comment">// this等价于vm这个vue的根实例</span><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">msg</span> = <span class="hljs-string">&#x27;hahaha&#x27;</span>;<br>    &#125;<br>  &#125;,<br>  <span class="hljs-comment">// 用于计算的属性</span><br>  <span class="hljs-attr">computed</span>: &#123;<br>      <span class="hljs-comment">// 计算商品总价</span><br>      <span class="hljs-attr">totalPrice</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>          <span class="hljs-keyword">let</span> result = <span class="hljs-number">0</span><br>          <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">books</span>.<span class="hljs-property">length</span>; i++) &#123;<br>              result += <span class="hljs-variable language_">this</span>.<span class="hljs-property">books</span>[i].<span class="hljs-property">price</span><br>          &#125;<br>          <span class="hljs-keyword">return</span> result<br>      &#125;<br>  &#125;    <br>&#125;)<br></code></pre></td></tr></table></figure>
+<p><a name="sAcEk"></a></p>
+<h3 id="3-3-编程范式【了解】"><a href="#3-3-编程范式【了解】" class="headerlink" title="3.3 编程范式【了解】"></a>3.3 编程范式【了解】</h3><p>参考文档：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42968460/article/details/123836679">https://blog.csdn.net/weixin_42968460/article/details/123836679</a><br />编程范式是一种方法论，用来指导你编写代码过程中的思路、规则、习惯和定式<br />编程范式主要有三种：命令式编程(Imperative)、声明式编程(Declarative)和函数式编程(Functional)。<br />命令式编程(Imperative)：命令式编程的主要思想是关注计算机执行的步骤，即一步一步告诉计算机先做什么再做什么。</p>
+<p><strong>声明式编程(Declarative)：</strong>声明式编程是以数据结构的形式来表达程序执行的逻辑。它的主要思想是告诉计算机应该做什么，但不指定具体要怎么做。 SQL 语句就是最明显的一种声明式编程的例子。</p>
+<p><strong>函数式编程(Functional)：</strong><br />函数式编程和声明式编程是有所关联的，因为他们思想是一致的：即只关注做什么而不是怎么做。但函数式编程不仅仅局限于声明式编程<br><a name="9opNo"></a></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>vue基本语法</div>
+      <div>http://example.com/学习/vue/1-vue基本语法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年3月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/vue/2-vue%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" title="vue常用指令">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vue常用指令</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/js/62-%E5%9B%9E%E6%B5%81%E5%92%8C%E9%87%8D%E7%BB%98/" title="回流和重绘">
+                        <span class="hidden-mobile">回流和重绘</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

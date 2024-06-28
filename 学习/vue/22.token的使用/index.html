@@ -1,0 +1,665 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="网址：https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;58abb716b5dc&#x2F;  具体概念参考上面链接  参考网站：https:&#x2F;&#x2F;panjiachen.github.io&#x2F;vue-element-admin&#x2F;#&#x2F;login?redirect&#x3D;%2Fdashboard 1. 面试题-Token验证的基本流程1.服务端收到请求，去验证用户名与密码2.验证成功后，服务端会签发一个 Token，再">
+<meta property="og:type" content="article">
+<meta property="og:title" content="token的使用">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/vue/22.token%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="网址：https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;58abb716b5dc&#x2F;  具体概念参考上面链接  参考网站：https:&#x2F;&#x2F;panjiachen.github.io&#x2F;vue-element-admin&#x2F;#&#x2F;login?redirect&#x3D;%2Fdashboard 1. 面试题-Token验证的基本流程1.服务端收到请求，去验证用户名与密码2.验证成功后，服务端会签发一个 Token，再">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-29T05:03:47.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:44:54.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>token的使用 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="token的使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-29 13:03" pubdate>
+          2021年4月29日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          42 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">token的使用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>网址：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/58abb716b5dc/">https://www.jianshu.com/p/58abb716b5dc/</a></p>
+<blockquote>
+<p>具体概念参考上面链接</p>
+</blockquote>
+<p>参考网站：<a target="_blank" rel="noopener" href="https://panjiachen.github.io/vue-element-admin/#/login?redirect=%2Fdashboard">https://panjiachen.github.io/vue-element-admin/#/login?redirect=%2Fdashboard</a><br><a name="kK8tr"></a></p>
+<h2 id="1-面试题-Token验证的基本流程"><a href="#1-面试题-Token验证的基本流程" class="headerlink" title="1. 面试题-Token验证的基本流程"></a>1. 面试题-Token验证的基本流程</h2><p>1.服务端收到请求，去验证用户名与密码<br />2.验证成功后，服务端会签发一个 Token，再把这个 Token 发送给客户端<br />3.客户端收到 Token 以后可以把它存储起来，比如放在 Cookie 里或者 Local Storage 里<br />4.客户端每次向服务端请求资源的时候需要带着服务端签发的 Token<br />5.服务端收到请求，然后去验证客户端请求里面带着的 Token，如果验证成功，就向客户端返回请求的数据<br><a name="0b8e79f1"></a></p>
+<h2 id="2-了解与token相关的概念（仅需了解）"><a href="#2-了解与token相关的概念（仅需了解）" class="headerlink" title="2. 了解与token相关的概念（仅需了解）"></a>2. 了解与token相关的概念（仅需了解）</h2><p><a name="91450bb8"></a></p>
+<h3 id="2-1-JWT标准的Token有如下三个部分"><a href="#2-1-JWT标准的Token有如下三个部分" class="headerlink" title="2.1  JWT标准的Token有如下三个部分"></a>2.1  JWT标准的Token有如下三个部分</h3><p>header (头部)<br />payload （数据）<br />signature （签名）</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode">eyJhbGciOiJIUzI<span class="hljs-number">1</span><span class="hljs-symbol">NiIsInR5</span>cCI<span class="hljs-number">6</span>IkpX<span class="hljs-attr">VCJ9</span>.eyJ<span class="hljs-number">1</span>c<span class="hljs-number">2</span>VyX<span class="hljs-number">25</span>hbWUiOiJhZ<span class="hljs-name">G1</span>pbiIsI<span class="hljs-symbol">nVzZXJfaWQiOjEsImlhdCI6</span>MTU<span class="hljs-number">5</span><span class="hljs-symbol">NDI2</span>MjQ<span class="hljs-number">5</span><span class="hljs-symbol">NSwiZXhwIjoxNTk0</span>MzQ<span class="hljs-number">4</span>ODk<span class="hljs-number">1</span>fQ<span class="hljs-number">.1</span>MJ_MAFgpBjOjpggj<span class="hljs-number">69</span>Xz<span class="hljs-number">8</span>F_evBcMAe<span class="hljs-symbol">nRK_7</span>a<span class="hljs-number">8</span>fdVrc<br></code></pre></td></tr></table></figure>
+
+<p><a name="4f53bed4"></a></p>
+<h3 id="2-2-安装两个依赖包"><a href="#2-2-安装两个依赖包" class="headerlink" title="2.2  安装两个依赖包"></a>2.2  安装两个依赖包</h3><ul>
+<li><p>依赖包：jsonwebtoken<br />作用： 生成token与验证 </p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">npm</span> install jsonwebtoken --save<br><span class="hljs-attribute">npm</span> install express-jwt@<span class="hljs-number">6</span>.<span class="hljs-number">1</span>.<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>jsonwebtoken的两个api </p>
+<ul>
+<li>生成token的方法 sign</li>
+<li>验证token的方法 verify</li>
+</ul>
+</li>
+<li><p>依赖包： express-jwt </p>
+<blockquote>
+<p>千万千万注意版本： 6.1.1</p>
+</blockquote>
+</li>
+<li><p>express-jwt的作用<br />验证token是否过期并规定哪些路由不需要验证 express-jwt({})<br><a name="50f793a3"></a></p>
+</li>
+</ul>
+<h3 id="2-3-token-Express后端相关代码"><a href="#2-3-token-Express后端相关代码" class="headerlink" title="2.3  token Express后端相关代码"></a>2.3  token Express后端相关代码</h3><ul>
+<li>定义生成token和获取token的函数<br />&#x2F;token&#x2F;token.js <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> jwt = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;jsonwebtoken&#x27;</span>);<br><br><span class="hljs-comment">// 密钥</span><br><span class="hljs-keyword">const</span> jwtSecret = <span class="hljs-string">&#x27;wangwushan&#x27;</span>;  <span class="hljs-comment">//签名</span><br><br><span class="hljs-comment">//登录接口 生成token的方法</span><br><span class="hljs-comment">// setToken携带的参数及参数的数量自定义</span><br><span class="hljs-keyword">const</span> setToken = <span class="hljs-keyword">function</span> (<span class="hljs-params">uname</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-comment">//expiresln 设置token过期的时间</span><br>    <span class="hljs-comment">//&#123; user_name: user_name, user_id: user_id &#125; 传入需要解析的值（ 一般为用户名，用户id 等）</span><br>    <span class="hljs-comment">// const token = jwt.sign(&#123; user_name: user_name &#125;, jwtSecret, &#123; expiresIn: &#x27;24h&#x27; &#125;);</span><br>    <span class="hljs-keyword">const</span> token = jwt.<span class="hljs-title function_">sign</span>(&#123; <span class="hljs-attr">uname</span>: uname &#125;, jwtSecret, &#123; <span class="hljs-attr">expiresIn</span>: <span class="hljs-string">&#x27;10s&#x27;</span> &#125;);<br>    <span class="hljs-comment">// 注意：expiresIn 过期事件，可以调整为24h后过期，10s太短了</span><br>    <span class="hljs-title function_">resolve</span>(token)<br>  &#125;)<br>&#125;<br><span class="hljs-comment">//各个接口需要验证token的方法</span><br><span class="hljs-keyword">const</span> getToken = <span class="hljs-keyword">function</span> (<span class="hljs-params">token</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (!token) &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;token是空的&#x27;</span>)<br>      <span class="hljs-title function_">reject</span>(&#123;<br>        <span class="hljs-attr">error</span>: <span class="hljs-string">&#x27;token 是空的&#x27;</span><br>      &#125;)<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-comment">// 验证token</span><br>      <span class="hljs-keyword">var</span> info = jwt.<span class="hljs-title function_">verify</span>(token.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27; &#x27;</span>)[<span class="hljs-number">1</span>], jwtSecret);<br>      <span class="hljs-title function_">resolve</span>(info);  <span class="hljs-comment">//解析返回的值（sign 传入的值）</span><br>    &#125;<br>  &#125;)<br>&#125;<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  setToken,<br>  getToken<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><a name="2b22a0fc"></a></p>
+<h3 id="2-4-解析token-验证token"><a href="#2-4-解析token-验证token" class="headerlink" title="2.4  解析token,验证token"></a>2.4  解析token,验证token</h3><p>app.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;express&quot;</span>)<br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>()<br><span class="hljs-comment">//express跨域</span><br><span class="hljs-keyword">const</span> cors = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;cors&quot;</span>)<br><span class="hljs-comment">// 生成token和验证token是否正确的函数</span><br><span class="hljs-keyword">const</span> vertoken=<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./token/token&#x27;</span>)<br><br><span class="hljs-comment">//验证token是否过期，并规定哪些路由不用验证token</span><br><span class="hljs-keyword">const</span> expressJwt=<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-jwt&#x27;</span>)<br><br><span class="hljs-keyword">const</span> bookRouter = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./router/bookRouter&quot;</span>)<br><span class="hljs-keyword">const</span> userRouter = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./router/userRouter&quot;</span>)<br>app.<span class="hljs-title function_">use</span>(<span class="hljs-title function_">cors</span>())<br><br><br><span class="hljs-comment">//=============================================验证token</span><br><br><span class="hljs-comment">//解析token获取用户信息</span><br>app.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">req, res, next</span>) &#123;<br>  <span class="hljs-keyword">let</span> token = req.<span class="hljs-property">headers</span>[<span class="hljs-string">&#x27;authorization&#x27;</span>];<br>  <span class="hljs-keyword">if</span>(token == <span class="hljs-literal">undefined</span>)&#123;<br>    <span class="hljs-title function_">next</span>();<br>  &#125;<span class="hljs-keyword">else</span>&#123;<br>    vertoken.<span class="hljs-title function_">getToken</span>(token).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">data</span>)=&gt;</span> &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;解析后的token&#x27;</span>,data);<br>      req.<span class="hljs-property">data</span> = data;<br>      <span class="hljs-title function_">next</span>();<br>    &#125;).<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">error</span>)=&gt;</span>&#123;<br>      <span class="hljs-title function_">next</span>();<br>    &#125;)<br>  &#125;<br>&#125;);<br><br><span class="hljs-comment">//验证token是否过期并规定那些路由不需要验证</span><br>app.<span class="hljs-title function_">use</span>(<span class="hljs-title function_">expressJwt</span>(&#123;<br>  <span class="hljs-attr">secret</span>:<span class="hljs-string">&#x27;dkfjdjfkdfdfd&#x27;</span>,<br>  <span class="hljs-comment">// 加密算法</span><br>  <span class="hljs-attr">algorithms</span>:[<span class="hljs-string">&#x27;HS256&#x27;</span>]<br>&#125;).<span class="hljs-title function_">unless</span>(&#123;<br>  <span class="hljs-attr">path</span>:[<span class="hljs-string">&#x27;/login&#x27;</span>]  <span class="hljs-comment">//不需要验证的接口名称</span><br>&#125;))<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">  注意：直接安装使用expressJwt的时候，会在运行的时候报错</span><br><span class="hljs-comment">	因为express-jwt升级了，后以前的用法应该是不同了</span><br><span class="hljs-comment">	只需要将pakage.json中的express-jwt版本改为6.1.1，重新npm i 即可使用。</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-comment">//token失效返回信息</span><br>app.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">err,req,res,next</span>)&#123;<br>  <span class="hljs-keyword">if</span>(err.<span class="hljs-property">status</span>==<span class="hljs-number">401</span>)&#123;<br>    res.<span class="hljs-title function_">status</span>(<span class="hljs-number">401</span>).<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;token失效11111111&#x27;</span>)<br>  &#125;<span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-title function_">next</span>()<br>  &#125;<br>&#125;)<br><br>app.<span class="hljs-title function_">use</span>(bookRouter)<br>app.<span class="hljs-title function_">use</span>(userRouter)<br><br>app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;服务器已开启在3000端口&quot;</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><a name="e8a5129e"></a></p>
+<h3 id="2-5-登录接口"><a href="#2-5-登录接口" class="headerlink" title="2.5 登录接口"></a>2.5 登录接口</h3><p>&#x2F;router&#x2F;usersRouter.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;express&quot;</span>);<br><span class="hljs-keyword">let</span> userRouter = express.<span class="hljs-title class_">Router</span>();<br><span class="hljs-keyword">const</span> db = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;../utils/db&quot;</span>)<br><span class="hljs-keyword">const</span> vertoken = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;../utils/token&quot;</span>)<br><br><span class="hljs-comment">// 登陆操作</span><br>userRouter.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/login&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;<br>    <span class="hljs-keyword">let</span> &#123;uname,pwd&#125; = req.<span class="hljs-property">body</span>;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(uname,pwd);<br>    <span class="hljs-keyword">let</span> sql = <span class="hljs-string">`select * from login where uname = &#x27;<span class="hljs-subst">$&#123;uname&#125;</span>&#x27; and pwd = &#x27;<span class="hljs-subst">$&#123;pwd&#125;</span>&#x27;`</span><br>    db.<span class="hljs-title function_">base</span>(sql, <span class="hljs-literal">null</span>, <span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> &#123; <span class="hljs-comment">// result 数组包对象格式</span><br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);<br>        <span class="hljs-keyword">if</span> (result.<span class="hljs-property">length</span>) &#123;<br>            <span class="hljs-comment">//==============================================调用生成token的方法</span><br>            vertoken.<span class="hljs-title function_">setToken</span>(uname).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">token</span> =&gt;</span> &#123;<br>                data = &#123;<br>                <span class="hljs-attr">code</span>: <span class="hljs-number">0</span>,<br>                <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;登录成功&#x27;</span>,<br>                <span class="hljs-attr">token</span>: token<br>                <span class="hljs-comment">//前端获取token后存储在localStroage中,</span><br>                <span class="hljs-comment">//**调用接口时 设置axios(ajax)请求头Authorization的格式为`Bearer ` +token</span><br>                &#125;<br>                res.<span class="hljs-title function_">send</span>(data)<br>            &#125;)<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            data = &#123;<br>                <span class="hljs-attr">code</span>: <span class="hljs-number">1</span>,<br>                <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;登录失败 &#x27;</span><br>            &#125;<br>            res.<span class="hljs-title function_">send</span>(data)<br>        &#125;<br>    &#125;);<br>&#125;);<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = userRouter<br></code></pre></td></tr></table></figure>
+<p><a name="c3e2573a"></a></p>
+<h2 id="3-token-Vue前端相关代码"><a href="#3-token-Vue前端相关代码" class="headerlink" title="3. token Vue前端相关代码"></a>3. token Vue前端相关代码</h2><ul>
+<li><p>登录后获取token</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript">axios.<span class="hljs-title function_">post</span>(<span class="hljs-string">&quot;http://localhost:3000/login&quot;</span>)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;login返回的数据&#x27;</span>);<br>    <span class="hljs-keyword">if</span> (res.<span class="hljs-property">data</span>.<span class="hljs-property">code</span> == <span class="hljs-number">0</span>) &#123;<br>      <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;登录成功&#x27;</span>)<br>      <span class="hljs-comment">//存储token</span><br>      sessionStorage.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;token&quot;</span>,res.<span class="hljs-property">data</span>.<span class="hljs-property">token</span>)<br>    &#125;<br>  &#125;);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>前端请求携带token</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-attr">methods</span>: &#123;<br>  <span class="hljs-keyword">async</span> <span class="hljs-title function_">getList</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">let</span> token = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;token&quot;</span>);<br>    <span class="hljs-keyword">if</span> (token) &#123;<br>      <span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;http://localhost:5000/cart&quot;</span>, &#123;<br>        <span class="hljs-attr">headers</span>: &#123;<br>          <span class="hljs-title class_">Authorization</span>: <span class="hljs-string">&quot;Bearer &quot;</span> + <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;token&quot;</span>),<br>        &#125;,<br>      &#125;);<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">list</span> = res.<span class="hljs-property">data</span>.<span class="hljs-property">list</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;请登录&quot;</span>);<br>    &#125;<br>  &#125;,<br>&#125;,<br></code></pre></td></tr></table></figure></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>token的使用</div>
+      <div>http://example.com/学习/vue/22.token的使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年4月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/vue/23.vuex/" title="vuex">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vuex</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/vue/19-axios%E7%9A%84%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85/" title="axios的二次封装">
+                        <span class="hidden-mobile">axios的二次封装</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

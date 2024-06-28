@@ -1,0 +1,720 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1.axios 简介axios 是一个基于Promise 用于浏览器和 nodejs 的 HTTP 客户端，它本身具有以下特征：  从浏览器中创建 XMLHttpRequest 从 node.js 发出 http 请求 支持 Promise API 拦截请求和响应 转换请求和响应数据 取消请求 自动转换JSON数据 客户端支持防止 CSRF&#x2F;XSRF   2.axios 安装使用 np">
+<meta property="og:type" content="article">
+<meta property="og:title" content="axios的二次封装">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/vue/19-axios%E7%9A%84%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="1.axios 简介axios 是一个基于Promise 用于浏览器和 nodejs 的 HTTP 客户端，它本身具有以下特征：  从浏览器中创建 XMLHttpRequest 从 node.js 发出 http 请求 支持 Promise API 拦截请求和响应 转换请求和响应数据 取消请求 自动转换JSON数据 客户端支持防止 CSRF&#x2F;XSRF   2.axios 安装使用 np">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668330351345-af6205d1-f85d-4894-b166-f6dbd93437e0.png#averageHue=%23f1f0f0&clientId=u6949adbf-a61f-4&from=paste&height=286&id=u77dd0174&name=image.png&originHeight=515&originWidth=2560&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3962183&status=done&style=none&taskId=u731e702e-bf06-4bb0-91d4-930ce0ccc0a&title=&width=1422.2222598982455">
+<meta property="article:published_time" content="2021-04-28T05:03:47.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:44:22.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668330351345-af6205d1-f85d-4894-b166-f6dbd93437e0.png#averageHue=%23f1f0f0&clientId=u6949adbf-a61f-4&from=paste&height=286&id=u77dd0174&name=image.png&originHeight=515&originWidth=2560&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3962183&status=done&style=none&taskId=u731e702e-bf06-4bb0-91d4-930ce0ccc0a&title=&width=1422.2222598982455">
+  
+  
+  
+  <title>axios的二次封装 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="axios的二次封装"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-28 13:03" pubdate>
+          2021年4月28日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          70 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">axios的二次封装</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="ZAbD7"></a></p>
+<h1 id="1-axios-简介"><a href="#1-axios-简介" class="headerlink" title="1.axios 简介"></a>1.axios 简介</h1><p>axios 是一个基于Promise 用于浏览器和 nodejs 的 HTTP 客户端，它本身具有以下特征：</p>
+<ol>
+<li>从浏览器中创建 XMLHttpRequest</li>
+<li>从 node.js 发出 http 请求</li>
+<li>支持 Promise API</li>
+<li>拦截请求和响应</li>
+<li>转换请求和响应数据</li>
+<li>取消请求</li>
+<li>自动转换JSON数据</li>
+<li>客户端支持防止 CSRF&#x2F;XSRF</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668330351345-af6205d1-f85d-4894-b166-f6dbd93437e0.png#averageHue=%23f1f0f0&clientId=u6949adbf-a61f-4&from=paste&height=286&id=u77dd0174&name=image.png&originHeight=515&originWidth=2560&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3962183&status=done&style=none&taskId=u731e702e-bf06-4bb0-91d4-930ce0ccc0a&title=&width=1422.2222598982455" srcset="/img/loading.gif" lazyload alt="image.png"><br><a name="ZNB8b"></a></p>
+<h1 id="2-axios-安装"><a href="#2-axios-安装" class="headerlink" title="2.axios 安装"></a>2.axios 安装</h1><p>使用 npm:<br />npm install axios<br />使用 yarn:<br />yarn install axios<br />使用 cdn:<br /><script src="[https://unpkg.com/axios/dist/axios.min.js"></script>](<a target="_blank" rel="noopener" href="https://unpkg.com/axios/dist/axios.min.js%22%3E">https://unpkg.com/axios/dist/axios.min.js&quot;&gt;</a></script>)<br><a name="AzSnM"></a></p>
+<h1 id="3-什么是RESTful-了解即可"><a href="#3-什么是RESTful-了解即可" class="headerlink" title="3.什么是RESTful (了解即可)"></a>3.什么是RESTful (了解即可)</h1><ol>
+<li>RESTful 是目前最流行的 API 设计规范，用于 Web 数据接口的设计。</li>
+<li>RESTful 的核心思想就是，客户端发出的数据操作指令都是”动词 + 宾语”的结构。</li>
+</ol>
+<p>	</p>
+<p>比如，GET &#x2F;articles这个命令，GET是动词，&#x2F;articles是宾语</p>
+<p>动词通常就是五种 HTTP 方法，对应 CRUD 操作。</p>
+<ol>
+<li>GET：读取（Read）</li>
+<li>POST：新建（Create）</li>
+<li>PUT：更新（Update）</li>
+<li>PATCH：更新（Update），通常是部分更新</li>
+<li>DELETE：删除（Delete）</li>
+</ol>
+<p>更多RESTful的风格参考下面网址：RESTful API:   最佳实践<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2018/10/restful-api-best-practices.html">http://www.ruanyifeng.com/blog/2018/10/restful-api-best-practices.html</a></p>
+<p><a name="K4Dxh"></a></p>
+<h1 id="4-为什么会出现Restful-了解即可"><a href="#4-为什么会出现Restful-了解即可" class="headerlink" title="4.为什么会出现Restful (了解即可)"></a>4.为什么会出现Restful (了解即可)</h1><p>在Restful之前的操作：<br /><a target="_blank" rel="noopener" href="http://127.0.0.1/user/query/1">http://127.0.0.1/user/query/1</a>     GET 根据用户id查询用户数据<br /><a target="_blank" rel="noopener" href="http://127.0.0.1/user/save">http://127.0.0.1/user/save</a>           POST 新增用户<br /><a target="_blank" rel="noopener" href="http://127.0.0.1/user/update">http://127.0.0.1/user/update</a>       POST 修改用户信息<br /><a target="_blank" rel="noopener" href="http://127.0.0.1/user/delete/1">http://127.0.0.1/user/delete/1</a>      GET&#x2F;POST 删除用户信息</p>
+<p>RESTful用法：<br /><a target="_blank" rel="noopener" href="http://127.0.0.1/user/1">http://127.0.0.1/user/1</a>     GET 根据用户id查询用户数据<br /><a target="_blank" rel="noopener" href="http://127.0.0.1/user">http://127.0.0.1/user</a>       POST 新增用户<br /><a target="_blank" rel="noopener" href="http://127.0.0.1/user">http://127.0.0.1/user</a>      PUT 修改用户信息<br /><a target="_blank" rel="noopener" href="http://127.0.0.1/user">http://127.0.0.1/user</a>     DELETE 删除用户信息</p>
+<p>之前的操作是没有问题的,大神认为是有问题的,有什么问题呢?<br />你每次请求的接口或者地址,都在做描述,例如查询的时候用了query,新增的时候用了save,其实完全没有这个必要,我使用了get请求,就是查询.使用post请求,就是新增的请求,我的意图很明显,完全没有必要做描述,这就是为什么有了restful.<br><a name="alDo7"></a></p>
+<h1 id="5-Axios-各种请求方式传递参数格式"><a href="#5-Axios-各种请求方式传递参数格式" class="headerlink" title="5.Axios 各种请求方式传递参数格式"></a>5.Axios 各种请求方式传递参数格式</h1><p>get delete 方法较为不同<br />get请求方式将需要入参的数据作为 params 属性的值，最后整体作为参数传递<br />delete请求方式将需要入参的数据作为 data 属性的值，最后整体作为参数传递<br />axios.get(url[, config])    GET 根据用户id查询用户数据<br />axios.post(url[, data[, config]])   POST 新增用户<br />axios.put(url[, data[, config]])   PUT 修改用户信息<br />axios.delete(url[, config])  DELETE 删除用户信息<br />axios.patch(url[, data[, config]])   PATCH 修改用户部分信息</p>
+<p><a name="ffAm8"></a></p>
+<h1 id="6-Axios-post方式：-新增信息"><a href="#6-Axios-post方式：-新增信息" class="headerlink" title="6.Axios post方式： 新增信息"></a>6.Axios post方式： 新增信息</h1><p>前端代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript">===============================前端代码：<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 新增</span><br><span class="hljs-comment">*/</span><br><span class="hljs-title function_">addProduct</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">$axios</span>.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;http://127.0.0.1:7001/product&#x27;</span>,&#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;尔康&#x27;</span>,<br>    <span class="hljs-attr">price</span>: <span class="hljs-string">&#x27;10&#x27;</span><br>  &#125;)<br>    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">data</span>);<br>    &#125;)<br>    .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">err</span>=&gt;</span>&#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err);<br>    &#125;)<br>&#125;,<br><br></code></pre></td></tr></table></figure>
+
+<p>express.js 对应路由</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">router.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/product&#x27;</span>,controller.<span class="hljs-property">product</span>.<span class="hljs-property">create</span>)<br></code></pre></td></tr></table></figure>
+
+<p>后端controller控制器<br />需要在入口文件中配置post的接收参数的配置项<br />如果是express-generator不需要手动配置，如果是express需要手动配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript">app.<span class="hljs-title function_">use</span>(express.<span class="hljs-title function_">json</span>()); <span class="hljs-comment">// 以json的格式传递</span><br>app.<span class="hljs-title function_">use</span>(express.<span class="hljs-title function_">urlencoded</span>(&#123;<span class="hljs-attr">extended</span>:<span class="hljs-literal">false</span>&#125;)); <span class="hljs-comment">// 以urlencoded的格式传递</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 新增商品</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">async</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> &#123; ctx &#125; = <span class="hljs-variable language_">this</span>;<br>    <span class="hljs-keyword">let</span> data;<br>    <span class="hljs-keyword">let</span> productInfo = ctx.<span class="hljs-property">request</span>.<span class="hljs-property">body</span><br>    <span class="hljs-keyword">let</span> result = <span class="hljs-keyword">await</span> ctx.<span class="hljs-property">service</span>.<span class="hljs-property">product</span>.<span class="hljs-title function_">create</span>(productInfo)<br>    <span class="hljs-keyword">if</span> (result)&#123;<br>        data = &#123;<br>            <span class="hljs-attr">code</span>: <span class="hljs-number">1</span>,<br>            <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;添加成功&#x27;</span><br>        &#125;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        data = &#123;<br>            <span class="hljs-attr">code</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;添加失败&#x27;</span><br>        &#125;<br>    &#125;<br>    ctx.<span class="hljs-property">body</span> = data;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>后端service</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 新增商品</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">async</span> <span class="hljs-title function_">create</span>(<span class="hljs-params">data</span>) &#123;<br>    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">app</span>.<span class="hljs-property">mysql</span>.<span class="hljs-title function_">insert</span>(<span class="hljs-string">&#x27;product&#x27;</span>, data);<br>    <span class="hljs-keyword">return</span> result.<span class="hljs-property">affectedRows</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="FsXmE"></a></p>
+<h1 id="7-Axios-post方式：-新增信息"><a href="#7-Axios-post方式：-新增信息" class="headerlink" title="7.Axios post方式： 新增信息"></a>7.Axios post方式： 新增信息</h1><p>如果和其它后台配合,后台说接不到数据,可参考下面代码 （了解即可）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript">axios.<span class="hljs-title function_">post</span>(<span class="hljs-string">&quot;./api/addUser.php&quot;</span>, &#123;<br>    <span class="hljs-attr">username</span>: $(<span class="hljs-string">&quot;.username&quot;</span>).<span class="hljs-title function_">val</span>(),<br>    <span class="hljs-attr">pwd</span>: $(<span class="hljs-string">&quot;.pwd&quot;</span>).<span class="hljs-title function_">val</span>(),<br>    <span class="hljs-attr">age</span>: $(<span class="hljs-string">&quot;.age&quot;</span>).<span class="hljs-title function_">val</span>()<br>&#125;, &#123;<br>    <span class="hljs-attr">headers</span>: &#123;<br>        <span class="hljs-string">&#x27;Content-type&#x27;</span>: <span class="hljs-string">&#x27;application/x-www-form-urlencoded&#x27;</span><br>    &#125;,<br>    <span class="hljs-attr">transformRequest</span>: [<span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;<br>        <span class="hljs-keyword">let</span> ret = <span class="hljs-string">&#x27;&#x27;</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> it <span class="hljs-keyword">in</span> data) &#123;<br>            ret += <span class="hljs-built_in">encodeURIComponent</span>(it) + <span class="hljs-string">&#x27;=&#x27;</span> + <span class="hljs-built_in">encodeURIComponent</span>(data[it]) + <span class="hljs-string">&#x27;&amp;&#x27;</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> ret<br>    &#125;]<br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">data</span>);<br>&#125;)<br><br></code></pre></td></tr></table></figure>
+<p><a name="uqyXy"></a></p>
+<h1 id="8-Axios-delete方式：-删除信息"><a href="#8-Axios-delete方式：-删除信息" class="headerlink" title="8.Axios delete方式： 删除信息"></a>8.Axios delete方式： 删除信息</h1><p>前端</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 删除</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title function_">delProduct</span>(<span class="hljs-params">id</span>)&#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">$axios</span>.<span class="hljs-title function_">delete</span>(<span class="hljs-string">&#x27;http://127.0.0.1:7001/product&#x27;</span>,&#123;<br>        <span class="hljs-attr">params</span>: &#123;<br>            id<br>        &#125;<br>    &#125;)<br>    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">data</span>);<br>    &#125;)<br>    .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">err</span>=&gt;</span>&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err);<br>    &#125;)<br>&#125;,<br><br></code></pre></td></tr></table></figure>
+
+<p>express对应路由：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">router.<span class="hljs-title function_">delete</span>(<span class="hljs-string">&#x27;/product&#x27;</span>,controller.<span class="hljs-property">product</span>.<span class="hljs-property">delete</span>)<br></code></pre></td></tr></table></figure>
+
+<p>后端</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 删除商品</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">async</span> <span class="hljs-title function_">delete</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> &#123; ctx &#125; = <span class="hljs-variable language_">this</span>;<br>    <span class="hljs-keyword">let</span> data;<br>    <span class="hljs-keyword">let</span> id = ctx.<span class="hljs-property">query</span>.<span class="hljs-property">id</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(id)<br>    <span class="hljs-keyword">let</span> result = <span class="hljs-keyword">await</span> ctx.<span class="hljs-property">service</span>.<span class="hljs-property">product</span>.<span class="hljs-title function_">delete</span>(id)<br>    <span class="hljs-keyword">if</span> (result)&#123;<br>        data = &#123;<br>            <span class="hljs-attr">code</span>: <span class="hljs-number">1</span>,<br>            <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;删除成功&#x27;</span><br>        &#125;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        data = &#123;<br>            <span class="hljs-attr">code</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;删除失败&#x27;</span><br>        &#125;<br>    &#125;<br>    ctx.<span class="hljs-property">body</span> = data;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 删除商品</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">async</span> <span class="hljs-title function_">delete</span>(<span class="hljs-params">id</span>) &#123;<br>    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">app</span>.<span class="hljs-property">mysql</span>.<span class="hljs-title function_">delete</span>(<span class="hljs-string">&#x27;product&#x27;</span>, &#123;id&#125;);<br>    <span class="hljs-keyword">return</span> result.<span class="hljs-property">affectedRows</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p><a name="luNYN"></a></p>
+<h1 id="9-Axios-get方式：-查询信息"><a href="#9-Axios-get方式：-查询信息" class="headerlink" title="9.Axios get方式： 查询信息"></a>9.Axios get方式： 查询信息</h1><p>前端</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript">axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/api/product&#x27;</span>, &#123;<br>    <span class="hljs-attr">params</span>: &#123;<br>        <span class="hljs-attr">id</span>: <span class="hljs-number">5</span><br>    &#125;<br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">data</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>express路由</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript">router.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/product&#x27;</span>,controller.<span class="hljs-property">product</span>.<span class="hljs-property">selectAll</span>)<br>router.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/product1&#x27;</span>,controller.<span class="hljs-property">product</span>.<span class="hljs-property">selectId</span>)<br></code></pre></td></tr></table></figure>
+
+<p>后端</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 查询商品-----控制器controller</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">async</span> <span class="hljs-title function_">selectAll</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> &#123; ctx &#125; = <span class="hljs-variable language_">this</span>;<br>    <span class="hljs-keyword">let</span> data;<br>    <span class="hljs-keyword">let</span> result = <span class="hljs-keyword">await</span> ctx.<span class="hljs-property">service</span>.<span class="hljs-property">product</span>.<span class="hljs-title function_">selectAll</span>()<br>    <span class="hljs-keyword">if</span> (result)&#123;<br>        data = &#123;<br>            <span class="hljs-attr">code</span>: <span class="hljs-number">1</span>,<br>            <span class="hljs-attr">list</span>: result<br>        &#125;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        data = &#123;<br>            <span class="hljs-attr">code</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;没有数据&#x27;</span><br>        &#125;<br>    &#125;<br>    ctx.<span class="hljs-property">body</span> = data;<br>&#125;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 查询指定id的商品</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">async</span> <span class="hljs-title function_">selectId</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> &#123; ctx &#125; = <span class="hljs-variable language_">this</span>;<br>    <span class="hljs-keyword">let</span> data;<br>    <span class="hljs-keyword">let</span> id = ctx.<span class="hljs-property">query</span>.<span class="hljs-property">id</span>;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(id);<br>    <span class="hljs-keyword">let</span> result = <span class="hljs-keyword">await</span> ctx.<span class="hljs-property">service</span>.<span class="hljs-property">product</span>.<span class="hljs-title function_">selectId</span>(id)<br>    <span class="hljs-keyword">if</span> (result)&#123;<br>        data = &#123;<br>            <span class="hljs-attr">code</span>: <span class="hljs-number">1</span>,<br>            <span class="hljs-attr">list</span>: result<br>        &#125;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        data = &#123;<br>            <span class="hljs-attr">code</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;没有数据&#x27;</span><br>        &#125;<br>    &#125;<br>    ctx.<span class="hljs-property">body</span> = data;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"> <span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 查询商品--------服务-service</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">async</span> <span class="hljs-title function_">selectAll</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">app</span>.<span class="hljs-property">mysql</span>.<span class="hljs-title function_">select</span>(<span class="hljs-string">&#x27;product&#x27;</span>);<br>    <span class="hljs-keyword">return</span> result<br>&#125;<br> <span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 查询指定id的商品</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">async</span> <span class="hljs-title function_">selectId</span>(<span class="hljs-params">id</span>) &#123;<br>    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">app</span>.<span class="hljs-property">mysql</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;product&#x27;</span>,&#123;id&#125;);<br>    <span class="hljs-keyword">return</span> result<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="bu5hI"></a></p>
+<h1 id="10-Axios-patch方式：-修改部分信息-了解"><a href="#10-Axios-patch方式：-修改部分信息-了解" class="headerlink" title="10.Axios patch方式： 修改部分信息(了解)"></a>10.Axios patch方式： 修改部分信息(了解)</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript">axios.<span class="hljs-title function_">patch</span>(<span class="hljs-string">&quot;./product&quot;</span>, &#123;<br>    <span class="hljs-comment">// 只修改年龄</span><br>    <span class="hljs-attr">username</span>: $(<span class="hljs-string">&quot;.username&quot;</span>).<span class="hljs-title function_">val</span>(),<br>    <span class="hljs-attr">age</span>: $(<span class="hljs-string">&quot;.age&quot;</span>).<span class="hljs-title function_">val</span>()<br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">data</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p><a name="jCzbR"></a></p>
+<h1 id="11-Axios-错误处理"><a href="#11-Axios-错误处理" class="headerlink" title="11.Axios  错误处理"></a>11.Axios  错误处理</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript">axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;/index/banner&quot;</span>)<br>.<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">data</span>);<br>&#125;)<br>.<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err);<br>&#125;)<br><br></code></pre></td></tr></table></figure>
+<p><a name="Nn5U7"></a></p>
+<h1 id="12-axios-执行多个并发请求"><a href="#12-axios-执行多个并发请求" class="headerlink" title="12.axios 执行多个并发请求"></a>12.axios 执行多个并发请求</h1><p>axios.all()、axios.spread()两个辅助函数用于处理同时发送多个请求，可以实现在多个请求都完成后再执行一些逻辑。(比如首页中要同时请求banner和热销商品的数据)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-attr">methods</span>:&#123;<br>    <span class="hljs-title function_">getBanner</span>(<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-keyword">return</span> axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;/index/banner&quot;</span>)<br>    &#125;,<br>    <span class="hljs-title function_">getGoods</span>(<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-keyword">return</span> axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;/index/goods&quot;</span>)<br>    &#125;<br>&#125;,<br><span class="hljs-title function_">created</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">let</span> self = <span class="hljs-variable language_">this</span>;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;发起请求&#x27;</span>)<br>    axios.<span class="hljs-title function_">all</span>([self.<span class="hljs-title function_">getBanner</span>(),self.<span class="hljs-title function_">getGoods</span>()])<br>    .<span class="hljs-title function_">then</span>(axios.<span class="hljs-title function_">spread</span>(<span class="hljs-function">(<span class="hljs-params">banner,goods</span>)=&gt;</span>&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;数据都得到了&#x27;</span>);<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(banner)<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(goods)<br>    &#125;))<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a name="HcM3O"></a></p>
+<h1 id="13-axios-请求拦截器"><a href="#13-axios-请求拦截器" class="headerlink" title="13.axios 请求拦截器"></a>13.axios 请求拦截器</h1><p>在请求或响应被 then 或 catch 处理前拦截它们。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 添加请求拦截器</span><br>axios.<span class="hljs-property">interceptors</span>.<span class="hljs-property">request</span>.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">config</span>) &#123;<br>  config.<span class="hljs-property">headers</span>.<span class="hljs-property">Authorization</span> = <span class="hljs-string">&quot;Bearer &quot;</span>+<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&#x27;token&#x27;</span>);<br>  <span class="hljs-comment">// 在发送请求之前做些什么</span><br>  <span class="hljs-keyword">return</span> config;<br>&#125;, <span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) &#123;<br>  <span class="hljs-comment">// 对请求错误做些什么</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p><a name="qhQKP"></a></p>
+<h1 id="14-axios-响应拦截器"><a href="#14-axios-响应拦截器" class="headerlink" title="14.axios 响应拦截器"></a>14.axios 响应拦截器</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 添加响应拦截器</span><br><span class="hljs-comment">// axios请求拦截器</span><br>axios.<span class="hljs-property">interceptors</span>.<span class="hljs-property">response</span>.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) &#123;<br>    <span class="hljs-comment">// 对响应数据做点什么</span><br>    <span class="hljs-keyword">if</span>(response.<span class="hljs-property">data</span>.<span class="hljs-property">state</span> == <span class="hljs-number">401</span>)&#123;<br>      	localStroage.<span class="hljs-title function_">clear</span>();<br>      	<span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-title function_">reload</span>();<br>    &#125;<br>  	<span class="hljs-keyword">return</span> response<br>  &#125;, <span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;error&#x27;</span>,error.<span class="hljs-property">status</span>)<br>    <span class="hljs-comment">// 对响应错误做点什么</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);<br>&#125;);<br><br></code></pre></td></tr></table></figure>
+<p><a name="C5TNB"></a></p>
+<h1 id="15-axios的实例化和默认设置"><a href="#15-axios的实例化和默认设置" class="headerlink" title="15.axios的实例化和默认设置"></a>15.axios的实例化和默认设置</h1><p>可以使用自定义配置新建一个 axios 实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 语法： axios.create([config])</span><br><br><span class="hljs-comment">// 案例：</span><br><span class="hljs-keyword">const</span> instance = axios.<span class="hljs-title function_">create</span>(&#123;<br>  <span class="hljs-attr">baseURL</span>: <span class="hljs-string">&#x27;https://some-domain.com/api/&#x27;</span>,<br>  <span class="hljs-attr">timeout</span>: <span class="hljs-number">1000</span>,<br>  <span class="hljs-attr">headers</span>: &#123;<span class="hljs-string">&#x27;X-Custom-Header&#x27;</span>: <span class="hljs-string">&#x27;foobar&#x27;</span>&#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>配置默认值<br />你可以指定将被用在各个请求的配置默认值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 全局的 axios 默认值</span><br>axios.<span class="hljs-property">defaults</span>.<span class="hljs-property">baseURL</span> = <span class="hljs-string">&#x27;https://api.example.com&#x27;</span>;<br>axios.<span class="hljs-property">defaults</span>.<span class="hljs-property">headers</span>.<span class="hljs-property">common</span>[<span class="hljs-string">&#x27;Authorization&#x27;</span>] = <span class="hljs-variable constant_">AUTH_TOKEN</span>;<br>axios.<span class="hljs-property">defaults</span>.<span class="hljs-property">headers</span>.<span class="hljs-property">post</span>[<span class="hljs-string">&#x27;Content-Type&#x27;</span>] = <span class="hljs-string">&#x27;application/x-www-form-urlencoded&#x27;</span>;<br><br><span class="hljs-comment">// 自定义实例默认值</span><br><span class="hljs-keyword">const</span> instance = axios.<span class="hljs-title function_">create</span>(&#123;<br>  <span class="hljs-attr">baseURL</span>: <span class="hljs-string">&#x27;https://api.example.com&#x27;</span><br>&#125;);<br>instance.<span class="hljs-property">defaults</span>.<span class="hljs-property">headers</span>.<span class="hljs-property">common</span>[<span class="hljs-string">&#x27;Authorization&#x27;</span>] = <span class="hljs-variable constant_">AUTH_TOKEN</span>;<br><br></code></pre></td></tr></table></figure>
+<p><a name="YYkqj"></a></p>
+<h1 id="16-Vue项目中API封装"><a href="#16-Vue项目中API封装" class="headerlink" title="16.Vue项目中API封装"></a>16.Vue项目中API封装</h1><p>api&#x2F;config.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span><br><br><span class="hljs-keyword">const</span> http = axios.<span class="hljs-title function_">create</span>(&#123;<br>    <span class="hljs-attr">baseURL</span>: <span class="hljs-string">&#x27;http://127.0.0.1:7001&#x27;</span>,<br>    <span class="hljs-attr">timeout</span>: <span class="hljs-number">1000</span>,<br>    <span class="hljs-attr">headers</span>: &#123;<span class="hljs-string">&#x27;X-Custom-Header&#x27;</span>: <span class="hljs-string">&#x27;foobar&#x27;</span>&#125;<br>&#125;);<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> http<br><br></code></pre></td></tr></table></figure>
+
+<p>api&#x2F;product.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./config&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">productList</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">return</span> axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/product&#x27;</span>)<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">addProduct</span>(<span class="hljs-params">params</span>)&#123;<br>    <span class="hljs-keyword">return</span> axios.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/product&#x27;</span>,params)<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>在express中接收数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 在express中：接收数据：     </span><br>	ctx.<span class="hljs-property">query</span>.<span class="hljs-property">id</span><br>	ctx.<span class="hljs-property">params</span>.<span class="hljs-property">id</span><br>	ctx.<span class="hljs-property">request</span>.<span class="hljs-property">body</span><br></code></pre></td></tr></table></figure>
+
+<p>api&#x2F;product.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123;productList,addProduct&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/api/product.js&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Home&#x27;</span>,<br>  <span class="hljs-title function_">created</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title function_">productList</span>()<br>    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">data</span>);<br>    &#125;)<br>    .<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">err</span>)=&gt;</span>&#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err);<br>    &#125;)<br>  &#125;,<br>  <span class="hljs-attr">methods</span>: &#123;<br>    <span class="hljs-title function_">add</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-keyword">let</span> params = &#123;<br>         <span class="hljs-string">&quot;title&quot;</span>:<span class="hljs-number">1</span>,<br>         <span class="hljs-string">&quot;price&quot;</span>: <span class="hljs-number">2</span><br>      &#125;<br>      <span class="hljs-title function_">addProduct</span>(params)<br>      .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">data</span>);<br>      &#125;)<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>axios的二次封装</div>
+      <div>http://example.com/学习/vue/19-axios的二次封装/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年4月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/vue/22.token%E7%9A%84%E4%BD%BF%E7%94%A8/" title="token的使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">token的使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/vue/20-Vue-config-js%E7%9A%84%E9%85%8D%E7%BD%AE/" title="Vue.config.js的配置">
+                        <span class="hidden-mobile">Vue.config.js的配置</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

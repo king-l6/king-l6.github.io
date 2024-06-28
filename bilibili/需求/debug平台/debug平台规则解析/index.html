@@ -1,0 +1,754 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="debug平台-规则解析1.1、评估schema获取需求之前版本是有前端写死计算获得，后续评估的schema托管到后端， 目前讨论，在paladin上托管yaml文件的方式 前端实现将yaml解析的数据存到store中，在此页面加载数据的时候直接请求存下来，然后点击打标界面的时候通过standards调用数据 12345678910111213141516171819202122232425262">
+<meta property="og:type" content="article">
+<meta property="og:title" content="debug平台规则解析">
+<meta property="og:url" content="http://example.com/bilibili/%E9%9C%80%E6%B1%82/debug%E5%B9%B3%E5%8F%B0/debug%E5%B9%B3%E5%8F%B0%E8%A7%84%E5%88%99%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="debug平台-规则解析1.1、评估schema获取需求之前版本是有前端写死计算获得，后续评估的schema托管到后端， 目前讨论，在paladin上托管yaml文件的方式 前端实现将yaml解析的数据存到store中，在此页面加载数据的时候直接请求存下来，然后点击打标界面的时候通过standards调用数据 12345678910111213141516171819202122232425262">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://secure2.wostatic.cn/static/hABwRrL3zFVP2Vmx3MXdhs/image.png?auth_key=1719477598-3mqLSLxRh2fw9SSEv2UFyn-0-0a33033fe7e1eaca984237f4a4489b1c">
+<meta property="og:image" content="https://secure2.wostatic.cn/static/cdHDXz1jcFcHfYJ5fiLwQr/image.png?auth_key=1719477856-sSwRNaAoEv4PisgTZ16uJ9-0-5a5af50499ca4134b2f91383843370d4">
+<meta property="article:published_time" content="2024-06-27T08:33:46.000Z">
+<meta property="article:modified_time" content="2024-06-28T07:34:51.839Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://secure2.wostatic.cn/static/hABwRrL3zFVP2Vmx3MXdhs/image.png?auth_key=1719477598-3mqLSLxRh2fw9SSEv2UFyn-0-0a33033fe7e1eaca984237f4a4489b1c">
+  
+  
+  
+  <title>debug平台规则解析 - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="debug平台规则解析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-27 16:33" pubdate>
+          2024年6月27日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          16k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          130 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">debug平台规则解析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="debug平台-规则解析"><a href="#debug平台-规则解析" class="headerlink" title="debug平台-规则解析"></a><strong>debug平台-规则解析</strong></h1><h3 id="1-1、评估schema获取"><a href="#1-1、评估schema获取" class="headerlink" title="1.1、评估schema获取"></a><strong>1.1、评估schema获取</strong></h3><h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a><strong>需求</strong></h4><p>之前版本是有前端写死计算获得，后续评估的schema托管到后端，</p>
+<p>目前讨论，在paladin上托管yaml文件的方式</p>
+<h4 id="前端实现"><a href="#前端实现" class="headerlink" title="前端实现"></a><strong>前端实现</strong></h4><p>将yaml解析的数据存到store中，在此页面加载数据的时候直接请求存下来，然后点击打标界面的时候通过standards调用数据</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">import</span> &#123; defineStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;pinia&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">AMessage</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;ant-design-vue/es/message&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-variable constant_">YAML</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;yaml&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-variable constant_">TIANMA_FEMALE_STANDARD</span>, <span class="hljs-variable constant_">STROY_STANDARD</span>, <span class="hljs-variable constant_">TIANMA_MALE_STANDARD</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/const&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; getSchema &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../api&#x27;</span>;<br><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Option</span> &#123;<br>  <span class="hljs-attr">label</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">value</span>: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>;<br>&#125;<br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">When</span> &#123;<br>  <span class="hljs-attr">type</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">value</span>: <span class="hljs-built_in">any</span>;<br>&#125;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Standard</span> &#123;<br>  <span class="hljs-attr">group</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">description</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-keyword">default</span>?: <span class="hljs-built_in">number</span>;<br>  extraOptions?: <span class="hljs-title class_">Option</span>[];<br>  when?: <span class="hljs-title class_">When</span>[];<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> standardOptions = [<br>  &#123; <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;天马-男性&#x27;</span>, <span class="hljs-attr">value</span>: <span class="hljs-variable constant_">TIANMA_MALE_STANDARD</span> &#125;,<br>  &#123; <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;天马-女性&#x27;</span>, <span class="hljs-attr">value</span>: <span class="hljs-variable constant_">TIANMA_FEMALE_STANDARD</span> &#125;,<br>  &#123; <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Story&#x27;</span>, <span class="hljs-attr">value</span>: <span class="hljs-variable constant_">STROY_STANDARD</span> &#125;,<br>];<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> standardTianmaOptions = [<br>  &#123; <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;天马-男性&#x27;</span>, <span class="hljs-attr">value</span>: <span class="hljs-variable constant_">TIANMA_MALE_STANDARD</span> &#125;,<br>  &#123; <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;天马-女性&#x27;</span>, <span class="hljs-attr">value</span>: <span class="hljs-variable constant_">TIANMA_FEMALE_STANDARD</span> &#125;,<br>];<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> standardMap = &#123;<br>  [<span class="hljs-variable constant_">TIANMA_MALE_STANDARD</span>]: <span class="hljs-string">&#x27;天马-男性&#x27;</span>,<br>  [<span class="hljs-variable constant_">TIANMA_FEMALE_STANDARD</span>]: <span class="hljs-string">&#x27;天马-女性&#x27;</span>,<br>  [<span class="hljs-variable constant_">STROY_STANDARD</span>]: <span class="hljs-string">&#x27;Story&#x27;</span>,<br>&#125; <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>;<br><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">StandardParams</span> &#123;<br>  <span class="hljs-attr">dim</span>: <span class="hljs-built_in">number</span> | <span class="hljs-literal">null</span>;<br>  <span class="hljs-attr">standard</span>: <span class="hljs-built_in">number</span> | <span class="hljs-literal">null</span>;<br>&#125;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">State</span> &#123;<br>  <span class="hljs-attr">loading</span>: <span class="hljs-built_in">boolean</span>;<br>  <span class="hljs-attr">tianmaMaleSchema</span>: <span class="hljs-built_in">any</span>[];<br>  <span class="hljs-attr">tianmaFeMaleSchema</span>: <span class="hljs-built_in">any</span>[];<br>  <span class="hljs-attr">storySchema</span>: <span class="hljs-built_in">any</span>[];<br>  <span class="hljs-attr">schemaMap</span>: <span class="hljs-built_in">any</span>;<br>&#125;<br><br><span class="hljs-keyword">const</span> useSchemaStore = <span class="hljs-title function_">defineStore</span>(&#123;<br>  <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;schema-store&#x27;</span>,<br>  <span class="hljs-attr">state</span>: (): <span class="hljs-function"><span class="hljs-params">State</span> =&gt;</span> (&#123;<br>    <span class="hljs-attr">loading</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">tianmaMaleSchema</span>: [],<br>    <span class="hljs-attr">tianmaFeMaleSchema</span>: [],<br>    <span class="hljs-attr">storySchema</span>: [],<br>    <span class="hljs-attr">schemaMap</span>: &#123;&#125;,<br>  &#125;),<br>  <span class="hljs-attr">getters</span>: &#123;&#125;,<br>  <span class="hljs-attr">actions</span>: &#123;<br>    <span class="hljs-keyword">async</span> <span class="hljs-title function_">fetchSchemaResult</span>(<span class="hljs-params">userType?: <span class="hljs-built_in">any</span></span>) &#123;<br>      <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">loading</span> = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">const</span> actions = [<br>          <span class="hljs-title function_">getSchema</span>(<span class="hljs-variable constant_">TIANMA_MALE_STANDARD</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">&#123; data &#125;</span>) =&gt;</span> &#123;<br>            <span class="hljs-variable language_">this</span>.<span class="hljs-property">tianmaMaleSchema</span> = <span class="hljs-variable constant_">YAML</span>.<span class="hljs-title function_">parse</span>(data);<br>          &#125;),<br>          <span class="hljs-title function_">getSchema</span>(<span class="hljs-variable constant_">STROY_STANDARD</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">&#123; data &#125;</span>) =&gt;</span> &#123;<br>            <span class="hljs-variable language_">this</span>.<span class="hljs-property">storySchema</span> = <span class="hljs-variable constant_">YAML</span>.<span class="hljs-title function_">parse</span>(data);<br>          &#125;),<br>          <span class="hljs-title function_">getSchema</span>(<span class="hljs-variable constant_">TIANMA_FEMALE_STANDARD</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">&#123; data &#125;</span>) =&gt;</span> &#123;<br>            <span class="hljs-variable language_">this</span>.<span class="hljs-property">tianmaFeMaleSchema</span> = <span class="hljs-variable constant_">YAML</span>.<span class="hljs-title function_">parse</span>(data);<br>          &#125;),<br>        ];<br>        <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(actions);<br>        <span class="hljs-comment">//</span><br>        <span class="hljs-keyword">if</span> (userType === <span class="hljs-number">3</span>) &#123;<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span> = &#123;&#125;;<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-property">tianmaMaleSchema</span>.<span class="hljs-title function_">concat</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tianmaFeMaleSchema</span>).<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item: Standard</span>) =&gt;</span> &#123;<br>            <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span>[item.<span class="hljs-property">key</span>]) &#123;<br>              <span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span>[item.<span class="hljs-property">key</span>] = item.<span class="hljs-property">name</span>;<br>            &#125;<br>          &#125;);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (userType === <span class="hljs-number">2</span>) &#123;<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span> = &#123;&#125;;<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-property">storySchema</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">story: Standard</span>) =&gt;</span> &#123;<br>            <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span>[story.<span class="hljs-property">key</span>]) &#123;<br>              <span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span>[story.<span class="hljs-property">key</span>] = story.<span class="hljs-property">name</span>;<br>            &#125;<br>          &#125;);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span> = &#123;&#125;;<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-property">tianmaMaleSchema</span><br>            .<span class="hljs-title function_">concat</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tianmaFeMaleSchema</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">storySchema</span>)<br>            .<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item: Standard</span>) =&gt;</span> &#123;<br>              <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span>[item.<span class="hljs-property">key</span>]) &#123;<br>                <span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span>[item.<span class="hljs-property">key</span>] = item.<span class="hljs-property">name</span>;<br>              &#125;<br>            &#125;);<br>        &#125;<br>      &#125; <span class="hljs-keyword">catch</span> (<span class="hljs-attr">error</span>: <span class="hljs-built_in">any</span>) &#123;<br>        <span class="hljs-title class_">AMessage</span>.<span class="hljs-title function_">error</span>(error.<span class="hljs-property">response</span>.<span class="hljs-property">data</span>.<span class="hljs-property">message</span>);<br>      &#125; <span class="hljs-keyword">finally</span> &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">loading</span> = <span class="hljs-literal">false</span>;<br>      &#125;<br>    &#125;,<br>    <span class="hljs-title function_">getStandard</span>(<span class="hljs-params">params: StandardParams, unFilter?: <span class="hljs-built_in">boolean</span></span>) &#123;<br>      <span class="hljs-keyword">const</span> <span class="hljs-title function_">processStandard</span> = (<span class="hljs-params">standard: Standard[]</span>) =&gt; (unFilter<br>        ? standard<br>        : standard.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">i</span>) =&gt;</span> (i.<span class="hljs-property">when</span> ? i.<span class="hljs-property">when</span>[<span class="hljs-number">0</span>].<span class="hljs-property">type</span> === <span class="hljs-string">&#x27;dim&#x27;</span> &amp;&amp; i.<span class="hljs-property">when</span>[<span class="hljs-number">0</span>].<span class="hljs-property">value</span>.<span class="hljs-title function_">includes</span>(params.<span class="hljs-property">dim</span>) : <span class="hljs-literal">true</span>)));<br>      <span class="hljs-keyword">const</span> standards = &#123;<br>        [<span class="hljs-variable constant_">TIANMA_MALE_STANDARD</span>]: <span class="hljs-title function_">processStandard</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tianmaMaleSchema</span>),<br>        [<span class="hljs-variable constant_">STROY_STANDARD</span>]: <span class="hljs-title function_">processStandard</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">storySchema</span>),<br>        [<span class="hljs-variable constant_">TIANMA_FEMALE_STANDARD</span>]: <span class="hljs-title function_">processStandard</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tianmaFeMaleSchema</span>),<br>      &#125; <span class="hljs-keyword">as</span> <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">number</span>, <span class="hljs-title class_">Standard</span>[]&gt;;<br>      <span class="hljs-keyword">return</span> standards[params?.<span class="hljs-property">standard</span> || <span class="hljs-number">0</span>];<br>    &#125;,<br>  &#125;,<br>&#125;);<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> useSchemaStore;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-2、用户类别"><a href="#1-2、用户类别" class="headerlink" title="1.2、用户类别"></a><strong>1.2、用户类别</strong></h3><h4 id="需求-1"><a href="#需求-1" class="headerlink" title="需求"></a><strong>需求</strong></h4><p><img src="https://secure2.wostatic.cn/static/hABwRrL3zFVP2Vmx3MXdhs/image.png?auth_key=1719477598-3mqLSLxRh2fw9SSEv2UFyn-0-0a33033fe7e1eaca984237f4a4489b1c" srcset="/img/loading.gif" lazyload></p>
+<p>可以根据左边的选择自动分类</p>
+<p>映射规则：</p>
+<ol>
+<li>天马-大盘，天马-固定500 &#x3D;&gt; 用户类别：大盘</li>
+<li>天马-低活，天马-低活-全链路日志 &#x3D;&gt; 用户类别：低活</li>
+<li>其他，维持原样</li>
+</ol>
+<h4 id="前端实现-1"><a href="#前端实现-1" class="headerlink" title="前端实现"></a><strong>前端实现</strong></h4><p>如下图1.1-2所示：</p>
+<p>第一步：编写Map对照数据</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">USER_MAP</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt; = &#123;<br>  [<span class="hljs-string">`<span class="hljs-subst">$&#123;BIZ_TYPE_TIANMA&#125;</span>#<span class="hljs-subst">$&#123;USER_TYPE_HIGH_ACTIVE&#125;</span>#<span class="hljs-subst">$&#123;<span class="hljs-number">0</span>&#125;</span>`</span>]: <span class="hljs-string">`<span class="hljs-subst">$&#123;USER_TYPE_HIGH_ACTIVE&#125;</span>`</span>,<br>  [<span class="hljs-string">`<span class="hljs-subst">$&#123;BIZ_TYPE_TIANMA&#125;</span>#<span class="hljs-subst">$&#123;USER_TYPE_DEFAULT_ACTIVE&#125;</span>#<span class="hljs-subst">$&#123;<span class="hljs-number">2</span>&#125;</span>`</span>]: <span class="hljs-string">`<span class="hljs-subst">$&#123;USER_TYPE_HIGH_ACTIVE&#125;</span>`</span>,<br>  [<span class="hljs-string">`<span class="hljs-subst">$&#123;BIZ_TYPE_TIANMA&#125;</span>#<span class="hljs-subst">$&#123;USER_TYPE_LOW_ACTIVE&#125;</span>#<span class="hljs-subst">$&#123;<span class="hljs-number">0</span>&#125;</span>`</span>]: <span class="hljs-string">`<span class="hljs-subst">$&#123;USER_TYPE_LOW_ACTIVE&#125;</span>`</span>,<br>  [<span class="hljs-string">`<span class="hljs-subst">$&#123;BIZ_TYPE_TIANMA&#125;</span>#<span class="hljs-subst">$&#123;USER_TYPE_LOW_ACTIVE&#125;</span>#<span class="hljs-subst">$&#123;<span class="hljs-number">1</span>&#125;</span>`</span>]: <span class="hljs-string">`<span class="hljs-subst">$&#123;USER_TYPE_LOW_ACTIVE&#125;</span>`</span>,<br>  [<span class="hljs-string">`<span class="hljs-subst">$&#123;BIZ_TYPE_STORY&#125;</span>#<span class="hljs-subst">$&#123;USER_TYPE_HIGH_ACTIVE&#125;</span>#<span class="hljs-subst">$&#123;<span class="hljs-number">0</span>&#125;</span>`</span>]: <span class="hljs-string">&#x27;&#x27;</span>,<br>  [<span class="hljs-string">`<span class="hljs-subst">$&#123;BIZ_TYPE_STORY&#125;</span>#<span class="hljs-subst">$&#123;USER_TYPE_LOW_ACTIVE&#125;</span>#<span class="hljs-subst">$&#123;<span class="hljs-number">0</span>&#125;</span>`</span>]: <span class="hljs-string">&#x27;&#x27;</span>,<br>&#125;;<br><br></code></pre></td></tr></table></figure>
+
+<p>第二步：使用pinia存储数据</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">import</span> &#123; defineStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;pinia&#x27;</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">State</span> &#123;<br>  <span class="hljs-attr">type</span>: <span class="hljs-built_in">string</span>;<br>&#125;<br><span class="hljs-keyword">const</span> useTypeStore = <span class="hljs-title function_">defineStore</span>(&#123;<br>  <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;user-type-store&#x27;</span>,<br>  <span class="hljs-attr">state</span>: (): <span class="hljs-function"><span class="hljs-params">State</span> =&gt;</span> (&#123;<br>    <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>  &#125;),<br>  <span class="hljs-attr">getters</span>: &#123;&#125;,<br>  <span class="hljs-attr">actions</span>: &#123;<br>    <span class="hljs-title function_">setType</span>(<span class="hljs-params">payload: <span class="hljs-built_in">string</span></span>) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">type</span> = payload;<br>    &#125;,<br>  &#125;,<br>&#125;);<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> useTypeStore;<br><br></code></pre></td></tr></table></figure>
+
+<p>第三步：在左侧change的时候将userType持久化到pinia</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">const</span> userType = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br><span class="hljs-keyword">const</span> typeStore = <span class="hljs-title function_">useTypeStore</span>();<br><span class="hljs-keyword">const</span> <span class="hljs-title function_">handleChange</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetchData</span>();<br>  userType.<span class="hljs-property">value</span> = <span class="hljs-variable constant_">USER_MAP</span>[<span class="hljs-string">`<span class="hljs-subst">$&#123;params.value.<span class="hljs-keyword">type</span>&#125;</span>#<span class="hljs-subst">$&#123;params.value.userActiveType&#125;</span>#<span class="hljs-subst">$&#123;params.value.hasLog&#125;</span>`</span> || <span class="hljs-number">0</span>];<br>  typeStore.<span class="hljs-title function_">setType</span>(userType.<span class="hljs-property">value</span>);<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;userType&#x27;</span>, userType.<span class="hljs-property">value</span>, typeStore.<span class="hljs-property">type</span>);<br>&#125;;<br><br></code></pre></td></tr></table></figure>
+
+<p>第四步：在弹框初始化的时候将params中的userType设置为pinia中的type值</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">const</span> typeStore = <span class="hljs-title function_">useTypeStore</span>();<br><span class="hljs-title function_">onMounted</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  ...<br>  params.<span class="hljs-property">value</span>.<span class="hljs-property">userType</span> = <span class="hljs-string">`<span class="hljs-subst">$&#123;typeStore.<span class="hljs-keyword">type</span>&#125;</span>`</span>;<br>  ...<br>  &#125;);Ï<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-3、打标Tab名称调整"><a href="#1-3、打标Tab名称调整" class="headerlink" title="1.3、打标Tab名称调整"></a><strong>1.3、打标Tab名称调整</strong></h3><h4 id="需求-2"><a href="#需求-2" class="headerlink" title="需求"></a><strong>需求</strong></h4><p>名称调整</p>
+<ol>
+<li>天马 &#x3D;&gt; 天马-男性</li>
+<li>女性 &#x3D;&gt; 天马-女性</li>
+<li>Story 维持不变</li>
+</ol>
+<h4 id="前端实现-2"><a href="#前端实现-2" class="headerlink" title="前端实现"></a><strong>前端实现</strong></h4><p>名称调整</p>
+<ol>
+<li>天马 &#x3D;&gt; 天马-男性</li>
+<li>女性 &#x3D;&gt; 天马-女性</li>
+<li>Story 维持不变</li>
+</ol>
+<h3 id="1-4、新增打标Tab自动定位"><a href="#1-4、新增打标Tab自动定位" class="headerlink" title="1.4、新增打标Tab自动定位"></a><strong>1.4、新增打标Tab自动定位</strong></h3><h4 id="需求-3"><a href="#需求-3" class="headerlink" title="需求"></a><strong>需求</strong></h4><p>根据用户Gender属性，点击用户维度的打标按钮，自动定位到对应的tab</p>
+<ol>
+<li>男性 &#x3D;&gt; 天马-男性</li>
+<li>女性 &#x3D;&gt; 天马-女性</li>
+</ol>
+<h4 id="前端实现-3"><a href="#前端实现-3" class="headerlink" title="前端实现"></a><strong>前端实现</strong></h4><p>第一步：编写Map对照数据</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">USERA_GENDER_MAP</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt; = &#123;<br>  男性: <span class="hljs-string">`<span class="hljs-subst">$&#123;TIANMA_MALE_STANDARD&#125;</span>`</span>,<br>  男: <span class="hljs-string">`<span class="hljs-subst">$&#123;TIANMA_MALE_STANDARD&#125;</span>`</span>,<br>  女性: <span class="hljs-string">`<span class="hljs-subst">$&#123;TIANMA_FEMALE_STANDARD&#125;</span>`</span>,<br>  女: <span class="hljs-string">`<span class="hljs-subst">$&#123;TIANMA_FEMALE_STANDARD&#125;</span>`</span>,<br>&#125;;<br><br></code></pre></td></tr></table></figure>
+
+<p>第二步：将接口<code>api/ai-debug/user</code>返回数据中的性别利用Map对象存到pinia中(此处删除了<strong>useHistoryUser.ts文件中的debounce，待考究</strong>)</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">const</span> userStore = <span class="hljs-title function_">useUserStore</span>();<br><span class="hljs-keyword">const</span> <span class="hljs-title function_">handleFetch</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-keyword">if</span> (params.<span class="hljs-property">value</span>.<span class="hljs-property">start</span> &amp;&amp; params.<span class="hljs-property">value</span>.<span class="hljs-property">end</span> &amp;&amp; params.<span class="hljs-property">value</span>.<span class="hljs-property">id</span>) &#123;<br>    <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetchUser</span>();<br>    <span class="hljs-comment">/** 将user的gender值存到pinia */</span><br>    <span class="hljs-keyword">const</span> genderTemp = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(userState.<span class="hljs-property">value</span>?.<span class="hljs-property">data</span>[<span class="hljs-number">0</span>].<span class="hljs-property">expData</span>)[<span class="hljs-string">&#x27;性别&#x27;</span>];<br>    userStore.<span class="hljs-title function_">setGender</span>(<span class="hljs-variable constant_">USERA_GENDER_MAP</span>[genderTemp]);<br>    <span class="hljs-title function_">fetchHistoryList</span>();<br>    <span class="hljs-comment">/** 此处因为所用的假接口必须传mid，故作此操作 */</span><br>    markStore.<span class="hljs-title function_">setParams</span>(&#123; ...params.<span class="hljs-property">value</span>, <span class="hljs-attr">page_num</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">page_size</span>: <span class="hljs-number">999</span> &#125;);<br>    markStore.<span class="hljs-title function_">getMarks</span>();<br>  &#125;<br>&#125;;<br><br><br></code></pre></td></tr></table></figure>
+
+<p>第三步：拿出pinia中存储的gender值，过滤掉目前数组中的gender值，并把gender值添加到数组的首位</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">handleCheckLocal</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-keyword">const</span> localStorageValue = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&#x27;mark-standard-order&#x27;</span>) || initialData.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;,&#x27;</span>);<br>  <span class="hljs-keyword">const</span> verifyRegExp = <span class="hljs-regexp">/^[1-3],[1-3],[1-3]$/</span>;<br>  <span class="hljs-keyword">if</span> (!verifyRegExp.<span class="hljs-title function_">test</span>(localStorageValue)) <span class="hljs-keyword">return</span> initialData;<br>  <span class="hljs-keyword">const</span> standardOrderTemp = [+userGender].<span class="hljs-title function_">concat</span>(<br>    localStorageValue<br>      .<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;,&#x27;</span>)<br>      .<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">i</span>) =&gt;</span> !!i &amp;&amp; i !== userGender)<br>      .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">i</span>) =&gt;</span> +i),<br>  );<br>  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(standardOrderTemp).<span class="hljs-property">size</span> === <span class="hljs-number">3</span>) <span class="hljs-keyword">return</span> standardOrderTemp;<br>  <span class="hljs-keyword">return</span> initialData;<br>&#125;;<br><br></code></pre></td></tr></table></figure>
+
+<p>第四步：弹框右上角设置按钮弹框中重新排序确定后过滤掉目前数组中的gender值，并把gender值添加到数组的首位</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">handleConfirm</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  standardOrderArr.<span class="hljs-property">value</span> = [+userGender].<span class="hljs-title function_">concat</span>(<br>    standardOrderArr.<span class="hljs-property">value</span>.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">i</span>) =&gt;</span> !!i &amp;&amp; i !== +userGender).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">i</span>) =&gt;</span> +i),<br>  );<br>  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&#x27;mark-standard-order&#x27;</span>, standardOrderArr.<span class="hljs-property">value</span>.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;,&#x27;</span>));<br>  <span class="hljs-title function_">emit</span>(<span class="hljs-string">&#x27;handleSort&#x27;</span>, standardOrderArr.<span class="hljs-property">value</span>);<br>  visible.<span class="hljs-property">value</span> = <span class="hljs-literal">false</span>;<br>&#125;;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-5、新增数据同步功能"><a href="#1-5、新增数据同步功能" class="headerlink" title="1.5、新增数据同步功能"></a><strong>1.5、新增数据同步功能</strong></h3><h4 id="需求-4"><a href="#需求-4" class="headerlink" title="需求"></a><strong>需求</strong></h4><ol>
+<li>点击同步按钮，会自动将卡片维度汇总到刷次维度。然后再正常提交即可</li>
+<li>点击同步按钮，会自动将刷次维度汇总到用户维度。然后再正常提交即可</li>
+</ol>
+<h4 id="前端实现-4"><a href="#前端实现-4" class="headerlink" title="前端实现"></a><strong>前端实现</strong></h4><p>加按钮绑定事件，当返回的data不为空的时候将data赋值给params.value.extra</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">handleSync</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-keyword">const</span> action = props.<span class="hljs-property">dim</span> === <span class="hljs-number">1</span><br>      ? <span class="hljs-title function_">getbrushToUser</span>(params.<span class="hljs-property">value</span>.<span class="hljs-property">brushToUserParams</span>)<br>      : <span class="hljs-title function_">getCardToBrush</span>(params.<span class="hljs-property">value</span>.<span class="hljs-property">cardToBrushParams</span>);<br>    <span class="hljs-keyword">const</span> &#123; data, message &#125; = <span class="hljs-keyword">await</span> action <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>;<br>    <span class="hljs-keyword">if</span> (data) &#123;<br>      params.<span class="hljs-property">value</span>.<span class="hljs-property">extra</span> = data;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-title class_">AMessage</span>.<span class="hljs-title function_">error</span>(message);<br>    &#125;<br>  &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>    <span class="hljs-comment">//</span><br>  &#125;<br>&#125;;<br><br></code></pre></td></tr></table></figure>
+
+<p>(注意：此处由于后端返回的接口如果没有达到同步功能调用的前提就会返回状态码：500，所以要在axios的白名单中过滤一下接口)</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">const</span> whiteList = [<br>  ...<br>  <span class="hljs-string">&#x27;api/ai-debug/gsb/cardtobrush&#x27;</span>,<br>  <span class="hljs-string">&#x27;api/ai-debug/gsb/brushtouser&#x27;</span>,<br>];<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-1、GSB结论产出"><a href="#2-1、GSB结论产出" class="headerlink" title="2.1、GSB结论产出"></a><strong>2.1、GSB结论产出</strong></h3><h4 id="需求-5"><a href="#需求-5" class="headerlink" title="需求"></a><strong>需求</strong></h4><p>Case走查中新增按钮GSB结论产出，点击弹框并将参数带进去</p>
+<h4 id="前端实现-5"><a href="#前端实现-5" class="headerlink" title="前端实现"></a><strong>前端实现</strong></h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">handleGsbReport</span> = (<span class="hljs-params"></span>) =&gt; proxy.<span class="hljs-title function_">showModal</span>(<span class="hljs-string">&#x27;modal-gsb-result-output&#x27;</span>, &#123;<br>  <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;GSB结论产出&#x27;</span>,<br>  <span class="hljs-attr">params</span>: &#123;<br>    <span class="hljs-attr">scene</span>: [<span class="hljs-variable constant_">TIANMA_MALE_STANDARD</span>, <span class="hljs-variable constant_">TIANMA_FEMALE_STANDARD</span>].<span class="hljs-title function_">includes</span>(+(params.<span class="hljs-property">value</span>.<span class="hljs-property">standardT</span> || <span class="hljs-number">0</span>))<br>      ? <span class="hljs-number">3</span><br>      : <span class="hljs-number">2</span>,<br>    ...params.<span class="hljs-property">value</span>,<br>  &#125;,<br>&#125;);<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-comment">//src/views/mark-container/modals/GsbResultOutput.vue</span><br>&lt;template&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;container&#x27;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;container-header&#x27;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">c-form</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">v-model:value</span>=<span class="hljs-string">&#x27;params&#x27;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">:config</span>=<span class="hljs-string">&#x27;config&#x27;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">ref</span>=<span class="hljs-string">&#x27;form&#x27;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">:expand</span>=<span class="hljs-string">&#x27;false&#x27;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">flex</span>=<span class="hljs-string">&#x27;190px&#x27;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">labelCol</span>=<span class="hljs-string">&#x27;0&#x27;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;flex&#x27;</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;space&#x27;</span> /&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;default&#x27;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;mr-8&#x27;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&#x27;props.scope.$hide&#x27;</span>&gt;</span>取消<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;primary&#x27;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;mr-8&#x27;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&#x27;handleGsbReport&#x27;</span>&gt;</span>GSB结论产出<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>&lt;/template&gt;<br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&#x27;ts&#x27;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">import</span> &#123; <span class="hljs-variable constant_">BIZ_TYPE_STORY</span>, <span class="hljs-variable constant_">BIZ_TYPE_TIANMA</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/const&#x27;</span>;</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">import</span> &#123; deserialize, <span class="hljs-title class_">JsonProperty</span>, <span class="hljs-title class_">Serializable</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@bilibili-firebird/lib.serializer&#x27;</span>;</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">import</span> <span class="hljs-title class_">AModal</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;ant-design-vue/es/modal&#x27;</span>;</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">import</span> <span class="hljs-title class_">AMessage</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;ant-design-vue/es/message&#x27;</span>;</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">import</span> &#123; onMounted, <span class="hljs-title class_">Ref</span>, ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">import</span> &#123; getUserBasic &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/api&#x27;</span>;</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">import</span> dayjs <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;dayjs&#x27;</span>;</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Button</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;ant-design-vue&#x27;</span>;</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">import</span> &#123; createGsb &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/views/gsb-container/api&#x27;</span>;</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">import</span> cookie <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/utils/cookie&#x27;</span>;</span></span><br><span class="language-javascript"><span class="language-xml"></span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">const</span> me = cookie.<span class="hljs-title function_">getCookie</span>(<span class="hljs-string">&#x27;username&#x27;</span>) || <span class="hljs-string">&#x27;&#x27;</span>;</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">const</span> mUser = me ? [me] : [];</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">const</span> props = <span class="hljs-title function_">defineProps</span>(&#123;</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">scope</span>: &#123;</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">type</span>: <span class="hljs-title class_">Object</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">default</span>: <span class="hljs-function">() =&gt;</span> (&#123;&#125;),</span></span><br><span class="language-javascript"><span class="language-xml">  &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">&#125;);</span></span><br><span class="language-javascript"><span class="language-xml"></span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">const</span> <span class="hljs-attr">form</span>: <span class="hljs-title class_">Ref</span>&lt;any&gt; = <span class="hljs-title function_">ref</span>();</span></span><br><span class="language-javascript"><span class="language-xml">@<span class="hljs-title class_">Serializable</span>()</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">class</span> <span class="hljs-title class_">gsbResultFilter</span> &#123;</span></span><br><span class="language-javascript"><span class="language-xml">  @<span class="hljs-title class_">JsonProperty</span>(<span class="hljs-string">&#x27;scene&#x27;</span>)</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">scene</span>: number = <span class="hljs-number">3</span>;</span></span><br><span class="language-javascript"><span class="language-xml"></span></span><br><span class="language-javascript"><span class="language-xml">  @<span class="hljs-title class_">JsonProperty</span>(<span class="hljs-string">&#x27;end&#x27;</span>)</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">end</span>: string = <span class="hljs-string">&#x27;&#x27;</span>;</span></span><br><span class="language-javascript"><span class="language-xml"></span></span><br><span class="language-javascript"><span class="language-xml">  @<span class="hljs-title class_">JsonProperty</span>(<span class="hljs-string">&#x27;start&#x27;</span>)</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">start</span>: string = <span class="hljs-string">&#x27;&#x27;</span>;</span></span><br><span class="language-javascript"><span class="language-xml"></span></span><br><span class="language-javascript"><span class="language-xml">  @<span class="hljs-title class_">JsonProperty</span>(<span class="hljs-string">&#x27;m_user&#x27;</span>)</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">mUser</span>: string[] = mUser;</span></span><br><span class="language-javascript"><span class="language-xml"></span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">get</span> <span class="hljs-title function_">createParams</span>() &#123;</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-keyword">return</span> &#123;</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">start_date</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">start</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">end_date</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">end</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">scene</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">scene</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">m_user</span>: <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">mUser</span>) ? <span class="hljs-variable language_">this</span>.<span class="hljs-property">mUser</span>.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;,&#x27;</span>) : <span class="hljs-variable language_">this</span>.<span class="hljs-property">mUser</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    &#125;;</span></span><br><span class="language-javascript"><span class="language-xml">  &#125;</span></span><br><span class="language-javascript"><span class="language-xml">&#125;</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">const</span> config = [</span></span><br><span class="language-javascript"><span class="language-xml">  &#123;</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;评估标准&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">key</span>: <span class="hljs-string">&#x27;scene&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;SELECT&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">attrs</span>: &#123;</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">appendToBody</span>: <span class="hljs-literal">true</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">flex</span>: <span class="hljs-string">&#x27;100px&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">options</span>: [</span></span><br><span class="language-javascript"><span class="language-xml">        &#123; <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;天马&#x27;</span>, <span class="hljs-attr">value</span>: <span class="hljs-variable constant_">BIZ_TYPE_TIANMA</span> &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">        &#123; <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Story&#x27;</span>, <span class="hljs-attr">value</span>: <span class="hljs-variable constant_">BIZ_TYPE_STORY</span> &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">      ],</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">placeholder</span>: <span class="hljs-string">&#x27;评估标准&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">rules</span>: [</span></span><br><span class="language-javascript"><span class="language-xml">      &#123;</span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>,</span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;请选择评估标准&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">    ],</span></span><br><span class="language-javascript"><span class="language-xml">  &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">  &#123;</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;日期&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">key</span>: <span class="hljs-string">&#x27;start,end&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;DATE&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">attrs</span>: &#123;</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">placeholder</span>: [<span class="hljs-string">&#x27;case开始日期&#x27;</span>, <span class="hljs-string">&#x27;结束日期&#x27;</span>],</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">allowClear</span>: <span class="hljs-literal">true</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">valueFormat</span>: <span class="hljs-string">&#x27;YYYYMMDD&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">format</span>: <span class="hljs-string">&#x27;YYYYMMDD&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">flex</span>: <span class="hljs-string">&#x27;260px&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">ranges</span>: &#123;</span></span><br><span class="language-javascript"><span class="language-xml">        过去<span class="hljs-number">1</span>天: [<span class="hljs-title function_">dayjs</span>().<span class="hljs-title function_">add</span>(-<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;day&#x27;</span>), <span class="hljs-title function_">dayjs</span>()],</span></span><br><span class="language-javascript"><span class="language-xml">        过去<span class="hljs-number">3</span>天: [<span class="hljs-title function_">dayjs</span>().<span class="hljs-title function_">add</span>(-<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;day&#x27;</span>), <span class="hljs-title function_">dayjs</span>()],</span></span><br><span class="language-javascript"><span class="language-xml">        过去<span class="hljs-number">5</span>天: [<span class="hljs-title function_">dayjs</span>().<span class="hljs-title function_">add</span>(-<span class="hljs-number">5</span>, <span class="hljs-string">&#x27;day&#x27;</span>), <span class="hljs-title function_">dayjs</span>()],</span></span><br><span class="language-javascript"><span class="language-xml">        过去<span class="hljs-number">15</span>天: [<span class="hljs-title function_">dayjs</span>().<span class="hljs-title function_">add</span>(-<span class="hljs-number">15</span>, <span class="hljs-string">&#x27;day&#x27;</span>), <span class="hljs-title function_">dayjs</span>()],</span></span><br><span class="language-javascript"><span class="language-xml">      &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">    &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">rules</span>: [</span></span><br><span class="language-javascript"><span class="language-xml">      &#123;</span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>,</span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;请选择日期范围&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">    ],</span></span><br><span class="language-javascript"><span class="language-xml">  &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">  &#123;</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;操作人&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">key</span>: <span class="hljs-string">&#x27;mUser&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;SYNC&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">action</span>: getUserBasic,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">attrs</span>: &#123;</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">labelInValue</span>: <span class="hljs-literal">false</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;multiple&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">flex</span>: <span class="hljs-string">&#x27;unset&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">placeholder</span>: <span class="hljs-string">&#x27;操作人&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">  &#125;,</span></span><br><span class="language-javascript"><span class="language-xml">];</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">const</span> params = <span class="hljs-title function_">ref</span>(&#123;&#125; <span class="hljs-keyword">as</span> gsbResultFilter);</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-title function_">onMounted</span>(<span class="hljs-function">() =&gt;</span> &#123;</span></span><br><span class="language-javascript"><span class="language-xml">  params.<span class="hljs-property">value</span> = <span class="hljs-title function_">deserialize</span>(props.<span class="hljs-property">scope</span>.<span class="hljs-property">params</span>, gsbResultFilter);</span></span><br><span class="language-javascript"><span class="language-xml">&#125;);</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">const</span> <span class="hljs-title function_">handleGsbReport</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; &#123;</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">await</span> form.<span class="hljs-property">value</span>.<span class="hljs-title function_">validate</span>();</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">return</span> <span class="hljs-title class_">AModal</span>.<span class="hljs-title function_">confirm</span>(&#123;</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;操作确认&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">width</span>: <span class="hljs-number">400</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">wrapClassName</span>: <span class="hljs-string">&#x27;modal-confirm&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">content</span>: <span class="hljs-string">&#x27;是否确认产出&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">okText</span>: <span class="hljs-string">&#x27;确定&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// okButtonProps: &#123; danger: true &#125;,</span></span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">cancelText</span>: <span class="hljs-string">&#x27;取消&#x27;</span>,</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">onOk</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">createGsb</span>(params.<span class="hljs-property">value</span>.<span class="hljs-property">createParams</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> &#123;</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-title class_">AMessage</span>.<span class="hljs-title function_">success</span>(<span class="hljs-string">&#x27;GSB结论产出成功&#x27;</span>, <span class="hljs-number">1</span>);</span></span><br><span class="language-javascript"><span class="language-xml">      props.<span class="hljs-property">scope</span>.$hide();</span></span><br><span class="language-javascript"><span class="language-xml">    &#125;),</span></span><br><span class="language-javascript"><span class="language-xml">  &#125;);</span></span><br><span class="language-javascript"><span class="language-xml">&#125;;</span></span><br><span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&#x27;less&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml"></span><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-2、GSB结论查询"><a href="#2-2、GSB结论查询" class="headerlink" title="2.2、GSB结论查询"></a><strong>2.2、GSB结论查询</strong></h3><h4 id="需求-6"><a href="#需求-6" class="headerlink" title="需求"></a><strong>需求</strong></h4><p>新增页面GSB结论查询</p>
+<p>筛选维度：</p>
+<ul>
+<li>场景 ： 天马&#x2F;story的筛选</li>
+<li>产出人 ： XXX</li>
+</ul>
+<p><img src="https://secure2.wostatic.cn/static/cdHDXz1jcFcHfYJ5fiLwQr/image.png?auth_key=1719477856-sSwRNaAoEv4PisgTZ16uJ9-0-5a5af50499ca4134b2f91383843370d4" srcset="/img/loading.gif" lazyload></p>
+<h4 id="前端实现-6"><a href="#前端实现-6" class="headerlink" title="前端实现"></a><strong>前端实现</strong></h4><p>在header中一个表单，表单的config：场景下拉框、产出人（异步搜索框多选框）</p>
+<p>在body中有一个表格，表格的columns：ID、场景、产出时间、产出条件（开始时间、结束时间、打标人的聚合）、产出人、详情</p>
+<h3 id="2-3、GSB结论详情"><a href="#2-3、GSB结论详情" class="headerlink" title="2.3、GSB结论详情"></a><strong>2.3、GSB结论详情</strong></h3><h4 id="需求-7"><a href="#需求-7" class="headerlink" title="需求"></a><strong>需求</strong></h4><p><strong>性别维度报表:</strong></p>
+<p>表头：用户维度的打标维度</p>
+<p>列名：男性、女性、整体</p>
+<p><strong>用户维度报表:</strong></p>
+<p>表头：用户维度的打标维度</p>
+<p>列名：打标者姓名</p>
+<p><strong>用户类别维度:</strong></p>
+<p>表头：用户维度的打标维度</p>
+<p>列名：用户类别维度，目前为用户-大盘，用户-低活，用户</p>
+<h4 id="前端实现-7"><a href="#前端实现-7" class="headerlink" title="前端实现"></a><strong>前端实现</strong></h4><p>第一步：聚合schema</p>
+<p>详情页面的schema聚合规则</p>
+<p><strong>userType为天马：聚合天马男性跟天马女性的schema</strong></p>
+<p><strong>userType为Story：聚合Story的schema</strong></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">if</span> (userType === <span class="hljs-number">3</span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span> = &#123;&#125;;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">tianmaMaleSchema</span>.<span class="hljs-title function_">concat</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tianmaFeMaleSchema</span>).<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item: Standard</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span>[item.<span class="hljs-property">key</span>]) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span>[item.<span class="hljs-property">key</span>] = item.<span class="hljs-property">name</span>;<br>    &#125;<br>  &#125;);<br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (userType === <span class="hljs-number">2</span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span> = &#123;&#125;;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">storySchema</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">story: Standard</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span>[story.<span class="hljs-property">key</span>]) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span>[story.<span class="hljs-property">key</span>] = story.<span class="hljs-property">name</span>;<br>    &#125;<br>  &#125;);<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span> = &#123;&#125;;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">tianmaMaleSchema</span><br>    .<span class="hljs-title function_">concat</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tianmaFeMaleSchema</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">storySchema</span>)<br>    .<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item: Standard</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span>[item.<span class="hljs-property">key</span>]) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">schemaMap</span>[item.<span class="hljs-property">key</span>] = item.<span class="hljs-property">name</span>;<br>      &#125;<br>    &#125;);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>第二步：将接口返回数据根据type的不同注入不同维度的表格</p>
+<h3 id="2-4、GSB结论详情一键导出"><a href="#2-4、GSB结论详情一键导出" class="headerlink" title="2.4、GSB结论详情一键导出"></a><strong>2.4、GSB结论详情一键导出</strong></h3><h4 id="需求-8"><a href="#需求-8" class="headerlink" title="需求"></a><strong>需求</strong></h4><p>将当前页面的数据导出为一个excel表格</p>
+<h4 id="前端实现-8"><a href="#前端实现-8" class="headerlink" title="前端实现"></a><strong>前端实现</strong></h4><p>第一步：绑定事件</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">handleExport</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-title function_">exportToExcel</span>(state.<span class="hljs-property">value</span>.<span class="hljs-property">data</span>, exportDataConfigs.<span class="hljs-property">value</span>);<br>&#125;;<br><br></code></pre></td></tr></table></figure>
+
+<p>第二步：编写导出函数</p>
+<p>导出的excel的文件名称由excelName控制</p>
+<ol>
+<li>创建一个新表格</li>
+</ol>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-variable constant_">XLSX</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;xlsx&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">AMessage</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;ant-design-vue/es/message&#x27;</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">exportToExcel</span> = (<span class="hljs-params">arr: <span class="hljs-built_in">any</span>[], configs: <span class="hljs-built_in">any</span>[]</span>) =&gt; &#123;<br>  <span class="hljs-keyword">if</span> (arr.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) &#123;<br>    <span class="hljs-title class_">AMessage</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;导出的数据不能为空&#x27;</span>);<br>    <span class="hljs-keyword">return</span>;<br>  &#125;<br>  <span class="hljs-keyword">const</span> wb = <span class="hljs-variable constant_">XLSX</span>.<span class="hljs-property">utils</span>.<span class="hljs-title function_">book_new</span>();    <span class="hljs-comment">//创建一个excel表格</span><br><br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">firstTitle</span>: <span class="hljs-built_in">string</span>[] = [];<br>  <span class="hljs-keyword">const</span> excelName = <span class="hljs-string">`GSB结论详情-<span class="hljs-subst">$&#123;<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()&#125;</span>`</span>;    <span class="hljs-comment">//导出excel表格的文件名</span><br>  <span class="hljs-keyword">const</span> title = configs.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;    <span class="hljs-comment">//遍历configs，将其中的title（表头）存下来</span><br>    <span class="hljs-keyword">const</span> nameArr = item.<span class="hljs-property">title</span>;<br>    <span class="hljs-keyword">return</span> nameArr;<br>  &#125;);<br>  firstTitle.<span class="hljs-title function_">push</span>(...title);<br><br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">exportData</span>: <span class="hljs-built_in">any</span>[][] = [];<br>  arr.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item: <span class="hljs-built_in">any</span>, index: <span class="hljs-built_in">number</span>, array: <span class="hljs-built_in">any</span>[]</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> extraMap = &#123; ...item &#125;;<br>    <span class="hljs-keyword">const</span> <span class="hljs-attr">r</span>: <span class="hljs-built_in">string</span>[] = [];<br>    configs.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">i</span>) =&gt;</span> &#123;<br>      r.<span class="hljs-title function_">push</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;extraMap[i.dataIndex] || <span class="hljs-string">&#x27;0&#x27;</span>&#125;</span>`</span>);    <span class="hljs-comment">//此时的r就是一行一行的行数据</span><br>    &#125;);<br>    <span class="hljs-keyword">if</span> (index &gt; <span class="hljs-number">0</span> &amp;&amp; item.<span class="hljs-property">type</span> !== array[index - <span class="hljs-number">1</span>].<span class="hljs-property">type</span>) &#123;<br>      exportData.<span class="hljs-title function_">push</span>(<span class="hljs-title class_">Array</span>(configs.<span class="hljs-property">length</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-string">&#x27;&#x27;</span>)); <span class="hljs-comment">// 当type跟上一个的type不同时插入一整个空白行</span><br>    &#125;<br>    exportData.<span class="hljs-title function_">push</span>(r);<br>  &#125;);<br>  <span class="hljs-keyword">const</span> wsData = [firstTitle, ...exportData];<br>  <span class="hljs-keyword">const</span> ws = <span class="hljs-variable constant_">XLSX</span>.<span class="hljs-property">utils</span>.<span class="hljs-title function_">json_to_sheet</span>(wsData, &#123; <span class="hljs-attr">skipHeader</span>: <span class="hljs-literal">true</span> &#125;);    <span class="hljs-comment">//将数据注入到 表格中</span><br>  <span class="hljs-keyword">const</span> colWidths = firstTitle.<span class="hljs-title function_">map</span>(<span class="hljs-function">() =&gt;</span> (&#123; <span class="hljs-attr">wch</span>: <span class="hljs-number">0</span> &#125;));<br>  wsData.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">row</span>) =&gt;</span> &#123;<br>    row.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">cell, i</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">if</span> (cell &amp;&amp; cell.<span class="hljs-property">length</span>) &#123;<br>        <span class="hljs-comment">// eslint-disable-next-line no-control-regex</span><br>        <span class="hljs-keyword">const</span> textWidth = cell.<span class="hljs-title function_">toString</span>().<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/[^\x00-\xff]/g</span>, <span class="hljs-string">&#x27;aa&#x27;</span>).<span class="hljs-property">length</span>;<br>        (colWidths[i] || &#123;&#125;).<span class="hljs-property">wch</span> = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>((colWidths[i] || &#123;&#125;)?.<span class="hljs-property">wch</span>, textWidth) + <span class="hljs-number">0.3</span>;<br>      &#125;<br>    &#125;);<br>  &#125;);<br>  ws[<span class="hljs-string">&#x27;!cols&#x27;</span>] = colWidths;<br>  <span class="hljs-variable constant_">XLSX</span>.<span class="hljs-property">utils</span>.<span class="hljs-title function_">book_append_sheet</span>(wb, ws, <span class="hljs-string">&#x27;Sheet1&#x27;</span>);<br>  <span class="hljs-variable constant_">XLSX</span>.<span class="hljs-title function_">writeFile</span>(wb, <span class="hljs-string">`<span class="hljs-subst">$&#123;excelName&#125;</span>.xlsx`</span>);<br>&#125;;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> exportToExcel;<br><br><br></code></pre></td></tr></table></figure>
+<!-- [Hexo1](../ES的发展/index.html) -->
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/b%E7%AB%99/" class="category-chain-item">b站</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/b%E7%AB%99/%E9%A1%B9%E7%9B%AE%E8%BF%AD%E4%BB%A3/" class="category-chain-item">项目迭代</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>debug平台规则解析</div>
+      <div>http://example.com/bilibili/需求/debug平台/debug平台规则解析/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/bilibili/%E9%9C%80%E6%B1%82/%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0/%E5%AE%9E%E9%AA%8C%E5%8E%9F%E5%AD%90%E5%8C%96/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/bilibili/%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98%E5%AF%BC%E8%87%B4uat%E7%8E%AF%E5%A2%83%E7%95%8C%E9%9D%A2%E4%B8%8D%E8%83%BD%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/" title="浏览器的缓存问题导致uat环境界面不能正常显示">
+                        <span class="hidden-mobile">浏览器的缓存问题导致uat环境界面不能正常显示</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

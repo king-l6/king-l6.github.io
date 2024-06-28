@@ -1,0 +1,700 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一. *.vue 是单文件组件一个文件即为一个组件，同时也是一个ES的模块文件中包含三部分： template script styleSPA（单页面应用）不利于搜索因此的SEO(搜索引擎优化)操作特别是百度根本没办法抓取到SPA的内容页面  二.页面级组件创建在views文件夹中，而且，因为页面级组件都要实现跳转，所以是一级路由组件 1App.vue中的&lt;router-view&gt;就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单页面卡法应用注意事项（1）">
+<meta property="og:url" content="http://example.com/%E5%AD%A6%E4%B9%A0/vue/15-%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%E5%BA%94%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%881%EF%BC%89/index.html">
+<meta property="og:site_name" content="king-l6">
+<meta property="og:description" content="一. *.vue 是单文件组件一个文件即为一个组件，同时也是一个ES的模块文件中包含三部分： template script styleSPA（单页面应用）不利于搜索因此的SEO(搜索引擎优化)操作特别是百度根本没办法抓取到SPA的内容页面  二.页面级组件创建在views文件夹中，而且，因为页面级组件都要实现跳转，所以是一级路由组件 1App.vue中的&lt;router-view&gt;就">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668568704739-93b2da21-33b6-4a5b-8a1f-1c6586fc067e.png#averageHue=%23f7f6f5&clientId=u5bb62bb2-3d35-4&from=paste&height=157&id=u0b9974e7&name=image.png&originHeight=283&originWidth=450&originalType=binary&ratio=1&rotation=0&showTitle=false&size=23416&status=done&style=none&taskId=ua7038560-b507-4c3e-92f2-6411f947ec2&title=&width=250.00000662273848">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668568767722-30c4525c-1167-40fa-a46d-aba668bdcb55.png#averageHue=%23f6f6f6&clientId=u5bb62bb2-3d35-4&from=paste&height=276&id=uf964da16&name=image.png&originHeight=496&originWidth=1600&originalType=binary&ratio=1&rotation=0&showTitle=false&size=89706&status=done&style=none&taskId=uea4ca499-436c-4e4f-9f9b-ae99989e479&title=&width=888.8889124364035">
+<meta property="article:published_time" content="2021-04-23T05:03:47.000Z">
+<meta property="article:modified_time" content="2023-03-21T00:43:26.000Z">
+<meta property="article:author" content="liu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668568704739-93b2da21-33b6-4a5b-8a1f-1c6586fc067e.png#averageHue=%23f7f6f5&clientId=u5bb62bb2-3d35-4&from=paste&height=157&id=u0b9974e7&name=image.png&originHeight=283&originWidth=450&originalType=binary&ratio=1&rotation=0&showTitle=false&size=23416&status=done&style=none&taskId=ua7038560-b507-4c3e-92f2-6411f947ec2&title=&width=250.00000662273848">
+  
+  
+  
+  <title>单页面卡法应用注意事项（1） - king-l6</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    <meta name="referrer" content="no-referrer"/>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="单页面卡法应用注意事项（1）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-23 13:03" pubdate>
+          2021年4月23日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">单页面卡法应用注意事项（1）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a name="nwkhb"></a></p>
+<h1 id="一-vue-是单文件组件"><a href="#一-vue-是单文件组件" class="headerlink" title="一. *.vue 是单文件组件"></a>一. *.vue 是单文件组件</h1><p>一个文件即为一个组件，同时也是一个ES的模块<br />文件中包含三部分： template script style<br />SPA（单页面应用）不利于搜索因此的SEO(搜索引擎优化)操作<br />特别是百度根本没办法抓取到SPA的内容页面</p>
+<p><a name="DHp0T"></a></p>
+<h1 id="二-页面级组件"><a href="#二-页面级组件" class="headerlink" title="二.页面级组件"></a>二.页面级组件</h1><p>创建在views文件夹中，而且，因为页面级组件都要实现跳转，所以是一级路由组件</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">App</span>.vue中的&lt;router-<span class="hljs-keyword">view</span>&gt;就是一级路由组件展示的位置<br></code></pre></td></tr></table></figure>
+<p><a name="XIk1h"></a></p>
+<h1 id="三、注册路由"><a href="#三、注册路由" class="headerlink" title="三、注册路由"></a>三、注册路由</h1><p>大部分vue的第三方模块在引入后，需要用Vue.use进行注册</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">比如：Vue.<span class="hljs-keyword">use</span>(VueRouter)<br></code></pre></td></tr></table></figure>
+<p><a name="ARVCR"></a></p>
+<h1 id="四、路由配置"><a href="#四、路由配置" class="headerlink" title="四、路由配置"></a>四、路由配置</h1><p>是全局的，在整个单页面应用的跳转中都是要匹配路由配置的。</p>
+<p><a name="JembI"></a></p>
+<h1 id="五、路由配置中的模式（mode）"><a href="#五、路由配置中的模式（mode）" class="headerlink" title="五、路由配置中的模式（mode）"></a>五、路由配置中的模式（mode）</h1><p>路由配置中的模式（mode）有两种： hash(有#)   history (没#)<br />默认的mode为hash，如果想要使用history，就需要给mode添加history<br />在Router - index.js中修改配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> <span class="hljs-title class_">VueRouter</span>(&#123; <br>  <span class="hljs-comment">/*</span><br><span class="hljs-comment">    mode 默认为hash模式，路径前有#</span><br><span class="hljs-comment">    history历史记录模式，路径前面没有#</span><br><span class="hljs-comment">  */</span> <br>  <span class="hljs-attr">mode</span>:<span class="hljs-string">&#x27;history&#x27;</span>,<br>  <span class="hljs-attr">routes</span>:routes,<br>  <span class="hljs-attr">linkExactActiveClass</span>: <span class="hljs-string">&#x27;active&#x27;</span> <br>&#125;) <br></code></pre></td></tr></table></figure>
+<p>面试题：路由的hash和history模式的区别</p>
+<ol>
+<li>首先hash模式url带#号，history不带#号</li>
+<li>hash模式前端路由修改的是hash值(#及以后)，对后端没影响，因此改变hash也不会重新加载页面，比如修改为了不存在的#123页面，页面不会跳转;<br />history模型刚好相反，没有对应的页面就会出现404<br><a name="QQ2R3"></a></li>
+</ol>
+<h1 id="六、路由的重定向"><a href="#六、路由的重定向" class="headerlink" title="六、路由的重定向"></a>六、路由的重定向</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&#123;<br>  <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/&#x27;</span>,<br>  <span class="hljs-comment">// 重定向</span><br>  <span class="hljs-attr">redirect</span>: <span class="hljs-string">&#x27;/index&#x27;</span><br>&#125;,<br>&#123;<br>  <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/index&#x27;</span>,<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;index&#x27;</span>,<br>  <span class="hljs-attr">component</span>: <span class="hljs-title class_">Index</span><br>&#125;,<br></code></pre></td></tr></table></figure>
+
+<p><a name="vIm4j"></a></p>
+<h1 id="七、普通组件四步走"><a href="#七、普通组件四步走" class="headerlink" title="七、普通组件四步走"></a>七、普通组件四步走</h1><ol>
+<li>定义<br />2. 在父组件中引入<br />3. 注册: components:{}<br />4. 在模板中使用</li>
+</ol>
+<p><a name="e4AIJ"></a></p>
+<h1 id="八、路由组件四步走："><a href="#八、路由组件四步走：" class="headerlink" title="八、路由组件四步走："></a>八、路由组件四步走：</h1><ol>
+<li>定义<br />2. 在router&#x2F;index.js中引入<br />3. 定义路由: {path:’’,component:’’}<br />4. 使用：  在任何一个需要的组件中：</li>
+</ol>
+<p><a name="ujIoa"></a></p>
+<h1 id="九、路径别名："><a href="#九、路径别名：" class="headerlink" title="九、路径别名："></a>九、路径别名：</h1><p>路径别名：@&#x2F; 等价于 src&#x2F;<br />‘..&#x2F;..&#x2F;components&#x2F;FooterNav’</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scheme"><span class="hljs-symbol">&#x27;@/components/FooterNav</span>&#x27;<br></code></pre></td></tr></table></figure>
+
+<p><a name="hjKZD"></a></p>
+<h1 id="十、scoped的使用"><a href="#十、scoped的使用" class="headerlink" title="十、scoped的使用"></a>十、scoped的使用</h1><p>scoped 使当前组件的样式不会和其它组件冲突<br />使用 scoped 后，父组件的样式将不会渗透到子组件中。不过一个子组件的根节点会同时受其父组件的 scoped CSS 和子组件的 scoped CSS 的影响。这样设计是为了让父组件可以从布局的角度出发，调整其子组件根元素的样式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span><br><span class="language-css">	*&#123;</span><br><span class="language-css">    <span class="hljs-attribute">padding</span>:<span class="hljs-number">0</span>;</span><br><span class="language-css">    <span class="hljs-attribute">margin</span>:<span class="hljs-number">0</span>;</span><br><span class="language-css">  &#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>面试题：面试的时候也经常会被问到scoped<br />使当前组件的样式不会和其他组件冲突；<br />原理就是在css样式的后面添加了自定义属性<br><a name="yKPWA"></a></p>
+<h1 id="十一、axios的使用"><a href="#十一、axios的使用" class="headerlink" title="十一、axios的使用"></a>十一、axios的使用</h1><ol>
+<li>npm i axios –save<br />2. 在main.js中引入axios (不需要用Vue.use调用)</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-number">3</span>. Vue<span class="hljs-selector-class">.prototype</span>.<span class="hljs-variable">$axios</span> = axios  <br><br><span class="hljs-number">4</span>. 在任意vue文件中，可以直接用this.<span class="hljs-variable">$axios</span>来调用<br></code></pre></td></tr></table></figure>
+
+<p><a name="xKamF"></a></p>
+<h1 id="十二、后台接口"><a href="#十二、后台接口" class="headerlink" title="十二、后台接口"></a>十二、后台接口</h1><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-number">1.</span> 在根目录创建vue.<span class="hljs-property">config</span>.<span class="hljs-property">js</span> (是webpack的配置文件，将会和webpack的默认配置合并在一起)<br><span class="hljs-number">2.</span> <br>   <br>    <span class="hljs-keyword">const</span> findList = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./mock/findList.json&quot;</span>);<br><br>    <span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>    <span class="hljs-attr">devServer</span>: &#123;<br>        <span class="hljs-attr">port</span>: <span class="hljs-number">8080</span>,<br>        <span class="hljs-title function_">before</span>(<span class="hljs-params">app</span>) &#123;<br>        <span class="hljs-comment">//   nodejs的后端路由</span><br>        app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;/api/getFindList&quot;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>            <span class="hljs-comment">//beauty</span><br>            <span class="hljs-keyword">let</span> <span class="hljs-keyword">type</span> = req.<span class="hljs-property">query</span>.<span class="hljs-property">type</span><br>            res.<span class="hljs-title function_">json</span>(findList[<span class="hljs-keyword">type</span>])<br>        &#125;);<br>        &#125;<br>     &#125;<br>    &#125;;<br></code></pre></td></tr></table></figure>
+<p> 注意：vue.config.js代码有任何改动，都要重启服务器！！！</p>
+<p><a name="wF3pU"></a></p>
+<h1 id="十三、遍历数据"><a href="#十三、遍历数据" class="headerlink" title="十三、遍历数据"></a>十三、遍历数据</h1><p>遍历数据时，一定要添加key值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;li v-<span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;(item) in list&quot;</span> :key=<span class="hljs-string">&quot;item.id&quot;</span>&gt;&#123;&#123;item.<span class="hljs-property">title</span>&#125;&#125;&lt;/li&gt;<br></code></pre></td></tr></table></figure>
+
+
+<p><a name="JGPLl"></a></p>
+<h1 id="十四、图标字体的实现"><a href="#十四、图标字体的实现" class="headerlink" title="十四、图标字体的实现"></a>十四、图标字体的实现</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-number">1</span>. 在assets中创建fonts文件夹，放入字体文件<br><span class="hljs-number">2</span>. 在assets的css文件夹中，放入iconfont<span class="hljs-selector-class">.css</span><br><span class="hljs-number">3</span>. 在<span class="hljs-selector-tag">main</span>.js引入字体<br>    import <span class="hljs-string">&quot;@/assets/css/iconfont.css&quot;</span><br><span class="hljs-number">4</span>. 在任意组件中<br>    &lt;<span class="hljs-selector-tag">i</span> class=<span class="hljs-string">&quot;iconfont icon-xing&quot;</span>&gt;&lt;/i&gt;<br></code></pre></td></tr></table></figure>
+
+<p><a name="NhDes"></a></p>
+<h1 id="十五、swiper实现轮播图效果"><a href="#十五、swiper实现轮播图效果" class="headerlink" title="十五、swiper实现轮播图效果"></a>十五、swiper实现轮播图效果</h1><ol>
+<li>npm i swiper –save<br />2. 在需要使用swiper的组件中引入<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Swiper</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;swiper&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;swiper/css/swiper.min.css&quot;</span>;<br></code></pre></td></tr></table></figure>
+3.在swiper的官网上粘贴基本结构<br />4.在mouted(){}中，new Swiper并进行配置<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">mounted</span>(<span class="hljs-params"></span>)&#123; <br>  <span class="hljs-keyword">let</span> mySwiper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Swiper</span>(<span class="hljs-string">&quot;.swiper-container&quot;</span>, &#123;<br>    <span class="hljs-attr">autoplay</span>:&#123;<br>        <span class="hljs-attr">delay</span>:<span class="hljs-number">2000</span>,<br>        <span class="hljs-attr">stopOnLastSlide</span>:<span class="hljs-literal">false</span>,<br>        <span class="hljs-attr">disableOnInteraction</span>:<span class="hljs-literal">true</span><br>    &#125;,<br>    loop : <span class="hljs-literal">true</span>, <span class="hljs-comment">// 首尾相连</span><br>    <span class="hljs-attr">pagination</span>:&#123;<br>        <span class="hljs-attr">el</span>:<span class="hljs-string">&#x27;.swiper-pagination&#x27;</span><br>    &#125;<br>  &#125;);<br>&#125;,<br></code></pre></td></tr></table></figure>
+5.遍历图片显示轮播图<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;swiper-slide&quot;</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;(item,index) in imgs&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;index&quot;</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">&quot;require(&#x27;../assets/imgs/&#x27;+item)&quot;</span>/&gt;</span><br>   <span class="hljs-comment">&lt;!-- &lt;img :src=&quot;`../assets/imgs/$&#123;item&#125;`&quot;/&gt; 不能显示图片 --&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+6.引入图片之后轮播图不能进行切换<br />这是因为vue-cli在遍历数据之前先执行了new swiper的对象，所以，我们需要等异步的axios获取到的数据，渲染到页面上的时候再去执行new swiper的对象<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-attr">watch</span>:&#123;<br>    <span class="hljs-title function_">imgs</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-variable language_">this</span>.$nextTick(<span class="hljs-function">()=&gt;</span>&#123;<br>        <span class="hljs-keyword">var</span> mySwiper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Swiper</span> (<span class="hljs-string">&#x27;.swiper-container&#x27;</span>, &#123;<br>          <span class="hljs-attr">autoplay</span>:&#123;<br>            <span class="hljs-attr">delay</span>:<span class="hljs-number">2000</span>,<br>            <span class="hljs-attr">stopOnLastSlide</span>:<span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">disableOnInteraction</span>:<span class="hljs-literal">true</span><br>          &#125;,<br>          <span class="hljs-attr">loop</span>: <span class="hljs-literal">true</span>,<br>          <span class="hljs-comment">// 如果需要分页器</span><br>          <span class="hljs-comment">// 显示分页器必须是对象的格式</span><br>          <span class="hljs-attr">pagination</span>:&#123;<br>            <span class="hljs-attr">el</span>:<span class="hljs-string">&#x27;.swiper-pagination&#x27;</span><br>          &#125;<br>        &#125;)      <br>      &#125;)<br>    &#125;<br>  &#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p><a name="QC9IS"></a></p>
+<h1 id="十六、-vue-config-js-如果有变动，需要重启服务，才能应用新的功能"><a href="#十六、-vue-config-js-如果有变动，需要重启服务，才能应用新的功能" class="headerlink" title="十六、  vue.config.js 如果有变动，需要重启服务，才能应用新的功能"></a>十六、  vue.config.js 如果有变动，需要重启服务，才能应用新的功能</h1><p><a name="LaGVO"></a></p>
+<h1 id="十七、-ES6的模块化-vue-cli"><a href="#十七、-ES6的模块化-vue-cli" class="headerlink" title="十七、 ES6的模块化(vue-cli)"></a>十七、 ES6的模块化(vue-cli)</h1><ol>
+<li><p>模块 (单个的js， css, 第三方安装的模块)<br />2. 自定义模块  （js）<br />    (只能导出一个默认模块)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript">...<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> router (路由定义中导出路由对象)<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> aa = <span class="hljs-number">3</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">bb</span>(<span class="hljs-params"></span>)&#123;&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>引入模块<br />1）引入自定义的js，vue模块</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> 接口 <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./路径&#x27;</span><br><span class="hljs-keyword">import</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./路径&#x27;</span><br><span class="hljs-keyword">import</span> &#123;aa&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./路径&#x27;</span><br></code></pre></td></tr></table></figure>
+<p> 2）非模块化的js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;@/assets/js/font-size.js&quot;</span><br></code></pre></td></tr></table></figure>
+<p>3）css</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;@/assets/css/iconfont.css&quot;</span><br></code></pre></td></tr></table></figure>
+<p>4）第三方模块</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<p><a name="PEcCd"></a></p>
+<h1 id="十八、解决方案"><a href="#十八、解决方案" class="headerlink" title="十八、解决方案"></a>十八、解决方案</h1><ol>
+<li>sass 样式中带有红线</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668568704739-93b2da21-33b6-4a5b-8a1f-1c6586fc067e.png#averageHue=%23f7f6f5&clientId=u5bb62bb2-3d35-4&from=paste&height=157&id=u0b9974e7&name=image.png&originHeight=283&originWidth=450&originalType=binary&ratio=1&rotation=0&showTitle=false&size=23416&status=done&style=none&taskId=ua7038560-b507-4c3e-92f2-6411f947ec2&title=&width=250.00000662273848" srcset="/img/loading.gif" lazyload alt="image.png"><br />解决办法：<br />1.安装vetur插件<br />2.在settings.json中写入”files.associations”: { “*.vue”: “vue” }<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/22278242/1668568767722-30c4525c-1167-40fa-a46d-aba668bdcb55.png#averageHue=%23f6f6f6&clientId=u5bb62bb2-3d35-4&from=paste&height=276&id=uf964da16&name=image.png&originHeight=496&originWidth=1600&originalType=binary&ratio=1&rotation=0&showTitle=false&size=89706&status=done&style=none&taskId=uea4ca499-436c-4e4f-9f9b-ae99989e479&title=&width=888.8889124364035" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>单页面卡法应用注意事项（1）</div>
+      <div>http://example.com/学习/vue/15-单页面开发应用注意事项（1）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年4月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/vue/14-vue-cli/" title="vue-cli">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vue-cli</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0/vue/13-%E8%B7%AF%E7%94%B1/" title="路由">
+                        <span class="hidden-mobile">路由</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
